@@ -98,8 +98,17 @@ class RekeningBank:
         self._validasi_aktif()
         if not isinstance(rekening_tujuan, RekeningBank):
             raise TypeError("Tujuan transfer harus objek RekeningBank!")
+        
+        # Tarik saldo dari rekening sumber
         self.tarik(jumlah, f"Transfer ke {rekening_tujuan.pemilik}")
-        rekening_tujuan.setor(jumlah, f"Transfer dari {self.__pemilik}")
+        
+        # Coba transfer ke rekening tujuan dengan mekanisme rollback
+        try:
+            rekening_tujuan.setor(jumlah, f"Transfer dari {self.__pemilik}")
+        except Exception as e:
+            # Rollback: jika sektor gagal, kembalikan uang ke rekening sumber
+            self.setor(jumlah, f"BATAL - Transfer ke {rekening_tujuan.pemilik} (Gagal: {e})")
+            raise RuntimeError(f"Transfer gagal dan telah dibatalkan. Alasan: {e}")
 
     def tutup(self):
         """Menutup rekening."""
@@ -197,7 +206,8 @@ class Produk:
         self.__log          = []
         # gunakan setter
         self.harga  = harga
-        self.tambah_stok(stok_awal, "Stok Awal")
+        if stok_awal > 0:
+            self.tambah_stok(stok_awal, "Stok Awal")
 
     @property
     def kode(self):
