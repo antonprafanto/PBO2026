@@ -334,11 +334,10 @@ class Rumah:
         self._kamar  = []
 
     def tambah_kamar(self, fungsi, luas_m2):
-        """Rumah sendiri yang menciptakan Kamar baru."""
+        """Kamar DIBUAT DI DALAM Rumah, bukan dikirim dari luar."""
         nomor = len(self._kamar) + 1
         kamar_baru = Kamar(nomor, fungsi, luas_m2)   # <-- dibuat DI SINI
         self._kamar.append(kamar_baru)
-        print(f"  [+] {kamar_baru} ditambahkan")
         return kamar_baru
 
     @property
@@ -350,8 +349,9 @@ class Rumah:
         return len(self._kamar)
 
     def tampilkan(self):
-        print(f"\n  Rumah milik {self.pemilik} @ {self.alamat}")
-        print(f"  Total luas: {self.total_luas} m2 | {self.jumlah_kamar} kamar")
+        print(f"\n  Rumah milik: {self.pemilik}")
+        print(f"  Alamat     : {self.alamat}")
+        print(f"  Total luas : {self.total_luas} m2 | {self.jumlah_kamar} kamar")
         for k in self._kamar:
             print(f"    - {k}")
 
@@ -366,10 +366,14 @@ rumah_budi.tambah_kamar("Kamar Mandi",  6)
 
 rumah_budi.tampilkan()
 # Output:
-#   Rumah milik Budi Santoso @ Jl. Mulawarman No. 5, Samarinda
-#   Total luas: 78 m2 | 5 kamar
+#   Rumah milik: Budi Santoso
+#   Alamat     : Jl. Mulawarman No. 5, Samarinda
+#   Total luas : 78 m2 | 5 kamar
 #     - Kamar 1: Ruang Tamu (25 m2)
-#     ...
+#     - Kamar 2: Kamar Tidur Utama (20 m2)
+#     - Kamar 3: Kamar Tidur 2 (15 m2)
+#     - Kamar 4: Dapur (12 m2)
+#     - Kamar 5: Kamar Mandi (6 m2)
 
 # Saat rumah_budi dihapus, semua Kamar-nya ikut musnah
 # (tidak ada referensi lain ke Kamar-kamar tersebut)
@@ -383,10 +387,11 @@ classDiagram
     class Rumah {
         -alamat : str
         -pemilik : str
+        +jumlah_kamar : int
+        +total_luas : float
         +tambah_kamar(fungsi, luas) Kamar
         +bangun_standar()
         +tampilkan()
-        +total_luas() float
     }
     class Kamar {
         -nomor : int
@@ -397,6 +402,13 @@ classDiagram
 ```
 
 **Notasi:** `*--` (diamond terisi di sisi induk — komposisi)
+
+> 💡 **Eksplorasi Lanjutan di Kode Praktik**
+> File `kode/03_komposisi.py` di repositori ini memberikan skenario Komposisi yang jauh lebih solid dengan *Business Logic*:
+> 1. **Komposisi Fisik Dasar** (seperti di atas): `Rumah` membangun dan mengendalikan semua siklus hidup `Kamar`.
+> 2. **Komposisi Transaksional (E-Commerce)**: Kelas `Order` menciptakan dan menghancurkan eksistensi `OrderItem`. Sebuah item barang di keranjang tidak punya identitas apalagi makna tanpa adanya payung `Order` yang mengikatnya!
+> 
+> *Sangat disarankan menjalankan file tersebut untuk melihat penerapan sistem E-Commerce beraksi di terminal.*
 
 ---
 
