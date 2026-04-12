@@ -411,7 +411,88 @@ print(dok.jumlah_kata)
 
 ---
 
-## 10. Pola Terbaik Enkapsulasi
+## 10. Studi Kasus Nyata — Enkapsulasi dalam Sistem Keuangan
+
+Semua konsep yang telah kita pelajari berpadu dalam satu sistem nyata. Perhatikan kelas `RekeningBank`: **saldo tidak bisa diubah langsung dari luar**, setiap transaksi melewati validasi, dan riwayat dilindungi dari manipulasi.
+
+```python
+class RekeningBank:
+    LIMIT_TARIK = 10_000_000   # atribut kelas (public constant)
+
+    def __init__(self, pemilik, nomor_rekening, saldo_awal=0):
+        self.__pemilik    = pemilik.strip().title()   # private
+        self.__saldo      = 0.0                        # private
+        self.__riwayat    = []                         # private
+        self.__aktif      = True                       # private
+        if saldo_awal > 0:
+            self.__saldo = saldo_awal
+
+    # --- Properties (read-only dari luar) ---
+    @property
+    def pemilik(self):
+        return self.__pemilik
+
+    @property
+    def saldo(self):
+        return self.__saldo   # tidak bisa di-set dari luar!
+
+    @property
+    def nomor_rekening(self):
+        """Sensor: hanya tampilkan 4 digit terakhir."""
+        return "****-****-" + self.__nomor_rekening[-4:]
+
+    @property
+    def bunga_bulanan(self):
+        """Computed property: berhitung langsung dari saldo."""
+        return round(self.__saldo * 3.5 / 100 / 12, 2)
+
+    @property
+    def riwayat(self):
+        return self.__riwayat.copy()   # kembalikan SALINAN, bukan referensi asli!
+
+    # --- Operasi yang mengubah saldo hanya melalui method resmi ---
+    def setor(self, jumlah):
+        if jumlah <= 0:
+            raise ValueError("Jumlah setor harus positif!")
+        self.__saldo += jumlah
+        self.__riwayat.append(f"+Rp {jumlah:,.0f}")
+        print(f"  [+] Setor Rp {jumlah:,.0f} | Saldo: Rp {self.__saldo:,.0f}")
+
+    def tarik(self, jumlah):
+        if jumlah > self.__saldo:
+            raise ValueError(f"Saldo tidak cukup! Saldo: Rp {self.__saldo:,.0f}")
+        if jumlah > self.LIMIT_TARIK:
+            raise ValueError(f"Melebihi limit tarik Rp {self.LIMIT_TARIK:,.0f}!")
+        self.__saldo -= jumlah
+        self.__riwayat.append(f"-Rp {jumlah:,.0f}")
+        print(f"  [-] Tarik Rp {jumlah:,.0f} | Saldo: Rp {self.__saldo:,.0f}")
+
+
+rek = RekeningBank("budi santoso", "1234567890123456", saldo_awal=5_000_000)
+rek.setor(1_500_000)
+# Output:   [+] Setor Rp 1,500,000 | Saldo: Rp 6,500,000
+
+rek.tarik(500_000)
+# Output:   [-] Tarik Rp 500,000 | Saldo: Rp 6,000,000
+
+# Saldo TIDAK bisa dimanipulasi langsung dari luar
+# rek.__saldo = 999_999  # -> AttributeError (name mangling melindungi!)
+print(f"Saldo aman: Rp {rek.saldo:,.0f}")
+# Output: Saldo aman: Rp 6,000,000
+```
+
+**Mengapa `riwayat` mengembalikan `.copy()`?** Supaya kode luar tidak bisa mengubah isi list asli langsung — ini adalah contoh enkapsulasi yang sering terlewat oleh pemula!
+
+> 💡 **Eksplorasi Lanjutan di Kode Praktik**
+> File `kode/03_enkapsulasi_praktis.py` menghadirkan **2 studi kasus industri** yang lengkap:
+> 1. **Studi Kasus 1: `RekeningBank`** — sistem keuangan dengan transfer antar rekening, riwayat transaksi, bunga bulanan, dan rollback otomatis jika transfer gagal.
+> 2. **Studi Kasus 2: `Produk` (Inventori)** — manajemen stok produk dengan `status` computed (`HABIS`/`KRITIS`/`RENDAH`/`TERSEDIA`), pencatatan log penjualan, dan proteksi harga negatif.
+>
+> *File ini adalah demonstrasi terbaik mengapa enkapsulasi sangat penting dalam sistem produksi nyata!*
+
+---
+
+## 12. Pola Terbaik Enkapsulasi
 
 ### Kapan Gunakan Atribut Public vs Property?
 
@@ -440,7 +521,7 @@ mhs.ipk = ipk_baru   # kelas yang akan memvalidasi, bukan pemanggilnya
 
 ---
 
-## 11. Ringkasan Visual
+## 13. Ringkasan Visual
 
 ```mermaid
 classDiagram
