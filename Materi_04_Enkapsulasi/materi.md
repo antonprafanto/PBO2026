@@ -420,10 +420,11 @@ class RekeningBank:
     LIMIT_TARIK = 10_000_000   # atribut kelas (public constant)
 
     def __init__(self, pemilik, nomor_rekening, saldo_awal=0):
-        self.__pemilik    = pemilik.strip().title()   # private
-        self.__saldo      = 0.0                        # private
-        self.__riwayat    = []                         # private
-        self.__aktif      = True                       # private
+        self.__pemilik         = pemilik.strip().title()   # private
+        self.__nomor_rekening  = nomor_rekening             # private
+        self.__saldo           = 0.0                        # private
+        self.__riwayat         = []                         # private
+        self.__aktif           = True                       # private
         if saldo_awal > 0:
             self.__saldo = saldo_awal
 
