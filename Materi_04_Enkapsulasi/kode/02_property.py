@@ -36,7 +36,7 @@ class Suhu:
             raise ValueError(f"Suhu tidak bisa di bawah nol mutlak! Dapat: {nilai}")
         self.__celsius = nilai
 
-    # Computed properties — selalu sinkron dengan celsius
+    # Computed properties - selalu sinkron dengan celsius
     @property
     def fahrenheit(self):
         return self.__celsius * 9 / 5 + 32
@@ -65,7 +65,7 @@ suhu_tubuh  = Suhu(36.6)
 for s in [suhu_ruang, suhu_beku, suhu_tubuh]:
     print(f"  {s}")
 
-# Ubah celsius — fahrenheit/kelvin otomatis update
+# Ubah celsius - fahrenheit/kelvin otomatis update
 suhu_ruang.celsius = 40
 print(f"\nSetelah diubah ke 40C: {suhu_ruang}")
 
