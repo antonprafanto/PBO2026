@@ -133,8 +133,8 @@ Motor.info(motor1)
 
 # Mengapa perlu self? Karena ada BANYAK objek dari 1 kelas:
 print("\n  Mengapa perlu 'self'? Karena ada banyak objek:")
-print(f"    motor1.merk = {motor1.merk}")   # Merah → milik motor1
-print(f"    motor2.merk = {motor2.merk}")   # Hitam → milik motor2
+print(f"    motor1.warna = {motor1.warna}")   # Merah → milik motor1
+print(f"    motor2.warna = {motor2.warna}")   # Hitam → milik motor2
 # 'self' memastikan setiap objek mengakses DATA MILIKNYA SENDIRI
 
 
