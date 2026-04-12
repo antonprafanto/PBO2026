@@ -25,9 +25,9 @@ print("         Hubungan Kelas dan UML")
 print("=" * 60)
 
 
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # SOAL 1 - Asosiasi (Tingkat: *)
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # Buat dua kelas: `Pengemudi` dan `Kendaraan`.
 #
 # Kelas Kendaraan:
@@ -42,7 +42,7 @@ print("=" * 60)
 #       -> Cetak: "[nama] mengendarai [kendaraan] menuju [tujuan]"
 #   - Method: isi_bahan_bakar(kendaraan, liter)
 #       -> Panggil kendaraan.isi_bensin(liter)
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 
 print("\n--- SOAL 1: Asosiasi - Pengemudi dan Kendaraan ---")
 
@@ -96,9 +96,9 @@ budi.isi_bahan_bakar(mobil2, 30)
 print()
 
 
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # SOAL 2 - Agregasi (Tingkat: **)
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # Buat sistem Perpustakaan dengan Agregasi.
 #
 # Kelas Buku:
@@ -116,7 +116,7 @@ print()
 #   - Property: total_buku -> jumlah buku di koleksi
 #   - Property: buku_tersedia -> buku yang tersedia (tersedia=True)
 #   - Method: tampilkan_katalog() -> cetak semua buku + status
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 
 print("--- SOAL 2: Agregasi - Sistem Perpustakaan ---")
 
@@ -218,9 +218,9 @@ print(f"\n  Buku masih ada: {bk1}")
 print()
 
 
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # SOAL 3 - Komposisi (Tingkat: **)
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # Buat sistem `LaporanKeuangan` yang terdiri dari `ItemLaporan`.
 #
 # Kelas ItemLaporan (BAGIAN - tidak bisa eksis sendiri):
@@ -239,7 +239,7 @@ print()
 #   - Property: total_pengeluaran -> jumlah semua pengeluaran
 #   - Property: saldo_akhir -> pemasukan - pengeluaran
 #   - Method: tampilkan() -> cetak laporan lengkap dengan ringkasan
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 
 print("--- SOAL 3: Komposisi - Laporan Keuangan ---")
 
@@ -319,9 +319,9 @@ print(f"  Saldo akhir: Rp {laporan.saldo_akhir:,.0f}")
 print()
 
 
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # SOAL 4 - Sistem Lengkap (Tingkat: ***)
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 # Bangun sistem manajemen proyek sederhana yang menggabungkan:
 #   - ASOSIASI:  Proyek menggunakan Tool saat eksekusi
 #   - AGREGASI:  Proyek memiliki banyak Anggota Tim
@@ -350,7 +350,7 @@ print()
 #   - Method: gunakan_tool(tool, nama_task) -> ASOSIASI: tool sbg parameter
 #   - Method: tampilkan_dashboard() -> cetak ringkasan proyek
 #   - Property: progres -> persentase task Done / total task
-# ─────────────────────────────────────────────────────────────
+# ============================================================
 
 print("--- SOAL 4: Sistem Proyek (Asosiasi + Agregasi + Komposisi) ---")
 

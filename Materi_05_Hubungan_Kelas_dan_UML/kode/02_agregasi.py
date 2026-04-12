@@ -233,11 +233,11 @@ unmul.tampilkan_lengkap()
 
 
 # ============================================================
-# CONTOH 3: Agregasi vs Asosiasi — Perbedaan Jelas
+# CONTOH 3: Agregasi vs Asosiasi - Perbedaan Jelas
 # ============================================================
 
 print("\n" + "=" * 58)
-print("  CONTOH 3: Agregasi vs Asosiasi — Perbedaan Kunci")
+print("  CONTOH 3: Agregasi vs Asosiasi - Perbedaan Kunci")
 print("=" * 58)
 
 
