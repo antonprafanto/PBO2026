@@ -1,43 +1,43 @@
 """
 ==========================================================
-    MATERI 01 - Pengantar OOP
+    MATERI 01 — Pengantar OOP
     File: latihan.py
     Topik: Soal Latihan Mandiri
 ==========================================================
 
-[TUGAS] PETUNJUK PENGERJAAN:
+📝 PETUNJUK PENGERJAAN:
     1. Baca soal dengan seksama
     2. Hapus tulisan 'pass' dan tulis jawaban Anda
     3. AKTIFKAN kode uji dengan hapus tanda '#' di depannya
     4. Jalankan: python latihan.py
     5. Bandingkan output Anda dengan "Contoh output yang diharapkan"
 
-[GOAL] TUJUAN:
+🎯 TUJUAN:
     Melatih kemampuan mendefinisikan kelas, atribut, dan method
 
-[TIPS] TIPS:
+💡 TIPS:
     - Jika error, baca pesan errornya dengan teliti
     - Coba satu soal dulu, baru lanjut ke berikutnya
 ==========================================================
 """
 
 print("=" * 58)
-print("         LATIHAN MANDIRI - MATERI 01")
+print("         LATIHAN MANDIRI — MATERI 01")
 print("=" * 58)
 
 
-# ??????????????????????????????????????????????????????????
-# SOAL 1 (Mudah) *
-# ??????????????????????????????????????????????????????????
-print("\n[TUGAS] SOAL 1: Kelas Buku")
+# ══════════════════════════════════════════════════════════
+# SOAL 1 (Mudah) ⭐
+# ══════════════════════════════════════════════════════════
+print("\n📝 SOAL 1: Kelas Buku")
 print("-" * 45)
 print("""
 Buatlah sebuah kelas bernama 'Buku' dengan:
 
 Atribut (di __init__):
-  - judul   (str)   -> judul buku
-  - penulis (str)   -> nama penulis
-  - harga   (int)   -> harga dalam rupiah
+  - judul   (str)   → judul buku
+  - penulis (str)   → nama penulis
+  - harga   (int)   → harga dalam rupiah
 
 Method:
   - info()
@@ -52,34 +52,34 @@ Contoh output yang diharapkan:
   Penulis: Anton Prafanto
   Harga  : Rp 150,000
   ========================
-  Diskon 20% -> Harga baru: Rp 120,000
+  Diskon 20% → Harga baru: Rp 120,000
 """)
 
 
-# ?? Tulis jawaban Anda di sini ???????????????????????????
+# ── Tulis jawaban Anda di sini ───────────────────────────
 class Buku:
-    pass  # ? Hapus 'pass', tulis jawaban Anda
+    pass  # ← Hapus 'pass', tulis jawaban Anda
 
 
-# ?? Hapus tanda '#' di bawah ini untuk menguji jawaban ??
+# ── Hapus tanda '#' di bawah ini untuk menguji jawaban ──
 # buku1 = Buku("Pemrograman Python OOP", "Anton Prafanto", 150000)
 # print("  [Uji Soal 1]")
 # buku1.info()
 # buku1.diskon(20)
 
 
-# ??????????????????????????????????????????????????????????
-# SOAL 2 (Sedang) **
-# ??????????????????????????????????????????????????????????
-print("\n[TUGAS] SOAL 2: Kelas Rekening Bank")
+# ══════════════════════════════════════════════════════════
+# SOAL 2 (Sedang) ⭐⭐
+# ══════════════════════════════════════════════════════════
+print("\n📝 SOAL 2: Kelas Rekening Bank")
 print("-" * 45)
 print("""
 Buatlah kelas 'RekeningBank' dengan:
 
 Atribut (di __init__):
-  - pemilik     (str)   -> nama pemilik rekening
-  - no_rekening (str)   -> nomor rekening
-  - saldo       (float) -> saldo awal, default = 0
+  - pemilik     (str)   → nama pemilik rekening
+  - no_rekening (str)   → nomor rekening
+  - saldo       (float) → saldo awal, default = 0
 
 Method:
   - setor(jumlah)
@@ -93,19 +93,19 @@ Method:
       Tampilkan informasi pemilik dan saldo saat ini
 
 Contoh output yang diharapkan:
-  [OK] Setor Rp 500,000 -> Saldo: Rp 500,000
-  [OK] Tarik Rp 200,000 -> Saldo: Rp 300,000
-  [Rp] Rekening [BRI-001] atas nama Budi -> Saldo: Rp 300,000
-  [ERROR] Saldo tidak cukup! Saldo Anda: Rp 300,000
+  ✅ Setor Rp 500,000 → Saldo: Rp 500,000
+  ✅ Tarik Rp 200,000 → Saldo: Rp 300,000
+  💰 Rekening [BRI-001] atas nama Budi → Saldo: Rp 300,000
+  ❌ Saldo tidak cukup! Saldo Anda: Rp 300,000
 """)
 
 
-# ?? Tulis jawaban Anda di sini ???????????????????????????
+# ── Tulis jawaban Anda di sini ───────────────────────────
 class RekeningBank:
-    pass  # ? Hapus 'pass', tulis jawaban Anda
+    pass  # ← Hapus 'pass', tulis jawaban Anda
 
 
-# ?? Hapus tanda '#' di bawah ini untuk menguji jawaban ??
+# ── Hapus tanda '#' di bawah ini untuk menguji jawaban ──
 # rek = RekeningBank("Budi Santoso", "BRI-001")
 # print("  [Uji Soal 2]")
 # rek.setor(500000)
@@ -114,31 +114,31 @@ class RekeningBank:
 # rek.tarik(400000)
 
 
-# ??????????????????????????????????????????????????????????
-# SOAL 3 (Menantang) ***
-# ??????????????????????????????????????????????????????????
-print("\n[TUGAS] SOAL 3: Kelas Nilai Mahasiswa")
+# ══════════════════════════════════════════════════════════
+# SOAL 3 (Menantang) ⭐⭐⭐
+# ══════════════════════════════════════════════════════════
+print("\n📝 SOAL 3: Kelas Nilai Mahasiswa")
 print("-" * 45)
 print("""
 Buatlah kelas 'NilaiMahasiswa' dengan:
 
 Atribut (di __init__):
-  - nama        (str)   -> nama mahasiswa
-  - nilai_tugas (float) -> nilai tugas (0-100)
-  - nilai_uts   (float) -> nilai UTS (0-100)
-  - nilai_uas   (float) -> nilai UAS (0-100)
+  - nama        (str)   → nama mahasiswa
+  - nilai_tugas (float) → nilai tugas (0-100)
+  - nilai_uts   (float) → nilai UTS (0-100)
+  - nilai_uas   (float) → nilai UAS (0-100)
 
 Method:
   - hitung_nilai_akhir()
-      Rumus: (tugas ? 30%) + (uts ? 30%) + (uas ? 40%)
+      Rumus: (tugas × 30%) + (uts × 30%) + (uas × 40%)
       Kembalikan (return) nilai akhir sebagai float
 
   - get_grade()
-      A  -> nilai akhir ? 85
-      B  -> nilai akhir ? 75
-      C  -> nilai akhir ? 65
-      D  -> nilai akhir ? 55
-      E  -> di bawah 55
+      A  → nilai akhir ≥ 85
+      B  → nilai akhir ≥ 75
+      C  → nilai akhir ≥ 65
+      D  → nilai akhir ≥ 55
+      E  → di bawah 55
       Kembalikan (return) grade sebagai string
 
   - tampilkan_rapor()
@@ -156,17 +156,17 @@ Contoh output yang diharapkan:
   Grade       : A
   ========================================
 
-[BONUS] BONUS: Buat LIST yang berisi 3 objek NilaiMahasiswa,
+🏆 BONUS: Buat LIST yang berisi 3 objek NilaiMahasiswa,
    lalu tampilkan rapor semuanya dalam satu for loop!
 """)
 
 
-# ?? Tulis jawaban Anda di sini ???????????????????????????
+# ── Tulis jawaban Anda di sini ───────────────────────────
 class NilaiMahasiswa:
-    pass  # ? Hapus 'pass', tulis jawaban Anda
+    pass  # ← Hapus 'pass', tulis jawaban Anda
 
 
-# ?? Hapus tanda '#' di bawah ini untuk menguji jawaban ??
+# ── Hapus tanda '#' di bawah ini untuk menguji jawaban ──
 # print("  [Uji Soal 3]")
 # mhs1 = NilaiMahasiswa("Andi Rahman",  85, 80, 90)
 # mhs2 = NilaiMahasiswa("Budi Santoso", 70, 65, 72)
@@ -176,9 +176,9 @@ class NilaiMahasiswa:
 #     mhs.tampilkan_rapor()
 
 
-# ??????????????????????????????????????????????????????????
+# ══════════════════════════════════════════════════════════
 print()
 print("=" * 58)
-print("  [GOAL] Selamat mengerjakan! Semangat belajar! ?")
-print("  [INFO] Ingat: Error adalah bagian dari proses belajar!")
+print("  🎯 Selamat mengerjakan! Semangat belajar! 💪")
+print("  📌 Ingat: Error adalah bagian dari proses belajar!")
 print("=" * 58)

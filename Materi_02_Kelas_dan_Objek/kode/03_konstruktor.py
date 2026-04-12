@@ -1,6 +1,6 @@
 """
 ==========================================================
-    MATERI 02 - Kelas dan Objek
+    MATERI 02 — Kelas dan Objek
     File: 03_konstruktor.py
     Topik: Pola-Pola Konstruktor __init__
 ==========================================================
@@ -23,10 +23,10 @@ print("       POLA-POLA KONSTRUKTOR __init__")
 print("=" * 58)
 
 
-# ??????????????????????????????????????????????????????????
+# ──────────────────────────────────────────────────────────
 # BAGIAN 1: KONSTRUKTOR DASAR + VERIFY OTOMATIS BERJALAN
-# ??????????????????????????????????????????????????????????
-print("\n[INFO] 1. Konstruktor Dasar - Berjalan Otomatis:")
+# ──────────────────────────────────────────────────────────
+print("\n📌 1. Konstruktor Dasar — Berjalan Otomatis:")
 print("-" * 45)
 
 print("""
@@ -39,7 +39,7 @@ class Titik:
     """Merepresentasikan titik koordinat 2D (x, y)."""
 
     def __init__(self, x, y):
-        print(f"    ? __init__ dipanggil! Membuat Titik({x}, {y})")
+        print(f"    ⚡ __init__ dipanggil! Membuat Titik({x}, {y})")
         self.x = x
         self.y = y
 
@@ -49,31 +49,31 @@ class Titik:
 
     def info(self):
         jarak = self.jarak_ke_pusat()
-        print(f"  Titik({self.x}, {self.y}) -> jarak ke (0,0): {jarak:.2f}")
+        print(f"  Titik({self.x}, {self.y}) → jarak ke (0,0): {jarak:.2f}")
 
 
 print("  Membuat 3 objek Titik:")
-t1 = Titik(3, 4)    # -> jarak = 5.00
-t2 = Titik(0, 5)    # -> jarak = 5.00
-t3 = Titik(6, 8)    # -> jarak = 10.00
+t1 = Titik(3, 4)    # → jarak = 5.00
+t2 = Titik(0, 5)    # → jarak = 5.00
+t3 = Titik(6, 8)    # → jarak = 10.00
 
 print()
 t1.info()
 t2.info()
 t3.info()
 # Output:
-#   ? __init__ dipanggil! Membuat Titik(3, 4)
-#   ? __init__ dipanggil! Membuat Titik(0, 5)
-#   ? __init__ dipanggil! Membuat Titik(6, 8)
-#   Titik(3, 4) -> jarak ke (0,0): 5.00
-#   Titik(0, 5) -> jarak ke (0,0): 5.00
-#   Titik(6, 8) -> jarak ke (0,0): 10.00
+#   ⚡ __init__ dipanggil! Membuat Titik(3, 4)
+#   ⚡ __init__ dipanggil! Membuat Titik(0, 5)
+#   ⚡ __init__ dipanggil! Membuat Titik(6, 8)
+#   Titik(3, 4) → jarak ke (0,0): 5.00
+#   Titik(0, 5) → jarak ke (0,0): 5.00
+#   Titik(6, 8) → jarak ke (0,0): 10.00
 
 
-# ??????????????????????????????????????????????????????????
+# ──────────────────────────────────────────────────────────
 # BAGIAN 2: KONSTRUKTOR DENGAN NILAI DEFAULT
-# ??????????????????????????????????????????????????????????
-print("\n\n[INFO] 2. Konstruktor dengan Nilai Default:")
+# ──────────────────────────────────────────────────────────
+print("\n\n📌 2. Konstruktor dengan Nilai Default:")
 print("-" * 45)
 
 class Mahasiswa:
@@ -91,7 +91,7 @@ class Mahasiswa:
         self.aktif    = aktif
 
     def info(self):
-        status = "Aktif [OK]" if self.aktif else "Cuti ??"
+        status = "Aktif ✅" if self.aktif else "Cuti ⏸️"
         print(f"  {self.nama:<20} | NIM: {self.nim} | "
               f"Sem: {self.semester} | IPK: {self.ipk:.2f} | {status}")
 
@@ -107,17 +107,17 @@ mhs5 = Mahasiswa("Eka Putri",     "2301005", semester=7, ipk=3.90)    # keyword,
 for mhs in [mhs1, mhs2, mhs3, mhs4, mhs5]:
     mhs.info()
 # Output:
-#   Andi Rahman          | NIM: 2301001 | Sem: 1 | IPK: 0.00 | Aktif [OK]
-#   Budi Santoso         | NIM: 2301002 | Sem: 3 | IPK: 0.00 | Aktif [OK]
-#   Citra Dewi           | NIM: 2301003 | Sem: 5 | IPK: 3.75 | Aktif [OK]
-#   Dono Prasetyo        | NIM: 2301004 | Sem: 1 | IPK: 0.00 | Cuti ??
-#   Eka Putri            | NIM: 2301005 | Sem: 7 | IPK: 3.90 | Aktif [OK]
+#   Andi Rahman          | NIM: 2301001 | Sem: 1 | IPK: 0.00 | Aktif ✅
+#   Budi Santoso         | NIM: 2301002 | Sem: 3 | IPK: 0.00 | Aktif ✅
+#   Citra Dewi           | NIM: 2301003 | Sem: 5 | IPK: 3.75 | Aktif ✅
+#   Dono Prasetyo        | NIM: 2301004 | Sem: 1 | IPK: 0.00 | Cuti ⏸️
+#   Eka Putri            | NIM: 2301005 | Sem: 7 | IPK: 3.90 | Aktif ✅
 
 
-# ??????????????????????????????????????????????????????????
+# ──────────────────────────────────────────────────────────
 # BAGIAN 3: KONSTRUKTOR DENGAN PERHITUNGAN OTOMATIS
-# ??????????????????????????????????????????????????????????
-print("\n\n[INFO] 3. Konstruktor dengan Perhitungan Otomatis:")
+# ──────────────────────────────────────────────────────────
+print("\n\n📌 3. Konstruktor dengan Perhitungan Otomatis:")
 print("-" * 45)
 print("""
   Konstruktor tidak hanya menyimpan data!
@@ -149,7 +149,7 @@ class RaporMahasiswa:
 
     def _tentukan_grade(self):
         """
-        Method 'privat' - konvensi underscore (_) di depan nama
+        Method 'privat' — konvensi underscore (_) di depan nama
         menandakan method ini hanya untuk digunakan di dalam kelas.
         Dipanggil dari konstruktor, bukan dari luar.
         """
@@ -203,6 +203,6 @@ for mhs in daftar_mhs:
 
 # Cari mahasiswa dengan nilai akhir tertinggi
 terbaik = max(daftar_mhs, key=lambda m: m.nilai_akhir)
-print(f"  [BONUS] Nilai Akhir Tertinggi: {terbaik.nama} ({terbaik.nilai_akhir:.1f}, Grade {terbaik.grade})")
+print(f"  🏆 Nilai Akhir Tertinggi: {terbaik.nama} ({terbaik.nilai_akhir:.1f}, Grade {terbaik.grade})")
 
-print("\n[OK] Selesai! Kerjakan soal di: latihan.py")
+print("\n✅ Selesai! Kerjakan soal di: latihan.py")

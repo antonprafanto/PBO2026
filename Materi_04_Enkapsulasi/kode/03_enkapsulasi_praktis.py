@@ -2,7 +2,7 @@
 ============================================================
     MATERI 04 - Enkapsulasi
     File: 03_enkapsulasi_praktis.py
-    Topik: Studi Kasus Nyata - RekeningBank & SistemInventori
+    Topik: Studi Kasus Nyata — RekeningBank & SistemInventori
 ============================================================
 """
 
@@ -52,7 +52,7 @@ class RekeningBank:
 
     @property
     def nomor_rekening(self):
-        """Sensor nomor rekening - tampilkan hanya 4 digit terakhir."""
+        """Sensor nomor rekening — tampilkan hanya 4 digit terakhir."""
         return "****-****-" + self.__nomor_rekening[-4:]
 
     @property
@@ -65,7 +65,7 @@ class RekeningBank:
 
     @property
     def riwayat(self):
-        """Kembalikan salinan riwayat - bukan referensi aslinya."""
+        """Kembalikan salinan riwayat — bukan referensi aslinya."""
         return self.__riwayat.copy()
 
     @property

@@ -32,7 +32,7 @@ class KaryawanInfo:
         # PROTECTED: konvensi "hanya internal & subkelas"
         self._gaji       = gaji
 
-        # PRIVATE  : name mangling - _KaryawanInfo__pin_akses
+        # PRIVATE  : name mangling — _KaryawanInfo__pin_akses
         self.__pin_akses = pin_akses
 
     def info_publik(self):
@@ -50,15 +50,15 @@ class KaryawanInfo:
 
 k = KaryawanInfo("Anton Prafanto", "Engineering", 12_000_000, "1234")
 
-# Public - akses bebas
+# Public — akses bebas
 print(f"Nama      : {k.nama}")
 print(f"Departemen: {k.departemen}")
 print(f"Info publik: {k.info_publik()}")
 
-# Protected - bisa, tapi melanggar konvensi
+# Protected — bisa, tapi melanggar konvensi
 print(f"\n[Protected] _gaji = {k._gaji:,.0f}  <- bisa, tapi jangan!")
 
-# Private - tidak bisa langsung
+# Private — tidak bisa langsung
 try:
     print(k.__pin_akses)
 except AttributeError as e:
@@ -70,7 +70,7 @@ print(f"Verifikasi PIN '9999': {k.verifikasi_pin('9999')}")   # False
 
 
 # ------------------------------------------------------------
-# BAGIAN 2: Name Mangling - Melihat di Balik Layar
+# BAGIAN 2: Name Mangling — Melihat di Balik Layar
 # ------------------------------------------------------------
 
 print("\n--- 2. Name Mangling ---")
@@ -80,7 +80,7 @@ class AkunBank:
     def __init__(self, pemilik, saldo, pin):
         self.pemilik  = pemilik       # public
         self._saldo   = saldo         # protected
-        self.__pin    = pin           # private -> _AkunBank__pin
+        self.__pin    = pin           # private → _AkunBank__pin
 
     def info(self):
         return f"{self.pemilik} | Saldo: Rp {self._saldo:,.0f}"
@@ -110,7 +110,7 @@ class Kendaraan:
     def __init__(self, merk, tahun, harga_dasar):
         self.merk         = merk      # public
         self.tahun        = tahun     # public
-        self._harga_dasar = harga_dasar  # protected - subkelas perlu ini
+        self._harga_dasar = harga_dasar  # protected — subkelas perlu ini
 
     def info(self):
         return f"{self.merk} ({self.tahun})"
@@ -122,7 +122,7 @@ class Mobil(Kendaraan):
         self.tipe = tipe
 
     def harga_jual(self, diskon_persen=0):
-        """Subkelas mengakses _harga_dasar dari induknya - ini wajar."""
+        """Subkelas mengakses _harga_dasar dari induknya — ini wajar."""
         diskon = self._harga_dasar * diskon_persen / 100
         return self._harga_dasar - diskon
 
@@ -166,7 +166,7 @@ class Induk:
 class Anak(Induk):
     def __init__(self):
         super().__init__()
-        self.__data = "data milik Anak"    # _Anak__data - BERBEDA, tidak konflik!
+        self.__data = "data milik Anak"    # _Anak__data — BERBEDA, tidak konflik!
 
     def info_anak(self):
         return f"Anak.__data  = '{self.__data}'"
@@ -175,7 +175,7 @@ class Anak(Induk):
 obj = Anak()
 print(obj.info())         # Induk: 'data milik Induk'
 print(obj.info_anak())    # Anak:  'data milik Anak'
-print("Keduanya independen - tidak saling menimpa berkat name mangling!")
+print("Keduanya independen — tidak saling menimpa berkat name mangling!")
 print(f"Atribut di memory: {list(obj.__dict__.keys())}")
 
 

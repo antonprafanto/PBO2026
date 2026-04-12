@@ -1,18 +1,18 @@
 """
 ==========================================================
-    MATERI 02 - Kelas dan Objek
+    MATERI 02 — Kelas dan Objek
     File: latihan.py
     Topik: Soal Latihan Mandiri
 ==========================================================
 
-[TUGAS] PETUNJUK PENGERJAAN:
+📝 PETUNJUK PENGERJAAN:
     1. Baca soal dengan seksama
     2. Hapus tulisan 'pass' dan tulis jawaban Anda di bawahnya
     3. AKTIFKAN kode uji: hapus tanda '#' di depan baris uji
     4. Jalankan: python latihan.py
     5. Bandingkan output dengan "Contoh output yang diharapkan"
 
-[TIPS] TIPS:
+💡 TIPS:
     - Kerjakan soal satu per satu, jangan langsung semua
     - Jika error, baca pesan error dengan teliti
     - Gunakan print() untuk debug nilai variabel Anda
@@ -20,28 +20,28 @@
 """
 
 print("=" * 58)
-print("         LATIHAN MANDIRI - MATERI 02")
+print("         LATIHAN MANDIRI — MATERI 02")
 print("=" * 58)
 
 
-# ??????????????????????????????????????????????????????????
-# SOAL 1 (Mudah) *
-# ??????????????????????????????????????????????????????????
-print("\n[TUGAS] SOAL 1: Kelas Lingkaran")
+# ══════════════════════════════════════════════════════════
+# SOAL 1 (Mudah) ⭐
+# ══════════════════════════════════════════════════════════
+print("\n📝 SOAL 1: Kelas Lingkaran")
 print("-" * 50)
 print("""
 Buatlah kelas 'Lingkaran' dengan:
 
 Atribut (di __init__):
-  - jari_jari (float) -> jari-jari lingkaran
+  - jari_jari (float) → jari-jari lingkaran
 
 Method:
   - luas()
-      Rumus: ? ? r?
+      Rumus: π × r²
       Kembalikan (return) hasilnya sebagai float
 
   - keliling()
-      Rumus: 2 ? ? ? r
+      Rumus: 2 × π × r
       Kembalikan (return) hasilnya sebagai float
 
   - info()
@@ -61,12 +61,12 @@ Contoh output yang diharapkan:
 
 import math   # math.pi = 3.141592653589793
 
-# ?? Tulis jawaban Anda di sini ???????????????????????????
+# ── Tulis jawaban Anda di sini ───────────────────────────
 class Lingkaran:
-    pass  # ? Hapus 'pass', tulis jawaban Anda
+    pass  # ← Hapus 'pass', tulis jawaban Anda
 
 
-# ?? Hapus '#' berikut untuk menguji jawaban Anda ?????????
+# ── Hapus '#' berikut untuk menguji jawaban Anda ─────────
 # print("  [Uji Soal 1]")
 # l1 = Lingkaran(7)
 # l1.info()
@@ -74,17 +74,17 @@ class Lingkaran:
 # l2.info()
 
 
-# ??????????????????????????????????????????????????????????
-# SOAL 2 (Sedang) **
-# ??????????????????????????????????????????????????????????
-print("\n[TUGAS] SOAL 2: Kelas Keranjang Belanja")
+# ══════════════════════════════════════════════════════════
+# SOAL 2 (Sedang) ⭐⭐
+# ══════════════════════════════════════════════════════════
+print("\n📝 SOAL 2: Kelas Keranjang Belanja")
 print("-" * 50)
 print("""
 Buatlah kelas 'KeranjangBelanja' dengan:
 
 Atribut (di __init__):
-  - nama_pembeli (str) -> nama pembeli
-  - items (list)       -> daftar item, default = [] kosong
+  - nama_pembeli (str) → nama pembeli
+  - items (list)       → daftar item, default = [] kosong
     PENTING: gunakan None sebagai default, lalu di dalam
     __init__ isi dengan: self.items = items if items else []
 
@@ -98,7 +98,7 @@ Method:
       Jika tidak ditemukan, tampilkan pesan
 
   - total_harga()
-      Hitung dan kembalikan total = sum(harga ? qty)
+      Hitung dan kembalikan total = sum(harga × qty)
 
   - tampilkan_keranjang()
       Tampilkan daftar item dan total harga
@@ -107,19 +107,19 @@ Contoh output yang diharapkan:
   =========================================
   Keranjang Belanja: Budi
   -----------------------------------------
-  1. Laptop           x1  -> Rp  8,500,000
-  2. Mouse            x2  -> Rp    300,000
+  1. Laptop           x1  → Rp  8,500,000
+  2. Mouse            x2  → Rp    300,000
   -----------------------------------------
-  TOTAL                   -> Rp  8,800,000
+  TOTAL                   → Rp  8,800,000
   =========================================
 """)
 
-# ?? Tulis jawaban Anda di sini ???????????????????????????
+# ── Tulis jawaban Anda di sini ───────────────────────────
 class KeranjangBelanja:
-    pass  # ? Hapus 'pass', tulis jawaban Anda
+    pass  # ← Hapus 'pass', tulis jawaban Anda
 
 
-# ?? Hapus '#' berikut untuk menguji jawaban Anda ?????????
+# ── Hapus '#' berikut untuk menguji jawaban Anda ─────────
 # print("  [Uji Soal 2]")
 # keranjang = KeranjangBelanja("Budi")
 # keranjang.tambah_item("Laptop", 8_500_000, 1)
@@ -131,17 +131,17 @@ class KeranjangBelanja:
 # keranjang.tampilkan_keranjang()
 
 
-# ??????????????????????????????????????????????????????????
-# SOAL 3 (Menantang) ***
-# ??????????????????????????????????????????????????????????
-print("\n[TUGAS] SOAL 3: Sistem Antrian Bimbingan Skripsi")
+# ══════════════════════════════════════════════════════════
+# SOAL 3 (Menantang) ⭐⭐⭐
+# ══════════════════════════════════════════════════════════
+print("\n📝 SOAL 3: Sistem Antrian Bimbingan Skripsi")
 print("-" * 50)
 print("""
 Buatlah kelas 'AntrianBimbingan' dengan:
 
 Atribut (di __init__):
-  - nama_dosen (str)  -> nama dosen pembimbing
-  - antrian    (list) -> daftar nama mahasiswa, default kosong
+  - nama_dosen (str)  → nama dosen pembimbing
+  - antrian    (list) → daftar nama mahasiswa, default kosong
 
 Method:
   - daftar(nama_mahasiswa)
@@ -179,16 +179,16 @@ Contoh output yang diharapkan:
     1. Citra
     2. Dono
 
-[BONUS] BONUS: Tambahkan method batalkan(nama_mahasiswa) yang
+🏆 BONUS: Tambahkan method batalkan(nama_mahasiswa) yang
    memungkinkan mahasiswa membatalkan antriannya!
 """)
 
-# ?? Tulis jawaban Anda di sini ???????????????????????????
+# ── Tulis jawaban Anda di sini ───────────────────────────
 class AntrianBimbingan:
-    pass  # ? Hapus 'pass', tulis jawaban Anda
+    pass  # ← Hapus 'pass', tulis jawaban Anda
 
 
-# ?? Hapus '#' berikut untuk menguji jawaban Anda ?????????
+# ── Hapus '#' berikut untuk menguji jawaban Anda ─────────
 # print("  [Uji Soal 3]")
 # antrian = AntrianBimbingan("Dr. Anton Prafanto")
 # antrian.daftar("Andi Rahman")
@@ -205,9 +205,9 @@ class AntrianBimbingan:
 # print(f"  Sisa: {antrian.sisa_antrian()} orang")
 
 
-# ??????????????????????????????????????????????????????????
+# ══════════════════════════════════════════════════════════
 print()
 print("=" * 58)
-print("  [GOAL] Selamat mengerjakan! Semangat! ?")
-print("  [INFO] Ingat: Error adalah bagian dari proses belajar!")
+print("  🎯 Selamat mengerjakan! Semangat! 💪")
+print("  📌 Ingat: Error adalah bagian dari proses belajar!")
 print("=" * 58)
