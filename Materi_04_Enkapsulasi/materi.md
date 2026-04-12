@@ -140,10 +140,7 @@ Decorator `@property` mengubah sebuah method menjadi **atribut yang bisa dibaca*
 class Mahasiswa:
     def __init__(self, nama, ipk):
         self.__nama = nama
-        self.__ipk  = 0.0
-        # Catatan: self.ipk = ipk di sini BUTUH setter.
-        # Kita set langsung ke __ipk karena setter belum ada di contoh ini.
-        self.__ipk  = float(ipk)
+        self.__ipk  = float(ipk)   # Simpan langsung — setter belum ada di contoh ini
 
     @property
     def nama(self):
