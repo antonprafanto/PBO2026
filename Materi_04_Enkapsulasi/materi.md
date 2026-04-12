@@ -223,7 +223,8 @@ class Mahasiswa:
         if self.__ipk >= 3.51: return "Cum Laude"
         if self.__ipk >= 3.01: return "Sangat Memuaskan"
         if self.__ipk >= 2.76: return "Memuaskan"
-        return "Cukup"
+        if self.__ipk >= 2.00: return "Cukup"
+        return "Di Bawah Standar"
 
     def __str__(self):
         return f"[{self.nim}] {self.nama} | IPK {self.ipk:.2f} ({self.predikat})"
@@ -390,11 +391,20 @@ class Dokumen:
 
 dok = Dokumen("Pengantar Python", "Python adalah bahasa yang mudah dan kuat.")
 
-print(dok.jumlah_kata)   # [Menghitung word count...] lalu: 7
-print(dok.jumlah_kata)   # (langsung dari cache, tidak hitung ulang): 7
+print(dok.jumlah_kata)
+# Output (2 baris):
+#   [Menghitung word count...]
+#   7
+
+print(dok.jumlah_kata)
+# Output (cache, langsung tanpa hitung ulang):
+#   7
 
 dok.isi = "Isi baru yang lebih pendek."
-print(dok.jumlah_kata)   # [Menghitung word count...] lalu: 5  <- hitung ulang!
+print(dok.jumlah_kata)
+# Output (cache di-invalidate, hitung ulang):
+#   [Menghitung word count...]
+#   5
 ```
 
 **Kenapa ini penting?** Cache mencegah kalkulasi ulang yang tidak perlu. Bayangkan jika `jumlah_kata` menghitung dari file 100MB — Anda pasti tidak mau menghitung ulang setiap kali `dok.jumlah_kata` dipanggil!
