@@ -58,8 +58,8 @@ class Printer:
         self.merk = merk
         self.dpi  = dpi
 
-    def cetak(self, dokumen):
-        print(f"[{self.merk}] Mencetak: '{dokumen}' @ {self.dpi} DPI")
+    def cetak(self, nama_file):
+        print(f"  [{self.merk}] Mencetak '{nama_file}' @ {self.dpi} DPI ... OK")
 
 
 class Mahasiswa:
@@ -71,23 +71,27 @@ class Mahasiswa:
 
     # Printer diterima sebagai PARAMETER — hubungan longgar
     def cetak_tugas(self, printer, nama_file):
-        """Mahasiswa menggunakan Printer untuk mencetak tugas."""
-        print(f"{self.nama} mencetak {nama_file}...")
+        """Asosiasi: Printer diterima sebagai parameter, dipakai sementara."""
+        print(f"  {self.nama} mengirim '{nama_file}' ke {printer.merk}...")
         printer.cetak(nama_file)
 
 
 # Kedua objek dibuat secara INDEPENDEN
-printer_lab = Printer("HP LaserJet", 1200)
+printer_lab = Printer("HP LaserJet Pro", 1200)
 budi        = Mahasiswa("Budi Santoso", "2301001")
 
 # Asosiasi terjadi saat method dipanggil
 budi.cetak_tugas(printer_lab, "Laporan_PBO.pdf")
-# Output: [HP LaserJet] Mencetak: 'Laporan_PBO.pdf' @ 1200 DPI
+# Output: 
+#   Budi Santoso mengirim 'Laporan_PBO.pdf' ke HP LaserJet Pro...
+#   [HP LaserJet Pro] Mencetak 'Laporan_PBO.pdf' @ 1200 DPI ... OK
 
 # Printer bisa digunakan oleh Mahasiswa lain
 sari = Mahasiswa("Sari Dewi", "2301002")
 sari.cetak_tugas(printer_lab, "UTS_Kalkulus.pdf")
-# Output: [HP LaserJet] Mencetak: 'UTS_Kalkulus.pdf' @ 1200 DPI
+# Output: 
+#   Sari Dewi mengirim 'UTS_Kalkulus.pdf' ke HP LaserJet Pro...
+#   [HP LaserJet Pro] Mencetak 'UTS_Kalkulus.pdf' @ 1200 DPI ... OK
 ```
 
 ### Diagram UML Asosiasi:
@@ -154,7 +158,7 @@ class Dosen:
         self.bidang = bidang
 
     def __str__(self):
-        return f"Dosen: {self.nama} [{self.bidang}]"
+        return f"Dosen: {self.nama} | NIP: {self.nip} | Bidang: {self.bidang}"
 
 
 class Jurusan:
@@ -203,7 +207,8 @@ jurusan_si.tampilkan()
 del jurusan_if
 print(f"\n  dosen1 masih ada: {dosen1}")
 print(f"  dosen2 masih ada: {dosen2}")
-# Output: dosen1 masih ada: Dosen: Dr. Anton [Machine Learning]
+# Output: 
+#   dosen1 masih ada: Dosen: Dr. Anton | NIP: NIP001 | Bidang: Machine Learning
 ```
 
 ### Diagram UML Agregasi:
