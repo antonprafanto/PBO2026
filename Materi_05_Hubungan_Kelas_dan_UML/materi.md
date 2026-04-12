@@ -38,15 +38,19 @@ Di OOP, ada tiga jenis hubungan utama antar kelas:
 ```mermaid
 classDiagram
     direction LR
-    class Kasir
-    class Produk
+    class Mahasiswa
+    class Printer
     class Dokter
     class Pasien
-    Kasir ..> Produk : memproses (independen)
-    Dokter ..> Pasien : memeriksa (bisa ke dokter lain)
+    Mahasiswa ..> Printer : mencetak tugas (independen)
+    Dokter ..> Pasien : memeriksa (pasien bisa ke dokter lain)
 ```
 
+> **Kunci Asosiasi:** Objek B **tidak disimpan** sebagai atribut A. B hanya "dipakai sesaat" via parameter method.
+
 ### Implementasi Python:
+
+> **Perhatikan:** `Printer` **tidak disimpan** sebagai atribut `self.printer` di dalam `Mahasiswa`. Ia hanya diterima sebagai parameter, digunakan sekali, lalu selesai. Itulah Asosiasi.
 
 ```python
 class Printer:
@@ -62,6 +66,8 @@ class Mahasiswa:
     def __init__(self, nama, nim):
         self.nama = nama
         self.nim  = nim
+        # Perhatikan: TIDAK ADA self.printer = ...
+        # Itulah yang membedakan Asosiasi dari Agregasi!
 
     # Printer diterima sebagai PARAMETER — hubungan longgar
     def cetak_tugas(self, printer, nama_file):
@@ -76,10 +82,12 @@ budi        = Mahasiswa("Budi Santoso", "2301001")
 
 # Asosiasi terjadi saat method dipanggil
 budi.cetak_tugas(printer_lab, "Laporan_PBO.pdf")
+# Output: [HP LaserJet] Mencetak: 'Laporan_PBO.pdf' @ 1200 DPI
 
 # Printer bisa digunakan oleh Mahasiswa lain
 sari = Mahasiswa("Sari Dewi", "2301002")
 sari.cetak_tugas(printer_lab, "UTS_Kalkulus.pdf")
+# Output: [HP LaserJet] Mencetak: 'UTS_Kalkulus.pdf' @ 1200 DPI
 ```
 
 ### Diagram UML Asosiasi:
@@ -130,6 +138,8 @@ classDiagram
 
 ### Implementasi Python:
 
+> **Perhatikan perbedaan krusial dari Asosiasi:** Di sini `self._dosen = []` ada di dalam `__init__` kelas `Jurusan`. Artinya Jurusan **menyimpan** referensi ke objek Dosen secara permanen — itulah Agregasi.
+
 ```python
 class Dosen:
     def __init__(self, nama, nip, bidang):
@@ -145,7 +155,7 @@ class Jurusan:
     def __init__(self, nama, kode):
         self.nama   = nama
         self.kode   = kode
-        self._dosen = []   # list untuk menyimpan objek Dosen
+        self._dosen = []   # <-- AGREGASI: menyimpan referensi ke Dosen
 
     def tambah_dosen(self, dosen):
         """Dosen DIKIRIM dari luar — Jurusan tidak membuat Dosen sendiri."""
@@ -187,6 +197,7 @@ jurusan_si.tampilkan()
 del jurusan_if
 print(f"\n  dosen1 masih ada: {dosen1}")
 print(f"  dosen2 masih ada: {dosen2}")
+# Output: dosen1 masih ada: Dosen: Dr. Anton [Machine Learning]
 ```
 
 ### Diagram UML Agregasi:
@@ -247,6 +258,8 @@ classDiagram
 
 ### Implementasi Python:
 
+> **Kunci Komposisi:** Perhatikan baris `kamar_baru = Kamar(nomor, fungsi, luas_m2)` di dalam method `tambah_kamar()`. Objek `Kamar` dibuat **di dalam** `Rumah`, bukan dikirim dari luar. Tidak ada variabel lain di program ini yang memegang referensi ke objek `Kamar` tersebut.
+
 ```python
 class Kamar:
     """Kamar tidak bisa hidup tanpa Rumah — ini adalah bagian dari Komposisi."""
@@ -275,7 +288,7 @@ class Rumah:
     def tambah_kamar(self, fungsi, luas_m2):
         """Rumah sendiri yang menciptakan Kamar baru."""
         nomor = len(self._kamar) + 1
-        kamar_baru = Kamar(nomor, fungsi, luas_m2)   # dibuat DI SINI
+        kamar_baru = Kamar(nomor, fungsi, luas_m2)   # <-- dibuat DI SINI
         self._kamar.append(kamar_baru)
         print(f"  [+] {kamar_baru} ditambahkan")
         return kamar_baru
@@ -304,6 +317,11 @@ rumah_budi.tambah_kamar("Dapur",       12)
 rumah_budi.tambah_kamar("Kamar Mandi",  6)
 
 rumah_budi.tampilkan()
+# Output:
+#   Rumah milik Budi Santoso @ Jl. Mulawarman No. 5, Samarinda
+#   Total luas: 78 m2 | 5 kamar
+#     - Kamar 1: Ruang Tamu (25 m2)
+#     ...
 
 # Saat rumah_budi dihapus, semua Kamar-nya ikut musnah
 # (tidak ada referensi lain ke Kamar-kamar tersebut)
@@ -364,7 +382,11 @@ classDiagram
 
 ## 6. Studi Kasus: Sistem Order Toko Online
 
-Sistem toko online adalah contoh sempurna yang menggabungkan ketiga hubungan sekaligus:
+Sekarang kita gabungkan ketiganya dalam satu sistem nyata. Bayangkan aplikasi toko online:
+
+- **`Pelanggan`** sudah ada di database sebelum order dibuat → disimpan di `Order` sebagai atribut → **Agregasi**
+- **`OrderItem`** hanya ada karena ada Order. Tidak ada order? Tidak ada OrderItem → **Komposisi**
+- **`Kurir`** hanya dipakai sesaat saat pengiriman, bukan "milik" Order → **Asosiasi**
 
 ```python
 # KOMPOSISI: Order terdiri dari OrderItem
