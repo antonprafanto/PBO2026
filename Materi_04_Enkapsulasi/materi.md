@@ -32,7 +32,16 @@ Python tidak memiliki *keyword* `private`/`public` seperti Java. Sebaliknya, Pyt
 | `_nama` | **Protected** | Konvensi: "hanya untuk dipakai internal kelas & subkelas" |
 | `__nama` | **Private** | Python menyembunyikannya via *name mangling* |
 
-> ⚠️ Python tidak *benar-benar* memblokir akses ke atribut `_` atau `__`. Ini adalah **konvensi** — perjanjian antar programmer. Python percaya pada "we're all consenting adults here."
+> ⚠️ Python tidak *benar-benar* memblokir akses ke atribut `_` atau `__`. Ini adalah **konvensi** — perjanjian antar programmer. Python percaya pada *"we're all consenting adults here."*
+
+> 💡 **Eksplorasi Langsung di Kode Praktik**
+> File `kode/01_akses_modifier.py` mendemonstrasikan keempat konsep ini dengan contoh nyata:
+> 1. **Bagian 1:** `KaryawanInfo` — membandingkan akses public, protected, dan private secara berdampingan.
+> 2. **Bagian 2:** `AkunBank` + `__dict__` — melihat name mangling "dari dalam" dengan mencetak semua atribut.
+> 3. **Bagian 3:** `Kendaraan` & `Mobil` — mengapa `_protected` masuk akal diakses oleh subkelas.
+> 4. **Bagian 4:** `Induk` & `Anak` — membuktikan private mencegah konflik nama di pewarisan.
+>
+> *Jalankan file tersebut dan amati outputnya sebelum melanjutkan ke bagian berikutnya!*
 
 ### Contoh Perbandingan
 
@@ -71,14 +80,15 @@ class Rekening:
 
 rek = Rekening(1_000_000)
 
-# Melihat semua atribut objek
-print(dir(rek))
-# Anda akan menemukan '_Rekening__saldo', BUKAN '__saldo'
+# Melihat semua atribut objek via __dict__
+print(rek.__dict__)
+# Output: {'_Rekening__saldo': 1000000}
+# Perhatikan: kunci-nya adalah '_Rekening__saldo', BUKAN '__saldo'!
 
-# Akses langsung (melanggar enkapsulasi — JANGAN dilakukan!)
+# Akses via name mangling (jalan darurat — JANGAN dalam kode nyata!)
 print(rek._Rekening__saldo)  # 1000000
 
-# Akses yang benar: melalui method yang disediakan kelas
+# Akses yang BENAR: melalui method yang disediakan kelas
 ```
 
 **Mengapa didesain begini?** Name mangling mencegah *collision* nama di pewarisan (inheritance). Subkelas tidak akan secara tidak sengaja menimpa atribut private kelas induk.
@@ -363,28 +373,32 @@ mhs.ipk = ipk_baru  # kelas yang akan memvalidasi, bukan pemanggilnya
 
 ## 10. Ringkasan Visual
 
+```mermaid
+classDiagram
+    direction LR
+    class KelasAnda {
+        +atribut_publik
+        #_atribut_protected
+        -__atribut_private
+        +method_publik()
+        +get_private() : nilai
+        +set_private(nilai)
+    }
+    class PemanggilLuar {
+    }
+    class SubKelas {
+    }
+    PemanggilLuar ..> KelasAnda : boleh akses public
+    SubKelas --|> KelasAnda : boleh akses public + protected
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    ENKAPSULASI                              │
-│                                                             │
-│   DARI LUAR           │          DI DALAM KELAS            │
-│                        │                                    │
-│   mhs.ipk              │   @property                       │
-│   mhs.ipk = 3.75       │   def ipk(self): return __ipk     │
-│   del mhs.ipk          │   @ipk.setter                     │
-│                        │   def ipk(self, v): VALIDASI...   │
-│                        │   @ipk.deleter                    │
-│                        │   def ipk(self): CLEANUP...       │
-│                        │                                    │
-│   Terasa seperti        │   Tapi sebenarnya melewati        │
-│   atribut biasa!       │   kode yang bisa dikendalikan     │
-└─────────────────────────────────────────────────────────────┘
 
-Konvensi Akses:
-  nama     → Public    — bebas diakses dari mana saja
-  _nama    → Protected — hanya untuk internal & subkelas
-  __nama   → Private   → name mangling: _NamaKelas__nama
-```
+**Tabel Ringkasan Konvensi:**
+
+| Penulisan | Akses dari luar kelas | Akses dari subkelas | Name Mangling? |
+|-----------|-----------------------|---------------------|----------------|
+| `nama` | ✅ Bebas | ✅ Bebas | Tidak |
+| `_nama` | ⚠️ Bisa, tapi jangan | ✅ Dianjurkan | Tidak |
+| `__nama` | ❌ Tidak bisa langsung | ❌ Tidak bisa langsung | ✅ Ya: `_Kelas__nama` |
 
 ---
 
