@@ -540,16 +540,17 @@ classDiagram
         -email : str
     }
     class Order {
-        -id : int
+        -id : str
         -alamat_kirim : str
-        -status : str
+        -dikirim : bool
+        +total : float
         +tambah_item(produk, qty)
         +proses_pengiriman(kurir)
         +tampilkan()
     }
     class OrderItem {
         -qty : int
-        +subtotal() float
+        +subtotal : float
     }
     class Produk {
         -kode : str
@@ -624,7 +625,7 @@ classDiagram
     class Dosen {
         -nama : str
         -nip : str
-        -bidang : str
+        -bidang_keahlian : str
         +mengajar(mk, ruangan, jam)
     }
     class MataKuliah {
