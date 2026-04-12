@@ -79,17 +79,26 @@ sari.cetak_tugas(printer_lab, "UTS_Kalkulus.pdf")
 ```
 
 ### Diagram UML Asosiasi:
+
+```mermaid
+classDiagram
+    direction LR
+    class Mahasiswa {
+        -nama : str
+        -nim : str
+        +cetak_tugas(printer, file)
+        +kirim_ke_antrian(printer, file)
+    }
+    class Printer {
+        -merk : str
+        -dpi : int
+        +cetak(nama_file)
+        +cetak_semua()
+    }
+    Mahasiswa ..> Printer : menggunakan
 ```
-+-------------+       menggunakan       +----------+
-|  Mahasiswa  | ----------------------> | Printer  |
-+-------------+                         +----------+
-| - nama      |                         | - merk   |
-| - nim       |                         | - dpi    |
-+-------------+                         +----------+
-| cetak_tugas |                         | cetak()  |
-+-------------+                         +----------+
-```
-**Notasi:** `---->` (panah biasa — asosiasi searah)
+
+**Notasi:** `..>` (panah putus-putus — asosiasi/dependency searah)
 
 ---
 
@@ -174,15 +183,27 @@ print(f"  dosen2 masih ada: {dosen2}")
 ```
 
 ### Diagram UML Agregasi:
+
+```mermaid
+classDiagram
+    direction LR
+    class Jurusan {
+        -nama : str
+        -kode : str
+        +tambah_dosen(dosen)
+        +keluarkan_dosen(nip)
+        +tampilkan()
+    }
+    class Dosen {
+        -nama : str
+        -nip : str
+        -bidang_keahlian : str
+        +info_singkat() str
+    }
+    Jurusan "1" o-- "*" Dosen : memiliki
 ```
-+----------+        memiliki        +---------+
-| Jurusan  | <>-------------------- | Dosen   |
-+----------+  1              *      +---------+
-| - nama   |  (satu Jurusan        | - nama  |
-| - kode   |   punya banyak Dosen) | - nip   |
-+----------+                        +---------+
-```
-**Notasi:** `<>----` (diamond kosong di sisi induk)
+
+**Notasi:** `o--` (diamond kosong di sisi induk — agregasi)
 
 > **Angka di garis UML:**
 > - `1` = tepat satu
@@ -278,53 +299,55 @@ rumah_budi.tampilkan()
 ```
 
 ### Diagram UML Komposisi:
+
+```mermaid
+classDiagram
+    direction LR
+    class Rumah {
+        -alamat : str
+        -pemilik : str
+        +tambah_kamar(fungsi, luas) Kamar
+        +bangun_standar()
+        +tampilkan()
+        +total_luas() float
+    }
+    class Kamar {
+        -nomor : int
+        -fungsi : str
+        -luas_m2 : float
+    }
+    Rumah "1" *-- "1..*" Kamar : terdiri dari
 ```
-+----------+        terdiri dari    +---------+
-|  Rumah   | *--------------------- | Kamar   |
-+----------+  1              1..*   +---------+
-| - alamat |                        | - nomor |
-| - pemilik|                        | - fungsi|
-+----------+                        | - luas  |
-```
-**Notasi:** `*----` (diamond terisi di sisi induk)
+
+**Notasi:** `*--` (diamond terisi di sisi induk — komposisi)
 
 ---
 
 ## 5. Perbandingan Lengkap: Asosiasi vs Agregasi vs Komposisi
 
-```
-ASOSIASI (Menggunakan):
-  Mahasiswa -----> Printer
-  - Printer dibuat di luar Mahasiswa
-  - Printer dikirim sebagai PARAMETER method
-  - Printer bisa dipakai Mahasiswa lain juga
-  - Printer tetap ada setelah method selesai
-  - Hubungan: sementara, "meminjam"
+```mermaid
+classDiagram
+    direction TB
+    class Mahasiswa { }
+    class Printer { }
+    class Jurusan { }
+    class Dosen { }
+    class Rumah { }
+    class Kamar { }
 
-AGREGASI (Memiliki — Has-A Lemah):
-  Jurusan <>----> Dosen
-  - Dosen dibuat di luar Jurusan
-  - Dosen dikirim via tambah_dosen()
-  - Satu Dosen bisa milik dua Jurusan
-  - Hapus Jurusan => Dosen tetap hidup
-  - Hubungan: permanen tapi longgar
-
-KOMPOSISI (Terdiri Dari — Has-A Kuat):
-  Rumah *----> Kamar
-  - Kamar dibuat DI DALAM Rumah
-  - Tidak ada yang bisa membuat Kamar tanpa Rumah
-  - Kamar hanya milik SATU Rumah
-  - Hapus Rumah => Kamar ikut musnah
-  - Hubungan: permanen dan eksklusif
+    Mahasiswa ..> Printer : Asosiasi — menggunakan
+    Jurusan "1" o-- "*" Dosen : Agregasi — memiliki
+    Rumah "1" *-- "1..*" Kamar : Komposisi — terdiri dari
 ```
 
 | Aspek | Asosiasi | Agregasi | Komposisi |
 |-------|----------|----------|-----------|
-| Dibuat di | Luar, dikirim sebagai parameter | Luar, dikirim ke konstruktor/method | Dalam objek induk |
-| Kepemilikan | Tidak ada | Ya, tapi bisa berbagi | Ya, eksklusif |
-| Hidup mandiri? | Ya | Ya | Tidak |
-| Jika induk dihapus | Bagian tetap ada | Bagian tetap ada | Bagian ikut musnah |
-| Notasi UML | `---->` | `<>---->` | `*---->` |
+| **Kata kunci** | "menggunakan" | "memiliki" | "terdiri dari" |
+| **Dibuat di** | Luar, dikirim sbg parameter | Luar, dikirim ke method | **Dalam** objek induk |
+| **Kepemilikan** | Tidak ada | Ya, bisa berbagi | Ya, eksklusif |
+| **Hidup mandiri?** | Ya | Ya | Tidak |
+| **Jika induk dihapus** | Bagian tetap ada | Bagian tetap ada | Bagian ikut musnah |
+| **Notasi Mermaid** | `..>` | `o--` | `*--` |
 
 ---
 
@@ -444,26 +467,35 @@ A <|..........B    :  Implementasi Interface (nanti di Materi 08)
 ```
 
 ### Contoh: Diagram Kelas Sistem Akademik
-```
-+--------------+      memiliki      +---------------+
-|   Jurusan    | <>---------------  |    Dosen      |
-+--------------+  1           *     +---------------+
-| - nama       |                    | - nama        |
-| - kode       |                    | - nip         |
-+--------------+                    | - bidang      |
-| + tampilkan()|                    +---------------+
-+--------------+                    | + mengajar()  |
-       |                            +---------------+
-       | terdiri dari                      |
-       | 1..*                              | mengajar
-       |                                   |
-+-------------+            1..*    +---------------+
-|  MataKuliah | -------------------| Mahasiswa     |
-+-------------+                    +---------------+
-| - kode_mk   |                    | - nama        |
-| - nama      |                    | - nim         |
-| - sks       |                    | - ipk         |
-+-------------+                    +---------------+
+
+```mermaid
+classDiagram
+    direction TB
+    class Jurusan {
+        -nama : str
+        -kode : str
+        +tampilkan()
+    }
+    class Dosen {
+        -nama : str
+        -nip : str
+        -bidang : str
+        +mengajar(mk, ruangan, jam)
+    }
+    class MataKuliah {
+        -kode_mk : str
+        -nama : str
+        -sks : int
+    }
+    class Mahasiswa {
+        -nama : str
+        -nim : str
+        -ipk : float
+    }
+    Jurusan "1" o-- "*" Dosen : memiliki
+    Jurusan "1" *-- "1..*" MataKuliah : terdiri dari
+    Dosen "1" --> "*" MataKuliah : mengajar
+    Mahasiswa "*" ..> "*" MataKuliah : mengambil
 ```
 
 ---
