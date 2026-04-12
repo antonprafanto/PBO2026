@@ -141,9 +141,9 @@ classDiagram
     class Jurusan
     class Dosen
     class Universitas
-    class Mahasiswa
+    class Fakultas
     Jurusan "1" o-- "*" Dosen : memiliki (Dosen bisa pindah)
-    Universitas "1" o-- "*" Mahasiswa : memiliki (mhs bisa pindah)
+    Universitas "1" o-- "*" Fakultas : agregasi bersarang (nested)
 ```
 
 ### Implementasi Python:
@@ -179,7 +179,10 @@ class Jurusan:
 
     def keluarkan_dosen(self, nip):
         """Menghapus referensi dosen dari jurusan, BUKAN menghapus objek."""
+        before = len(self._dosen)
         self._dosen = [d for d in self._dosen if d.nip != nip]
+        if len(self._dosen) < before:
+            print(f"  [-] Dosen dengan NIP {nip} dikeluarkan dari {self.nama}")
 
     @property
     def jumlah_dosen(self):
