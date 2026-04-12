@@ -48,5 +48,5 @@ Thumbs.db
 *.log
 
 # Data folder (generated files)
-Pertemuan_*/kode/data/
-Pertemuan_Proyek_Akhir_SiDigital/storage/data/*.json
+Materi_*/kode/data/
+Materi_15_Proyek_Akhir_SiDigital/storage/data/*.json
