@@ -477,7 +477,10 @@ rek.tarik(500_000)
 # Output:   [-] Tarik Rp 500,000 | Saldo: Rp 6,000,000
 
 # Saldo TIDAK bisa dimanipulasi langsung dari luar
-# rek.__saldo = 999_999  # -> AttributeError (name mangling melindungi!)
+# Jika dicoba: rek.__saldo = 999_999
+# Python TIDAK akan error! Justru ia membuat atribut BARU bernama '__saldo'
+# yang BERBEDA dari '_RekeningBank__saldo' (saldo asli).
+# Property saldo() tetap membaca _RekeningBank__saldo yang asli -- saldo aman!
 print(f"Saldo aman: Rp {rek.saldo:,.0f}")
 # Output: Saldo aman: Rp 6,000,000
 ```
