@@ -342,9 +342,66 @@ pp.panjang = 20   # ubah panjang
 print(f"Luas baru: {pp.luas}")     # 100 — otomatis update!
 ```
 
+> 💡 **Eksplorasi Lanjutan di Kode Praktik**
+> File `kode/02_property.py` menghadirkan **4 contoh nyata** penggunaan `@property`:
+> 1. **Bagian 1:** Kelas `Suhu` — `@property` untuk mengkonversi Celsius ke Fahrenheit dan Kelvin *secara otomatis*.
+> 2. **Bagian 2:** Kelas `Mahasiswa` (4 atribut: nama, nim, ipk, semester) — validasi menyeluruh + computed `predikat` dan `tahun_masuk`.
+> 3. **Bagian 3:** Kelas `Sesi` (login) — `@token.deleter` untuk pola logout yang aman.
+> 4. **Bagian 4:** Kelas `Dokumen` — **Property Caching** (lihat bagian berikutnya!).
+>
+> *Sangat disarankan menjalankan file ini untuk melihat validasi bekerja secara live di terminal!*
+
 ---
 
-## 9. Pola Terbaik Enkapsulasi
+## 9. Property Caching — Optimasi Komputasi Berat
+
+Kadang sebuah `@property` memerlukan kalkulasi yang **mahal** (lambat). Daripada menghitung ulang setiap kali diakses, kita bisa menyimpan hasilnya di **cache** dan hanya menghitung ulang jika data sumbernya berubah.
+
+```python
+class Dokumen:
+    """Dokumen teks dengan word-count yang dihitung sekali dan di-cache."""
+
+    def __init__(self, judul, isi):
+        self.__judul    = judul
+        self.__isi      = isi
+        self.__cache_wc = None   # cache dimulai kosong
+
+    @property
+    def judul(self):
+        return self.__judul
+
+    @property
+    def isi(self):
+        return self.__isi
+
+    @isi.setter
+    def isi(self, teks_baru):
+        self.__isi      = teks_baru
+        self.__cache_wc = None   # <-- cache di-invalidate saat isi berubah!
+
+    @property
+    def jumlah_kata(self):
+        """Hitung kata hanya jika cache kosong atau isi berubah."""
+        if self.__cache_wc is None:
+            print("  [Menghitung word count...]")
+            self.__cache_wc = len(self.__isi.split())
+        return self.__cache_wc
+
+
+dok = Dokumen("Pengantar Python", "Python adalah bahasa yang mudah dan kuat.")
+
+print(dok.jumlah_kata)   # [Menghitung word count...] lalu: 7
+print(dok.jumlah_kata)   # (langsung dari cache, tidak hitung ulang): 7
+
+dok.isi = "Isi baru yang lebih pendek."
+print(dok.jumlah_kata)   # [Menghitung word count...] lalu: 5  <- hitung ulang!
+```
+
+**Kenapa ini penting?** Cache mencegah kalkulasi ulang yang tidak perlu. Bayangkan jika `jumlah_kata` menghitung dari file 100MB — Anda pasti tidak mau menghitung ulang setiap kali `dok.jumlah_kata` dipanggil!
+
+---
+
+## 10. Pola Terbaik Enkapsulasi
 
 ### Kapan Gunakan Atribut Public vs Property?
 
@@ -373,7 +430,7 @@ mhs.ipk = ipk_baru   # kelas yang akan memvalidasi, bukan pemanggilnya
 
 ---
 
-## 10. Ringkasan Visual
+## 11. Ringkasan Visual
 
 ```mermaid
 classDiagram
