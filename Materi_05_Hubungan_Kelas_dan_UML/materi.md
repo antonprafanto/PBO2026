@@ -34,12 +34,16 @@ Di OOP, ada tiga jenis hubungan utama antar kelas:
 - Tidak ada "kepemilikan" — keduanya berdiri sendiri
 
 ### Contoh di Dunia Nyata:
-```
-Kasir ---------> Produk
-(Kasir memproses Produk, tapi keduanya independen)
 
-Dokter ---------> Pasien
-(Dokter memeriksa Pasien, tapi Pasien bisa ke Dokter lain)
+```mermaid
+classDiagram
+    direction LR
+    class Kasir
+    class Produk
+    class Dokter
+    class Pasien
+    Kasir ..> Produk : memproses (independen)
+    Dokter ..> Pasien : memeriksa (bisa ke dokter lain)
 ```
 
 ### Implementasi Python:
@@ -112,13 +116,16 @@ classDiagram
 - Jika objek induk dihapus, objek bagian **tetap hidup**
 
 ### Contoh di Dunia Nyata:
-```
-Jurusan  <>-------  Dosen
-(Dosen milik Jurusan, tapi jika Jurusan dibubarkan,
- Dosen masih tetap ada — bisa pindah ke Jurusan lain)
 
-Universitas <>-------  Mahasiswa
-(Jika Universitas tutup, Mahasiswa masih ada — bisa pindah)
+```mermaid
+classDiagram
+    direction LR
+    class Jurusan
+    class Dosen
+    class Universitas
+    class Mahasiswa
+    Jurusan "1" o-- "*" Dosen : memiliki (Dosen bisa pindah)
+    Universitas "1" o-- "*" Mahasiswa : memiliki (mhs bisa pindah)
 ```
 
 ### Implementasi Python:
@@ -223,15 +230,19 @@ classDiagram
 - Tidak ada berbagi objek bagian antar dua induk
 
 ### Contoh di Dunia Nyata:
-```
-Rumah  *-------  Kamar
-(Kamar tidak bisa berdiri sendiri tanpa Rumah)
 
-Pesawat  *-------  Mesin
-(Mesin pesawat tidak bisa eksis tanpa Pesawat itu)
-
-Order  *-------  OrderItem
-(Item pesanan tidak ada tanpa Order-nya)
+```mermaid
+classDiagram
+    direction LR
+    class Rumah
+    class Kamar
+    class Pesawat
+    class Mesin
+    class Order
+    class OrderItem
+    Rumah "1" *-- "1..*" Kamar : terdiri dari
+    Pesawat "1" *-- "1..*" Mesin : terdiri dari
+    Order "1" *-- "1..*" OrderItem : terdiri dari
 ```
 
 ### Implementasi Python:
@@ -428,43 +439,86 @@ class Order:
         print(f"  TOTAL: Rp {self.total:,.0f}")
 ```
 
+### Diagram UML Studi Kasus: Sistem Order Toko Online
+
+```mermaid
+classDiagram
+    direction LR
+    class Pelanggan {
+        -nama : str
+        -email : str
+    }
+    class Order {
+        -id : int
+        -alamat_kirim : str
+        -status : str
+        +tambah_item(produk, qty)
+        +proses_pengiriman(kurir)
+        +tampilkan()
+    }
+    class OrderItem {
+        -qty : int
+        +subtotal() float
+    }
+    class Produk {
+        -kode : str
+        -nama : str
+        -harga : float
+    }
+    class Kurir {
+        -nama : str
+        -kode : str
+        +kirim(order_id, alamat)
+    }
+    Order "*" --> "1" Pelanggan : dimiliki oleh (Agregasi)
+    Order "1" *-- "1..*" OrderItem : terdiri dari (Komposisi)
+    OrderItem "*" --> "1" Produk : merujuk (Asosiasi)
+    Order ..> Kurir : menggunakan (Asosiasi)
+```
+
 ---
 
 ## 7. Panduan Singkat Diagram Kelas UML
 
 Diagram Kelas UML adalah cara standar untuk menggambarkan struktur kelas secara visual sebelum menulis kode.
 
-### Notasi Dasar Sebuah Kelas:
-```
-+---------------------------+
-|       NamaKelas           |  <- bagian nama
-+---------------------------+
-| - atribut_private: tipe   |  <- bagian atribut
-| # atribut_protected: tipe |    (-) private
-| + atribut_public: tipe    |    (#) protected
-+---------------------------+    (+) public
-| + method_publik(): tipe   |  <- bagian method
-| - _method_private(): void |
-+---------------------------+
-```
+### Notasi Atribut dan Method dalam Mermaid:
 
-### Hubungan dan Notasinya:
-```
-A -----------> B   :  Asosiasi (A menggunakan B)
-A <o>--------- B   :  Agregasi (A memiliki B, B bisa mandiri)
-A <*>--------- B   :  Komposisi (A terdiri dari B, B tergantung A)
-A <|---------- B   :  Pewarisan / Inheritance (nanti di Materi 06)
-A <|..........B    :  Implementasi Interface (nanti di Materi 08)
+| Simbol | Arti | Contoh |
+|--------|------|--------|
+| `-` | private | `-nama : str` |
+| `#` | protected | `#_saldo : float` |
+| `+` | public | `+tampilkan()` |
+| `~` | package/internal | `~_helper()` |
+
+### Notasi Hubungan (Mermaid `classDiagram`):
+
+```mermaid
+classDiagram
+    direction LR
+    class A1["A (Asosiasi)"]
+    class B1["B"]
+    class A2["A (Agregasi)"]
+    class B2["B (bisa mandiri)"]
+    class A3["A (Komposisi)"]
+    class B3["B (tergantung A)"]
+    class A4["A (Pewarisan)"]
+    class B4["B (induk)"]
+    A1 ..> B1 : menggunakan
+    A2 o-- B2 : memiliki
+    A3 *-- B3 : terdiri dari
+    A4 --|> B4 : mewarisi
 ```
 
 ### Multiplisitas (angka di garis):
-```
-1        = tepat satu
-*  atau  n = nol atau lebih (banyak)
-0..1     = opsional (nol atau satu)
-1..*     = satu atau lebih
-2..5     = antara dua sampai lima
-```
+
+| Notasi | Arti |
+|--------|------|
+| `"1"` | Tepat satu |
+| `"*"` | Nol atau lebih (banyak) |
+| `"0..1"` | Opsional (nol atau satu) |
+| `"1..*"` | Satu atau lebih |
+| `"2..5"` | Antara dua sampai lima |
 
 ### Contoh: Diagram Kelas Sistem Akademik
 
@@ -502,15 +556,24 @@ classDiagram
 
 ## 8. Tips Memilih Jenis Hubungan
 
-Gunakan pertanyaan berikut sebagai panduan:
+Gunakan diagram keputusan berikut sebagai panduan:
 
-**1. Apakah B bisa eksis tanpa A?**
-- Tidak bisa → **Komposisi**
-- Bisa → lanjut pertanyaan 2
+```mermaid
+flowchart TD
+    START([Hubungan antara kelas A dan kelas B]) --> Q1
 
-**2. Apakah A "memiliki" B secara permanen (B tersimpan sebagai atribut A)?**
-- Ya → **Agregasi**
-- Tidak (hanya dipakai sementara / dikirim sebagai parameter) → **Asosiasi**
+    Q1{Apakah B bisa eksis\ntanpa A?}
+    Q1 -- Tidak bisa --> KOMPOSISI["**KOMPOSISI**\nB dibuat di dalam A\nB hancur bersama A\nContoh: Rumah dan Kamar"]
+    Q1 -- Bisa --> Q2
+
+    Q2{Apakah A menyimpan\nreferensi ke B sebagai\natribut permanen?}
+    Q2 -- Ya --> AGREGASI["**AGREGASI**\nB dikirim dari luar ke A\nB bisa tetap hidup tanpa A\nContoh: Jurusan dan Dosen"]
+    Q2 -- Tidak --> ASOSIASI["**ASOSIASI**\nB hanya dikirim sebagai parameter\nHubungan sementara/longgar\nContoh: Mahasiswa dan Printer"]
+
+    style KOMPOSISI fill:#f96,stroke:#c33,color:#000
+    style AGREGASI fill:#fa0,stroke:#c80,color:#000
+    style ASOSIASI fill:#6af,stroke:#36c,color:#000
+```
 
 ### Contoh Praktis:
 | Skenario | Hubungan |
