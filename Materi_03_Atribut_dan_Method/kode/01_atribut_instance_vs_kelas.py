@@ -1,6 +1,6 @@
 """
 ============================================================
-    MATERI 03 — Atribut dan Method
+    MATERI 03 - Atribut dan Method
     File: 01_atribut_instance_vs_kelas.py
     Topik: Perbedaan Atribut Instance dan Atribut Kelas
 ============================================================
@@ -69,12 +69,12 @@ mhs1 = MahasiswaV2("Budi", "2301001", 3.75)
 mhs2 = MahasiswaV2("Sari", "2301002", 3.50)
 mhs3 = MahasiswaV2("Andi", "2301003", 3.20)
 
-# Akses atribut kelas — via nama kelas (DIREKOMENDASIKAN)
+# Akses atribut kelas - via nama kelas (DIREKOMENDASIKAN)
 print(f"Universitas   : {MahasiswaV2.universitas}")
 print(f"Program Studi : {MahasiswaV2.program_studi}")
 print(f"Total mahasiswa: {MahasiswaV2.jumlah_mhs}")
 
-# Akses via objek — boleh untuk MEMBACA, tapi jangan untuk MENGUBAH
+# Akses via objek - boleh untuk MEMBACA, tapi jangan untuk MENGUBAH
 print(f"\nAkses via objek -> mhs1.universitas = '{mhs1.universitas}'")
 
 
@@ -103,7 +103,7 @@ print(f"mhs2.universitas = '{mhs2.universitas}'")  # mengikuti perubahan kelas
 
 
 # ─────────────────────────────────────────────────────────
-# BAGIAN 4: Kasus Nyata — Menggunakan Atribut Kelas
+# BAGIAN 4: Kasus Nyata - Menggunakan Atribut Kelas
 # Contoh: tracking jumlah, konstanta bersama
 # ─────────────────────────────────────────────────────────
 

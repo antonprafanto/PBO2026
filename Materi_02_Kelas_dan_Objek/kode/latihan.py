@@ -1,18 +1,18 @@
 """
 ==========================================================
-    MATERI 02 — Kelas dan Objek
+    MATERI 02 - Kelas dan Objek
     File: latihan.py
     Topik: Soal Latihan Mandiri
 ==========================================================
 
-📝 PETUNJUK PENGERJAAN:
+[TUGAS] PETUNJUK PENGERJAAN:
     1. Baca soal dengan seksama
     2. Hapus tulisan 'pass' dan tulis jawaban Anda di bawahnya
     3. AKTIFKAN kode uji: hapus tanda '#' di depan baris uji
     4. Jalankan: python latihan.py
     5. Bandingkan output dengan "Contoh output yang diharapkan"
 
-💡 TIPS:
+[TIPS] TIPS:
     - Kerjakan soal satu per satu, jangan langsung semua
     - Jika error, baca pesan error dengan teliti
     - Gunakan print() untuk debug nilai variabel Anda
@@ -20,20 +20,20 @@
 """
 
 print("=" * 58)
-print("         LATIHAN MANDIRI — MATERI 02")
+print("         LATIHAN MANDIRI - MATERI 02")
 print("=" * 58)
 
 
 # ══════════════════════════════════════════════════════════
-# SOAL 1 (Mudah) ⭐
+# SOAL 1 (Mudah) *
 # ══════════════════════════════════════════════════════════
-print("\n📝 SOAL 1: Kelas Lingkaran")
+print("\n[TUGAS] SOAL 1: Kelas Lingkaran")
 print("-" * 50)
 print("""
 Buatlah kelas 'Lingkaran' dengan:
 
 Atribut (di __init__):
-  - jari_jari (float) → jari-jari lingkaran
+  - jari_jari (float) -> jari-jari lingkaran
 
 Method:
   - luas()
@@ -75,16 +75,16 @@ class Lingkaran:
 
 
 # ══════════════════════════════════════════════════════════
-# SOAL 2 (Sedang) ⭐⭐
+# SOAL 2 (Sedang) **
 # ══════════════════════════════════════════════════════════
-print("\n📝 SOAL 2: Kelas Keranjang Belanja")
+print("\n[TUGAS] SOAL 2: Kelas Keranjang Belanja")
 print("-" * 50)
 print("""
 Buatlah kelas 'KeranjangBelanja' dengan:
 
 Atribut (di __init__):
-  - nama_pembeli (str) → nama pembeli
-  - items (list)       → daftar item, default = [] kosong
+  - nama_pembeli (str) -> nama pembeli
+  - items (list)       -> daftar item, default = [] kosong
     PENTING: gunakan None sebagai default, lalu di dalam
     __init__ isi dengan: self.items = items if items else []
 
@@ -107,10 +107,10 @@ Contoh output yang diharapkan:
   =========================================
   Keranjang Belanja: Budi
   -----------------------------------------
-  1. Laptop           x1  → Rp  8,500,000
-  2. Mouse            x2  → Rp    300,000
+  1. Laptop           x1  -> Rp  8,500,000
+  2. Mouse            x2  -> Rp    300,000
   -----------------------------------------
-  TOTAL                   → Rp  8,800,000
+  TOTAL                   -> Rp  8,800,000
   =========================================
 """)
 
@@ -132,16 +132,16 @@ class KeranjangBelanja:
 
 
 # ══════════════════════════════════════════════════════════
-# SOAL 3 (Menantang) ⭐⭐⭐
+# SOAL 3 (Menantang) ***
 # ══════════════════════════════════════════════════════════
-print("\n📝 SOAL 3: Sistem Antrian Bimbingan Skripsi")
+print("\n[TUGAS] SOAL 3: Sistem Antrian Bimbingan Skripsi")
 print("-" * 50)
 print("""
 Buatlah kelas 'AntrianBimbingan' dengan:
 
 Atribut (di __init__):
-  - nama_dosen (str)  → nama dosen pembimbing
-  - antrian    (list) → daftar nama mahasiswa, default kosong
+  - nama_dosen (str)  -> nama dosen pembimbing
+  - antrian    (list) -> daftar nama mahasiswa, default kosong
 
 Method:
   - daftar(nama_mahasiswa)
@@ -179,7 +179,7 @@ Contoh output yang diharapkan:
     1. Citra
     2. Dono
 
-🏆 BONUS: Tambahkan method batalkan(nama_mahasiswa) yang
+[BONUS] BONUS: Tambahkan method batalkan(nama_mahasiswa) yang
    memungkinkan mahasiswa membatalkan antriannya!
 """)
 
@@ -208,6 +208,6 @@ class AntrianBimbingan:
 # ══════════════════════════════════════════════════════════
 print()
 print("=" * 58)
-print("  🎯 Selamat mengerjakan! Semangat! 💪")
-print("  📌 Ingat: Error adalah bagian dari proses belajar!")
+print("  [GOAL] Selamat mengerjakan! Semangat! 💪")
+print("  [INFO] Ingat: Error adalah bagian dari proses belajar!")
 print("=" * 58)

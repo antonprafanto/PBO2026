@@ -1,6 +1,6 @@
 """
 ==========================================================
-    MATERI 01 — Pengantar OOP
+    MATERI 01 - Pengantar OOP
     File: 01_prosedural_vs_oop.py
     Topik: Perbandingan Paradigma Prosedural vs OOP
 ==========================================================
@@ -13,10 +13,10 @@ print("=" * 55)
 # ──────────────────────────────────────────────────────────
 # BAGIAN 1: CARA PROSEDURAL
 # ──────────────────────────────────────────────────────────
-print("\n🔴 CARA PROSEDURAL:")
+print("\n[#] CARA PROSEDURAL:")
 print("-" * 40)
 
-# Data mahasiswa — tersebar sebagai variabel biasa
+# Data mahasiswa - tersebar sebagai variabel biasa
 nama1  = "Budi Santoso"
 nim1   = "2301001"
 ipk1   = 3.75
@@ -45,7 +45,7 @@ def hitung_predikat_prosedural(ipk):
     else:
         return "Cukup"
 
-# Masalah: kalau ada 100 mahasiswa → 100 variabel!
+# Masalah: kalau ada 100 mahasiswa -> 100 variabel!
 # Semakin banyak data, semakin kacau kode kita.
 
 tampilkan_info_prosedural(nama1, nim1, ipk1, aktif1)
@@ -61,7 +61,7 @@ print(f"  Predikat: {predikat2}")
 # ──────────────────────────────────────────────────────────
 # BAGIAN 2: CARA OOP
 # ──────────────────────────────────────────────────────────
-print("\n\n🟢 CARA OOP:")
+print("\n\n[OK] CARA OOP:")
 print("-" * 40)
 
 class Mahasiswa:
@@ -97,12 +97,12 @@ class Mahasiswa:
             return "Cukup"
 
 
-# Membuat objek — bersih dan mudah!
+# Membuat objek - bersih dan mudah!
 mhs1 = Mahasiswa("Budi Santoso", "2301001", 3.75)
 mhs2 = Mahasiswa("Sari Dewi",    "2301002", 2.90)
 mhs3 = Mahasiswa("Andi Rahman",  "2301003", 3.10)
 
-# Memanggil method — cara yang elegan
+# Memanggil method - cara yang elegan
 for mhs in [mhs1, mhs2, mhs3]:
     mhs.tampilkan_info()
     print(f"  Predikat: {mhs.hitung_predikat()}")
@@ -112,7 +112,7 @@ for mhs in [mhs1, mhs2, mhs3]:
 # ──────────────────────────────────────────────────────────
 # BAGIAN 3: KEUNGGULAN OOP
 # ──────────────────────────────────────────────────────────
-print("\n📊 RINGKASAN PERBANDINGAN:")
+print("\n[INFO] RINGKASAN PERBANDINGAN:")
 print("-" * 55)
 print(f"  {'Aspek':<20} {'Prosedural':<15} {'OOP':<15}")
 print(f"  {'-'*20} {'-'*15} {'-'*15}")
@@ -122,4 +122,4 @@ print(f"  {'Reuse Kode':<20} {'Tidak mudah':<15} {'Sangat mudah':<15}")
 print(f"  {'Kolaborasi Tim':<20} {'Sulit':<15} {'Mudah':<15}")
 print(f"  {'Maintenance':<20} {'Rumit':<15} {'Mudah':<15}")
 
-print("\n✅ Selesai! Lanjut ke file berikutnya: 02_kelas_pertama.py")
+print("\n[OK] Selesai! Lanjut ke file berikutnya: 02_kelas_pertama.py")

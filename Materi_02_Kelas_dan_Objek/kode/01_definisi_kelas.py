@@ -1,19 +1,19 @@
 """
 ==========================================================
-    MATERI 02 — Kelas dan Objek
+    MATERI 02 - Kelas dan Objek
     File: 01_definisi_kelas.py
     Topik: Sintaks Lengkap Mendefinisikan Kelas
 ==========================================================
 """
 
 print("=" * 55)
-print("      DEFINISI KELAS — SINTAKS LENGKAP")
+print("      DEFINISI KELAS - SINTAKS LENGKAP")
 print("=" * 55)
 
 # ──────────────────────────────────────────────────────────
 # BAGIAN 1: KELAS DENGAN KONSTRUKTOR WAJIB
 # ──────────────────────────────────────────────────────────
-print("\n📌 1. Kelas dengan Konstruktor Wajib:")
+print("\n[INFO] 1. Kelas dengan Konstruktor Wajib:")
 print("-" * 40)
 
 class MataKuliah:
@@ -50,7 +50,7 @@ for mk in [mk1, mk2, mk3]:
 # ──────────────────────────────────────────────────────────
 # BAGIAN 2: KONSTRUKTOR DENGAN NILAI DEFAULT
 # ──────────────────────────────────────────────────────────
-print("\n📌 2. Konstruktor dengan Nilai Default:")
+print("\n[INFO] 2. Konstruktor dengan Nilai Default:")
 print("-" * 40)
 
 class Mahasiswa:
@@ -68,7 +68,7 @@ class Mahasiswa:
         self.ipk      = 0.0  # IPK awal selalu 0
 
     def info(self):
-        status = "✅ Aktif" if self.aktif else "❌ Tidak Aktif"
+        status = "[OK] Aktif" if self.aktif else "[ERROR] Tidak Aktif"
         print(f"  {self.nama} ({self.nim}) | Sem: {self.semester} | {status} | IPK: {self.ipk:.2f}")
 
 # Berbagai cara membuat objek
@@ -84,7 +84,7 @@ for mhs in [mhs1, mhs2, mhs3, mhs4]:
 # ──────────────────────────────────────────────────────────
 # BAGIAN 3: MENGAKSES DAN MENGUBAH ATRIBUT
 # ──────────────────────────────────────────────────────────
-print("\n\n📌 3. Mengakses dan Mengubah Atribut:")
+print("\n\n[INFO] 3. Mengakses dan Mengubah Atribut:")
 print("-" * 40)
 
 mhs = Mahasiswa("Eko Prasetyo", "2301005", 4)
@@ -99,7 +99,7 @@ print(f"  Sesudah: {mhs.nama} | Semester: {mhs.semester} | IPK: {mhs.ipk}")
 # ──────────────────────────────────────────────────────────
 # BAGIAN 4: OBJEK SEBAGAI PARAMETER DAN RETURN VALUE
 # ──────────────────────────────────────────────────────────
-print("\n\n📌 4. Objek sebagai Parameter dan Return Value:")
+print("\n\n[INFO] 4. Objek sebagai Parameter dan Return Value:")
 print("-" * 40)
 
 def bandingkan_ipk(mhs_a, mhs_b):
@@ -123,4 +123,4 @@ b.ipk = 3.60
 terbaik = bandingkan_ipk(a, b)
 print(f"  IPK tertinggi: {terbaik.nama} dengan IPK {terbaik.ipk}")
 
-print("\n✅ Selesai! Lanjut ke: 02_banyak_objek.py")
+print("\n[OK] Selesai! Lanjut ke: 02_banyak_objek.py")

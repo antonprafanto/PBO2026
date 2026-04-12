@@ -1,6 +1,6 @@
 """
 ============================================================
-    MATERI 03 — Atribut dan Method
+    MATERI 03 - Atribut dan Method
     File: latihan.py
     Topik: Soal Latihan Mandiri
 ============================================================
@@ -15,13 +15,13 @@ PETUNJUK:
 """
 
 print("=" * 60)
-print("         LATIHAN MANDIRI — MATERI 03")
+print("         LATIHAN MANDIRI - MATERI 03")
 print("         Atribut dan Method")
 print("=" * 60)
 
 
 # ─────────────────────────────────────────────────────────
-# SOAL 1 — Atribut Kelas vs Instance (★☆☆)
+# SOAL 1 - Atribut Kelas vs Instance (★☆☆)
 # ─────────────────────────────────────────────────────────
 # Lengkapi kelas `Buku` di bawah ini:
 #   - Atribut KELAS: `penerbit` = "Penerbit Nusantara"
@@ -65,7 +65,7 @@ print()
 
 
 # ─────────────────────────────────────────────────────────
-# SOAL 2 — Factory Method dengan @classmethod (★★☆)
+# SOAL 2 - Factory Method dengan @classmethod (★★☆)
 # ─────────────────────────────────────────────────────────
 # Buat kelas `Pegawai` dengan:
 #   - Atribut instance: `nama`, `departemen`, `gaji`
@@ -111,7 +111,7 @@ print()
 
 
 # ─────────────────────────────────────────────────────────
-# SOAL 3 — Utilitas dengan @staticmethod (★★☆)
+# SOAL 3 - Utilitas dengan @staticmethod (★★☆)
 # ─────────────────────────────────────────────────────────
 # Buat kelas `UtilitasString` dengan static method:
 #   a) `hitung_kata(teks)` -> kembalikan jumlah kata dalam teks
@@ -159,7 +159,7 @@ print()
 
 
 # ─────────────────────────────────────────────────────────
-# SOAL 4 — Kelas Komprehensif (★★★)
+# SOAL 4 - Kelas Komprehensif (★★★)
 # ─────────────────────────────────────────────────────────
 # Buat kelas `AkunBank` yang menggabungkan semuanya:
 #

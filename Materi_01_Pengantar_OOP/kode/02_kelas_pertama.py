@@ -1,6 +1,6 @@
 """
 ==========================================================
-    MATERI 01 — Pengantar OOP
+    MATERI 01 - Pengantar OOP
     File: 02_kelas_pertama.py
     Topik: Membuat Kelas dan Objek Pertama
 ==========================================================
@@ -19,7 +19,7 @@ print("=" * 55)
 # ──────────────────────────────────────────────────────────
 # BAGIAN 1: KELAS PALING SEDERHANA
 # ──────────────────────────────────────────────────────────
-print("\n📌 1. Kelas Sederhana (tanpa apapun):")
+print("\n[INFO] 1. Kelas Sederhana (tanpa apapun):")
 print("-" * 40)
 
 class Hewan:
@@ -37,12 +37,12 @@ print(f"  Apakah Hewan? {isinstance(kucing, Hewan)}")
 # ──────────────────────────────────────────────────────────
 # BAGIAN 2: ANATOMI LENGKAP SEBUAH KELAS
 # ──────────────────────────────────────────────────────────
-print("\n\n📌 2. Anatomi Lengkap Kelas:")
+print("\n\n[INFO] 2. Anatomi Lengkap Kelas:")
 print("-" * 40)
 
 class Motor:
     """
-    DOCSTRING — penjelasan kelas ini.
+    DOCSTRING - penjelasan kelas ini.
     Kelas Motor merepresentasikan sebuah kendaraan bermotor.
     """
 
@@ -69,12 +69,12 @@ class Motor:
     def gas(self, tambah_kecepatan):
         """Menambah kecepatan motor."""
         self.kecepatan += tambah_kecepatan
-        print(f"  ▶ {self.merk} melaju → {self.kecepatan} km/jam")
+        print(f"  -> {self.merk} melaju -> {self.kecepatan} km/jam")
 
     def rem(self):
         """Menghentikan motor."""
         self.kecepatan = 0
-        print(f"  ■ {self.merk} berhenti.")
+        print(f"  [STOP] {self.merk} berhenti.")
 
 
 # ── Membuat dan menggunakan objek ────────────────────────
@@ -96,21 +96,21 @@ motor2.gas(50)
 #   Motor : Honda Vario
 #   Warna : Merah | Tahun: 2023
 #   Kecepatan saat ini: 0 km/jam
-#   ▶ Honda Vario melaju → 30 km/jam
-#   ▶ Honda Vario melaju → 50 km/jam
-#   ■ Honda Vario berhenti.
+#   -> Honda Vario melaju -> 30 km/jam
+#   -> Honda Vario melaju -> 50 km/jam
+#   [STOP] Honda Vario berhenti.
 #
 #   --- Motor 2 ---
 #   Motor : Yamaha NMAX
 #   Warna : Hitam | Tahun: 2024
 #   Kecepatan saat ini: 0 km/jam
-#   ▶ Yamaha NMAX melaju → 50 km/jam
+#   -> Yamaha NMAX melaju -> 50 km/jam
 
 
 # ──────────────────────────────────────────────────────────
 # BAGIAN 3: MEMAHAMI 'self' SECARA MENDALAM
 # ──────────────────────────────────────────────────────────
-print("\n\n📌 3. Memahami 'self' — Dibuktikan dengan Kode:")
+print("\n\n[INFO] 3. Memahami 'self' - Dibuktikan dengan Kode:")
 print("-" * 40)
 
 # Penjelasan konsep:
@@ -123,29 +123,29 @@ print("""
                           inilah 'self' di dalam method!
 """)
 
-# BUKTI NYATA — kedua baris ini menghasilkan output yang SAMA PERSIS:
+# BUKTI NYATA - kedua baris ini menghasilkan output yang SAMA PERSIS:
 print("  [Cara 1 - normal]    motor1.info():")
 motor1.info()
 
 print("\n  [Cara 2 - eksplisit] Motor.info(motor1):")
 Motor.info(motor1)
-# Kedua cara ini identik! Python menerjemahkan cara 1 → cara 2
+# Kedua cara ini identik! Python menerjemahkan cara 1 -> cara 2
 
 # Mengapa perlu self? Karena ada BANYAK objek dari 1 kelas:
 print("\n  Mengapa perlu 'self'? Karena ada banyak objek:")
-print(f"    motor1.warna = {motor1.warna}")   # Merah → milik motor1
-print(f"    motor2.warna = {motor2.warna}")   # Hitam → milik motor2
+print(f"    motor1.warna = {motor1.warna}")   # Merah -> milik motor1
+print(f"    motor2.warna = {motor2.warna}")   # Hitam -> milik motor2
 # 'self' memastikan setiap objek mengakses DATA MILIKNYA SENDIRI
 
 
 # ──────────────────────────────────────────────────────────
 # BAGIAN 4: SETIAP OBJEK BERDIRI SENDIRI (INDEPENDEN)
 # ──────────────────────────────────────────────────────────
-print("\n\n📌 4. Setiap Objek Berdiri Sendiri (Independen):")
+print("\n\n[INFO] 4. Setiap Objek Berdiri Sendiri (Independen):")
 print("-" * 40)
 
 class Mahasiswa:
-    """Kelas untuk mahasiswa — digunakan sebagai contoh independensi."""
+    """Kelas untuk mahasiswa - digunakan sebagai contoh independensi."""
 
     def __init__(self, nama, nim, ipk):
         self.nama = nama
@@ -153,7 +153,7 @@ class Mahasiswa:
         self.ipk  = ipk
 
     def info(self):
-        print(f"  {self.nama} ({self.nim}) → IPK: {self.ipk:.2f}")
+        print(f"  {self.nama} ({self.nim}) -> IPK: {self.ipk:.2f}")
 
 mhs_a = Mahasiswa("Andi Prasetyo", "2301001", 3.80)
 mhs_b = Mahasiswa("Budi Santoso",  "2301002", 3.20)
@@ -163,7 +163,7 @@ print("  Sebelum perubahan:")
 for mhs in [mhs_a, mhs_b, mhs_c]:
     mhs.info()
 
-# Ubah IPK mhs_a — TIDAK mempengaruhi mhs_b dan mhs_c
+# Ubah IPK mhs_a - TIDAK mempengaruhi mhs_b dan mhs_c
 mhs_a.ipk = 3.95
 
 print("\n  Setelah mhs_a.ipk diubah menjadi 3.95:")
@@ -172,13 +172,13 @@ for mhs in [mhs_a, mhs_b, mhs_c]:
 # Output: hanya mhs_a yang berubah, lainnya tetap
 
 print(f"\n  Apakah mhs_a dan mhs_b objek yang sama? {mhs_a is mhs_b}")
-# Output: False → masing-masing punya ruang memori sendiri
+# Output: False -> masing-masing punya ruang memori sendiri
 
 
 # ──────────────────────────────────────────────────────────
 # BAGIAN 5: MENGECEK TIPE DAN IDENTITAS OBJEK
 # ──────────────────────────────────────────────────────────
-print("\n\n📌 5. Mengecek Tipe dan Identitas Objek:")
+print("\n\n[INFO] 5. Mengecek Tipe dan Identitas Objek:")
 print("-" * 40)
 
 print(f"  type(mhs_a)                     = {type(mhs_a)}")
@@ -193,4 +193,4 @@ print(f"  id(mhs_b)                       = {id(mhs_b)}  ← alamat berbeda!")
 #   id(mhs_a)                       = 2093819... ← (angka bervariasi)
 #   id(mhs_b)                       = 2093819... ← (beda dengan mhs_a)
 
-print("\n✅ Selesai! Lanjut kerjakan soal di: latihan.py")
+print("\n[OK] Selesai! Lanjut kerjakan soal di: latihan.py")

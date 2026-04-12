@@ -1,8 +1,8 @@
 """
 ============================================================
-    MATERI 03 — Atribut dan Method
+    MATERI 03 - Atribut dan Method
     File: 03_staticmethod.py
-    Topik: @staticmethod — Cara Kerja dan Kegunaannya
+    Topik: @staticmethod - Cara Kerja dan Kegunaannya
 ============================================================
 """
 
@@ -42,7 +42,7 @@ class ValidasiInput:
         return nama.strip().title()
 
 
-# Dipanggil langsung via kelas — TIDAK perlu membuat objek
+# Dipanggil langsung via kelas - TIDAK perlu membuat objek
 email_test = ["budi@gmail.com", "budi.gmail.com", "test@", "sari@unmul.ac.id"]
 print("Validasi Email:")
 for e in email_test:
@@ -170,14 +170,14 @@ class Karyawan:
         self.jabatan = jabatan
         self.gaji    = gaji
 
-    # INSTANCE METHOD — akses self (data per objek)
+    # INSTANCE METHOD - akses self (data per objek)
     def info(self):
         print(f"  Instance  -> {self.nama} | {self.jabatan} | Rp {self.gaji:,.0f}")
 
     def gaji_bersih(self, potongan=10):
         return self.gaji * (1 - potongan / 100)
 
-    # CLASS METHOD — akses cls (data kelas)
+    # CLASS METHOD - akses cls (data kelas)
     @classmethod
     def info_perusahaan(cls):
         print(f"  Class     -> Perusahaan: {cls.perusahaan} | Gaji Min: Rp {cls.gaji_minimum:,.0f}")
@@ -187,7 +187,7 @@ class Karyawan:
         cls.gaji_minimum += nominal
         print(f"  Class     -> Gaji minimum baru: Rp {cls.gaji_minimum:,.0f}")
 
-    # STATIC METHOD — tidak akses self/cls
+    # STATIC METHOD - tidak akses self/cls
     @staticmethod
     def format_rupiah(nominal):
         return f"Rp {nominal:,.0f}"
@@ -199,14 +199,14 @@ class Karyawan:
 
 k = Karyawan("Anton", "Senior Dev", 9_000_000)
 
-# Instance method — harus via objek
+# Instance method - harus via objek
 k.info()
 
-# Class method — via kelas atau objek (tapi via kelas lebih jelas)
+# Class method - via kelas atau objek (tapi via kelas lebih jelas)
 Karyawan.info_perusahaan()
 Karyawan.naik_gaji_minimum(500_000)
 
-# Static method — via kelas (tidak perlu objek)
+# Static method - via kelas (tidak perlu objek)
 print(f"  Static    -> {Karyawan.format_rupiah(9_000_000)}")
 print(f"  Static    -> Potongan 10%: {Karyawan.format_rupiah(Karyawan.hitung_potongan(9_000_000, 10))}")
 

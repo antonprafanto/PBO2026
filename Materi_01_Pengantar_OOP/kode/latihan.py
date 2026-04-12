@@ -1,43 +1,43 @@
 """
 ==========================================================
-    MATERI 01 — Pengantar OOP
+    MATERI 01 - Pengantar OOP
     File: latihan.py
     Topik: Soal Latihan Mandiri
 ==========================================================
 
-📝 PETUNJUK PENGERJAAN:
+[TUGAS] PETUNJUK PENGERJAAN:
     1. Baca soal dengan seksama
     2. Hapus tulisan 'pass' dan tulis jawaban Anda
     3. AKTIFKAN kode uji dengan hapus tanda '#' di depannya
     4. Jalankan: python latihan.py
     5. Bandingkan output Anda dengan "Contoh output yang diharapkan"
 
-🎯 TUJUAN:
+[GOAL] TUJUAN:
     Melatih kemampuan mendefinisikan kelas, atribut, dan method
 
-💡 TIPS:
+[TIPS] TIPS:
     - Jika error, baca pesan errornya dengan teliti
     - Coba satu soal dulu, baru lanjut ke berikutnya
 ==========================================================
 """
 
 print("=" * 58)
-print("         LATIHAN MANDIRI — MATERI 01")
+print("         LATIHAN MANDIRI - MATERI 01")
 print("=" * 58)
 
 
 # ══════════════════════════════════════════════════════════
-# SOAL 1 (Mudah) ⭐
+# SOAL 1 (Mudah) *
 # ══════════════════════════════════════════════════════════
-print("\n📝 SOAL 1: Kelas Buku")
+print("\n[TUGAS] SOAL 1: Kelas Buku")
 print("-" * 45)
 print("""
 Buatlah sebuah kelas bernama 'Buku' dengan:
 
 Atribut (di __init__):
-  - judul   (str)   → judul buku
-  - penulis (str)   → nama penulis
-  - harga   (int)   → harga dalam rupiah
+  - judul   (str)   -> judul buku
+  - penulis (str)   -> nama penulis
+  - harga   (int)   -> harga dalam rupiah
 
 Method:
   - info()
@@ -52,7 +52,7 @@ Contoh output yang diharapkan:
   Penulis: Anton Prafanto
   Harga  : Rp 150,000
   ========================
-  Diskon 20% → Harga baru: Rp 120,000
+  Diskon 20% -> Harga baru: Rp 120,000
 """)
 
 
@@ -69,17 +69,17 @@ class Buku:
 
 
 # ══════════════════════════════════════════════════════════
-# SOAL 2 (Sedang) ⭐⭐
+# SOAL 2 (Sedang) **
 # ══════════════════════════════════════════════════════════
-print("\n📝 SOAL 2: Kelas Rekening Bank")
+print("\n[TUGAS] SOAL 2: Kelas Rekening Bank")
 print("-" * 45)
 print("""
 Buatlah kelas 'RekeningBank' dengan:
 
 Atribut (di __init__):
-  - pemilik     (str)   → nama pemilik rekening
-  - no_rekening (str)   → nomor rekening
-  - saldo       (float) → saldo awal, default = 0
+  - pemilik     (str)   -> nama pemilik rekening
+  - no_rekening (str)   -> nomor rekening
+  - saldo       (float) -> saldo awal, default = 0
 
 Method:
   - setor(jumlah)
@@ -93,10 +93,10 @@ Method:
       Tampilkan informasi pemilik dan saldo saat ini
 
 Contoh output yang diharapkan:
-  ✅ Setor Rp 500,000 → Saldo: Rp 500,000
-  ✅ Tarik Rp 200,000 → Saldo: Rp 300,000
-  💰 Rekening [BRI-001] atas nama Budi → Saldo: Rp 300,000
-  ❌ Saldo tidak cukup! Saldo Anda: Rp 300,000
+  [OK] Setor Rp 500,000 -> Saldo: Rp 500,000
+  [OK] Tarik Rp 200,000 -> Saldo: Rp 300,000
+  [Rp] Rekening [BRI-001] atas nama Budi -> Saldo: Rp 300,000
+  [ERROR] Saldo tidak cukup! Saldo Anda: Rp 300,000
 """)
 
 
@@ -115,18 +115,18 @@ class RekeningBank:
 
 
 # ══════════════════════════════════════════════════════════
-# SOAL 3 (Menantang) ⭐⭐⭐
+# SOAL 3 (Menantang) ***
 # ══════════════════════════════════════════════════════════
-print("\n📝 SOAL 3: Kelas Nilai Mahasiswa")
+print("\n[TUGAS] SOAL 3: Kelas Nilai Mahasiswa")
 print("-" * 45)
 print("""
 Buatlah kelas 'NilaiMahasiswa' dengan:
 
 Atribut (di __init__):
-  - nama        (str)   → nama mahasiswa
-  - nilai_tugas (float) → nilai tugas (0-100)
-  - nilai_uts   (float) → nilai UTS (0-100)
-  - nilai_uas   (float) → nilai UAS (0-100)
+  - nama        (str)   -> nama mahasiswa
+  - nilai_tugas (float) -> nilai tugas (0-100)
+  - nilai_uts   (float) -> nilai UTS (0-100)
+  - nilai_uas   (float) -> nilai UAS (0-100)
 
 Method:
   - hitung_nilai_akhir()
@@ -134,11 +134,11 @@ Method:
       Kembalikan (return) nilai akhir sebagai float
 
   - get_grade()
-      A  → nilai akhir ≥ 85
-      B  → nilai akhir ≥ 75
-      C  → nilai akhir ≥ 65
-      D  → nilai akhir ≥ 55
-      E  → di bawah 55
+      A  -> nilai akhir ≥ 85
+      B  -> nilai akhir ≥ 75
+      C  -> nilai akhir ≥ 65
+      D  -> nilai akhir ≥ 55
+      E  -> di bawah 55
       Kembalikan (return) grade sebagai string
 
   - tampilkan_rapor()
@@ -156,7 +156,7 @@ Contoh output yang diharapkan:
   Grade       : A
   ========================================
 
-🏆 BONUS: Buat LIST yang berisi 3 objek NilaiMahasiswa,
+[BONUS] BONUS: Buat LIST yang berisi 3 objek NilaiMahasiswa,
    lalu tampilkan rapor semuanya dalam satu for loop!
 """)
 
@@ -179,6 +179,6 @@ class NilaiMahasiswa:
 # ══════════════════════════════════════════════════════════
 print()
 print("=" * 58)
-print("  🎯 Selamat mengerjakan! Semangat belajar! 💪")
-print("  📌 Ingat: Error adalah bagian dari proses belajar!")
+print("  [GOAL] Selamat mengerjakan! Semangat belajar! 💪")
+print("  [INFO] Ingat: Error adalah bagian dari proses belajar!")
 print("=" * 58)

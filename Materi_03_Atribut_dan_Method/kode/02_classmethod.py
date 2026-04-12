@@ -1,8 +1,8 @@
 """
 ============================================================
-    MATERI 03 — Atribut dan Method
+    MATERI 03 - Atribut dan Method
     File: 02_classmethod.py
-    Topik: @classmethod — Cara Kerja dan Kegunaannya
+    Topik: @classmethod - Cara Kerja dan Kegunaannya
 ============================================================
 """
 
@@ -30,7 +30,7 @@ class Server:
     def alamat(self):
         return f"{self.host}:{self.port}"
 
-    # Class method — akses atribut kelas via cls
+    # Class method - akses atribut kelas via cls
     @classmethod
     def info_aplikasi(cls):
         print(f"Aplikasi : {cls.nama_aplikasi} v{cls.versi}")
@@ -55,7 +55,7 @@ Server.info_aplikasi()
 
 
 # ─────────────────────────────────────────────────────────
-# BAGIAN 2: Factory Method — Kegunaan Utama @classmethod
+# BAGIAN 2: Factory Method - Kegunaan Utama @classmethod
 # Cara alternatif membuat objek dari format data berbeda
 # ─────────────────────────────────────────────────────────
 
@@ -120,7 +120,7 @@ for m in [mhs1, mhs2, mhs3, mhs4]:
 # ─────────────────────────────────────────────────────────
 # BAGIAN 3: @classmethod pada Hierarki Kelas
 # cls mengacu ke kelas yang MEMANGGIL method, bukan kelas induk
-# (manfaat ini sangat terasa saat ada Pewarisan — Materi 06)
+# (manfaat ini sangat terasa saat ada Pewarisan - Materi 06)
 # ─────────────────────────────────────────────────────────
 
 print("\n" + "=" * 55)
