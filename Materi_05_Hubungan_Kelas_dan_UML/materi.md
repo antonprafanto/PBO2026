@@ -99,18 +99,24 @@ classDiagram
         -nama : str
         -nim : str
         +cetak_tugas(printer, file)
-        +kirim_ke_antrian(printer, file)
     }
     class Printer {
         -merk : str
         -dpi : int
         +cetak(nama_file)
-        +cetak_semua()
     }
     Mahasiswa ..> Printer : menggunakan
 ```
 
 **Notasi:** `..>` (panah putus-putus — asosiasi/dependency searah)
+
+> 💡 **Eksplorasi Lanjutan di Kode Praktik**
+> File `kode/01_asosiasi.py` memberikan **3 contoh level Asosiasi** yang mendalam:
+> 1. **Asosiasi Sederhana** (seperti di atas): `Mahasiswa` dan `Printer`.
+> 2. **Asosiasi Dua Arah (*Bidirectional*)**: `Dokter` dan `Pasien` saling mencatat kunjungan/riwayat satu sama lain, namun tetap bisa hidup mandiri.
+> 3. **Asosiasi dengan Multiplisitas (1-to-N)**: 1 `Dosen` mengajar banyak `MataKuliah`.
+> 
+> *Sangat disarankan untuk membuka dan menjalankan file tersebut!*
 
 ---
 
