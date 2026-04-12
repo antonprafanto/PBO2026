@@ -11,32 +11,32 @@ Materi dirancang agar mudah diikuti, penuh contoh nyata, dan relevan dengan duni
 
 ---
 
-## 🗺️ Peta Kurikulum (14 Pertemuan + Proyek Akhir)
+## 🗺️ Peta Kurikulum (14 Materi + Proyek Akhir)
 
 | No | Folder | Topik | Konsep Utama |
 |----|--------|-------|--------------|
-| 01 | [`Pertemuan_01`](./Pertemuan_01_Pengantar_OOP/) | Pengantar OOP | Paradigma OOP, 4 Pilar, Class vs Object |
-| 02 | [`Pertemuan_02`](./Pertemuan_02_Kelas_dan_Objek/) | Kelas dan Objek | `__init__`, `self`, konstruktor, instance |
-| 03 | [`Pertemuan_03`](./Pertemuan_03_Atribut_dan_Method/) | Atribut dan Method | Instance/Class/Static attr & method |
-| 04 | [`Pertemuan_04`](./Pertemuan_04_Enkapsulasi/) | Enkapsulasi | Private/Protected, `@property`, getter/setter |
-| 05 | [`Pertemuan_05`](./Pertemuan_05_Hubungan_Kelas_dan_UML/) | Hubungan Kelas & UML | Asosiasi, Agregasi, Komposisi, Diagram UML |
-| 06 | [`Pertemuan_06`](./Pertemuan_06_Pewarisan/) | Pewarisan (Inheritance) | `super()`, Single/Multi/Multilevel, Mixin |
-| 07 | [`Pertemuan_07`](./Pertemuan_07_Polimorfisme/) | Polimorfisme | Method override, Duck typing, Overloading |
-| 08 | [`Pertemuan_08`](./Pertemuan_08_Abstraksi/) | Abstraksi | ABC, `@abstractmethod`, Interface contract |
-| 09 | [`Pertemuan_09`](./Pertemuan_09_Magic_Methods/) | Magic Methods | `__str__`, `__add__`, `__eq__`, `__len__` |
-| 10 | [`Pertemuan_10`](./Pertemuan_10_Exception_Handling_OOP/) | Exception Handling OOP | Custom Exception, Hierarki Error, Context Manager |
-| 11 | [`Pertemuan_11`](./Pertemuan_11_Prinsip_SOLID/) | Prinsip SOLID | SRP, OCP, LSP, ISP, DIP |
-| 12 | [`Pertemuan_12`](./Pertemuan_12_Design_Pattern_Dasar/) | Design Pattern Dasar | Singleton, Factory, Observer |
-| 13 | [`Pertemuan_13`](./Pertemuan_13_OOP_Modern_Python/) | OOP Modern Python | `@dataclass`, Type Hints, `__slots__` |
-| 14 | [`Pertemuan_14`](./Pertemuan_14_OOP_File_dan_Database/) | OOP + File & Database | JSON, Pickle, SQLite ORM |
-| 🏆 | [`Proyek Akhir`](./Pertemuan_15_Proyek_Akhir_SiDigital/) | SiDigital — Sistem Informasi Kampus Digital | Integrasi semua konsep |
+| 01 | [`Materi_01`](./Materi_01_Pengantar_OOP/) | Pengantar OOP | Paradigma OOP, 4 Pilar, Class vs Object |
+| 02 | [`Materi_02`](./Materi_02_Kelas_dan_Objek/) | Kelas dan Objek | `__init__`, `self`, konstruktor, instance |
+| 03 | [`Materi_03`](./Materi_03_Atribut_dan_Method/) | Atribut dan Method | Instance/Class/Static attr & method |
+| 04 | [`Materi_04`](./Materi_04_Enkapsulasi/) | Enkapsulasi | Private/Protected, `@property`, getter/setter |
+| 05 | [`Materi_05`](./Materi_05_Hubungan_Kelas_dan_UML/) | Hubungan Kelas & UML | Asosiasi, Agregasi, Komposisi, Diagram UML |
+| 06 | [`Materi_06`](./Materi_06_Pewarisan/) | Pewarisan (Inheritance) | `super()`, Single/Multi/Multilevel, Mixin |
+| 07 | [`Materi_07`](./Materi_07_Polimorfisme/) | Polimorfisme | Method override, Duck typing, Overloading |
+| 08 | [`Materi_08`](./Materi_08_Abstraksi/) | Abstraksi | ABC, `@abstractmethod`, Interface contract |
+| 09 | [`Materi_09`](./Materi_09_Magic_Methods/) | Magic Methods | `__str__`, `__add__`, `__eq__`, `__len__` |
+| 10 | [`Materi_10`](./Materi_10_Exception_Handling_OOP/) | Exception Handling OOP | Custom Exception, Hierarki Error, Context Manager |
+| 11 | [`Materi_11`](./Materi_11_Prinsip_SOLID/) | Prinsip SOLID | SRP, OCP, LSP, ISP, DIP |
+| 12 | [`Materi_12`](./Materi_12_Design_Pattern_Dasar/) | Design Pattern Dasar | Singleton, Factory, Observer |
+| 13 | [`Materi_13`](./Materi_13_OOP_Modern_Python/) | OOP Modern Python | `@dataclass`, Type Hints, `__slots__` |
+| 14 | [`Materi_14`](./Materi_14_OOP_File_dan_Database/) | OOP + File & Database | JSON, Pickle, SQLite ORM |
+| 🏆 | [`Proyek Akhir`](./Materi_15_Proyek_Akhir_SiDigital/) | SiDigital — Sistem Informasi Kampus Digital | Integrasi semua konsep |
 
 ---
 
-## 📁 Struktur Setiap Pertemuan
+## 📁 Struktur Setiap Materi
 
 ```
-Pertemuan_XX_NamaTopik/
+Materi_XX_NamaTopik/
 ├── README.md       ← Tujuan pembelajaran & ringkasan
 ├── materi.md       ← Penjelasan teori lengkap
 └── kode/
@@ -62,7 +62,7 @@ python --version  # Minimal Python 3.8+
 
 ### 3. Jalankan Contoh Kode
 ```bash
-cd Pertemuan_01_Pengantar_OOP/kode
+cd Materi_01_Pengantar_OOP/kode
 python 01_prosedural_vs_oop.py
 ```
 
@@ -85,7 +85,7 @@ python latihan.py  # Baca petunjuk di dalam file
 
 Proyek akhir semester adalah **SiDigital** — Sistem Informasi Kampus Digital yang dibangun dari nol menggunakan seluruh konsep OOP yang telah dipelajari.
 
-👉 Lihat detail di [`Pertemuan_15_Proyek_Akhir_SiDigital/`](./Pertemuan_15_Proyek_Akhir_SiDigital/)
+👉 Lihat detail di [`Materi_15_Proyek_Akhir_SiDigital/`](./Materi_15_Proyek_Akhir_SiDigital/)
 
 ---
 
