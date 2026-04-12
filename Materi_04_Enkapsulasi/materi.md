@@ -64,7 +64,7 @@ print(akun._email)        # budi@email.com  ← bisa, tapi melanggar konvensi!
 # print(akun.__password)  # → AttributeError: tidak ditemukan!
 
 # Nama mangling: python mengubah __password menjadi _AkunPengguna__password
-print(akun._AkunPengguna__password)  # "rahasia123" ← bisa, tapi SANGAT tidak disarankan!
+print(akun._AkunPengguna__password)  # rahasia123  <- bisa, tapi SANGAT tidak disarankan!
 ```
 
 ---
