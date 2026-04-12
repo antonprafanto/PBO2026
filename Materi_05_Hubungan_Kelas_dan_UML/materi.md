@@ -221,6 +221,15 @@ jurusan_if.tampilkan()
 #     - Dr. Budi (Bid: Network Security)
 
 jurusan_si.tampilkan()
+# Output:
+#   Jurusan: Sistem Informasi (SI)
+#   Jumlah Dosen: 2
+#     - Dr. Citra (Bid: Database Systems)
+#     - Dr. Anton (Bid: Machine Learning)
+
+# Demo: Membuktikan Agregasi dengan mengeluarkan dosen (dosen tetap ada di memori)
+jurusan_if.keluarkan_dosen("NIP002")
+# Output:   [-] Dosen dengan NIP NIP002 dikeluarkan dari Informatika
 
 # Jika jurusan_if dihapus, dosen1 dan dosen2 MASIH ADA
 del jurusan_if
@@ -238,6 +247,7 @@ classDiagram
     class Jurusan {
         -nama : str
         -kode : str
+        +jumlah_dosen : int
         +tambah_dosen(dosen)
         +keluarkan_dosen(nip)
         +tampilkan()
