@@ -340,6 +340,15 @@ class Rumah:
         self._kamar.append(kamar_baru)
         return kamar_baru
 
+    def bangun_standar(self):
+        """Bangun ruangan standar sekaligus."""
+        self.tambah_kamar("Ruang Tamu",        25)
+        self.tambah_kamar("Kamar Tidur Utama", 20)
+        self.tambah_kamar("Kamar Tidur 2",     15)
+        self.tambah_kamar("Dapur",             12)
+        self.tambah_kamar("Kamar Mandi",        6)
+        print(f"  Rumah {self.pemilik} dibangun dengan {len(self._kamar)} kamar.")
+
     @property
     def total_luas(self):
         return sum(k.luas_m2 for k in self._kamar)
@@ -356,24 +365,24 @@ class Rumah:
             print(f"    - {k}")
 
 
-# Rumah membuat Kamar-nya sendiri (Komposisi)
+# Rumah membuat Kamar-nya sendiri secara internal (Komposisi)
 rumah_budi = Rumah("Jl. Mulawarman No. 5, Samarinda", "Budi Santoso")
-rumah_budi.tambah_kamar("Ruang Tamu",  25)
-rumah_budi.tambah_kamar("Kamar Tidur Utama", 20)
-rumah_budi.tambah_kamar("Kamar Tidur 2",     15)
-rumah_budi.tambah_kamar("Dapur",       12)
-rumah_budi.tambah_kamar("Kamar Mandi",  6)
+rumah_budi.bangun_standar()
+rumah_budi.tambah_kamar("Garasi", 18)
 
 rumah_budi.tampilkan()
 # Output:
+#   Rumah Budi Santoso dibangun dengan 5 kamar.
+#
 #   Rumah milik: Budi Santoso
 #   Alamat     : Jl. Mulawarman No. 5, Samarinda
-#   Total luas : 78 m2 | 5 kamar
+#   Total luas : 96 m2 | 6 kamar
 #     - Kamar 1: Ruang Tamu (25 m2)
 #     - Kamar 2: Kamar Tidur Utama (20 m2)
 #     - Kamar 3: Kamar Tidur 2 (15 m2)
 #     - Kamar 4: Dapur (12 m2)
 #     - Kamar 5: Kamar Mandi (6 m2)
+#     - Kamar 6: Garasi (18 m2)
 
 # Saat rumah_budi dihapus, semua Kamar-nya ikut musnah
 # (tidak ada referensi lain ke Kamar-kamar tersebut)
@@ -493,7 +502,7 @@ class Order:
 
     def __init__(self, pelanggan, alamat_kirim):
         Order._counter += 1
-        self.id           = Order._counter
+        self.id           = f"ORD-{Order._counter:04d}"
         self.pelanggan    = pelanggan      # AGREGASI — Pelanggan dari luar
         self.alamat_kirim = alamat_kirim
         self._items       = []             # KOMPOSISI — items dibuat di dalam
