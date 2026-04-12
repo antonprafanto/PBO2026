@@ -152,36 +152,44 @@ classDiagram
 
 ```python
 class Dosen:
-    def __init__(self, nama, nip, bidang):
-        self.nama   = nama
-        self.nip    = nip
-        self.bidang = bidang
+    def __init__(self, nama, nip, bidang_keahlian):
+        self.nama            = nama
+        self.nip             = nip
+        self.bidang_keahlian = bidang_keahlian
+
+    @property
+    def info_singkat(self):
+        return f"{self.nama} (Bid: {self.bidang_keahlian})"
 
     def __str__(self):
-        return f"Dosen: {self.nama} | NIP: {self.nip} | Bidang: {self.bidang}"
+        return f"Dosen: {self.nama} | NIP: {self.nip} | Bidang: {self.bidang_keahlian}"
 
 
 class Jurusan:
     def __init__(self, nama, kode):
         self.nama   = nama
         self.kode   = kode
-        self._dosen = []   # <-- AGREGASI: menyimpan referensi ke Dosen
+        self._dosen = []   # <-- AGREGASI: menyimpan referensi ke Dosen dari luar
 
     def tambah_dosen(self, dosen):
         """Dosen DIKIRIM dari luar — Jurusan tidak membuat Dosen sendiri."""
         if isinstance(dosen, Dosen):
             self._dosen.append(dosen)
-            print(f"  {dosen.nama} bergabung ke {self.nama}")
+            print(f"  [+] {dosen.nama} bergabung ke Jurusan {self.nama}")
 
-    def hapus_dosen(self, nip):
-        """Menghapus dosen dari jurusan (bukan menghapus objek Dosen)."""
+    def keluarkan_dosen(self, nip):
+        """Menghapus referensi dosen dari jurusan, BUKAN menghapus objek."""
         self._dosen = [d for d in self._dosen if d.nip != nip]
+
+    @property
+    def jumlah_dosen(self):
+        return len(self._dosen)
 
     def tampilkan(self):
         print(f"\n  Jurusan: {self.nama} ({self.kode})")
-        print(f"  Jumlah Dosen: {len(self._dosen)}")
+        print(f"  Jumlah Dosen: {self.jumlah_dosen}")
         for d in self._dosen:
-            print(f"    - {d}")
+            print(f"    - {d.info_singkat}")
 
 
 # Dosen dibuat INDEPENDEN dari Jurusan
@@ -192,7 +200,9 @@ dosen3 = Dosen("Dr. Citra",   "NIP003", "Database Systems")
 # Jurusan MEMILIKI dosen (agregasi)
 jurusan_if = Jurusan("Informatika", "IF")
 jurusan_if.tambah_dosen(dosen1)
+# Output:   [+] Dr. Anton bergabung ke Jurusan Informatika
 jurusan_if.tambah_dosen(dosen2)
+# Output:   [+] Dr. Budi bergabung ke Jurusan Informatika
 
 jurusan_si = Jurusan("Sistem Informasi", "SI")
 jurusan_si.tambah_dosen(dosen3)
@@ -201,6 +211,12 @@ jurusan_si.tambah_dosen(dosen3)
 jurusan_si.tambah_dosen(dosen1)
 
 jurusan_if.tampilkan()
+# Output:
+#   Jurusan: Informatika (IF)
+#   Jumlah Dosen: 2
+#     - Dr. Anton (Bid: Machine Learning)
+#     - Dr. Budi (Bid: Network Security)
+
 jurusan_si.tampilkan()
 
 # Jika jurusan_if dihapus, dosen1 dan dosen2 MASIH ADA
@@ -239,6 +255,14 @@ classDiagram
 > - `*` = nol atau lebih (banyak)
 > - `1..*` = satu atau lebih
 > - `0..1` = nol atau satu (opsional)
+
+> 💡 **Eksplorasi Lanjutan di Kode Praktik**
+> File `kode/02_agregasi.py` di repositori ini memberikan **3 contoh penerapan Agregasi** yang lebih komprehensif:
+> 1. **Agregasi Dasar** (seperti di atas): `Jurusan` mem-pool referensi banyak `Dosen`.
+> 2. **Agregasi Bersarang (*Nested Aggregation*)**: Sebuah `Universitas` menampung `Fakultas`, yang di dalamnya menampung banyak `Jurusan`. Semua bagiannya *bisa dilepas / independen*.
+> 3. **Benturan Agregasi & Asosiasi**: Kelas `ProyekRiset` meng-*agregasi* `Peneliti` (anggota yang hidup terpisah) sekaligus menggunakan `Lab` sesaat (*asosiasi*).
+> 
+> *Buka file tersebut untuk melihat penerapan di industri nyata!*
 
 ---
 
