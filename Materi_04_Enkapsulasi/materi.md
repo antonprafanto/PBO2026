@@ -141,7 +141,9 @@ class Mahasiswa:
     def __init__(self, nama, ipk):
         self.__nama = nama
         self.__ipk  = 0.0
-        self.ipk    = ipk    # akan memanggil setter (jika sudah didefinisikan)
+        # Catatan: self.ipk = ipk di sini BUTUH setter.
+        # Kita set langsung ke __ipk karena setter belum ada di contoh ini.
+        self.__ipk  = float(ipk)
 
     @property
     def nama(self):
@@ -157,11 +159,11 @@ class Mahasiswa:
 mhs = Mahasiswa("Budi", 3.75)
 
 # Akses seperti atribut biasa — tidak perlu kurung!
-print(mhs.nama)   # Budi   ← memanggil method nama() di balik layar
-print(mhs.ipk)    # 3.75   ← memanggil method ipk() di balik layar
+print(mhs.nama)   # Budi   <- memanggil method nama() di balik layar
+print(mhs.ipk)    # 3.75   <- memanggil method ipk() di balik layar
 
 # Tidak bisa diubah (belum ada setter) — property hanya baca
-# mhs.nama = "Andi"  # → AttributeError: can't set attribute
+# mhs.nama = "Andi"  # -> AttributeError: can't set attribute
 ```
 
 ---
@@ -248,9 +250,9 @@ except ValueError as e:
 
 ---
 
-## 7. `@nama.deleter`
+## 7. `@nama.deleter` — Logika saat `del`
 
-Decorator `@deleter` digunakan untuk mendefinisikan logika saat atribut dihapus menggunakan `del`:
+Decorator `@nama.deleter` (di mana `nama` adalah nama *property*-nya) mendefinisikan logika saat atribut dihapus menggunakan `del`:
 
 ```python
 class Sertifikat:
@@ -359,14 +361,17 @@ print(f"Luas baru: {pp.luas}")     # 100 — otomatis update!
 ### Anti-Pattern yang Harus Dihindari
 
 ```python
+# Anggap `ipk_baru` sudah didapat dari input pengguna
+ipk_baru = 3.90
+
 # ❌ BURUK: Validasi di luar kelas — tanggung jawab menyebar
-mhs = Mahasiswa("Budi", "2301001")
-if 0 <= ipk_baru <= 4.0:
-    mhs.ipk = ipk_baru  # objek tidak tahu aturannya sendiri!
+mhs = Mahasiswa("Budi", "2301001", 3.00)
+if 0 <= ipk_baru <= 4.0:              # logika validasi ada di sini (luar kelas!)
+    mhs.ipk = ipk_baru
 
 # ✅ BAIK: Validasi di dalam kelas — objek bertanggung jawab atas dirinya sendiri
-mhs = Mahasiswa("Budi", "2301001")
-mhs.ipk = ipk_baru  # kelas yang akan memvalidasi, bukan pemanggilnya
+mhs = Mahasiswa("Budi", "2301001", 3.00)
+mhs.ipk = ipk_baru   # kelas yang akan memvalidasi, bukan pemanggilnya
 ```
 
 ---
