@@ -50,3 +50,7 @@ Thumbs.db
 # Data folder (generated files)
 Materi_*/kode/data/
 Materi_15_Proyek_Akhir_SiDigital/storage/data/*.json
+
+# Soal & Kuis (jangan di-push ke GitHub)
+Referensi/soal_kuis_materi_1_4.md
+Referensi/soal_kuis_*.md
