@@ -3,13 +3,13 @@
  * Pertemuan 13 - Prinsip SOLID
  *
  * Versi MELANGGAR: kelas Burung berjanji "semua burung bisa terbang".
- * Penguin meng-extends Burung, lalu mengingkari janji itu dengan melempar
+ * Penguin mewarisi Burung, lalu mengingkari janji itu dengan melempar
  * exception. Pemanggil yang percaya pada janji induk pun terkejut.
  *
  * Versi SESUAI LSP: janji dipecah sesuai kenyataan.
  * - BurungDasar   -> janji yang ditepati SEMUA burung: bisa bertelur
  * - BurungTerbang -> janji tambahan khusus burung penerbang: bisa terbang
- * PenguinKutub cukup meng-extends BurungDasar, sehingga tidak ada janji yang diingkari.
+ * PenguinKutub cukup mewarisi BurungDasar sehingga tidak ada janji yang diingkari.
  *
  * Cara menjalankan (Java 11 ke atas):
  *     java Contoh03Lsp.java

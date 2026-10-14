@@ -5,7 +5,7 @@
  * Java tidak punya nilai bawaan (default) untuk parameter. Sebagai gantinya,
  * kita menulis BEBERAPA konstruktor dengan daftar parameter yang berbeda
  * (overloading). Konstruktor yang pendek meneruskan pekerjaannya ke
- * konstruktor yang lengkap dengan this(...), lengkap dengan nilai bawaannya.
+ * konstruktor yang lengkap dengan this(...), sambil mengisi nilai bawaannya.
  * Method biasa juga bisa di-overload (dibahas lagi di Pertemuan 09).
  *
  * Cara menjalankan (Java 11 ke atas):
@@ -14,7 +14,7 @@
 public class Contoh04OverloadingKonstruktor {
 
     public static void main(String[] args) {
-        System.out.println("=== SATU KONSTRUKTOR, JUMLAH ARGUMEN BERBEDA ===");
+        System.out.println("=== MEMBUAT LAPTOP DENGAN JUMLAH ARGUMEN BERBEDA ===");
         Laptop laptopAyu = new Laptop("Asus");             // [5] konstruktor 1 parameter
         Laptop laptopBima = new Laptop("Lenovo", 16);      //     konstruktor 2 parameter
         Laptop laptopCitra = new Laptop("Acer", 16, 1024); //     konstruktor 3 parameter

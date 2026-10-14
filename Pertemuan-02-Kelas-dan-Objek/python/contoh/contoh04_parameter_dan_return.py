@@ -6,7 +6,7 @@ Pertemuan 02 - Kelas dan Objek
 - Method boleh MENGEMBALIKAN nilai dengan return, sehingga hasilnya bisa
   disimpan ke variabel, dihitung lagi, atau dicetak.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/contoh; macOS/Linux: python3):
     python contoh04_parameter_dan_return.py
 """
 

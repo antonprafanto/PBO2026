@@ -79,7 +79,7 @@ public class Latihan06UrutkanMenu {
         tampilkanMenu();
         System.out.println();
         System.out.println("Berhasil! Harga dan stok ikut pindah bersama namanya.");
-        System.out.println("Tetapi jika nanti ada data baru (misalnya kategori),");
+        System.out.println("Namun, jika nanti ada data baru (misalnya kategori),");
         System.out.println("kode pengurut ini harus diubah lagi agar data baru itu ikut ditukar.");
     }
 }

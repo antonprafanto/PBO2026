@@ -6,7 +6,7 @@
  * kita bisa memanggil method yang sama untuk setiap objek.
  * (Wadah yang ukurannya bisa bertambah, ArrayList, dibahas di Pertemuan 05.)
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/contoh (Java 11 ke atas):
  *     java Contoh07DaftarObjek.java
  */
 public class Contoh07DaftarObjek {

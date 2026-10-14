@@ -1,31 +1,49 @@
-# Latihan — Pertemuan 10: Abstract Class dan Interface
+# Latihan Pertemuan 10: *Abstract Class* dan *Interface*
 
 [⬅️ Konsep](README.md) · [🏠 Beranda](../README.md) · [Kuis ➡️](kuis.md)
 
 **Cara mengerjakan:**
 
-1. Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
-2. Buat file baru untuk setiap latihan, lalu jalankan dan bandingkan output-mu dengan **contoh output** di soal.
-3. Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri.
-4. Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
+1. **Pilih bahasa.** Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
+2. **Siapkan folder jawabanmu.** Simpan jawaban di folder milikmu sendiri **di luar** folder materi, misalnya `Documents/PBO-latihan-saya/pertemuan-10`. Jangan menyimpannya di dalam folder `PBO2026`: perubahanmu bisa bentrok saat materi diperbarui, dan di jalur Java nama kelasmu bisa bentrok dengan kelas di folder `solusi`.
+
+   ```text
+   Documents/
+   ├── PBO2026/                         <- materi (jangan diubah)
+   └── PBO-latihan-saya/
+       └── pertemuan-10/                <- jawabanmu di sini
+           ├── latihan01_perangkat.py   (jalur Python)
+           └── Latihan01Perangkat.java  (jalur Java)
+   ```
+
+3. **Buat satu *file* untuk setiap latihan.** Beri nama yang sama dengan *file* solusinya agar mudah dibandingkan, misalnya `latihan01_perangkat.py` atau `Latihan01Perangkat.java`.
+   - Python: tulis `from abc import ABC, abstractmethod` di baris paling atas, lalu kelas-kelasmu, fungsi `main()`, dan dua baris penutup `if __name__ == "__main__":` lalu `main()`, seperti di contoh.
+   - Java: nama *file* harus sama dengan nama kelas `public` yang berisi `main`. Contohnya, *file* `Latihan01Perangkat.java` berisi `public class Latihan01Perangkat` di paling atas, lalu kelas abstrak, *interface*, dan kelas lain di bawahnya **tanpa** `public`.
+4. **Jalankan *file*-mu.**
+   - Lewat VS Code: buka folder `pertemuan-10` (**File → Open Folder**), buka *file*-nya, lalu klik ▷ (Python) atau **Run** di atas baris `public static void main` (Java).
+   - Lewat terminal: terminal VS Code di jendela itu sudah berada di folder `pertemuan-10`. Dari terminal lain, masuk dulu dengan `cd Documents\PBO-latihan-saya\pertemuan-10` (Windows) atau `cd ~/Documents/PBO-latihan-saya/pertemuan-10` (macOS/Linux). Setelah itu, ketik `python latihan01_perangkat.py` (macOS/Linux: `python3 latihan01_perangkat.py`) atau `java Latihan01Perangkat.java`.
+5. **Bandingkan hasilnya.** Cocokkan *output*-mu dengan **contoh *output*** di soal, baris demi baris. Spasi, huruf besar-kecil, dan tanda baca sebaiknya sama persis.
+6. **Baru lihat solusi.** Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri: klik tautan **Solusi** di bawah setiap latihan untuk membaca kodenya, atau jalankan *file* solusinya dari folder `python/solusi` atau `java/solusi` pertemuan ini (caranya sama dengan menjalankan contoh di halaman praktik). *Output* *file* solusi sama persis dengan contoh *output* di soal.
+
+Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
 
 > [!TIP]
-> Sebelum menulis kode, tanyakan dulu: "Kelas-kelas ini **bersaudara** (pakai kelas abstrak) atau hanya **sama-sama bisa** sesuatu (pakai interface)?" Jawaban pertanyaan itu menentukan desainmu.
+> Sebelum menulis kode, tanyakan dulu: "Kelas-kelas ini **bersaudara** (pakai kelas abstrak) atau hanya **sama-sama bisa** sesuatu (pakai *interface*)?" Jawaban pertanyaan itu menentukan desainmu.
 
 ---
 
-## Latihan 1 — Kelas Abstrak Perangkat (⭐ Dasar)
+## Latihan 1: Kelas Abstrak Perangkat (⭐ Dasar)
 
-**Tujuan:** membuat kelas abstrak dengan konstruktor, method abstrak, dan method konkret.
+**Tujuan:** membuat kelas abstrak dengan konstruktor, *method* abstrak, dan *method* konkret.
 
 **Soal:** Buat kelas abstrak `Perangkat` yang menyimpan `merek` dan `daya_watt` lewat konstruktor. Isinya:
 
-- method abstrak `jenis()` dan `fungsi_utama()` / `fungsiUtama()`,
-- method konkret `info()` yang mengembalikan teks `Jenis Merek (daya watt): fungsi utama`.
+- *method* abstrak `jenis()` dan `fungsi_utama()` / `fungsiUtama()`
+- *method* konkret `info()` yang mengembalikan teks `Jenis Merek (daya watt): fungsi utama`
 
-Buat tiga kelas anak: `Laptop` (Lenovo, 65 watt), `Ponsel` (Samsung, 18 watt), dan `Printer` (Epson, 30 watt). Tambahkan fungsi `total_daya(daftar)` / method `totalDaya(daftar)` yang menjumlahkan daya semua perangkat. Terakhir, coba buat objek `Perangkat` secara langsung, lalu catat pesan error-nya (baris ini hapus lagi setelah dicoba).
+Buat tiga kelas anak: `Laptop` (Lenovo, 65 watt), `Ponsel` (Samsung, 18 watt), dan `Printer` (Epson, 30 watt). Tambahkan fungsi `total_daya(daftar)` / *method* `totalDaya(daftar)` yang menjumlahkan daya semua perangkat. Terakhir, coba buat objek `Perangkat` secara langsung di `main`, lalu catat pesan *error*-nya. Setelah itu, jadikan baris percobaan tersebut komentar (`#` atau `//`) agar *output* akhirmu sama dengan contoh di bawah.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === DAFTAR PERANGKAT ===
@@ -40,6 +58,7 @@ Total daya jika menyala bersamaan: 113 watt
 
 - `info()` cukup ditulis sekali di `Perangkat`, lalu memanggil `self.jenis()` dan `self.fungsi_utama()` (Python) atau `jenis()` dan `fungsiUtama()` (Java).
 - Di Java, setiap kelas anak tetap perlu konstruktor yang memanggil `super(merek, dayaWatt)`.
+- Pesan yang seharusnya kamu catat saat membuat objek `Perangkat` langsung: Python (3.12 ke atas) berhenti dengan `TypeError: Can't instantiate abstract class Perangkat without an implementation for abstract methods 'fungsi_utama', 'jenis'`, sedangkan Java menolak saat kompilasi dengan `Perangkat is abstract; cannot be instantiated`.
 
 </details>
 
@@ -47,11 +66,11 @@ Total daya jika menyala bersamaan: 113 watt
 
 ---
 
-## Latihan 2 — Interface BisaDiisiUlang (⭐ Dasar)
+## Latihan 2: *Interface* BisaDiisiUlang (⭐ Dasar)
 
-**Tujuan:** membuat interface dan memakainya untuk kelas-kelas yang tidak bersaudara.
+**Tujuan:** membuat *interface* dan memakainya untuk kelas-kelas yang tidak bersaudara.
 
-**Soal:** Buat interface `BisaDiisiUlang` dengan tiga method: `nama_alat()`, `persen_baterai()`, dan `isi_daya(menit)` (Java: `namaAlat()`, `persenBaterai()`, `isiDaya(menit)`). Buat tiga kelas yang memenuhinya, masing-masing dengan kecepatan isi daya berbeda. Baterai tidak boleh melebihi 100%.
+**Soal:** Buat *interface* `BisaDiisiUlang` dengan tiga *method*: `nama_alat()`, `persen_baterai()`, dan `isi_daya(menit)` (Java: `namaAlat()`, `persenBaterai()`, `isiDaya(menit)`). Buat tiga kelas yang memenuhinya, masing-masing dengan kecepatan isi daya berbeda. Baterai tidak boleh melebihi 100%.
 
 | Kelas | Baterai awal | Kecepatan isi daya |
 |---|---|---|
@@ -59,9 +78,9 @@ Total daya jika menyala bersamaan: 113 watt
 | `Powerbank` | 50% | 2% per menit |
 | `SikatGigiElektrik` | 90% | 5% per menit |
 
-Buat fungsi `tampilkan_status(daftar)` dan `isi_semua(daftar, menit)` yang hanya mengenal interface-nya. Isi semua alat selama 30 menit, lalu hitung berapa yang sudah penuh.
+Buat fungsi `tampilkan_status(daftar)` dan `isi_semua(daftar, menit)` yang hanya mengenal *interface*-nya. Isi semua alat selama 30 menit, lalu hitung berapa yang sudah penuh.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === SEBELUM DIISI ===
@@ -80,7 +99,7 @@ Sudah penuh: 2 dari 3 alat
 <summary>💡 Petunjuk</summary>
 
 - Pembatas 100%: `min(100, baterai + menit * kecepatan)` di Python, `Math.min(...)` di Java.
-- Python: interface ditulis sebagai `class BisaDiisiUlang(ABC):` dengan tiga `@abstractmethod`.
+- Python: *interface* ditulis sebagai `class BisaDiisiUlang(ABC):` dengan tiga `@abstractmethod`.
 
 </details>
 
@@ -88,11 +107,11 @@ Sudah penuh: 2 dari 3 alat
 
 ---
 
-## Latihan 3 — Ongkos Kirim dengan Template Method (⭐⭐ Menengah)
+## Latihan 3: Ongkos Kirim dengan *Template Method* (⭐⭐ Menengah)
 
-**Tujuan:** menerapkan template method dan *hook*.
+**Tujuan:** menerapkan *template method* dan *hook*.
 
-**Soal:** Buat kelas abstrak `Pengiriman` dengan method abstrak `nama_layanan()` dan `tarif_per_kg()`, *hook* `biaya_tambahan(berat_kg)` yang bawaannya 0, dan template method `hitung_ongkir(berat)` = `berat x tarif_per_kg() + biaya_tambahan(berat)`.
+**Soal:** Buat kelas abstrak `Pengiriman` dengan *method* abstrak `nama_layanan()` dan `tarif_per_kg()`, *hook* `biaya_tambahan(berat_kg)` yang bawaannya 0, dan *template method* `hitung_ongkir(berat_kg)` = `berat_kg x tarif_per_kg() + biaya_tambahan(berat_kg)`. (Java: `namaLayanan()`, `tarifPerKg()`, `biayaTambahan(beratKg)`, dan `hitungOngkir(beratKg)`.)
 
 | Layanan | Tarif per kg | Aturan tambahan |
 |---|---|---|
@@ -100,9 +119,9 @@ Sudah penuh: 2 dari 3 alat
 | `KirimKilat` | Rp15.000 | biaya prioritas tetap Rp5.000 |
 | `KirimKargo` | Rp5.000 | berat dihitung minimal 10 kg: kekurangannya ditagih sebagai biaya tambahan |
 
-Tambahkan method `rincian(berat)` dan fungsi `termurah(daftar, berat)`. Bandingkan ketiga layanan untuk paket 3 kg dan 12 kg.
+Tambahkan *method* `rincian(berat_kg)` dan fungsi `termurah(daftar, berat_kg)`. Bandingkan ketiga layanan untuk paket 3 kg dan 12 kg.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === ONGKOS KIRIM PAKET 3 KG ===
@@ -121,10 +140,10 @@ Termurah: Kargo (Rp60.000)
 <details>
 <summary>💡 Petunjuk</summary>
 
-- `KirimReguler` hanya mengisi dua method abstrak. `KirimKilat` dan `KirimKargo` juga meng-*override* `biaya_tambahan()`.
+- `KirimReguler` hanya mengisi dua *method* abstrak. `KirimKilat` dan `KirimKargo` juga meng-*override* `biaya_tambahan()`.
 - Biaya tambahan kargo untuk 3 kg: `(10 - 3) x 5000 = 35000`.
 - Format nama layanan selebar 8 karakter: `f"{nama:<8}"` (Python) atau `String.format(Locale.US, "%-8s", nama)` (Java).
-- Pengguna Java: kelas `Rupiah` sudah ada di folder studi kasus, jadi tulis method `formatRupiah()` sendiri di kelas utama.
+- Pengguna Java: program satu *file*-mu tidak bisa memakai kelas `Rupiah` dari folder studi kasus. Tulis saja *method* `formatRupiah()` sendiri di kelas utama, dengan `String.format(Locale.US, "%,d", angka)` seperti di `Rupiah.java`. Jangan membuat kelas baru bernama `Rupiah` agar tidak bentrok dengan kelas `Rupiah` milik studi kasus.
 
 </details>
 
@@ -132,19 +151,19 @@ Termurah: Kargo (Rp60.000)
 
 ---
 
-## Latihan 4 — Armada Ojek Online (⭐⭐ Menengah)
+## Latihan 4: Armada Ojek *Online* (⭐⭐ Menengah)
 
-**Tujuan:** menggabungkan kelas abstrak dengan beberapa interface sekaligus.
+**Tujuan:** menggabungkan kelas abstrak dengan beberapa *interface* sekaligus.
 
 **Soal:** Sebuah aplikasi ojek daring di Samarinda punya tiga jenis armada. Buat:
 
-- kelas abstrak `Armada` yang menyimpan nama pengemudi, punya method abstrak `jenis()`, dan method `__str__`/`toString()` yang menghasilkan `jenis + nama pengemudi`,
-- interface `BisaAntarPenumpang` (`antar_penumpang(tujuan)`) dan `BisaAntarMakanan` (`antar_makanan(warung)`),
-- `OjekMotor` (bisa keduanya), `TaksiMobil` (hanya penumpang), dan `KurirSepeda` (hanya makanan).
+- kelas abstrak `Armada` yang menyimpan nama pengemudi, punya *method* abstrak `jenis()`, dan *method* `__str__`/`toString()` yang menghasilkan `jenis + nama pengemudi`
+- *interface* `BisaAntarPenumpang` (`antar_penumpang(tujuan)`, Java: `antarPenumpang(tujuan)`) dan `BisaAntarMakanan` (`antar_makanan(warung)`, Java: `antarMakanan(warung)`)
+- `OjekMotor` (bisa keduanya), `TaksiMobil` (hanya penumpang), dan `KurirSepeda` (hanya makanan)
 
 Simpan ketiga armada dalam satu daftar bertipe `Armada`. Tampilkan kemampuan masing-masing, lalu kirim pesanan makanan dan penumpang hanya ke armada yang mampu.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === KEMAMPUAN ARMADA ===
@@ -174,18 +193,18 @@ Taksi mobil Pak Joko mengantar penumpang ke Kampus Unmul
 
 ---
 
-## Latihan 5 — KedaiKita: Menu Abstrak (⭐⭐ Menengah)
+## Latihan 5 (KedaiKita): Menu Abstrak (⭐⭐ Menengah)
 
-**Tujuan:** mengembangkan studi kasus KedaiKita dengan kelas abstrak dan template method.
+**Tujuan:** mengembangkan studi kasus KedaiKita dengan kelas abstrak dan *template method*.
 
 **Soal:** Di KedaiKita tidak ada "menu umum": setiap menu pasti makanan atau minuman. Buat versi ringkas kelas `Menu` (cukup `kode`, `nama`, `harga`) sebagai kelas abstrak:
 
-1. Tambahkan method abstrak `kategori()` (mengembalikan `"Makanan"` atau `"Minuman"`) dan `keterangan()`.
+1. Tambahkan *method* abstrak `kategori()` (mengembalikan `"Makanan"` atau `"Minuman"`) dan `keterangan()`.
 2. Tulis `__str__`/`toString()` **sekali saja** di kelas abstrak, dengan format seperti di studi kasus: `[M01] Kopi Susu Gula Aren (Minuman) - Rp18.000 | dingin`.
 3. Buat kelas anak `Makanan` (keterangan `pedas level N`) dan `Minuman` (keterangan `dingin` atau `panas`), **tanpa** meng-*override* `__str__`/`toString()`.
 4. Tampilkan menu M01 sampai M05 ditambah M06 Teh Tarik Hangat (Rp12.000, panas), lalu hitung jumlah menu per kategori.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === MENU KEDAIKITA (Menu kini abstrak) ===
@@ -205,7 +224,7 @@ Minuman: 3
 <summary>💡 Petunjuk</summary>
 
 - Kategori kini "dijawab" kelas anak lewat `kategori()`, jadi tidak perlu dikirim lewat konstruktor lagi.
-- Pengguna Java: jika membuka folder `java/` pertemuan ini di VS Code, beri nama kelasmu `MenuAbstrak`, `MenuMakanan`, dan `MenuMinuman` agar tidak bentrok dengan kelas `Menu`, `Makanan`, dan `Minuman` di folder studi kasus.
+- Pengguna Java: jika folder `pertemuan-10`-mu juga berisi salinan studi kasus (dari **Coba sendiri** di halaman praktik), beri nama kelasmu `MenuAbstrak`, `MenuMakanan`, dan `MenuMinuman`, seperti di solusi. VS Code menganggap satu folder sebagai satu proyek, jadi nama itu mencegah bentrok dengan kelas `Menu`, `Makanan`, dan `Minuman` milik studi kasus.
 
 </details>
 
@@ -213,21 +232,22 @@ Minuman: 3
 
 ---
 
-## Latihan 6 — Arena Karakter (⭐⭐⭐ Tantangan)
+## Latihan 6: Arena Karakter (⭐⭐⭐ Tantangan)
 
-**Tujuan:** merancang program yang memakai kelas abstrak, template method, dan interface sekaligus.
+**Tujuan:** merancang program yang memakai kelas abstrak, *template method*, dan *interface* sekaligus.
 
 **Soal:** Buat permainan arena sederhana.
 
-- Kelas abstrak `Karakter` menyimpan nama, HP maksimal, dan HP sekarang. Method abstraknya `peran()` dan `kekuatan_serangan()`. Method konkretnya: `terima_serangan(jumlah)` (HP tidak boleh di bawah 0), `pulihkan(jumlah)` (HP tidak boleh melewati maksimal, kembalikan HP yang benar-benar naik), `masih_hidup()`, dan `__str__`/`toString()` (tambahkan `(tumbang)` jika HP 0).
-- Template method `serang(lawan)`: karakter yang sudah tumbang tidak bisa menyerang. Selain itu, HP lawan berkurang sebesar `kekuatan_serangan()`.
+- Kelas abstrak `Karakter` menyimpan nama, HP maksimal, dan HP sekarang. *Method* abstraknya `peran()` dan `kekuatan_serangan()`. *Method* konkretnya: `terima_serangan(jumlah)` (HP tidak boleh di bawah 0), `pulihkan(jumlah)` (HP tidak boleh melewati maksimal, kembalikan HP yang benar-benar naik), `masih_hidup()`, dan `__str__`/`toString()` (tambahkan `(tumbang)` jika HP 0).
+- *Template method* `serang(lawan)`: karakter yang sudah tumbang tidak bisa menyerang. Selain itu, HP lawan berkurang sebesar `kekuatan_serangan()`.
 - Peran: `Ksatria` (HP 100, serangan 20), `Pemanah` (HP 60, serangan 15), `Penyihir` (HP 50, serangan 25).
-- Interface `BisaMenyembuhkan` dengan method `sembuhkan(target)`. `Penyihir` memenuhinya (memulihkan 30 HP). `RamuanObat` juga memenuhinya walaupun **bukan** karakter: sekali pakai, memulihkan sejumlah HP.
+- *Interface* `BisaMenyembuhkan` dengan *method* `sembuhkan(target)`. `Penyihir` memenuhinya (memulihkan 30 HP). `RamuanObat` juga memenuhinya walaupun **bukan** karakter: sekali pakai, memulihkan sejumlah HP.
 - Fungsi `fase_penyembuhan(daftar, target)` menerima daftar apa saja yang `BisaMenyembuhkan`.
+- Di Java, semua nama ditulis dengan gaya *camelCase*, misalnya `kekuatanSerangan()`, `terimaSerangan()`, dan `fasePenyembuhan()`.
 
 Jalankan skenario: ronde 1 (Arga menyerang Laras, Laras menyerang Arga, Mira menyerang Laras), ronde 2 (Arga menyerang Laras, Laras menyerang Arga, Mira menyerang Arga), fase penyembuhan untuk Arga dengan `[mira, RamuanObat(50)]`, lalu coba pakai ramuan yang sama sekali lagi untuk Mira.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === PARA KARAKTER ===
@@ -269,30 +289,30 @@ Penyihir Mira: HP 50/50
 
 ---
 
-## Tugas Mandiri (dikumpulkan, tanpa kunci jawaban)
+## Tugas Mandiri (Dikumpulkan, tanpa Kunci Jawaban)
 
 ### Pengelola Tagihan Anak Kos
 
 **Kebutuhan** (program untuk membantu anak kos di sekitar kampus mengelola tagihan bulanan):
 
-1. Kelas abstrak `Tagihan` yang menyimpan nama tagihan dan bulan. Punya method abstrak `hitung_jumlah()` / `hitungJumlah()` dan template method `rincian()` yang mencetak nama, bulan, dan jumlah tagihan dalam format yang seragam.
+1. Kelas abstrak `Tagihan` yang menyimpan nama tagihan dan bulan. Punya *method* abstrak `hitung_jumlah()` / `hitungJumlah()` dan *template method* `rincian()` yang mencetak nama, bulan, dan jumlah tagihan dalam format yang seragam.
 2. Minimal tiga kelas anak dengan cara hitung berbeda, misalnya `TagihanListrik` (pemakaian kWh x tarif), `TagihanAir` (pemakaian m3 x tarif + biaya beban tetap), dan `TagihanInternet` (biaya bulanan tetap).
-3. Interface `BisaDicicil` dengan method `cicilan_per_bulan(kali)` / `cicilanPerBulan(kali)`. Interface ini dipenuhi oleh **minimal satu** kelas tagihan **dan** oleh satu kelas yang bukan tagihan, misalnya `PembelianLaptop`.
+3. *Interface* `BisaDicicil` dengan *method* `cicilan_per_bulan(kali)` / `cicilanPerBulan(kali)`. *Interface* ini dipenuhi oleh **minimal satu** kelas tagihan **dan** oleh satu kelas yang bukan tagihan, misalnya `PembelianLaptop`.
 4. Fungsi untuk menghitung total semua tagihan, dan fungsi yang mencetak rencana cicilan untuk daftar apa saja yang `BisaDicicil`.
 5. Program utama yang membuat minimal empat objek dan menampilkan rincian, total, serta rencana cicilan.
 6. Semua nilai uang memakai bilangan bulat (Rupiah).
 
-**Ketentuan pengumpulan:** satu file program (Python atau Java), diagram kelas sederhana (boleh foto gambar tangan atau Mermaid) yang menunjukkan kelas abstrak, interface, dan relasi realisasinya, serta tangkapan layar output.
+**Ketentuan pengumpulan:** satu *file* program (Python atau Java), diagram kelas sederhana (boleh foto gambar tangan atau Mermaid) yang menunjukkan kelas abstrak, *interface*, dan relasi realisasinya, serta tangkapan layar *output*.
 
 **Rubrik penilaian:**
 
 | Aspek | Bobot |
 |---|---|
-| Kelas abstrak `Tagihan` benar: method abstrak, template method, dan tidak bisa dibuat objeknya | 25% |
+| Kelas abstrak `Tagihan` benar: *method* abstrak, *template method*, dan tidak bisa dibuat objeknya | 25% |
 | Minimal tiga kelas anak dengan perhitungan yang benar | 20% |
-| Interface `BisaDicicil` dipenuhi oleh kelas tagihan dan kelas non-tagihan, dan dipakai secara polimorfik | 25% |
+| *Interface* `BisaDicicil` dipenuhi oleh kelas tagihan dan kelas nontagihan, dan dipakai secara polimorfik | 25% |
 | Diagram kelas memakai notasi yang benar (abstrak, `<<interface>>`, realisasi) | 15% |
-| Kerapian kode: nama jelas, komentar secukupnya, output rapi | 15% |
+| Kerapian kode: nama jelas, komentar secukupnya, *output* rapi | 15% |
 
 ---
 

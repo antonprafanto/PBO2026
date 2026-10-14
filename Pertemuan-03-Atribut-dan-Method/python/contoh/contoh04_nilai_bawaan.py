@@ -28,7 +28,7 @@ class Laptop:
 
 
 def main():
-    print("=== SATU KONSTRUKTOR, JUMLAH ARGUMEN BERBEDA ===")
+    print("=== MEMBUAT LAPTOP DENGAN JUMLAH ARGUMEN BERBEDA ===")
     laptop_ayu = Laptop("Asus")  # [3] ram dan penyimpanan memakai nilai bawaan
     laptop_bima = Laptop("Lenovo", 16)  # [4] penyimpanan memakai nilai bawaan
     laptop_citra = Laptop("Acer", 16, 1024)  # [5] semua argumen dikirim

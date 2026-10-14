@@ -5,7 +5,7 @@ Pertemuan 02 - Kelas dan Objek
 Method khusus __init__ adalah konstruktor. Ia dipanggil OTOMATIS setiap kali
 objek baru dibuat, sehingga setiap objek langsung lahir dengan data lengkap.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/contoh; macOS/Linux: python3):
     python contoh02_konstruktor.py
 """
 

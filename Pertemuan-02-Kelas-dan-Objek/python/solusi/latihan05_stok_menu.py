@@ -7,7 +7,7 @@ Ide penyelesaian:
 - jual(jumlah): jika stok cukup, kurangi stok dan KEMBALIKAN total harga;
   jika tidak cukup, cetak pesan dan kembalikan 0.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/solusi; macOS/Linux: python3):
     python latihan05_stok_menu.py
 """
 

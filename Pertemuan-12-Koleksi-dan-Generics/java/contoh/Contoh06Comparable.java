@@ -2,7 +2,7 @@
  * Contoh 06 - Urutan Alami dengan Comparable
  * Pertemuan 12 - Koleksi dan Generics
  *
- * Jika sebuah kelas meng-implements Comparable<T> dan mengisi compareTo(),
+ * Jika sebuah kelas mengimplementasikan Comparable<T> dan mengisi compareTo(),
  * objeknya punya URUTAN ALAMI. Collections.sort(), Collections.min(), dan
  * TreeSet langsung bisa dipakai tanpa Comparator.
  * Di sini pelari yang "lebih kecil" artinya "lebih cepat".

@@ -14,7 +14,7 @@ Ide penyelesaian:
 - Semua atribut berawalan _ dan dibaca lewat @property. Data yang tidak
   valid ditolak dengan raise ValueError(...).
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/solusi; macOS/Linux: python3):
     python soal_c1_peminjaman_alat.py
 """
 

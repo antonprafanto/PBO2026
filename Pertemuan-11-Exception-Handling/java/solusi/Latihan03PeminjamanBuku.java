@@ -9,7 +9,7 @@
  *       +-- BatasPinjamException              (data: nama, batas)
  * - Anggota.pinjam() memeriksa dua aturan, lalu melempar exception yang
  *   sesuai. Data tambahan di exception dipakai penangkap untuk memberi saran.
- * - Anggota.kembalikan() melempar PerpustakaanException (induknya langsung),
+ * - Anggota.kembalikan() melempar PerpustakaanException (induknya langsung)
  *   karena kesalahan ini tidak butuh jenis khusus.
  * - Urutan catch: yang spesifik di atas. cobaKembalikan() cukup menangkap
  *   induknya, PerpustakaanException.

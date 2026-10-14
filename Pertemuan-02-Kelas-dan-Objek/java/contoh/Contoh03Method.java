@@ -5,7 +5,7 @@
  * Method adalah fungsi yang "menempel" pada objek. Method bisa membaca dan
  * mengubah atribut milik objeknya sendiri.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/contoh (Java 11 ke atas):
  *     java Contoh03Method.java
  */
 public class Contoh03Method {

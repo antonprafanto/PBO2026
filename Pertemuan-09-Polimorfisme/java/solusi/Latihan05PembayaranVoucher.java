@@ -17,9 +17,9 @@
  * Pembayaran is already defined". Karena itu, salinan RINGKAS kelas-kelas tadi
  * di file ini diberi akhiran "Kedai": PelangganKedai, PembayaranKedai,
  * PembayaranTunaiKedai, dan PesananKedai (pesanan langsung diberi total, tanpa
- * ItemPesanan). Di proyek KedaiKita-mu, cukup buat file PembayaranVoucher.java
- * berisi "public class PembayaranVoucher extends Pembayaran", lalu pakai di
- * Main.java.
+ * ItemPesanan). Di salinan studi kasus milikmu (di folder latihanmu, bukan di
+ * folder materi), cukup buat file PembayaranVoucher.java berisi
+ * "public class PembayaranVoucher extends Pembayaran", lalu pakai di Main.java.
  *
  * Cara menjalankan (Java 11 ke atas):
  *     java Latihan05PembayaranVoucher.java

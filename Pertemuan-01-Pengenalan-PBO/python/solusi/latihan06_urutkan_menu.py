@@ -61,7 +61,7 @@ def main():
     tampilkan_menu()
     print()
     print("Berhasil! Harga dan stok ikut pindah bersama namanya.")
-    print("Tetapi jika nanti ada data baru (misalnya kategori),")
+    print("Namun, jika nanti ada data baru (misalnya kategori),")
     print("kode pengurut ini harus diubah lagi agar data baru itu ikut ditukar.")
 
 

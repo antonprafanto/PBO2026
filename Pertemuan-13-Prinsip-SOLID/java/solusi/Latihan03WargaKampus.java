@@ -9,7 +9,7 @@
  *     Pengajar -> mengajar(), isiNilai()
  * - Mahasiswa hanya Pelajar, Dosen hanya Pengajar. Tidak ada lagi method palsu
  *   seperti "Dosen.bayarUkt()" yang melempar exception.
- * - AsistenPraktikum meng-implements DUA interface sekaligus, sehingga ia boleh
+ * - AsistenPraktikum mengimplementasikan DUA interface sekaligus, sehingga ia boleh
  *   masuk ke daftar pelajar maupun daftar pengajar.
  *
  * Cara menjalankan (Java 11 ke atas):
@@ -24,8 +24,8 @@ public class Latihan03WargaKampus {
         Mahasiswa ayu = new Mahasiswa("Ayu");
         AsistenPraktikum rizky = new AsistenPraktikum("Rizky");
 
-        List<Pengajar> pengajar = List.of(hendra, rizky); // hanya yang meng-implements Pengajar
-        List<Pelajar> pelajar = List.of(ayu, rizky); // hanya yang meng-implements Pelajar
+        List<Pengajar> pengajar = List.of(hendra, rizky); // hanya yang mengimplementasikan Pengajar
+        List<Pelajar> pelajar = List.of(ayu, rizky); // hanya yang mengimplementasikan Pelajar
 
         System.out.println("=== PARA PENGAJAR ===");
         for (Pengajar orang : pengajar) {

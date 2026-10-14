@@ -7,7 +7,7 @@
  *   wajib ditulis di depan nama method (int, String, ...). Method yang tidak
  *   mengembalikan apa-apa memakai kata kunci void.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/contoh (Java 11 ke atas):
  *     java Contoh04ParameterDanReturn.java
  */
 public class Contoh04ParameterDanReturn {

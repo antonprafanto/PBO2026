@@ -1,4 +1,4 @@
-# 🐍 Praktik Python — Pertemuan 12: Koleksi dan Generics
+# 🐍 Praktik Python Pertemuan 12: Koleksi dan *Generics*
 
 [⬅️ Konsep](../README.md) · [☕ Praktik Java](../java/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
@@ -7,46 +7,107 @@
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
-1. [List dan Tuple](#1-list-dan-tuple)
+  - [Cara Menjalankan Contoh](#cara-menjalankan-contoh)
+  - [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
+1. [*List* dan *Tuple*](#1-list-dan-tuple)
 2. [Set: Kumpulan Tanpa Data Kembar](#2-set-kumpulan-tanpa-data-kembar)
 3. [Dict: Mencari Lewat Kunci](#3-dict-mencari-lewat-kunci)
 4. [Menjelajahi Dict dan Menjaga Urutan](#4-menjelajahi-dict-dan-menjaga-urutan)
-5. [Mengurutkan dengan `key` dan Lambda](#5-mengurutkan-dengan-key-dan-lambda)
+5. [Mengurutkan dengan `key` dan *Lambda*](#5-mengurutkan-dengan-key-dan-lambda)
 6. [Urutan Alami dengan `__lt__`](#6-urutan-alami-dengan-__lt__)
 7. [Kesamaan Objek: `__eq__` dan `__hash__`](#7-kesamaan-objek-__eq__-dan-__hash__)
 8. [Kelas Generik dan Petunjuk Tipe](#8-kelas-generik-dan-petunjuk-tipe)
 9. [Studi Kasus KedaiKita](#9-studi-kasus-kedaikita)
-10. [Kesalahan Umum dan Cara Membaca Pesan Error](#10-kesalahan-umum-dan-cara-membaca-pesan-error)
+10. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#10-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
 ```text
 python/
 ├── contoh/          <- 8 contoh, dari list sederhana sampai kelas generik
-├── studi-kasus/     <- KedaiKita versi Pertemuan 12 (11 file)
+├── studi-kasus/     <- KedaiKita versi Pertemuan 12 (11 file, pintu masuknya main.py)
 └── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
 ```
 
-Jalankan contoh dari folder `contoh`, dan jalankan `main.py` **dari dalam** folder `studi-kasus`:
+### Cara Menjalankan Contoh
+
+Setiap *file* di folder `contoh/` dan `solusi/` adalah program satu *file*. Pilih salah satu cara berikut. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-12-Koleksi-dan-Generics/python`. Di panel **Explorer** sebelah kiri, buka folder `contoh`, klik *file* yang ingin dicoba (misalnya `contoh01_list_dan_tuple.py`), lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah. Baris pertama di panel itu berisi perintah panjang yang diketik VS Code secara otomatis; *output* programmu muncul di bawahnya.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-12-Koleksi-dan-Generics/python/contoh` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-12-Koleksi-dan-Generics/python/contoh
 python contoh01_list_dan_tuple.py
+```
 
-cd ../studi-kasus
+Jika berhasil, baris pertama yang muncul adalah `=== LIST: DAFTAR BELANJA ANAK KOS ===`, dan seluruh hasilnya sama persis dengan blok ***Output:*** di [bagian 1](#1-list-dan-tuple). *File* di folder `solusi` dijalankan dengan cara yang sama; ganti saja `contoh` dengan `solusi`.
+
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+> [!NOTE]
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya.
+
+### Cara Menjalankan Studi Kasus
+
+Studi kasus KedaiKita terdiri atas **11 *file*** yang saling meng-*import*. Pintu masuknya selalu `main.py`. *File* lain, seperti `menu.py` atau `laporan.py`, hanya berisi kelas sehingga tidak menampilkan apa-apa jika dijalankan sendiri.
+
+- **Lewat VS Code:** buka `studi-kasus/main.py`, lalu klik ▷ (**Run Python File**). Cara ini selalu berhasil karena Python mencari *file* lain di folder milik `main.py`.
+- **Lewat terminal:** masuk dulu ke folder `studi-kasus`, baru jalankan `main.py`.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-12-Koleksi-dan-Generics/python/studi-kasus` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd studi-kasus` |
+
+Setelah itu jalankan:
+
+```bash
 python main.py
 ```
 
-> [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Di VS Code, kamu juga bisa menekan tombol ▶ (*Run Python File*). Semua kode memerlukan **Python 3.10** atau lebih baru. Panduan instalasi ada di [00-Persiapan](../../00-Persiapan/README.md).
+Jika berhasil, baris pertama yang muncul adalah `=== MENU KedaiKita ===`. Penjelasan kodenya ada di [bagian 9](#9-studi-kasus-kedaikita).
 
-## 1. List dan Tuple
+### Tempat Menyimpan Kodemu Sendiri
 
-File: [`contoh/contoh01_list_dan_tuple.py`](contoh/contoh01_list_dan_tuple.py)
+Anggap folder materi sebagai buku pegangan: dibaca dan dijalankan, tetapi tidak dicoret-coret. Simpan kode buatanmu sendiri (hasil mengetik ulang, percobaan "Coba sendiri", dan jawaban latihan) di folder lain **di luar** folder materi, misalnya:
 
-List sudah kamu kenal. Kali ini kita lihat kemampuannya lebih lengkap, lalu membandingkannya dengan saudaranya yang "keras kepala", yaitu tuple.
+```text
+Documents/
+├── PBO2026/                  <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/         <- milikmu sendiri
+    └── pertemuan-12/         <- kode pertemuan ini
+```
+
+Jika sebuah "Coba sendiri" memintamu mengubah *file* contoh, salin dulu *file* itu ke folder `pertemuan-12` (lewat File Explorer di Windows atau Finder di macOS), lalu ubah salinannya. Untuk percobaan pada studi kasus, salin **seluruh folder** `studi-kasus` karena *file-file*-nya saling membutuhkan. Jalankan salinan itu dengan membuka folder `pertemuan-12` di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**), atau arahkan terminal ke folder itu dengan `cd`. Alasan lengkapnya ada di [Git dan GitHub bagian 5](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri).
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal setiap bagian menunjuk *file* contohnya. Klik untuk melihat isi lengkapnya.
+- Blok kode yang diawali keterangan "isi lengkap *file*" boleh kamu ketik ulang di folder latihanmu (komentar pembuka di bagian atas *file* tidak ditulis ulang). Blok yang diawali kata "potongan" hanya berisi sebagian *file*, disalin persis. Untuk mencoba potongan, jalankan *file* lengkapnya, jangan menjalankan potongannya sendiri.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di dalam kode dijelaskan satu per satu di daftar **Penjelasan** tepat di bawah blok kode.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan. Hasil dari kode yang sengaja dibuat salah diawali kata lain, misalnya "Pesan *error*-nya:".
+
+## 1. *List* dan *Tuple*
+
+*File*: [`contoh/contoh01_list_dan_tuple.py`](contoh/contoh01_list_dan_tuple.py)
+
+*List* sudah kamu kenal. Kali ini kita lihat kemampuannya lebih lengkap, lalu membandingkannya dengan saudaranya yang "keras kepala", yaitu *tuple*. Berikut isi lengkap *file*-nya (tanpa komentar pembuka):
 
 ```python
 def main():
@@ -82,9 +143,13 @@ def main():
     print(f"Huruf besar   : {', '.join(huruf_besar)}")
     print(f"Nama pendek   : {', '.join(pendek)}")
     print(f"List asli     : {', '.join(belanja)}")
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === LIST: DAFTAR BELANJA ANAK KOS ===
@@ -108,21 +173,21 @@ List asli     : kopi, beras, telur, gula, telur
 
 Penjelasan:
 
-- **[1]** `list[str]` adalah petunjuk tipe yang dibaca "list berisi teks". Untuk mencetak list dengan rapi (tanpa tanda kutip dan kurung siku), kita memakai `", ".join(...)`.
+- **[1]** `list[str]` adalah petunjuk tipe yang dibaca "*list* berisi teks". Untuk mencetak *list* dengan rapi (tanpa tanda kutip dan kurung siku), kita memakai `", ".join(...)`.
 - **[2]** `append()` menambah di akhir, sedangkan `insert(indeks, isi)` menyisipkan di posisi tertentu.
 - **[3]** `remove()` menghapus isi **pertama** yang cocok. Jika isinya tidak ada, Python melempar `ValueError`.
 - **[4]** Indeks dimulai dari 0. Indeks negatif dihitung dari belakang: `belanja[-1]` adalah item terakhir.
-- **[5]** Operator `in` memeriksa keanggotaan. Pada list, Python memeriksa isi satu per satu dari depan. Ada juga `index()` (posisi pertama) dan `count()` (jumlah kemunculan).
-- **[6]** Tuple ditulis dengan kurung biasa. Petunjuk tipe `tuple[str, ...]` dibaca "tuple berisi teks, berapa pun panjangnya".
-- **[7]** Mengubah isi tuple memunculkan `TypeError`, yang kita tangkap dengan `try`/`except` seperti di Pertemuan 11.
-- **[8]** *List comprehension* membuat list baru dalam satu baris. Bacalah: "`barang.upper()` untuk setiap `barang` di `belanja`".
-- **[9]** Bagian `if` di akhir menyaring isi. List aslinya tidak berubah.
+- **[5]** Operator `in` memeriksa keanggotaan. Pada *list*, Python memeriksa isi satu per satu dari depan. Ada juga `index()` (posisi pertama) dan `count()` (jumlah kemunculan).
+- **[6]** *Tuple* ditulis dengan kurung biasa. Petunjuk tipe `tuple[str, ...]` dibaca "*tuple* berisi teks, berapa pun panjangnya".
+- **[7]** Mengubah isi *tuple* memunculkan `TypeError`, yang kita tangkap dengan `try`/`except` seperti di Pertemuan 11.
+- **[8]** *List comprehension* membuat *list* baru dalam satu baris. Bacalah: "`barang.upper()` untuk setiap `barang` di `belanja`". Hasilnya sama dengan perulangan `for` yang memanggil `append()` satu per satu, tetapi lebih ringkas.
+- **[9]** Bagian `if` di akhir menyaring isi. *List* aslinya tidak berubah.
 
 ## 2. Set: Kumpulan Tanpa Data Kembar
 
-File: [`contoh/contoh02_set_himpunan.py`](contoh/contoh02_set_himpunan.py)
+*File*: [`contoh/contoh02_set_himpunan.py`](contoh/contoh02_set_himpunan.py)
 
-Pendaftaran workshop sering kacau karena ada yang mengisi formulir dua kali. Set membereskannya secara otomatis.
+Pendaftaran *workshop* sering kacau karena ada yang mengisi formulir dua kali. Set membereskannya secara otomatis. Berikut isi lengkap *file*-nya (tanpa komentar pembuka):
 
 ```python
 def cetak(judul: str, isi: set[str]):
@@ -151,9 +216,13 @@ def main():
     cetak("Hanya Python", peserta_python - peserta_java)  # selisih
     if "Fajar" not in peserta_python:  # [7] cek keanggotaan
         print("Fajar belum ikut workshop Python")
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PENDAFTARAN WORKSHOP PYTHON ===
@@ -172,15 +241,15 @@ Fajar belum ikut workshop Python
 
 Penjelasan:
 
-- **[1]** List boleh berisi data kembar: Ayu dan Bima masing-masing muncul dua kali.
-- **[2]** `set(pendaftar)` membuat set dari list. Data kembar otomatis dibuang, sehingga 6 formulir menjadi 4 peserta.
+- **[1]** *List* boleh berisi data kembar: Ayu dan Bima masing-masing muncul dua kali.
+- **[2]** `set(pendaftar)` membuat set dari *list*. Data kembar otomatis dibuang sehingga 6 formulir menjadi 4 peserta.
 - **[3]** Set juga bisa ditulis langsung dengan kurung kurawal.
-- **[4]** `add()` menambah anggota. Menambah anggota yang sudah ada hanya diabaikan, tanpa error.
-- **[5]** Urutan isi set **tidak dijamin**, bahkan bisa berubah setiap kali program dijalankan (lihat [halaman konsep](../README.md#4-urutan-isi-jangan-mengandalkan-kebetulan)). Karena itu kita selalu memakai `sorted()`, yang mengembalikan **list** baru yang sudah urut.
+- **[4]** `add()` menambah anggota. Menambah anggota yang sudah ada hanya diabaikan, tanpa *error*.
+- **[5]** Urutan isi set **tidak dijamin**, bahkan bisa berubah setiap kali program dijalankan (lihat [halaman konsep](../README.md#4-urutan-isi-jangan-mengandalkan-kebetulan)). Karena itu, kita selalu memakai `sorted()`, yang mengembalikan ***list*** baru yang sudah urut.
 - **[6]** Operator himpunan dari matematika diskrit: `&` irisan, `|` gabungan, `-` selisih.
-- **[7]** Pemeriksaan `in`/`not in` pada set sangat cepat, karena set langsung menuju "rak" lewat kode hash.
+- **[7]** Pemeriksaan `in`/`not in` pada set sangat cepat karena set langsung menuju "rak" lewat kode *hash*.
 
-| Operasi | Operator | Method | Hasil untuk `{1, 2, 3}` dan `{2, 3, 4}` |
+| Operasi | Operator | *Method* | Hasil untuk `{1, 2, 3}` dan `{2, 3, 4}` |
 |---|---|---|---|
 | Irisan | `a & b` | `a.intersection(b)` | `{2, 3}` |
 | Gabungan | `a \| b` | `a.union(b)` | `{1, 2, 3, 4}` |
@@ -192,9 +261,9 @@ Penjelasan:
 
 ## 3. Dict: Mencari Lewat Kunci
 
-File: [`contoh/contoh03_dict_pencarian.py`](contoh/contoh03_dict_pencarian.py)
+*File*: [`contoh/contoh03_dict_pencarian.py`](contoh/contoh03_dict_pencarian.py)
 
-File ini berisi kelas `Mahasiswa` sederhana dan fungsi `cari_di_list()` yang mencari dengan cara lama: memeriksa list satu per satu sambil menghitung langkahnya. Kita bandingkan dengan dict.
+*File* ini berisi kelas `Mahasiswa` sederhana dan fungsi `cari_di_list()` yang mencari dengan cara lama: memeriksa *list* satu per satu sambil menghitung langkahnya. Kita bandingkan dengan dict. Berikut potongan isi `main()`, setelah empat objek `Mahasiswa` disimpan di *list* `daftar`:
 
 ```python
     data: dict[str, Mahasiswa] = {}  # [1] dict kosong: NIM -> Mahasiswa
@@ -226,11 +295,11 @@ File ini berisi kelas `Mahasiswa` sederhana dan fungsi `cari_di_list()` yang men
     print(f"Buku dipinjam Dimas: {pinjaman.get('2409106004', 0)}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === CARI MAHASISWA BERDASARKAN NIM ===
-  (list memeriksa 4 data sampai ketemu)
+  (list memeriksa 4 data sampai ditemukan)
 Lewat list : 2409106004 Dimas Pratama (Informatika)
 Lewat kunci: 2409106004 Dimas Pratama (Informatika)
 NIM 2409106099 tidak terdaftar
@@ -249,7 +318,7 @@ Penjelasan:
 
 - **[1]** `{}` membuat dict kosong. Petunjuk tipe `dict[str, Mahasiswa]` dibaca "dict dengan kunci teks dan nilai `Mahasiswa`".
 - **[2]** `data[kunci] = nilai` menyimpan pasangan baru.
-- **[3]** `data[kunci]` langsung mengambil nilainya, sedangkan list harus memeriksa 4 data dulu. Dengan ribuan mahasiswa, bedanya sangat terasa.
+- **[3]** `data[kunci]` langsung mengambil nilainya, sedangkan *list* harus memeriksa 4 data dulu. Dengan ribuan mahasiswa, bedanya sangat terasa.
 - **[4]** `in` pada dict memeriksa **kunci**, bukan nilai.
 - **[5]** `get(kunci)` mengembalikan `None` jika kunci tidak ada. Sebaliknya, `data[kunci]` untuk kunci yang tidak ada memunculkan `KeyError`.
 - **[6]** Menyimpan dengan kunci yang **sudah ada** menimpa nilai lama. Jumlah data tetap 4.
@@ -257,13 +326,13 @@ Penjelasan:
 - **[8]** `get(kunci, cadangan)` mengembalikan nilai cadangan jika kunci tidak ada. Dimas belum meminjam buku, jadi hasilnya 0.
 
 > [!IMPORTANT]
-> Kunci dict harus *hashable*, yaitu punya kode hash yang tidak berubah. Teks, angka, dan tuple boleh menjadi kunci, tetapi list tidak. Objek buatanmu sendiri boleh menjadi kunci asalkan aturan kesamaannya benar (bagian 7).
+> Kunci dict harus *hashable*, yaitu punya kode *hash* yang tidak berubah. Teks, angka, dan *tuple* (yang isinya teks atau angka) boleh menjadi kunci, tetapi *list* tidak. Objek buatanmu sendiri boleh menjadi kunci asalkan aturan kesamaannya benar (bagian 7).
 
 ## 4. Menjelajahi Dict dan Menjaga Urutan
 
-File: [`contoh/contoh04_iterasi_dict.py`](contoh/contoh04_iterasi_dict.py)
+*File*: [`contoh/contoh04_iterasi_dict.py`](contoh/contoh04_iterasi_dict.py)
 
-Pola paling terkenal dari dict adalah **menghitung kemunculan**, misalnya menghitung suara pemilihan ketua himpunan.
+Pola paling terkenal dari dict adalah **menghitung kemunculan**, misalnya menghitung suara pemilihan ketua himpunan. Berikut isi lengkap *file*-nya (tanpa komentar pembuka):
 
 ```python
 def main():
@@ -289,9 +358,13 @@ def main():
     persen = {nama: jumlah * 100 // total for nama, jumlah in hitung.items()}  # [7]
     for nama, nilai in persen.items():
         print(f"{nama}: {nilai}%")
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === HASIL PEMILIHAN KETUA HIMPUNAN ===
@@ -314,22 +387,22 @@ Citra: 16%
 
 Penjelasan:
 
-- **[1]** Setiap isi list adalah satu suara.
+- **[1]** Setiap isi *list* adalah satu suara.
 - **[2]** Pola hitung: ambil jumlah lama (0 jika nama belum ada), tambah 1, lalu simpan lagi. Pola ini juga dipakai di `LaporanPenjualan`.
-- **[3]** `keys()` berisi kunci saja. Urutannya sesuai urutan kunci **pertama kali** dimasukkan: Bima dulu, karena suara pertama untuk Bima. Sejak Python 3.7, urutan ini **dijamin**.
+- **[3]** `keys()` berisi kunci saja. Urutannya sesuai urutan kunci **pertama kali** dimasukkan: Bima dulu karena suara pertama untuk Bima. Sejak Python 3.7, urutan ini **dijamin**.
 - **[4]** `values()` berisi nilai saja, cocok untuk dijumlahkan dengan `sum()`.
 - **[5]** `items()` berisi pasangan `(kunci, nilai)` yang bisa langsung dipecah menjadi dua variabel.
-- **[6]** `sorted(hitung.items())` mengurutkan pasangan berdasarkan kuncinya (nama A-Z). Hasilnya list baru; dict aslinya tetap.
-- **[7]** *Dict comprehension*: mirip list comprehension, tetapi menghasilkan pasangan `kunci: nilai`.
+- **[6]** `sorted(hitung.items())` mengurutkan pasangan berdasarkan kuncinya (nama A-Z). Hasilnya *list* baru; dict aslinya tetap.
+- **[7]** *Dict comprehension*: mirip *list comprehension*, tetapi menghasilkan pasangan `kunci: nilai`. Hitungan `jumlah * 100 // total` memakai pembagian bulat sehingga 1 dari 6 suara menjadi 16%, bukan 16,67%.
 
 > [!WARNING]
-> Jangan menambah atau menghapus kunci dict **sambil** menjelajahinya dengan `for`. Python akan berhenti dengan `RuntimeError: dictionary changed size during iteration`. Jelajahi salinan kuncinya (`for nama in list(stok):`), atau bentuk dict baru dengan comprehension.
+> Jangan menambah atau menghapus kunci dict **sambil** menjelajahinya dengan `for`. Python akan berhenti dengan `RuntimeError: dictionary changed size during iteration`. Jelajahi salinan kuncinya (`for nama in list(hitung):`), atau bentuk dict baru dengan *dict comprehension*.
 
-## 5. Mengurutkan dengan `key` dan Lambda
+## 5. Mengurutkan dengan `key` dan *Lambda*
 
-File: [`contoh/contoh05_sorting_key.py`](contoh/contoh05_sorting_key.py)
+*File*: [`contoh/contoh05_sorting_key.py`](contoh/contoh05_sorting_key.py)
 
-Toko online selalu punya tombol "Termurah", "Terlaris", dan "Rating". Datanya sama, aturan urutnya berbeda. Inilah **urutan khusus**. File ini berisi kelas `Produk` (`nama`, `harga`, `rating`, `terjual`) dan fungsi `tampilkan()` yang mencetak judul lalu setiap produk.
+Toko daring selalu punya tombol "Termurah", "Terlaris", dan "Rating". Datanya sama, aturan urutnya berbeda. Inilah **urutan khusus**. *File* ini berisi kelas `Produk` (`nama`, `harga`, `rating`, `terjual`) dan fungsi `tampilkan()` yang mencetak judul lalu setiap produk. Berikut potongan *file*-nya, mulai dari fungsi `ambil_harga()`:
 
 ```python
 def ambil_harga(produk: Produk) -> int:  # [1] fungsi biasa sebagai kunci
@@ -361,9 +434,9 @@ def main():
     print(f"Rating 5      : {', '.join(rating_5)}")
 ```
 
-Bagian URUTAN ASLI mencetak kelima produk persis sesuai urutan di list. Bagian berikutnya:
+Bagian URUTAN ASLI mencetak kelima produk persis sesuai urutan di *list*. Bagian berikutnya:
 
-**Output:**
+***Output:***
 
 ```text
 === TERMURAH ===
@@ -397,16 +470,16 @@ Rating 5      : Flashdisk 64GB, Headset Gaming
 
 Penjelasan:
 
-- **[1]** `key` membutuhkan sebuah **fungsi** yang menerima satu isi list dan mengembalikan nilai pembanding.
+- **[1]** `key` membutuhkan sebuah **fungsi** yang menerima satu isi *list* dan mengembalikan nilai pembanding.
 - **[2]** Fungsinya dikirim **tanpa** tanda kurung: `key=ambil_harga`. Kita menyerahkan fungsinya, bukan hasil memanggilnya. `sorted()` lalu memanggilnya untuk setiap produk.
-- **[3]** Menulis fungsi kecil seperti `ambil_harga` setiap kali terasa repot. **Lambda** adalah fungsi tanpa nama yang ditulis langsung di tempat. `reverse=True` membalik urutan menjadi terbesar dulu.
-- **[4]** Jika `key` mengembalikan **tuple**, Python membandingkan isi pertama dulu, lalu isi kedua jika seri. Tanda minus pada `-p.rating` membuat rating terbesar di depan, sementara harga tetap dari yang termurah.
+- **[3]** Menulis fungsi kecil seperti `ambil_harga` setiap kali terasa repot. ***Lambda*** adalah fungsi tanpa nama yang ditulis langsung di tempat. `reverse=True` membalik urutan menjadi terbesar dulu.
+- **[4]** Jika `key` mengembalikan ***tuple***, Python membandingkan isi pertama dulu, lalu isi kedua jika seri. Tanda minus pada `-p.rating` membuat rating terbesar di depan, sementara harga tetap dari yang termurah.
 - **[5]** Kunci berupa teks diurutkan menurut abjad.
 - **[6]** `min()` dan `max()` juga menerima `key`.
-- **[7]** `sorted()` selalu membuat list **baru**. List `daftar` tetap pada urutan aslinya.
-- **[8]** Bonus: list comprehension dengan syarat sekaligus mengambil nama.
+- **[7]** `sorted()` selalu membuat *list* **baru**. *List* `daftar` tetap pada urutan aslinya.
+- **[8]** Bonus: *list comprehension* dengan syarat sekaligus mengambil nama.
 
-Anatomi sebuah lambda:
+Anatomi sebuah *lambda* (bukan program, hanya sketsa untuk dibaca):
 
 ```text
 lambda p: p.terjual      <- kata kunci lambda, parameter p, lalu nilai yang dikembalikan
@@ -415,13 +488,13 @@ def tanpa_nama(p):       <- fungsi biasa yang artinya sama persis
 ```
 
 > [!IMPORTANT]
-> Bedakan `sorted(daftar)` dengan `daftar.sort()`. `sorted()` mengembalikan list **baru**. `daftar.sort()` mengurutkan list **itu sendiri** dan mengembalikan `None`. Kesalahan klasik: `hasil = daftar.sort()` lalu heran mengapa `hasil` berisi `None`.
+> Bedakan `sorted(daftar)` dengan `daftar.sort()`. `sorted()` mengembalikan *list* **baru**. `daftar.sort()` mengurutkan *list* **itu sendiri** dan mengembalikan `None`. Kesalahan klasik: `hasil = daftar.sort()` lalu heran mengapa `hasil` berisi `None`.
 
 ## 6. Urutan Alami dengan `__lt__`
 
-File: [`contoh/contoh06_urutan_alami.py`](contoh/contoh06_urutan_alami.py)
+*File*: [`contoh/contoh06_urutan_alami.py`](contoh/contoh06_urutan_alami.py)
 
-Untuk peserta lomba lari, urutan yang paling wajar selalu sama: yang tercepat di depan. Aturan baku seperti ini sebaiknya ditulis **di dalam kelas** `Pelari` sebagai urutan alami.
+Untuk peserta lomba lari, urutan yang paling wajar selalu sama: yang tercepat di depan. Aturan baku seperti ini sebaiknya ditulis **di dalam kelas** `Pelari` sebagai urutan alami. Kelas `Pelari` menyimpan nomor dada, nama, dan waktu tempuh dalam detik. Berikut potongan kelas itu, yaitu *method* `__lt__`:
 
 ```python
     def __lt__(self, lain: "Pelari") -> bool:  # [1] dipakai untuk a < b
@@ -430,7 +503,7 @@ Untuk peserta lomba lari, urutan yang paling wajar selalu sama: yang tercepat di
         return self._nomor < lain._nomor  # [2] waktu sama: nomor dada kecil dulu
 ```
 
-Program utamanya (setelah mencetak catatan panitia):
+Potongan `main()` berikutnya, setelah lima objek `Pelari` disimpan di *list* `hasil` dan dicetak sebagai catatan panitia:
 
 ```python
     print("=== PERINGKAT (urutan alami: tercepat dulu) ===")
@@ -452,7 +525,7 @@ Program utamanya (setelah mencetak catatan panitia):
     print(", ".join([p.nama for p in absensi]))
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === CATATAN PANITIA (urutan tiba di meja) ===
@@ -494,9 +567,9 @@ Penjelasan:
 
 ## 7. Kesamaan Objek: `__eq__` dan `__hash__`
 
-File: [`contoh/contoh07_kesamaan_objek.py`](contoh/contoh07_kesamaan_objek.py)
+*File*: [`contoh/contoh07_kesamaan_objek.py`](contoh/contoh07_kesamaan_objek.py)
 
-Kita bandingkan dua kelas. `PemilihPolos` tidak punya aturan kesamaan, sedangkan `Pemilih` (dengan *property* `nik` dan `nama`) menganggap dua pemilih sama jika NIK-nya sama:
+Kita bandingkan dua kelas. `PemilihPolos` tidak punya aturan kesamaan, sedangkan `Pemilih` (dengan *property* `nik` dan `nama`) menganggap dua pemilih sama jika NIK-nya sama. Berikut potongan kelas `Pemilih`:
 
 ```python
     def __eq__(self, lain) -> bool:  # [1] aturan kesamaan: bandingkan NIK
@@ -508,7 +581,7 @@ Kita bandingkan dua kelas. `PemilihPolos` tidak punya aturan kesamaan, sedangkan
         return hash(self._nik)
 ```
 
-Program utamanya mula-mula membuat dua `PemilihPolos` dengan data identik (`a1` dan `a2`), mencetak `ya_tidak(a1 == a2)` (penanda **[3]**), lalu jumlah isi set `{a1, a2}`. Setelah itu versi B:
+Program utamanya mula-mula membuat dua `PemilihPolos` dengan data identik (`a1` dan `a2`), mencetak `ya_tidak(a1 == a2)` (penanda **[3]**), lalu jumlah isi set `{a1, a2}`. Fungsi kecil `ya_tidak()` mengubah `True`/`False` menjadi teks "ya"/"tidak". Setelah itu, potongan `main()` untuk versi B:
 
 ```python
     print("=== VERSI B: SAMA JIKA NIK SAMA ===")
@@ -534,7 +607,7 @@ Program utamanya mula-mula membuat dua `PemilihPolos` dengan data identik (`a1` 
     print(f"Lokasi TPS        : {tps[pencari]}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === VERSI A: TANPA ATURAN KESAMAAN ===
@@ -556,17 +629,19 @@ Lokasi TPS        : TPS 12
 
 Penjelasan:
 
-- **[1]** `__eq__` dipanggil saat kita menulis `a == b`. Jika `lain` bukan `Pemilih`, kita mengembalikan nilai khusus `NotImplemented` ("aku tidak tahu cara membandingkannya"). Secara sederhana, Python lalu memakai aturan bawaannya, sehingga hasilnya tidak sama.
-- **[2]** `__hash__` dihitung dari **data yang sama** dengan `__eq__`, yaitu NIK. Cara termudah: pinjam kode hash milik teks NIK dengan `hash(self._nik)`. Nilai kode hash teks diacak setiap kali program berjalan, jadi kita hanya mencetak apakah keduanya **sama**.
+- **[1]** `__eq__` dipanggil saat kita menulis `a == b`. Jika `lain` bukan `Pemilih`, kita mengembalikan nilai khusus `NotImplemented` ("aku tidak tahu cara membandingkannya"). Secara sederhana, Python lalu memakai aturan bawaannya sehingga hasilnya tidak sama.
+- **[2]** `__hash__` dihitung dari **data yang sama** dengan `__eq__`, yaitu NIK. Cara termudah: pinjam kode *hash* milik teks NIK dengan `hash(self._nik)`. Nilai kode *hash* teks diacak setiap kali program berjalan, jadi kita hanya mencetak apakah keduanya **sama**.
 - **[3]** Tanpa `__eq__`, `==` hanya bernilai benar untuk objek yang sama persis. Set berisi dua "Budi".
 - **[4]** Kini `b1 == b2` bernilai benar walaupun keduanya **dua objek berbeda** (`b1 is b2` tetap salah).
 - **[5]** Saat `b2` ditambahkan, set menemukan `b1` di rak yang sama dan menganggapnya sudah ada. Yang tersimpan tetap `b1` ("Budi Santoso"), objek yang masuk lebih dulu.
-- **[6]** Objek `Pemilih` boleh menjadi kunci dict, karena punya `__hash__`.
+- **[6]** Objek `Pemilih` boleh menjadi kunci dict karena punya `__hash__`.
 - **[7]** `pencari` adalah objek **baru**, tetapi NIK-nya milik Siti. Pencarian di set dan dict tetap berhasil.
 
 ## 8. Kelas Generik dan Petunjuk Tipe
 
-File: [`contoh/contoh08_kelas_generik.py`](contoh/contoh08_kelas_generik.py)
+*File*: [`contoh/contoh08_kelas_generik.py`](contoh/contoh08_kelas_generik.py)
+
+Potongan bagian atas *file* ini (tepat setelah komentar pembuka):
 
 ```python
 from typing import Generic, TypeVar
@@ -591,7 +666,7 @@ class Kotak(Generic[T]):  # [2] kelas generik dengan satu parameter tipe
         return f"Kotak berisi {self._isi}"
 ```
 
-Di bawahnya ada kelas `KotakLama` tanpa petunjuk tipe sama sekali (hanya menyimpan `self.isi = isi`), lalu fungsi generik dan program utama:
+Di bawahnya ada kelas `KotakLama` tanpa petunjuk tipe sama sekali (hanya menyimpan `self.isi = isi`). Potongan berikutnya berisi fungsi generik dan program utama:
 
 ```python
 def pertama(daftar: list[T]) -> T:  # [4] fungsi generik
@@ -621,7 +696,7 @@ def main():
     print(f"Isi kotak lama: {kotak_lama.isi.upper()}")  # [6]
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === KOTAK GENERIK ===
@@ -643,15 +718,15 @@ Penjelasan:
 
 - **[1]** `TypeVar("T")` membuat **variabel tipe**. Seperti variabel biasa yang mewakili sebuah nilai, `T` mewakili sebuah **tipe** yang belum ditentukan.
 - **[2]** `Generic[T]` menandai `Kotak` sebagai kelas generik dengan satu parameter tipe.
-- **[3]** Di mana pun `T` ditulis, artinya "tipe yang sama dengan isi kotak ini".
-- **[4]** Fungsi juga bisa generik. `list[T] -> T` berarti "diberi list berisi teks, hasilnya teks; diberi list berisi angka, hasilnya angka".
+- **[3]** Setiap kali `T` ditulis di dalam kelas, artinya "tipe yang sama dengan isi kotak ini".
+- **[4]** Fungsi juga bisa generik. `list[T] -> T` berarti "diberi *list* berisi teks, hasilnya teks; diberi *list* berisi angka, hasilnya angka".
 - **[5]** `Kotak[int]` mengisi `T` dengan `int`. VS Code kini tahu bahwa `kotak_angka.isi` adalah angka dan menawarkan saran yang sesuai.
 - **[6]** `KotakLama` tanpa petunjuk tipe ternyata bekerja sama baiknya. Inilah poin pentingnya: **petunjuk tipe tidak mengubah cara program berjalan**.
 
 | Petunjuk tipe | Dibaca |
 |---|---|
-| `list[Menu]` | list berisi `Menu` |
-| `tuple[str, ...]` | tuple berisi teks, berapa pun panjangnya |
+| `list[Menu]` | *list* berisi `Menu` |
+| `tuple[str, ...]` | *tuple* berisi teks, berapa pun panjangnya |
 | `set[str]` | set berisi teks |
 | `dict[str, int]` | dict dengan kunci teks dan nilai angka |
 | `Menu \| None` | sebuah `Menu`, atau `None` |
@@ -659,46 +734,64 @@ Penjelasan:
 
 ### Python tidak memeriksa petunjuk tipe saat berjalan
 
-Misalkan file `cek_tipe.py` berisi kelas `Kotak` seperti di atas, lalu diakhiri dua baris yang mengisi `Kotak[int]` dengan teks:
+Mau membuktikannya? Buat *file* baru bernama `cek_tipe.py` di folder latihanmu, `PBO-latihan-saya/pertemuan-12/`, lalu ketik isi berikut. Isinya versi ringkas kelas `Kotak`, lalu dua baris terakhir yang **sengaja** mengisi `Kotak[int]` dengan teks:
 
 ```python
+from typing import Generic, TypeVar
+
+T = TypeVar("T")
+
+
+class Kotak(Generic[T]):
+    def __init__(self, isi: T):
+        self._isi = isi
+
+    def __str__(self) -> str:
+        return f"Kotak berisi {self._isi}"
+
+
 kotak_angka: Kotak[int] = Kotak("bukan angka")
 print(kotak_angka)
 ```
 
-Program tetap berjalan tanpa protes:
+Jalankan dari folder itu dengan `python cek_tipe.py`. Program tetap berjalan tanpa protes:
 
 ```text
 Kotak berisi bukan angka
 ```
 
-Kesalahan ini hanya tertangkap oleh **alat pemeriksa tipe**. VS Code (ekstensi Pylance) memberi garis bawah merah, dan mypy (`pip install mypy`, lalu `mypy cek_tipe.py`) melaporkan:
+Kesalahan ini hanya tertangkap oleh **alat pemeriksa tipe** (*type checker*), yaitu program terpisah yang membaca kodemu tanpa menjalankannya. Ada dua pilihan, dan keduanya opsional:
+
+- **VS Code (ekstensi Pylance)** memberi garis bawah merah pada `Kotak("bukan angka")`, lengkap dengan pesannya di panel **PROBLEMS**. Jika garis merah itu belum muncul, nyalakan dulu pemeriksaannya: tekan Ctrl+, (macOS: Cmd+,) untuk membuka **Settings**, ketik `type checking mode` di kotak pencarian, lalu ubah **Python › Analysis: Type Checking Mode** dari `off` menjadi `standard`.
+- **mypy** adalah alat pemeriksa tipe yang dipasang terpisah (bukan bawaan Python). Di terminal yang berada di folder `pertemuan-12`, pasang sekali dengan `python -m pip install mypy`, lalu jalankan `python -m mypy cek_tipe.py` (macOS/Linux: `python3 -m ...`). Hasilnya:
 
 ```text
 cek_tipe.py:14: error: Argument 1 to "Kotak" has incompatible type "str"; expected "int"  [arg-type]
 Found 1 error in 1 file (checked 1 source file)
 ```
 
+**Artinya:** di baris 14, argumen pertama untuk `Kotak` bertipe `str` (teks), padahal yang diharapkan `int` karena variabelnya diberi label `Kotak[int]`. Perhatikan bahwa programnya sendiri tetap bisa berjalan. Alat pemeriksa tipe hanya **memperingatkan**, tidak menghentikan program.
+
 > [!NOTE]
-> Contoh 09 (jebakan kelas pembungkus `Integer`) **khusus Java**, karena Python tidak punya tipe primitif seperti `int` di Java. Penjelasannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
+> Contoh 09 (jebakan kelas pembungkus `Integer`) **khusus Java** karena Python tidak punya tipe primitif seperti `int` di Java. Penjelasannya ada di [Jembatan Python ↔ Java bagian 6](../jembatan-python-java.md#6-generics-petunjuk-atau-aturan).
 
 ## 9. Studi Kasus KedaiKita
 
-File: [`studi-kasus/kedai.py`](studi-kasus/kedai.py), [`studi-kasus/menu.py`](studi-kasus/menu.py), [`studi-kasus/pasangan.py`](studi-kasus/pasangan.py), [`studi-kasus/laporan.py`](studi-kasus/laporan.py), dan [`studi-kasus/main.py`](studi-kasus/main.py)
+*File*: [`studi-kasus/kedai.py`](studi-kasus/kedai.py), [`studi-kasus/menu.py`](studi-kasus/menu.py), [`studi-kasus/pasangan.py`](studi-kasus/pasangan.py), [`studi-kasus/laporan.py`](studi-kasus/laporan.py), dan [`studi-kasus/main.py`](studi-kasus/main.py)
 
 Rancangan dan diagramnya sudah dibahas di [halaman konsep](../README.md#9-studi-kasus-kedaikita-apa-yang-kita-bangun-hari-ini).
 
 **Apa yang berubah dibanding Pertemuan 11?**
 
-- `kedai.py`: menu disimpan di **dict** (kode → `Menu`), kode ganda ditolak dengan `ValueError`, `cari_menu()` mencari langsung lewat kunci, dan ada empat method baru.
+- `kedai.py`: menu disimpan di **dict** (kode → `Menu`), kode ganda ditolak dengan `ValueError`, `cari_menu()` mencari langsung lewat kunci, dan ada empat *method* baru.
 - `menu.py`: kelas `Menu` mendapat `__eq__`, `__hash__`, dan `__lt__`.
-- File baru `pasangan.py` (kelas generik `Pasangan[A, B]`) dan `laporan.py` (kelas `LaporanPenjualan`).
+- *File* baru `pasangan.py` (kelas generik `Pasangan[A, B]`) dan `laporan.py` (kelas `LaporanPenjualan`).
 - `main.py` ditulis ulang untuk memamerkan filter, pengurutan, kesamaan objek, transaksi, dan laporan.
 - `pesanan.py`, `pembayaran.py`, `pengecualian.py`, `pelanggan.py`, `utilitas.py`, dan `dapat_dicetak.py` **tidak berubah**.
 
 ### `kedai.py`: menu kini di dalam dict
 
-Di konstruktor, atributnya kini `self._daftar_menu: dict[str, Menu] = {}` (kode → objek `Menu`). Method yang berubah dan yang baru:
+Di konstruktor, atributnya kini `self._daftar_menu: dict[str, Menu] = {}` (kode → objek `Menu`). Berikut potongan *method* yang berubah dan yang baru:
 
 ```python
     def tambah_menu(self, menu: Menu):
@@ -733,11 +826,13 @@ Di konstruktor, atributnya kini `self._daftar_menu: dict[str, Menu] = {}` (kode 
 
 - **`tambah_menu()`** memeriksa kunci dulu. Tanpa pemeriksaan ini, menu baru berkode sama akan **menimpa** menu lama secara diam-diam (ingat contoh 03).
 - **`cari_menu()`** tidak lagi memakai `for`. Kontraknya tetap sama dengan Pertemuan 11: jika kode tidak ada, ia melempar `MenuTidakDitemukanError`.
-- **`semua_menu()`** mengembalikan **salinan** berupa list, sehingga pemanggil bebas mengurutkannya tanpa merusak isi kedai (prinsip dari Pertemuan 05).
-- **`menu_berdasarkan_kategori()`** memakai list comprehension dengan syarat. **`daftar_kategori()`** mengumpulkan kategori ke dalam set agar unik, lalu `sorted()` mengubahnya menjadi list yang urut abjad.
-- Method lain menyesuaikan: `cetak()` menjelajahi `self._daftar_menu.values()`, dan `riwayat_pesanan()` mengembalikan salinan list pesanan.
+- **`semua_menu()`** mengembalikan **salinan** berupa *list* sehingga pemanggil bebas mengurutkannya tanpa merusak isi kedai (prinsip dari Pertemuan 05).
+- **`menu_berdasarkan_kategori()`** memakai *list comprehension* dengan syarat. **`daftar_kategori()`** mengumpulkan kategori ke dalam set agar unik, lalu `sorted()` mengubahnya menjadi *list* yang urut abjad.
+- *Method* lain menyesuaikan: `cetak()` menjelajahi `self._daftar_menu.values()`, dan `riwayat_pesanan()` mengembalikan salinan *list* pesanan.
 
 ### `menu.py` dan `pasangan.py`
+
+Potongan kelas `Menu` di `menu.py`, yaitu tiga *method* barunya:
 
 ```python
     def __eq__(self, lain) -> bool:
@@ -755,13 +850,13 @@ Di konstruktor, atributnya kini `self._daftar_menu: dict[str, Menu] = {}` (kode 
         return self._kode < lain._kode
 ```
 
-Dua menu dianggap sama jika **kodenya** sama. Kode adalah pilihan tepat, karena hanya bisa dibaca (tanpa *setter*) sejak Pertemuan 04, sehingga kode hash-nya tidak pernah berubah. Ketiga method ini diwarisi oleh `Makanan` dan `Minuman`.
+Dua menu dianggap sama jika **kodenya** sama. Kode adalah pilihan tepat karena kode hanya bisa dibaca (tanpa *setter*) sejak Pertemuan 04. Akibatnya, kode *hash*-nya tidak pernah berubah. Ketiga *method* ini diwarisi oleh `Makanan` dan `Minuman`.
 
 `pasangan.py` berisi kelas `Pasangan(Generic[A, B])` dengan dua `TypeVar`, dua *property* (`pertama` dan `kedua`), dan `__str__`. Polanya sama dengan `Kotak[T]` di contoh 08, hanya saja parameter tipenya **dua** dan boleh berbeda.
 
 ### `laporan.py`: koleksi bekerja bersama
 
-Konstruktornya hanya menyimpan pesanan **lunas**: `[p for p in daftar_pesanan if p.status == "LUNAS"]`. Method `jumlah_terjual()` memakai pola hitung dari contoh 04 (nama menu → total porsi), lalu dipakai oleh:
+Konstruktornya hanya menyimpan pesanan **lunas**: `[p for p in daftar_pesanan if p.status == "LUNAS"]`. *Method* `jumlah_terjual()` memakai pola hitung dari contoh 04 (nama menu → total porsi), lalu dipakai oleh *method* berikut (potongan dari `laporan.py`):
 
 ```python
     def menu_terlaris(self, n: int = 3) -> list[Pasangan[str, int]]:
@@ -772,10 +867,12 @@ Konstruktornya hanya menyimpan pesanan **lunas**: `[p for p in daftar_pesanan if
         return daftar[:n]
 ```
 
-- **`menu_terlaris()`** mengubah setiap pasangan dict menjadi objek `Pasangan[str, int]`, lalu mengurutkannya dengan key tuple: porsi terbanyak dulu, jika seri nama A-Z. Potongan `daftar[:n]` mengambil `n` teratas.
+- **`menu_terlaris()`** mengubah setiap pasangan dict menjadi objek `Pasangan[str, int]`, lalu mengurutkannya dengan `key` berupa *tuple*: porsi terbanyak dulu; jika seri, nama A-Z. Potongan `daftar[:n]` mengambil `n` teratas.
 - **`pendapatan_per_kategori()`** menjumlahkan subtotal per kategori dengan pola yang sama, lalu mengembalikan `dict(sorted(hasil.items()))`. Karena dict menjaga urutan masuk, hasilnya urut abjad kategori.
 
 ### `main.py`: memakai semuanya
+
+Potongan dari `main.py`, yaitu fungsi pembantu `transaksi()`:
 
 ```python
 def transaksi(kedai: Kedai, pelanggan: Pelanggan,
@@ -792,11 +889,11 @@ def transaksi(kedai: Kedai, pelanggan: Pelanggan,
     return pesanan
 ```
 
-Fungsi ini menerima daftar belanja berupa `list[Pasangan[str, int]]`, misalnya `[Pasangan("M01", 2), Pasangan("M03", 1)]`. Semua error kedai ditangkap sekaligus lewat induknya, `KedaiError` (Pertemuan 11). Di `main()`, urut harga ditulis `sorted(kedai.semua_menu())` (urutan alami, memakai `__lt__`), sedangkan urut nama ditulis `sorted(kedai.semua_menu(), key=lambda m: m.nama)`.
+Fungsi ini menerima daftar belanja berupa `list[Pasangan[str, int]]`, misalnya `[Pasangan("M01", 2), Pasangan("M03", 1)]`. Semua *error* kedai ditangkap sekaligus lewat induknya, `KedaiError` (Pertemuan 11). Di `main()`, urut harga ditulis `sorted(kedai.semua_menu())` (urutan alami, memakai `__lt__`), sedangkan urut nama ditulis `sorted(kedai.semua_menu(), key=lambda m: m.nama)`.
 
-Jalankan `python main.py` dari dalam folder `studi-kasus`. Program dimulai dengan mencetak lima menu lewat `kedai.cetak()`. Bagian berikutnya:
+Jalankan studi kasusnya seperti di [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus): `python main.py` dari dalam folder `studi-kasus`. Program dimulai dengan mencetak lima menu lewat `kedai.cetak()`. Bagian berikutnya:
 
-**Output:**
+***Output:***
 
 ```text
 === KATEGORI UNIK ===
@@ -831,7 +928,7 @@ Objek yang sama persis? tidak
 
 Setelah itu tercetak lima transaksi. Empat berhasil, sedangkan pesanan P005 milik Andi gagal karena saldo QRIS-nya kurang. Bagian penutupnya:
 
-**Output:**
+***Output:***
 
 ```text
 Pembayaran pesanan P005 (Andi Wijaya)
@@ -857,23 +954,25 @@ Minuman                        Rp104.000
 ========================================
 ```
 
-- **Kesamaan objek**: `kopi_b` adalah objek baru, tetapi kodenya M01, sehingga `==` menjawab "ya" sementara `is` menjawab "tidak".
+- **Kesamaan objek**: `kopi_b` adalah objek baru, tetapi kodenya M01 sehingga `==` menjawab "ya", sedangkan `is` menjawab "tidak".
 - **Pesanan P005** tetap berstatus BARU. Pesanan itu tercatat di riwayat (5 pesanan), tetapi tidak ikut dihitung di laporan (4 pesanan lunas).
-- **Total pendapatan** Rp167.000 adalah 61.000 + 31.000 + 41.000 + 34.000. Biaya layanan kartu (Rp620) tidak ikut, karena `hitung_total()` hanya menjumlahkan harga item.
+- **Total pendapatan** Rp167.000 adalah Rp61.000 + Rp31.000 + Rp41.000 + Rp34.000 (pesanan P001 sampai P004). Biaya layanan kartu (Rp620) tidak ikut karena `hitung_total()` hanya menjumlahkan harga item.
 
 > [!TIP]
-> **Coba sendiri:** tambahkan `print(len({kopi_a, kopi_b}))` di bagian KESAMAAN OBJEK. Berapa hasilnya, dan mengapa?
+> **Coba sendiri:** salin seluruh folder `studi-kasus` ke folder latihanmu, `PBO-latihan-saya/pertemuan-12/`. Di salinan itu, buka `main.py` dan cari baris `print(f"Objek yang sama persis? {ya_tidak(kopi_a is kopi_b)}")`. Tepat di bawahnya, tambahkan baris `print(len({kopi_a, kopi_b}))` dengan indentasi yang sama (4 spasi). Simpan, lalu jalankan `python main.py` dari folder `studi-kasus` salinanmu. Angka berapa yang muncul di bawah baris "Objek yang sama persis? tidak", dan mengapa?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Hasilnya `1`. Keduanya punya kode yang sama, sehingga `__hash__` dan `__eq__` menganggapnya satu menu yang sama.
+Angka yang muncul adalah `1`. Set `{kopi_a, kopi_b}` hanya berisi satu menu karena keduanya punya kode yang sama: `__hash__` mengantar keduanya ke rak yang sama, lalu `__eq__` menyatakan keduanya sama sehingga `kopi_b` diabaikan.
 
 </details>
 
-## 10. Kesalahan Umum dan Cara Membaca Pesan Error
+## 10. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-Ingat, pesan error Python dibaca **dari bawah ke atas**. Baris paling bawah menyebut jenis error dan penyebabnya.
+Ingat, pesan *error* Python dibaca **dari bawah ke atas**. Baris paling bawah menyebut jenis *error* dan penyebabnya.
+
+Kode di bagian ini **sengaja dibuat salah**. Jika ingin mencobanya, buat *file*-nya di folder latihanmu (`PBO-latihan-saya/pertemuan-12/`) dengan nama seperti di pesan *error* (`salah1.py`, `salah2.py`, `salah3.py`), salin kodenya, lalu jalankan dari folder itu. Jangan menaruhnya di folder materi.
 
 ### Kesalahan 1: Membaca kunci yang tidak ada
 
@@ -881,6 +980,8 @@ Ingat, pesan error Python dibaca **dari bawah ke atas**. Baris paling bawah meny
 data = {"2409106001": "Ayu Lestari"}
 print(data["2409106099"])
 ```
+
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
@@ -904,6 +1005,8 @@ class Pelari:
 hasil = [Pelari("Rudi", 1290), Pelari("Maya", 1125)]
 print(sorted(hasil))
 ```
+
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
@@ -930,6 +1033,8 @@ dpt = set()
 dpt.add(Pemilih("6472010000000001"))
 ```
 
+Pesan *error*-nya:
+
 ```text
 Traceback (most recent call last):
   File "salah3.py", line 10, in <module>
@@ -938,27 +1043,33 @@ Traceback (most recent call last):
 TypeError: unhashable type: 'Pemilih'
 ```
 
-**Artinya:** begitu `__eq__` ditulis, Python mencabut kode hash bawaan kelas itu. Ini perlindungan agar aturan "sama berarti hash sama" tidak dilanggar diam-diam. **Perbaikan:** tambahkan `__hash__` dari data yang sama: `return hash(self.nik)`. Pesan serupa (`unhashable type: 'list'`) muncul jika kamu memakai list sebagai kunci dict.
+Di Python 3.14 ke atas, baris terakhirnya lebih panjang, tetapi intinya sama:
+
+```text
+TypeError: cannot use 'Pemilih' as a set element (unhashable type: 'Pemilih')
+```
+
+**Artinya:** begitu `__eq__` ditulis, Python mencabut kode *hash* bawaan kelas itu. Ini perlindungan agar aturan "sama berarti *hash* sama" tidak dilanggar diam-diam. **Perbaikan:** tambahkan `__hash__` dari data yang sama: `return hash(self.nik)`. Pesan serupa (`unhashable type: 'list'`) muncul jika kamu memakai *list* sebagai kunci dict.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python. Pesan di atas berasal dari Python 3.13. Tanda `~~~^^^` hanya muncul di Python 3.11 ke atas, dan versi yang lebih baru bisa menulis pesan *unhashable* dengan kalimat yang lebih panjang. Fokuslah pada **jenis error** dan kata kuncinya.
+> Bunyi pesan *error* bisa sedikit berbeda antarversi Python. Pesan di atas berasal dari Python 3.13. Tanda `~~~^^^` hanya muncul di Python 3.11 ke atas. Fokuslah pada **jenis *error*** (`KeyError`, `TypeError`) dan kata kuncinya.
 
 ## 📝 Ringkasan Sintaks
 
 | Konsep | Sintaks Python | Contoh |
 |---|---|---|
-| List / tuple | `[a, b]` / `(a, b)` | `hari = ("Senin", "Rabu")` |
+| *List* / *tuple* | `[a, b]` / `(a, b)` | `hari = ("Senin", "Rabu")` |
 | Set / set kosong | `{a, b}` / `set()` | `peserta = set(pendaftar)` |
 | Dict / dict kosong | `{k: v}` / `{}` | `data[nim] = mhs` |
 | Ambil dengan cadangan | `d.get(k, cadangan)` | `hitung.get(nama, 0)` |
 | Jelajah dict | `for k, v in d.items():` | `for nama, jumlah in hitung.items():` |
-| List comprehension | `[ekspresi for x in xs if syarat]` | `[p.nama for p in daftar if p.rating == 5]` |
-| Dict comprehension | `{k: v for k, v in d.items()}` | `{n: j * 100 // total for n, j in hitung.items()}` |
-| Urutkan (list baru) | `sorted(xs, key=..., reverse=...)` | `sorted(daftar, key=lambda p: p.harga)` |
-| Urutkan list itu sendiri | `xs.sort(key=...)` | `daftar.sort(key=lambda p: (-p.kedua, p.pertama))` |
-| Lambda | `lambda parameter: nilai` | `lambda m: m.nama` |
+| *List comprehension* | `[ekspresi for x in xs if syarat]` | `[p.nama for p in daftar if p.rating == 5]` |
+| *Dict comprehension* | `{k: v for k, v in d.items()}` | `{n: j * 100 // total for n, j in hitung.items()}` |
+| Urutkan (*list* baru) | `sorted(xs, key=..., reverse=...)` | `sorted(daftar, key=lambda p: p.harga)` |
+| Urutkan *list* itu sendiri | `xs.sort(key=...)` | `daftar.sort(key=lambda p: (-p.kedua, p.pertama))` |
+| *Lambda* | `lambda parameter: nilai` | `lambda m: m.nama` |
 | Urutan alami | `def __lt__(self, lain) -> bool:` | `return self._harga < lain._harga` |
-| Kesamaan + hash | `__eq__` + `__hash__` | `return hash(self._kode)` |
+| Kesamaan + *hash* | `__eq__` + `__hash__` | `return hash(self._kode)` |
 | Kelas generik | `class K(Generic[T]):` | `class Pasangan(Generic[A, B]):` |
 | Petunjuk tipe koleksi | `list[T]`, `dict[K, V]`, `set[T]` | `dict[str, Menu]` |
 

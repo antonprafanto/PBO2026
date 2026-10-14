@@ -1,30 +1,51 @@
-# Latihan — Pertemuan 14: Design Pattern Dasar
+# Latihan Pertemuan 14: *Design Pattern* Dasar
 
 [⬅️ Konsep](README.md) · [🏠 Beranda](../README.md) · [Kuis ➡️](kuis.md)
 
 **Cara mengerjakan:**
 
-1. Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
-2. Buat file baru untuk setiap latihan, lalu jalankan dan bandingkan output-mu dengan **contoh output** di soal.
-3. Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri.
-4. Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
+1. **Pilih bahasa.** Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
+2. **Siapkan folder jawabanmu.** Simpan jawaban di folder milikmu sendiri **di luar** folder materi, misalnya `Documents/PBO-latihan-saya/pertemuan-14`. Jangan menyimpannya di dalam folder `PBO2026`: perubahanmu bisa bentrok saat materi diperbarui, dan di jalur Java nama kelasmu bisa bentrok dengan kelas di folder `solusi` atau `studi-kasus`.
+
+   ```text
+   Documents/
+   ├── PBO2026/                           <- materi (jangan diubah)
+   └── PBO-latihan-saya/
+       └── pertemuan-14/                  <- jawabanmu di sini
+           ├── latihan01_mesin_antrean.py <- jalur Python
+           ├── Latihan01MesinAntrean.java <- jalur Java
+           └── studi-kasus/               <- salinan studi kasus (Latihan 5 dan 6)
+   ```
+
+3. **Buat satu *file* untuk setiap latihan.** Beri nama yang sama dengan *file* solusinya agar mudah dibandingkan, misalnya `latihan01_mesin_antrean.py` atau `Latihan01MesinAntrean.java`.
+   - Python: tulis kelas, fungsi `main()`, dan dua baris penutup `if __name__ == "__main__":` lalu `main()`, seperti di contoh.
+   - Java: nama *file* harus sama dengan nama kelas `public` yang berisi `main`, dan kelas itu ditulis paling atas. Kelas lain ditulis di bawahnya **tanpa** `public`.
+   - Latihan 5 dan 6 (KedaiKita) dikerjakan di salinan **seluruh** folder `studi-kasus` milikmu, seperti yang dijelaskan di soalnya. Boleh juga sebagai satu *file* mandiri seperti solusinya; di jalur Java, *file* mandiri itu tidak boleh memakai nama kelas studi kasus (`Menu`, `Pesanan`, `Diskon`, dan seterusnya).
+4. **Jalankan *file*-mu.**
+   - Lewat VS Code: buka folder `pertemuan-14` (**File → Open Folder**), buka *file*-nya, lalu klik ▷ (Python) atau **Run** di atas baris `public static void main` (Java).
+   - Lewat terminal: terminal VS Code di jendela itu sudah berada di folder `pertemuan-14`. Dari terminal lain, masuk dulu dengan `cd Documents\PBO-latihan-saya\pertemuan-14` (Windows) atau `cd ~/Documents/PBO-latihan-saya/pertemuan-14` (macOS/Linux). Setelah itu, ketik `python latihan01_mesin_antrean.py` (macOS/Linux: `python3 latihan01_mesin_antrean.py`) atau `java Latihan01MesinAntrean.java`.
+   - Untuk salinan studi kasus, masuk dulu ke foldernya dengan `cd studi-kasus`, lalu jalankan `python main.py`, atau `javac *.java` disusul `java Main`.
+5. **Bandingkan hasilnya.** Cocokkan *output*-mu dengan **contoh *output*** di soal, baris demi baris. Spasi, huruf besar-kecil, dan tanda baca sebaiknya sama persis.
+6. **Baru lihat solusi.** Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri: klik tautan **Solusi** di bawah setiap latihan untuk membaca kodenya, atau jalankan *file* solusinya dari folder `python/solusi` atau `java/solusi` pertemuan ini (caranya sama dengan menjalankan contoh di halaman praktik). *Output* setiap solusi sama persis dengan contoh *output* di soal.
+
+Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
 
 > [!TIP]
-> Sebelum menulis kode, sebutkan dulu **peran** setiap kelas: mana Singleton-nya, mana factory dan produknya, mana *context* dan strateginya, mana *subject* dan pengamatnya. Jika perannya sudah jelas, kodenya biasanya mengalir dengan sendirinya.
+> Sebelum menulis kode, sebutkan dulu **peran** setiap kelas: mana *Singleton*-nya, mana *factory* dan produknya, mana *context* dan strateginya, mana *subject* dan pengamatnya. Jika perannya sudah jelas, kodenya biasanya mengalir dengan sendirinya.
 
 ---
 
-## Latihan 1 — Mesin Antrean (⭐ Dasar)
+## Latihan 1: Mesin Antrean (⭐ Dasar)
 
-**Tujuan:** menerapkan pola Singleton.
+**Tujuan:** menerapkan pola *Singleton*.
 
 **Soal:** Sebuah kantor pelayanan punya dua pintu masuk, Pintu Utara dan Pintu Selatan. Di setiap pintu ada tombol pengambil nomor, tetapi semua tombol harus terhubung ke **satu** mesin antrean agar nomornya tidak pernah kembar.
 
-- Buat kelas Singleton `MesinAntrean` dengan method `ambil_nomor()` / `ambilNomor()` yang mengembalikan nomor berformat `A001`, `A002`, dan seterusnya, serta `jumlah_dibagikan()` / `jumlahDibagikan()`.
-- Buat kelas `TombolAntrean(lokasi)` dengan method `tekan()` yang meminta nomor dari mesin lewat `get_instance()` / `getInstance()` lalu mencetaknya.
+- Buat kelas *Singleton* `MesinAntrean` dengan *method* `ambil_nomor()` / `ambilNomor()` yang mengembalikan nomor berformat `A001`, `A002`, dan seterusnya, serta `jumlah_dibagikan()` / `jumlahDibagikan()`.
+- Buat kelas `TombolAntrean(lokasi)` dengan *method* `tekan()` yang meminta nomor dari mesin lewat `get_instance()` / `getInstance()` lalu mencetaknya.
 - Tekan tombol berurutan: Utara, Utara, Selatan, Utara, Selatan. Lalu buktikan bahwa mesinnya objek yang sama.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === PENGUNJUNG MENGAMBIL NOMOR ===
@@ -42,7 +63,7 @@ Total nomor dibagikan: 5
 <details>
 <summary>💡 Petunjuk</summary>
 
-- Tiru struktur `Konfigurasi` di contoh 01: atribut kelas/field `static` untuk objeknya, penjaga di `__init__` (Python) atau konstruktor `private` (Java).
+- Tiru struktur `Konfigurasi` di contoh 01: atribut kelas/*field* `static` untuk objeknya, penjaga di `__init__` (Python) atau konstruktor `private` (Java).
 - Format nomor: `f"A{n:03d}"` di Python, `String.format("A%03d", n)` di Java.
 - Lokasi dirapikan 14 kolom: `f"{lokasi:<14}"` atau `String.format("%-14s", lokasi)`.
 
@@ -52,11 +73,11 @@ Total nomor dibagikan: 5
 
 ---
 
-## Latihan 2 — Factory Bangun Datar (⭐ Dasar)
+## Latihan 2: *Factory* Bangun Datar (⭐ Dasar)
 
-**Tujuan:** menerapkan Simple Factory dengan produk abstrak.
+**Tujuan:** menerapkan *Simple Factory* dengan produk abstrak.
 
-**Soal:** Buat kelas abstrak `Bentuk` dengan method abstrak `nama()` dan `luas()` (bilangan bulat), lalu tiga kelas konkret: `Persegi(sisi)`, `PersegiPanjang(panjang, lebar)`, dan `Segitiga(alas, tinggi)`. Buat `BentukFactory.buat(jenis, a, b)` yang tidak peka huruf besar/kecil dan menolak jenis yang tidak dikenal. Program utama membuat bentuk dari daftar pesanan berikut, melewati yang ditolak, lalu menjumlahkan luasnya.
+**Soal:** Buat kelas abstrak `Bentuk` dengan *method* abstrak `nama()` dan `luas()` (bilangan bulat), lalu tiga kelas konkret: `Persegi(sisi)`, `PersegiPanjang(panjang, lebar)`, dan `Segitiga(alas, tinggi)`. Buat `BentukFactory.buat(jenis, a, b)` yang tidak peka huruf besar/kecil dan menolak jenis yang tidak dikenal. Program utama membuat bentuk dari daftar pesanan berikut, melewati yang ditolak, lalu menjumlahkan luasnya.
 
 | Jenis (teks) | a | b |
 |---|---|---|
@@ -65,7 +86,7 @@ Total nomor dibagikan: 5
 | `SEGITIGA` | 6 | 4 |
 | `lingkaran` | 7 | 0 |
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === MEMBUAT BENTUK DARI PILIHAN TEKS ===
@@ -90,11 +111,11 @@ Total luas bentuk yang berhasil dibuat: 61
 
 ---
 
-## Latihan 3 — Strategy Pengurutan Mahasiswa (⭐⭐ Menengah)
+## Latihan 3: *Strategy* Pengurutan Mahasiswa (⭐⭐ Menengah)
 
 **Tujuan:** menukar algoritma pengurutan saat program berjalan.
 
-**Soal:** Buat kelas `Mahasiswa(nim, nama, nilai)` dan kontrak `StrategiUrut` dengan method `nama()` serta `urutkan(daftar)` yang mengembalikan list **baru**. Buat tiga strategi: `UrutNim`, `UrutNama` (A–Z), dan `UrutNilai` (nilai tertinggi dulu; jika sama, nama A–Z). Kelas *context* `DaftarPeringkat` menyimpan satu strategi, bisa ditukar lewat `atur_strategi()` / `aturStrategi()`, dan punya method `tampilkan()`. Data:
+**Soal:** Buat kelas `Mahasiswa(nim, nama, nilai)` dan kontrak `StrategiUrut` dengan *method* `nama()` serta `urutkan(daftar)` yang mengembalikan *list* **baru**. Buat tiga strategi: `UrutNim`, `UrutNama` (A—Z), dan `UrutNilai` (nilai tertinggi dulu; jika sama, nama A—Z). Kelas *context* `DaftarPeringkat` menyimpan satu strategi, bisa ditukar lewat `atur_strategi()` / `aturStrategi()`, dan punya *method* `tampilkan()`. Data:
 
 | NIM | Nama | Nilai |
 |---|---|---|
@@ -103,7 +124,7 @@ Total luas bentuk yang berhasil dibuat: 61
 | 2409106001 | Citra Dewi | 85 |
 | 2409106003 | Dimas Pratama | 78 |
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === URUT: NIM TERKECIL ===
@@ -139,18 +160,18 @@ Total luas bentuk yang berhasil dibuat: 61
 
 ---
 
-## Latihan 4 — Observer Stok Gudang (⭐⭐ Menengah)
+## Latihan 4: *Observer* Stok Gudang (⭐⭐ Menengah)
 
-**Tujuan:** menerapkan Observer dengan gaya *push*.
+**Tujuan:** menerapkan *Observer* dengan gaya *push*.
 
 **Soal:** Sebuah gudang sembako ingin pemasok dan admin langsung tahu saat stok menipis.
 
-- Kontrak `PengamatGudang` punya satu method: `stok_menipis(nama_barang, sisa)` / `stokMenipis(namaBarang, sisa)`.
+- Kontrak `PengamatGudang` punya satu *method*: `stok_menipis(nama_barang, sisa)` / `stokMenipis(namaBarang, sisa)`.
 - Dua pengamat: `Pemasok(nama)` dan `AdminGudang` (menghitung jumlah peringatan).
-- *Subject* `Gudang` menyimpan stok (dict/`LinkedHashMap`) dan daftar pengamat. Method `ambil(nama_barang, jumlah)` mengurangi stok, mencetak sisa, lalu memberi kabar ke semua pengamat **jika sisa di bawah 10**.
+- *Subject* `Gudang` menyimpan stok (*dict* di Python, `LinkedHashMap` di Java) dan daftar pengamat. *Method* `ambil(nama_barang, jumlah)` mengurangi stok, mencetak sisa, lalu memberi kabar ke semua pengamat **jika sisa di bawah 10**.
 - Stok awal: Beras 50, Gula 20, Minyak 15. Lalu ambil Beras 30, Gula 12, Minyak 3, Gula 5.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === TRANSAKSI GUDANG (BATAS MINIMUM 10) ===
@@ -171,7 +192,7 @@ Peringatan yang dicatat admin: 2
 <summary>💡 Petunjuk</summary>
 
 - Batas minimum cocok dijadikan konstanta kelas: `BATAS_MINIMUM = 10`.
-- Pisahkan pemberian kabar ke method tersendiri, misalnya `_beri_kabar()` / `beriKabar()`, seperti `KanalVideo` di contoh 07.
+- Pisahkan pemberian kabar ke *method* tersendiri, misalnya `_beri_kabar()` / `beriKabar()`, seperti `KanalVideo` di contoh 07.
 - Gudang tidak boleh tahu kelas `Pemasok` atau `AdminGudang`; ia hanya mengenal `PengamatGudang`.
 
 </details>
@@ -180,13 +201,13 @@ Peringatan yang dicatat admin: 2
 
 ---
 
-## Latihan 5 — KedaiKita: Diskon Pelajar (⭐⭐ Menengah)
+## Latihan 5 (KedaiKita): Diskon Pelajar (⭐⭐ Menengah)
 
 **Tujuan:** menambah strategi baru di KedaiKita tanpa mengubah kelas pesanan.
 
-**Soal:** KedaiKita ingin memberi potongan untuk pelajar: **10% dari subtotal, paling banyak Rp5.000**. Buat strategi `DiskonPelajar` dengan keterangan `Pelajar 10%`. Di salinan studi kasusmu sendiri, cukup tambahkan kelas itu ke `diskon.py` (Java: file `DiskonPelajar.java` yang meng-*implements* `Diskon`), lalu bandingkan dengan `TanpaDiskon` dan `DiskonHappyHour` pada dua pesanan: (1) 2 Es Teh Manis + 1 Pisang Goreng Keju, (2) 2 Kopi Susu Gula Aren + 1 Mie Goreng Jawa. Pajak 10% dihitung dari subtotal setelah diskon.
+**Soal:** KedaiKita ingin memberi potongan untuk pelajar: **10% dari subtotal, paling banyak Rp5.000**. Buat strategi `DiskonPelajar` dengan keterangan `Pelajar 10%`. Di salinan studi kasusmu sendiri, cukup tambahkan kelas itu ke `diskon.py` (Java: *file* `DiskonPelajar.java` yang meng-*implements* `Diskon`). Lalu, di `main.py` atau `Main.java` salinanmu, bandingkan strategi itu dengan `TanpaDiskon` dan `DiskonHappyHour` pada dua pesanan, mirip bagian *Strategy* di studi kasus: (1) 2 Es Teh Manis + 1 Pisang Goreng Keju, (2) 2 Kopi Susu Gula Aren + 1 Mie Goreng Jawa. Pajak 10% dihitung dari subtotal setelah diskon.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === 2 ES TEH MANIS + 1 PISANG GORENG KEJU ===
@@ -217,15 +238,15 @@ Perhatikan pesanan kedua: 10% dari Rp59.000 adalah Rp5.900, tetapi potongannya d
 
 ---
 
-## Latihan 6 — KedaiKita: Pengamat Stok (⭐⭐⭐ Tantangan)
+## Latihan 6 (KedaiKita): Pengamat Stok (⭐⭐⭐ Tantangan)
 
 **Tujuan:** menambah pengamat baru bergaya *pull* tanpa mengubah *subject*.
 
-**Soal:** Dapur KedaiKita sering kehabisan bahan tanpa sadar. Buat pengamat `PengamatStok(batas)` yang hanya bereaksi saat status pesanan menjadi `LUNAS`. Saat itu, ia **menarik** daftar item dari pesanan dan memeriksa stok setiap menunya. Jika stok kurang dari atau sama dengan `batas`, cetak `[STOK] Peringatan: <nama menu> tinggal <n> porsi`. Status lain diabaikan.
+**Soal:** Dapur KedaiKita sering kehabisan bahan tanpa sadar. Buat pengamat `PengamatStok(batas)` yang hanya bereaksi saat status pesanan menjadi `LUNAS`. Saat itu, ia **menarik** daftar item dari pesanan dan memeriksa stok setiap menunya. Jika stok kurang dari atau sama dengan `batas`, cetak `[STOK] Peringatan: <nama menu> tinggal <n> porsi`. Status lain diabaikan. Di salinan studi kasusmu, tambahkan kelas ini ke `notifikasi.py` (Java: *file* baru `PengamatStok.java` yang meng-*implements* `PengamatPesanan`).
 
-Skenario (batas 5): stok awal Kopi Susu Gula Aren 20, Nasi Goreng Kampung 6, Pisang Goreng Keju 5. Pesanan P001 berisi 2 kopi dan 3 nasi goreng, lalu berstatus `LUNAS` dan `DIPROSES`. Pesanan P002 berisi 1 kopi dan 1 pisang goreng, lalu `LUNAS`. Setiap pesanan juga diamati sebuah layar yang mencetak setiap perubahan status.
+Skenario (batas 5): stok awal Kopi Susu Gula Aren 20, Nasi Goreng Kampung 6, Pisang Goreng Keju 5. Pesanan P001 berisi 2 kopi dan 3 nasi goreng, lalu berstatus `LUNAS` dan `DIPROSES`. Pesanan P002 berisi 1 kopi dan 1 pisang goreng, lalu `LUNAS`. Setiap pesanan juga diamati sebuah layar yang mencetak setiap perubahan status. Agar *output*-mu sama dengan contoh, ubah statusnya langsung dengan `ubah_status()` / `ubahStatus()`, tanpa `bayar()`. Alasannya, `bayar()` mencetak baris pembayaran tambahan.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === PESANAN P001 ===
@@ -251,7 +272,7 @@ Pisang Goreng Keju    4 porsi
 - Ingat urutan di studi kasus: stok berkurang saat item **ditambahkan** ke pesanan, bukan saat dibayar.
 - Langkah pertama `perbarui()`: jika status bukan `LUNAS`, langsung `return`.
 - Satu objek `PengamatStok` boleh didaftarkan ke banyak pesanan sekaligus.
-- Solusi memakai versi **mini** studi kasus dengan nama `MenuStok`, `BarisPesanan`, `PesananKedai`, `PengamatStatus`, dan `LayarPesanan`, agar bisa dijalankan sendiri dan tidak bentrok dengan kelas studi kasus di folder Java.
+- Solusi memakai versi **mini** studi kasus dengan nama `MenuStok`, `BarisPesanan`, `PesananKedai`, `PengamatStatus`, dan `LayarPesanan` agar bisa dijalankan sendiri dan tidak bentrok dengan kelas studi kasus di folder Java.
 
 </details>
 
@@ -259,7 +280,7 @@ Pisang Goreng Keju    4 porsi
 
 ---
 
-## Tugas Mandiri (dikumpulkan, tanpa kunci jawaban)
+## Tugas Mandiri (Dikumpulkan, tanpa Kunci Jawaban)
 
 ### Aplikasi Pemesanan Lapangan Futsal
 
@@ -267,21 +288,21 @@ GOR futsal di dekat kampus ingin aplikasi pemesanan lapangan sederhana. Rancang 
 
 **Kebutuhan:**
 
-1. **Singleton** `PengaturanGor`: nama GOR, alamat, jam buka, dan jam tutup. Semua bagian program membaca pengaturan dari objek yang sama.
-2. **Factory** `LapanganFactory.buat(jenis)`: membuat `LapanganVinyl` atau `LapanganSintetis` dari teks, masing-masing dengan tarif dasar per jam yang berbeda. Jenis yang tidak dikenal harus ditolak dengan *exception*.
-3. **Strategy** tarif: minimal tiga aturan, misalnya `TarifSiang`, `TarifMalam` (lebih mahal), dan `TarifMember` (potongan). Aturan tarif sebuah pemesanan bisa ditukar sebelum dibayar.
-4. **Observer**: `Pemesanan` (subject) punya status `BARU`, `DIKONFIRMASI`, `SELESAI`, atau `DIBATALKAN`. Setiap perubahan status memberi kabar ke minimal dua pengamat, misalnya `NotifikasiPemesan` dan `PapanJadwal`.
+1. ***Singleton*** `PengaturanGor`: nama GOR, alamat, jam buka, dan jam tutup. Semua bagian program membaca pengaturan dari objek yang sama.
+2. ***Factory*** `LapanganFactory.buat(jenis)`: membuat `LapanganVinyl` atau `LapanganSintetis` dari teks, masing-masing dengan tarif dasar per jam yang berbeda. Jenis yang tidak dikenal harus ditolak dengan *exception*.
+3. ***Strategy*** tarif: minimal tiga aturan, misalnya `TarifSiang`, `TarifMalam` (lebih mahal), dan `TarifMember` (potongan). Aturan tarif sebuah pemesanan bisa ditukar sebelum dibayar.
+4. ***Observer***: `Pemesanan` (*subject*) punya status `BARU`, `DIKONFIRMASI`, `SELESAI`, atau `DIBATALKAN`. Setiap perubahan status memberi kabar ke minimal dua pengamat, misalnya `NotifikasiPemesan` dan `PapanJadwal`.
 5. Program utama menjalankan skenario demo minimal **tiga** pemesanan, tanpa `input()`/`Scanner`. Uang memakai bilangan bulat.
 6. Sertakan **diagram kelas** (boleh Mermaid atau gambar tangan yang difoto) yang menandai peran setiap kelas dalam pola.
 
-**Ketentuan pengumpulan:** kode program (Python atau Java), tangkapan layar output, diagram kelas, dan satu paragraf penjelasan: pola mana yang dipakai, di kelas mana, dan mengapa.
+**Ketentuan pengumpulan:** kode program (Python atau Java), tangkapan layar *output*, diagram kelas, dan satu paragraf penjelasan: pola mana yang dipakai, di kelas mana, dan mengapa.
 
 **Rubrik penilaian:**
 
 | Aspek | Bobot |
 |---|---|
 | Penerapan pola benar (peran kelas sesuai pola, bukan sekadar nama kelas) | 40% |
-| Program berjalan, skenario demo lengkap, output rapi | 20% |
+| Program berjalan, skenario demo lengkap, *output* rapi | 20% |
 | Diagram kelas sesuai dengan kode | 15% |
 | Penjelasan alasan memilih pola (termasuk pola yang **tidak** dipakai) | 15% |
 | Kerapian kode: nama jelas, enkapsulasi, komentar secukupnya | 10% |

@@ -7,7 +7,7 @@
  *     mulai dipakai. Sederhana, dan otomatis aman untuk banyak thread.
  * Variasi 2 (LAZY, dibuat saat pertama diminta): seperti contoh 01, tetapi
  *     getInstance() diberi kata kunci synchronized. Jika dua thread memanggil
- *     getInstance() bersamaan, mereka masuk bergantian, sehingga tidak
+ *     getInstance() bersamaan, mereka masuk bergantian sehingga tidak
  *     mungkin tercipta dua objek.
  *
  * Output contoh ini sengaja sama dengan versi Python-nya, walaupun cara

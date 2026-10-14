@@ -1,4 +1,4 @@
-# Kuis — Pertemuan 02: Kelas dan Objek
+# Kuis Pertemuan 02: Kelas dan Objek
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 03 ➡️](../Pertemuan-03-Atribut-dan-Method/README.md)
 
@@ -26,9 +26,9 @@ Pembahasan: kelas adalah cetak biru (denah), sedangkan objek adalah wujud nyata 
 
 ### Soal 2
 
-Perhatikan deskripsi berikut: *"Setiap motor punya plat nomor dan warna. Motor bisa dinyalakan dan diisi bensin."* Manakah yang paling tepat dijadikan **method**?
+Perhatikan deskripsi berikut: *"Setiap motor punya pelat nomor dan warna. Motor bisa dinyalakan dan diisi bensin."* Manakah yang paling tepat dijadikan ***method***?
 
-- A. plat nomor
+- A. pelat nomor
 - B. warna
 - C. motor
 - D. diisi bensin
@@ -38,7 +38,7 @@ Perhatikan deskripsi berikut: *"Setiap motor punya plat nomor dan warna. Motor b
 
 **Jawaban: D**
 
-Pembahasan: method adalah perilaku atau aksi, biasanya berupa kata kerja: "dinyalakan" dan "diisi bensin". "Plat nomor" dan "warna" adalah atribut (ciri), sedangkan "motor" adalah calon nama kelas.
+Pembahasan: *method* adalah perilaku atau aksi, biasanya berupa kata kerja: "dinyalakan" dan "diisi bensin". "Pelat nomor" dan "warna" adalah atribut (ciri), sedangkan "motor" adalah calon nama kelas.
 
 </details>
 
@@ -47,8 +47,8 @@ Pembahasan: method adalah perilaku atau aksi, biasanya berupa kata kerja: "dinya
 Kapan konstruktor dijalankan?
 
 - A. Tepat saat sebuah objek dibuat, secara otomatis
-- B. Saat method pertama milik objek dipanggil
-- C. Hanya jika programmer memanggilnya secara manual setelah objek dibuat
+- B. Saat *method* pertama milik objek dipanggil
+- C. Hanya jika pemrogram memanggilnya secara manual setelah objek dibuat
 - D. Saat program selesai berjalan
 
 <details>
@@ -56,17 +56,17 @@ Kapan konstruktor dijalankan?
 
 **Jawaban: A**
 
-Pembahasan: konstruktor (`__init__` di Python, method bernama sama dengan kelas di Java) berjalan otomatis ketika objek dibuat, misalnya `Menu("Kopi", 18000)` atau `new Menu("Kopi", 18000)`. Kita tidak perlu memanggilnya secara manual, sehingga pilihan C salah.
+Pembahasan: konstruktor (`__init__` di Python, konstruktor bernama sama dengan kelas di Java) berjalan otomatis ketika objek dibuat, misalnya `Menu("Kopi", 18000)` atau `new Menu("Kopi", 18000)`. Kita tidak perlu memanggilnya secara manual sehingga pilihan C salah. Pilihan B salah karena konstruktor sudah selesai sebelum *method* apa pun bisa dipanggil. Pilihan D salah karena tugas konstruktor adalah menyiapkan objek di awal, bukan membereskannya di akhir.
 
 </details>
 
 ### Soal 4
 
-Di dalam sebuah method, `self` (Python) atau `this` (Java) merujuk pada ...
+Di dalam sebuah *method*, `self` (Python) atau `this` (Java) merujuk pada ...
 
-- A. kelas tempat method itu ditulis
+- A. kelas tempat *method* itu ditulis
 - B. objek pertama yang pernah dibuat dari kelas itu
-- C. objek yang sedang menjalankan method tersebut
+- C. objek yang sedang menjalankan *method* tersebut
 - D. semua objek yang dibuat dari kelas itu
 
 <details>
@@ -127,7 +127,7 @@ Setelah kode dijalankan, nilai atribut `menyala` milik `a` dan milik `b` berturu
 
 **Jawaban: A**
 
-Pembahasan: `a` dan `b` adalah dua objek berbeda yang masing-masing menyimpan atribut `menyala` sendiri. Hanya `a` yang menjalankan `nyalakan()`, sehingga hanya milik `a` yang berubah. Pilihan B adalah miskonsepsi "semua objek ikut berubah".
+Pembahasan: `a` dan `b` adalah dua objek berbeda yang masing-masing menyimpan atribut `menyala` sendiri. Hanya `a` yang menjalankan `nyalakan()` sehingga hanya milik `a` yang berubah. Pilihan B adalah miskonsepsi "semua objek ikut berubah". Pilihan C salah karena `a.nyalakan()` memang mengubah `a`, sedangkan D membalik urutannya.
 
 </details>
 
@@ -162,7 +162,7 @@ Apa penyebab masalahnya?
 
 - A. Konstruktor tidak pernah dipanggil
 - B. Tipe data parameter dan atribut tertukar
-- C. Kelas tidak memiliki method apa pun
+- C. Kelas tidak memiliki *method* apa pun
 - D. Nilai parameter tidak disimpan ke atribut objek karena tidak memakai `self.`/`this.`
 
 <details>
@@ -170,7 +170,7 @@ Apa penyebab masalahnya?
 
 **Jawaban: D**
 
-Pembahasan: `nama = nama` hanya mengisi variabel parameter dengan dirinya sendiri. Atribut objek tidak tersentuh. Akibatnya, di Python membaca `kopi.nama` menghasilkan `AttributeError`, sedangkan di Java tercetak `null`. Perbaikannya: `self.nama = nama` atau `this.nama = nama`. Konstruktor tetap dipanggil (A salah), dan kelas tanpa method tetap sah (C bukan penyebabnya).
+Pembahasan: `nama = nama` hanya mengisi variabel parameter dengan dirinya sendiri. Atribut objek tidak tersentuh. Akibatnya, di Python membaca `kopi.nama` menghasilkan `AttributeError`, sedangkan di Java tercetak `null`. Perbaikannya: `self.nama = nama` atau `this.nama = nama`. Konstruktor tetap dipanggil (A salah). Tidak ada tipe data yang tertukar; di Python bahkan tidak ada tipe yang ditulis (B salah). Kelas tanpa *method* tetap sah (C bukan penyebabnya).
 
 </details>
 
@@ -188,7 +188,7 @@ Pernyataan yang **benar** tentang beberapa objek yang dibuat dari kelas yang sam
 
 **Jawaban: C**
 
-Pembahasan: objek-objek dari kelas yang sama punya **jenis** atribut yang sama (misalnya semua menu punya `nama` dan `harga`), tetapi **nilainya** milik masing-masing. Satu kelas bisa menghasilkan objek sebanyak apa pun, sehingga D salah.
+Pembahasan: objek-objek dari kelas yang sama punya **jenis** atribut yang sama (misalnya semua menu punya `nama` dan `harga`), tetapi **nilainya** milik masing-masing. Karena itu, nilai atributnya tidak harus sama (A salah), dan mengubah satu objek tidak mengubah objek lain (B salah). Satu kelas bisa menghasilkan objek sebanyak apa pun sehingga D salah.
 
 </details>
 
@@ -224,17 +224,17 @@ Berapa banyak **objek** `Menu` yang tercipta?
 
 **Jawaban: B**
 
-Pembahasan: objek baru hanya tercipta saat `Menu(...)` atau `new Menu(...)` dijalankan, dan itu terjadi dua kali. Baris `m3 = m1` tidak membuat objek baru. Variabel `m3` hanya ikut menunjuk ke objek yang sama dengan `m1`. Hal ini kita bahas lebih dalam di Pertemuan 03.
+Pembahasan: objek baru hanya tercipta saat `Menu(...)` atau `new Menu(...)` dijalankan, dan itu terjadi dua kali. Baris `m3 = m1` tidak membuat objek baru. Variabel `m3` hanya ikut menunjuk ke objek yang sama dengan `m1`. Pilihan C (3) muncul jika kita menghitung variabel, bukan objek. Pilihan A dan D tidak sesuai dengan dua kali pembuatan objek tadi. Hal ini kita bahas lebih dalam di Pertemuan 03.
 
 </details>
 
 ### Soal 9
 
-Method `hitung_total(jumlah)` mengembalikan hasilnya dengan `return`, bukan langsung mencetaknya. Apa keuntungan utamanya?
+*Method* `hitung_total(jumlah)` (Java: `hitungTotal(jumlah)`) mengembalikan hasilnya dengan `return`, bukan langsung mencetaknya. Apa keuntungan utamanya?
 
 - A. Program pasti berjalan lebih cepat
-- B. Method tidak lagi membutuhkan parameter
-- C. Method tidak perlu dipanggil
+- B. *Method* tidak lagi membutuhkan parameter
+- C. *Method* tidak perlu dipanggil
 - D. Hasilnya bisa disimpan, dihitung lagi, atau dicetak sesuai kebutuhan pemanggil
 
 <details>
@@ -242,7 +242,7 @@ Method `hitung_total(jumlah)` mengembalikan hasilnya dengan `return`, bukan lang
 
 **Jawaban: D**
 
-Pembahasan: nilai kembalian bisa dipakai ulang, misalnya dijumlahkan dengan total menu lain seperti di studi kasus KedaiKita. Method yang hanya mencetak, hasilnya tidak bisa diolah lebih lanjut. Pilihan A, B, dan C tidak berhubungan dengan `return`.
+Pembahasan: nilai kembalian bisa dipakai ulang, misalnya dijumlahkan dengan total menu lain seperti di studi kasus KedaiKita. Hasil *method* yang hanya mencetak tidak bisa diolah lebih lanjut. Pilihan A salah karena `return` tidak membuat program lebih cepat. Pilihan B dan C juga salah: *method* tetap membutuhkan parameternya dan tetap harus dipanggil.
 
 </details>
 
@@ -252,7 +252,7 @@ Pada diagram kelas sederhana berbentuk kotak tiga bagian, bagian **tengah** beri
 
 - A. daftar atribut
 - B. nama kelas
-- C. daftar method
+- C. daftar *method*
 - D. nama-nama objek
 
 <details>
@@ -260,7 +260,7 @@ Pada diagram kelas sederhana berbentuk kotak tiga bagian, bagian **tengah** beri
 
 **Jawaban: A**
 
-Pembahasan: bagian atas berisi nama kelas, bagian tengah berisi atribut, dan bagian bawah berisi method. Nama objek tidak dicantumkan di diagram kelas, karena diagram kelas menggambarkan cetak birunya.
+Pembahasan: bagian atas berisi nama kelas (B), bagian tengah berisi atribut, dan bagian bawah berisi *method* (C). Nama objek (D) tidak dicantumkan di diagram kelas karena diagram kelas menggambarkan cetak birunya.
 
 </details>
 
@@ -270,9 +270,9 @@ Pembahasan: bagian atas berisi nama kelas, bagian tengah berisi atribut, dan bag
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Konsep kelas dan objek sudah kuat | Lanjut ke [Pertemuan 03](../Pertemuan-03-Atribut-dan-Method/README.md) |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 4 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan dan jalankan semua contoh di halaman praktik sambil mencoba "Coba sendiri" |
+| 8—10 | Mantap! Konsep kelas dan objek sudah kuat | Lanjut ke [Pertemuan 03](../Pertemuan-03-Atribut-dan-Method/README.md) |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 4 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan dan jalankan semua contoh di halaman praktik sambil mencoba "Coba sendiri" |
 
 ---
 

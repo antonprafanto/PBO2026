@@ -4,8 +4,9 @@
  *
  * Ide penyelesaian:
  * - BisaDiisiUlang adalah interface: daftar kemampuan tanpa isi.
- * - Tiga alat yang tidak bersaudara meng-implements kontrak itu dengan caranya
- *   sendiri (kecepatan isi daya berbeda), tetapi baterai tidak boleh > 100%.
+ * - Tiga alat yang tidak bersaudara mengimplementasikan kontrak itu dengan
+ *   caranya sendiri (kecepatan isi daya berbeda), tetapi baterai tidak boleh
+ *   > 100%.
  * - tampilkanStatus() dan isiSemua() hanya mengenal interface-nya.
  *
  * Cara menjalankan (Java 11 ke atas):

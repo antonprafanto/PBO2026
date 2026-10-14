@@ -4,12 +4,12 @@ Pertemuan 11 - Exception Handling
 
 Ide penyelesaian:
 - BarisDataError membawa nomor_baris dan alasan. Pesannya sudah memuat
-  nomor baris, sehingga penangkap cukup mencetak str(e).
+  nomor baris sehingga penangkap cukup mencetak str(e).
 - baca_pendaftar() memeriksa satu baris dari yang paling mendasar:
   jumlah kolom -> nama -> umur angka -> rentang umur. Kesalahan apa pun
   diubah menjadi BarisDataError, jadi pemanggil cukup menangkap SATU jenis.
 - ValueError dari int() dibungkus dengan "raise ... from e" (exception
-  chaining), sehingga penyebab aslinya tetap tersimpan di e.__cause__.
+  chaining) sehingga penyebab aslinya tetap tersimpan di e.__cause__.
 - main() memakai try/except/else: baris yang lolos masuk daftar peserta,
   baris yang gagal dihitung dan dilaporkan, lalu impor lanjut.
 

@@ -1,26 +1,51 @@
-# Latihan — Pertemuan 13: Prinsip SOLID
+# Latihan Pertemuan 13: Prinsip SOLID
 
 [⬅️ Konsep](README.md) · [🏠 Beranda](../README.md) · [Kuis ➡️](kuis.md)
 
 **Cara mengerjakan:**
 
-1. Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
-2. Buat file baru untuk setiap latihan, lalu jalankan dan bandingkan output-mu dengan **contoh output** di soal.
-3. Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri.
-4. Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
+1. **Pilih bahasa.** Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
+2. **Siapkan folder jawabanmu.** Simpan jawaban di folder milikmu sendiri **di luar** folder materi, misalnya `Documents/PBO-latihan-saya/pertemuan-13` (aturan emasnya ada di [Git dan GitHub bagian 5](../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri)). Jangan menyimpannya di dalam folder `PBO2026`: perubahanmu bisa bentrok saat materi diperbarui, dan di jalur Java nama kelasmu bisa bentrok dengan kelas di folder `solusi` atau `studi-kasus`.
+
+   ```text
+   Documents/
+   ├── PBO2026/                            <- materi (jangan diubah)
+   └── PBO-latihan-saya/
+       └── pertemuan-13/                   <- jawabanmu di sini
+           ├── latihan03_warga_kampus.py   (jalur Python)
+           ├── Latihan03WargaKampus.java   (jalur Java)
+           └── latihan04/                  <- salinan folder studi-kasus/sesudah
+   ```
+
+3. **Buat satu *file* untuk setiap latihan.** Beri nama yang sama dengan *file* solusinya agar mudah dibandingkan, misalnya `latihan03_warga_kampus.py` atau `Latihan03WargaKampus.java`. Di Java, nama *file* harus sama dengan nama kelas `public` yang berisi `main`. Latihan 1 cukup dijawab di kertas atau *file* teks biasa.
+4. **Latihan yang memakai KedaiKita (Latihan 2 dan 4)** bisa dikerjakan dengan salah satu cara:
+   - **Cara A (disarankan):** salin seluruh folder `python/studi-kasus/sesudah` atau `java/studi-kasus/sesudah` ke folder jawabanmu, lalu beri nama baru, misalnya `latihan02`. Tulis kelas barumu di *file* baru di salinan itu, lalu ubah `main.py`/`Main.java` salinannya untuk mengujinya. Jalankan seperti studi kasus: `python main.py`, atau `javac *.java` lalu `java Main`.
+   - **Cara B:** tulis satu *file* mandiri yang berisi salinan ringkas kelas-kelas yang dibutuhkan, seperti *file* solusinya.
+
+   Jalur Java dengan Cara A: buka setiap salinan studi kasus di jendela VS Code tersendiri (**File → New Window**, lalu **File → Open Folder**) karena isinya memakai nama kelas yang sama.
+5. **Jalankan *file*-mu.**
+   - Lewat VS Code: buka folder `pertemuan-13` (**File → Open Folder**), buka *file*-nya, lalu klik ▷ (**Run Python File**) atau **Run** di atas baris `public static void main`.
+   - Lewat terminal: masuk dulu ke folder jawabanmu dengan `cd Documents\PBO-latihan-saya\pertemuan-13` (Windows) atau `cd ~/Documents/PBO-latihan-saya/pertemuan-13` (macOS/Linux). Setelah itu, ketik `python latihan03_warga_kampus.py` (macOS/Linux: `python3 latihan03_warga_kampus.py`) atau `java Latihan03WargaKampus.java`.
+6. **Bandingkan hasilnya.** Cocokkan *output*-mu dengan **contoh *output*** di soal, baris demi baris. Spasi, huruf besar-kecil, dan tanda baca sebaiknya sama persis. Kamu juga bisa menyimpan *output* ke *file* dengan tanda `>`, lalu membandingkannya dengan `fc.exe` atau `diff` seperti di halaman praktik ([Python](python/README.md#membuktikan-output-sama-dengan-fc-dan-diff) · [Java](java/README.md#membuktikan-output-sama-dengan-fc-dan-diff)).
+7. **Baru lihat solusi.** Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri: klik tautan **Solusi** di bawah setiap latihan untuk membaca kodenya, atau jalankan *file* solusinya dari folder `python/solusi` atau `java/solusi` pertemuan ini (caranya sama dengan menjalankan contoh di halaman praktik).
+
+Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
+
+> [!TIP]
+> Tidak apa-apa jika kodemu berbeda dengan solusi. Yang penting *output*-nya benar dan kamu paham **mengapa** desainmu memenuhi prinsip yang diminta.
 
 ---
 
-## Latihan 1 — Detektif Desain (⭐ Dasar)
+## Latihan 1: Detektif Desain (⭐ Dasar)
 
 **Tujuan:** mengenali pelanggaran prinsip SOLID dari deskripsi sebuah rancangan.
 
-**Soal:** Untuk setiap rancangan berikut, tentukan prinsip yang paling jelas dilanggar (SRP, OCP, LSP, ISP, atau DIP), lalu usulkan perbaikannya dalam satu atau dua kalimat. Hati-hati, ada satu rancangan yang sebenarnya tidak perlu diubah. Latihan ini tidak punya file solusi; jawabannya ada di bawah.
+**Soal:** Untuk setiap rancangan berikut, tentukan prinsip yang paling jelas dilanggar (SRP, OCP, LSP, ISP, atau DIP), lalu usulkan perbaikannya dalam satu atau dua kalimat. Hati-hati, ada satu rancangan yang sebenarnya tidak perlu diubah. Latihan ini tidak punya *file* solusi; jawabannya ada di bawah.
 
-1. Kelas `AplikasiApotek` punya method `hitung_total()`, `cetak_nota()`, `kirim_email_promo()`, `simpan_ke_database()`, dan `buat_laporan_pajak()`.
+1. Kelas `AplikasiApotek` punya *method* `hitung_total()`, `cetak_nota()`, `kirim_email_promo()`, `simpan_ke_database()`, dan `buat_laporan_pajak()`.
 2. Fungsi `hitung_gaji(jenis)` berisi `if jenis == "tetap" ... elif jenis == "kontrak" ... elif jenis == "magang"`. Bagian kepegawaian baru saja meminta jenis "paruh waktu".
 3. Kelas `VoucherHemat` turunan `Diskon` mengembalikan potongan **-5000** untuk belanja di bawah Rp20.000, dengan alasan "biaya tambahan".
-4. Kontrak `PerangkatKelas` mewajibkan `proyeksikan()`, `cetak()`, `pindai()`, dan `fotokopi()`. Kelas `Proyektor` mengisi tiga method terakhir dengan melempar *error*.
+4. Kontrak `PerangkatKelas` mewajibkan `proyeksikan()`, `cetak()`, `pindai()`, dan `fotokopi()`. Kelas `Proyektor` mengisi tiga *method* terakhir dengan melempar *error*.
 5. Konstruktor `LaporanHarian` berisi `self.db = DatabaseMySQL("localhost")` (Java: `this.db = new DatabaseMySQL("localhost");`). Akibatnya, laporan tidak bisa diuji tanpa server *database*.
 6. Skrip 25 baris untuk sekali menghitung rata-rata nilai kuis satu kelas, ditulis sebagai satu fungsi tanpa kelas.
 
@@ -30,7 +55,7 @@
 | No | Prinsip | Alasan dan usulan perbaikan |
 |---|---|---|
 | 1 | SRP | Lima urusan dengan lima alasan berubah. Pecah menjadi kelas-kelas fokus, misalnya `PenghitungTotal`, `PencetakNota`, `PengirimPromo`, `PenyimpananTransaksi`, dan `LaporanPajak`. |
-| 2 | OCP | Setiap jenis baru membongkar fungsi lama. Buat kontrak `Karyawan` dengan method `gaji()`, lalu satu kelas untuk setiap jenis; "paruh waktu" cukup menjadi kelas baru. |
+| 2 | OCP | Setiap jenis baru membongkar fungsi lama. Buat kontrak `Karyawan` dengan *method* `gaji()`, lalu satu kelas untuk setiap jenis; "paruh waktu" cukup menjadi kelas baru. |
 | 3 | LSP | Janji `Diskon` adalah potongan tidak negatif. Potongan negatif membuat total naik secara mengejutkan. Biaya tambahan adalah konsep lain, jadi buat kelas tersendiri (misalnya `BiayaLayanan`). |
 | 4 | ISP (dan LSP) | `Proyektor` dipaksa berjanji melebihi kemampuannya. Pecah menjadi kontrak kecil seperti `BisaMemproyeksikan`, `BisaMencetak`, dan `BisaMemindai`. |
 | 5 | DIP | `LaporanHarian` menciptakan sendiri koneksi konkret. Terima abstraksi (misalnya `SumberData`) lewat konstruktor; saat diuji, suntikkan sumber data tiruan. |
@@ -40,7 +65,7 @@
 
 ---
 
-## Latihan 2 — Diskon Ulang Tahun (⭐ Dasar)
+## Latihan 2: Diskon Ulang Tahun (⭐ Dasar)
 
 **Tujuan:** menerapkan OCP dan LSP pada studi kasus KedaiKita.
 
@@ -50,9 +75,9 @@
 - Potongannya adalah harga satu porsi menu termurah di pesanan.
 - Pesanan kosong menghasilkan potongan 0, bukan *error* (janji LSP).
 
-Uji dengan pesanan Siti (2 Es Teh Manis, 1 Pisang Goreng Keju), pesanan Budi (1 Nasi Goreng Kampung), dan pesanan kosong milik Andi Wijaya. Ketiganya sedang berulang tahun. Agar ringkas, cetak struk sederhana seperti contoh di bawah. Jika kamu mengerjakannya langsung di folder studi kasus dengan `StrukPesanan`, angka-angkanya harus sama.
+Uji dengan pesanan Siti (2 Es Teh Manis, 1 Pisang Goreng Keju), pesanan Budi (1 Nasi Goreng Kampung), dan pesanan kosong milik Andi Wijaya. Ketiganya sedang berulang tahun. Agar ringkas, cetak struk sederhana seperti contoh di bawah. Jika kamu mengerjakannya dengan Cara A (di salinan folder studi kasus) dan mencetak struk dengan `StrukPesanan`, tampilan struknya lebih lengkap, tetapi angka-angkanya harus sama.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === SITI BERULANG TAHUN ===
@@ -79,7 +104,7 @@ Potongan: Rp0, total: Rp0
 
 - Periksa pesanan kosong lebih dulu, lalu cari harga termurah dengan perulangan: mulai dari harga item pertama, ganti jika menemukan yang lebih murah (`item.menu.harga` / `item.getMenu().getHarga()`).
 - Potongan sebesar harga menu termurah tidak mungkin negatif dan tidak mungkin melebihi subtotal.
-- Pengguna Java: buat file baru `DiskonUlangTahun.java` berisi `implements Diskon`. File solusi memakai salinan ringkas kelas studi kasus dengan akhiran `Mini`, karena nama kelas di satu folder `java/` harus unik.
+- Pengguna Java: buat *file* baru `DiskonUlangTahun.java` berisi `implements Diskon`. *File* solusi memakai salinan ringkas kelas studi kasus dengan akhiran `Mini` karena nama kelas di satu folder `java/` harus unik.
 
 </details>
 
@@ -87,13 +112,13 @@ Potongan: Rp0, total: Rp0
 
 ---
 
-## Latihan 3 — Interface Ramping untuk Warga Kampus (⭐⭐ Menengah)
+## Latihan 3: *Interface* Ramping untuk Warga Kampus (⭐⭐ Menengah)
 
 **Tujuan:** memecah kontrak gemuk menjadi kontrak-kontrak kecil (ISP).
 
-**Soal:** Sistem akademik sebuah kampus punya kontrak gemuk `WargaKampus` berisi `ikut_kuliah(matkul)`, `bayar_ukt()`, `mengajar(matkul)`, dan `isi_nilai(nama_mahasiswa, nilai)` (Java: `ikutKuliah`, `bayarUkt`, `mengajar`, `isiNilai`). Akibatnya, kelas `Dosen` terpaksa menulis `bayar_ukt()` yang melempar *error*, dan `Mahasiswa` terpaksa menulis `mengajar()`. Pecah kontrak itu menjadi **`Pelajar`** (ikut kuliah, bayar UKT) dan **`Pengajar`** (mengajar, isi nilai). Lalu buat `Mahasiswa`, `Dosen`, dan `AsistenPraktikum`, yaitu mahasiswa yang juga membimbing praktikum. Di program utama, buat list pengajar (Dr. Hendra dan Rizky) dan list pelajar (Ayu dan Rizky).
+**Soal:** Sistem akademik sebuah kampus punya kontrak gemuk `WargaKampus` berisi `ikut_kuliah(matkul)`, `bayar_ukt()`, `mengajar(matkul)`, dan `isi_nilai(nama_mahasiswa, nilai)` (Java: `ikutKuliah`, `bayarUkt`, `mengajar`, `isiNilai`). Akibatnya, kelas `Dosen` terpaksa menulis `bayar_ukt()` yang melempar *error*, dan `Mahasiswa` terpaksa menulis `mengajar()`. Pecah kontrak itu menjadi **`Pelajar`** (ikut kuliah, bayar UKT) dan **`Pengajar`** (mengajar, isi nilai). Lalu buat `Mahasiswa`, `Dosen`, dan `AsistenPraktikum`, yaitu mahasiswa yang juga membimbing praktikum. Di program utama, buat *list* pengajar (Dr. Hendra dan Rizky) dan *list* pelajar (Ayu dan Rizky).
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === PARA PENGAJAR ===
@@ -116,7 +141,7 @@ Rizky ada di kedua daftar karena ia mahasiswa sekaligus asisten.
 <summary>💡 Petunjuk</summary>
 
 - Python: `class AsistenPraktikum(Pelajar, Pengajar):`. Java: `class AsistenPraktikum implements Pelajar, Pengajar`.
-- Beri tipe list sesuai kontraknya: `list[Pengajar]` / `List<Pengajar>`. Objek `rizky` yang sama boleh masuk ke kedua list.
+- Beri tipe *list* sesuai kontraknya: `list[Pengajar]` / `List<Pengajar>`. Objek `rizky` yang sama boleh masuk ke kedua *list*.
 
 </details>
 
@@ -124,13 +149,13 @@ Rizky ada di kedua daftar karena ia mahasiswa sekaligus asisten.
 
 ---
 
-## Latihan 4 — Penyimpanan Terbatas untuk Kedai (⭐⭐ Menengah)
+## Latihan 4: Penyimpanan Terbatas untuk Kedai (⭐⭐ Menengah)
 
 **Tujuan:** menambah wujud abstraksi baru dan menyuntikkannya tanpa mengubah `Kedai` (DIP).
 
 **Soal:** Mesin kasir cabang KedaiKita memorinya kecil. Buat `PenyimpananTerbatas(maksimal)` turunan `PenyimpananPesanan` yang hanya menyimpan **N pesanan terakhir**; jika penuh, pesanan terlama dibuang. Maksimal di bawah 1 ditolak dengan `ValueError` / `IllegalArgumentException` berpesan `Maksimal pesanan harus minimal 1`. Kelas `Kedai` **tidak boleh diubah**. Uji dengan dua kedai, satu memakai `PenyimpananMemori` dan satu memakai `PenyimpananTerbatas(2)`. Setiap kedai melayani Budi Santoso, Siti Aminah, Rina Marlina, dan Andi Wijaya, lalu mencetak jumlah dan isi riwayatnya. Terakhir, coba buat `PenyimpananTerbatas(0)`.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === KEDAI DENGAN PENYIMPANAN MEMORI (TANPA BATAS) ===
@@ -152,10 +177,10 @@ Ditolak: Maksimal pesanan harus minimal 1
 <details>
 <summary>💡 Petunjuk</summary>
 
-- Nomor kedai kedua dimulai dari P005, karena penghitung nomor adalah milik kelas `Pesanan`, bukan milik kedai.
-- Simpan pesanan di list. Setelah menambah, jika ukurannya melebihi maksimal, buang elemen pertama: `pop(0)` / `remove(0)`.
-- Cukup tulis `simpan()` dan `semua()`. Method `jumlah()` sudah tersedia di kontraknya.
-- Pengguna Java: file solusi memakai salinan ringkas kelas studi kasus dengan akhiran `Ringkas`, karena nama kelas di satu folder `java/` harus unik.
+- Nomor kedai kedua dimulai dari P005 karena penghitung nomor adalah milik kelas `Pesanan`, bukan milik kedai.
+- Simpan pesanan di *list*. Setelah menambah, jika ukurannya melebihi maksimal, buang elemen pertama: `pop(0)` / `remove(0)`.
+- Cukup tulis `simpan()` dan `semua()`. *Method* `jumlah()` sudah tersedia di kontraknya.
+- Pengguna Java: *file* solusi memakai salinan ringkas kelas studi kasus dengan akhiran `Ringkas` karena nama kelas di satu folder `java/` harus unik.
 
 </details>
 
@@ -164,7 +189,7 @@ Ditolak: Maksimal pesanan harus minimal 1
 <details>
 <summary>Lihat jawaban</summary>
 
-Ya. Kontraknya menjanjikan pesanan yang **tersimpan**, dan urutannya tetap. Namun, pemanggil yang mengira riwayat selalu lengkap (misalnya untuk pendapatan harian) bisa terkejut, sehingga perilaku "membuang yang terlama" wajib ditulis jelas di dokumentasi kelas. LSP selalu bertanya: apa yang **diharapkan** pemanggil dari kontrak ini?
+Ya. Kontraknya menjanjikan pesanan yang **tersimpan**, dan urutannya tetap. Namun, pemanggil yang mengira riwayat selalu lengkap (misalnya untuk pendapatan harian) bisa terkejut sehingga perilaku "membuang yang terlama" wajib ditulis jelas di dokumentasi kelas. LSP selalu bertanya: apa yang **diharapkan** pemanggil dari kontrak ini?
 
 </details>
 
@@ -172,7 +197,7 @@ Ya. Kontraknya menjanjikan pesanan yang **tersimpan**, dan urutannya tetap. Namu
 
 ---
 
-## Latihan 5 — Membongkar KosSerbaBisa (⭐⭐⭐ Tantangan)
+## Latihan 5: Membongkar KosSerbaBisa (⭐⭐⭐ Tantangan)
 
 **Tujuan:** melakukan *refactoring* kelas serba bisa (SRP, DIP) dan membuktikan perilakunya tidak berubah.
 
@@ -181,7 +206,7 @@ Ya. Kontraknya menjanjikan pesanan yang **tersimpan**, dan urutannya tetap. Namu
 1. Setiap tugas punya kelasnya sendiri (data kamar, aturan tagihan, format kuitansi, catatan kas), ditambah satu kelas koordinator.
 2. Rekan kerja koordinator disuntikkan lewat konstruktor.
 3. Tidak wajib membuat ABC/*interface*. Tulis alasanmu dalam komentar (ingat YAGNI).
-4. Output harus **sama persis** dengan output program lama. Buktikan dengan `fc` atau `diff`.
+4. *Output* harus **sama persis** dengan *output* program lama. Buktikan dengan `fc` atau `diff`.
 
 <details>
 <summary>Kode awal (Python)</summary>
@@ -256,9 +281,15 @@ public class KosSerbaBisa {
 
 </details>
 
-Lengkapi kode awal itu dengan program utama: buat objek `KosSerbaBisa`, panggil `bayar("A1", 0)`, `bayar("B1", 3)`, dan `bayar("A2", 14)`, lalu cetak baris `Kamar lunas: <banyak isi kas>, pemasukan: <jumlah isi kas>` seperti baris terakhir output di bawah. Jalankan, lalu simpan output-nya ke file sebelum mulai *refactoring*.
+Lengkapi kode awal itu dengan program utama: buat objek `KosSerbaBisa`, panggil `bayar("A1", 0)`, `bayar("B1", 3)`, dan `bayar("A2", 14)`, lalu cetak baris `Kamar lunas: <banyak isi kas>, pemasukan: <jumlah isi kas>` seperti baris terakhir *output* di bawah. Di Python, tulis fungsi `main()` di bawah kelasnya. Di Java, tulis *method* `public static void main(String[] args)` di dalam kelas `KosSerbaBisa`.
 
-**Output program lama (harus tetap sama setelah refactoring):**
+Langkah membuktikan *output* sama (semuanya di folder jawabanmu):
+
+1. Simpan kode awal yang sudah dilengkapi sebagai `kos_lama.py` (Java: `KosSerbaBisa.java`). Jalankan, lalu simpan *output*-nya **sebelum** mulai *refactoring*: `python kos_lama.py > hasil_lama.txt` (Java: `java KosSerbaBisa.java > hasil_lama.txt`).
+2. Tulis versi barumu di *file* lain, misalnya `latihan05_kos_rapi.py` (Java: `Latihan05KosRapi.java`). Simpan juga *output*-nya: `python latihan05_kos_rapi.py > hasil_baru.txt` (Java: `java Latihan05KosRapi.java > hasil_baru.txt`).
+3. Bandingkan kedua *file*: `fc.exe hasil_lama.txt hasil_baru.txt` (Windows) atau `diff hasil_lama.txt hasil_baru.txt` (macOS/Linux). Di macOS/Linux, ketik `python3` sebagai ganti `python`.
+
+***Output* program lama (harus tetap sama setelah *refactoring*):**
 
 ```text
 KUITANSI KOS MAWAR - KAMAR A1
@@ -286,7 +317,7 @@ Kamar lunas: 3, pemasukan: Rp2.530.000
 
 - Calon kelas: `Kamar`, `PenghitungTagihan`, `PencetakKuitansi`, `BukuKas`, dan koordinator `PengelolaKos`.
 - Koordinator hanya mengatur urutan: ambil kamar, minta denda dan total, minta kuitansi dicetak, catat ke buku kas.
-- Kerjakan bertahap: pindahkan satu tugas, jalankan, bandingkan output, baru lanjut.
+- Kerjakan bertahap: pindahkan satu tugas, jalankan, bandingkan *output*, baru lanjut.
 
 </details>
 
@@ -294,7 +325,7 @@ Kamar lunas: 3, pemasukan: Rp2.530.000
 
 ---
 
-## Tugas Mandiri (dikumpulkan, tanpa kunci jawaban)
+## Tugas Mandiri (Dikumpulkan, tanpa Kunci Jawaban)
 
 ### Sistem Sewa Motor Mahasiswa
 
@@ -302,9 +333,9 @@ Sebuah usaha sewa motor di dekat kampus menyewakan motor matic, bebek, dan listr
 
 **Kebutuhan:**
 
-1. Tulis versi **serba bisa**: satu kelas yang menyimpan daftar motor, menghitung biaya dengan rantai percabangan jenis, mencetak nota, dan mencatat riwayat. Simpan output-nya ke file.
-2. *Refactor* menjadi desain yang menerapkan **kelima** prinsip SOLID: tarif per jenis (OCP), nota (SRP), riwayat yang disuntikkan (DIP), kontrak kecil (ISP), dan semua tarif menepati janji "biaya tidak pernah negatif" (LSP).
-3. Buktikan dengan `fc` atau `diff` bahwa output versi baru **sama persis** dengan versi lama, lalu tambahkan jenis motor keempat **tanpa mengubah** kelas lama.
+1. Tulis versi **serba bisa**: satu kelas yang menyimpan daftar motor, menghitung biaya dengan rantai percabangan jenis, mencetak nota, dan mencatat riwayat. Simpan *output*-nya ke *file*.
+2. Lakukan *refactoring* menjadi desain yang menerapkan **kelima** prinsip SOLID: tarif per jenis (OCP), nota (SRP), riwayat yang disuntikkan (DIP), kontrak kecil (ISP), dan semua tarif menepati janji "biaya tidak pernah negatif" (LSP).
+3. Buktikan dengan `fc` atau `diff` bahwa *output* versi baru **sama persis** dengan versi lama, lalu tambahkan jenis motor keempat **tanpa mengubah** kelas lama.
 4. Buat tabel "tugas di kelas lama → kelas baru → prinsip" seperti di halaman konsep.
 
 **Ketentuan pengumpulan:** kedua versi program (Python atau Java), tangkapan layar hasil `fc`/`diff`, dan tabel pemetaan tugas.
@@ -313,9 +344,9 @@ Sebuah usaha sewa motor di dekat kampus menyewakan motor matic, bebek, dan listr
 
 | Aspek | Bobot |
 |---|---|
-| Versi serba bisa berjalan dan output-nya tersimpan | 10% |
+| Versi serba bisa berjalan dan *output*-nya tersimpan | 10% |
 | Desain baru menerapkan SRP, OCP, LSP, ISP, dan DIP dengan tepat (tidak berlebihan) | 40% |
-| Bukti `fc`/`diff` bahwa output sama persis | 20% |
+| Bukti `fc`/`diff` bahwa *output* sama persis | 20% |
 | Jenis motor keempat ditambahkan tanpa mengubah kelas lama | 15% |
 | Tabel pemetaan tugas dan kerapian kode | 15% |
 

@@ -1,5 +1,5 @@
 """
-Contoh 04 - Polimorfisme dari Dalam Kelas
+Contoh 04 - Polimorfisme dari dalam Kelas
 Pertemuan 09 - Polimorfisme
 
 Method tulis() hanya ditulis SEKALI, di kelas induk KartuUcapan. Di dalamnya,

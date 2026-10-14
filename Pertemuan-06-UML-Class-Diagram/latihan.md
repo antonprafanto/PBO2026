@@ -1,19 +1,23 @@
-# Latihan — Pertemuan 06: UML Class Diagram
+# Latihan Pertemuan 06: UML *Class Diagram*
 
 [⬅️ Konsep](README.md) · [🏠 Beranda](../README.md) · [Kuis ➡️](kuis.md)
 
 **Cara mengerjakan:**
 
-1. Latihan 1 sampai 3 dijawab dengan **diagram** (tulis dengan Mermaid di <https://mermaid.live> atau gambar di kertas). Latihan 4 dan 5 dijawab dengan **kode** Python **atau** Java.
-2. Buka petunjuk hanya jika buntu. Buka jawaban atau solusi **setelah** kamu mencoba sendiri.
-3. Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
+1. **Siapkan folder kerjamu sendiri** di luar folder materi, misalnya `Documents/PBO-latihan-saya/pertemuan-06/`. Simpan semua jawabanmu di sana, jangan di dalam folder materi. Alasannya dijelaskan di [aturan emas 00-Persiapan](../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri).
+2. **Latihan 1 sampai 3** dijawab dengan **diagram**. Tulis teks Mermaid-nya di [Mermaid Live Editor](https://mermaid.live), lalu salin teksnya ke *file* `latihan01.md`, `latihan02.md`, dan seterusnya di folder kerjamu. Di *file* `.md`, teks itu diapit baris pembuka dan penutup Mermaid. Cara lengkapnya ada di [Konsep bagian 7](README.md#cara-melihat-dan-mencoba-diagram-mermaid). Menggambar di kertas juga boleh.
+3. **Latihan 4 dan 5** dijawab dengan **kode** Python **atau** Java. Beri nama *file*-mu sama dengan nama *file* solusinya, misalnya `latihan04_papan_tugas.py` atau `Latihan04PapanTugas.java`. Di Java, nama *file* harus sama dengan nama kelas `public`-nya.
+4. **Jalankan kodemu** dari terminal yang sedang berada di folder kerjamu: `python latihan04_papan_tugas.py` (macOS/Linux: `python3 ...`) atau `java Latihan04PapanTugas.java`. Pengguna VS Code boleh membuka folder kerjamu (**File → Open Folder**), lalu klik ▷ atau **Run**.
+5. **Cocokkan hasilnya.** *Output*-mu harus sama persis dengan **Contoh *output* yang diharapkan**, termasuk spasi dan huruf besar-kecilnya. Setelah itu, bandingkan kodemu dengan *file* solusi (tautan **Solusi** di akhir latihan). Untuk latihan diagram, cocokkan dengan bagian **Lihat jawaban**.
+6. Buka petunjuk hanya jika buntu. Buka jawaban atau solusi **setelah** kamu mencoba sendiri.
+7. Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
 
 > [!TIP]
-> Diagram jawaban memakai kebiasaan UML (camelCase, `String`, `boolean`). Versi Python (snake_case, `str`, `bool`) atau tata letak yang berbeda tetap benar, selama isi, simbol, dan multiplisitasnya cocok.
+> Diagram jawaban memakai kebiasaan UML (*camelCase*, `String`, `boolean`). Versi Python (*snake_case*, `str`, `bool`) atau tata letak yang berbeda tetap benar, selama isi, simbol, dan multiplisitasnya cocok.
 
 ---
 
-## Latihan 1 — Relasi dari Cerita (⭐ Dasar)
+## Latihan 1: Relasi dari Cerita (⭐ Dasar)
 
 **Tujuan:** memilih jenis relasi dan multiplisitas yang tepat dari sebuah deskripsi.
 
@@ -44,11 +48,13 @@ classDiagram
 
 Guru boleh di banyak sekolah, jadi agregasinya bertanda `*` di kedua ujung. Pertemuan minimal satu (`1..*`) dan belah ketupat penuhnya menempel di `JadwalLes`. Segitiga menempel di `Guru` sebagai induk.
 
+Cerita di soal tidak menyebut arah navigasi. Jawaban ini memilih `JadwalLes --> Murid` dan `JadwalLes --> Guru` karena jadwal yang perlu tahu murid dan pengajarnya. Garis asosiasi tanpa panah juga diterima.
+
 </details>
 
 ---
 
-## Latihan 2 — Perbaiki Diagram yang Salah (⭐ Dasar)
+## Latihan 2: Perbaiki Diagram yang Salah (⭐ Dasar)
 
 **Tujuan:** melatih ketelitian membaca simbol.
 
@@ -99,15 +105,43 @@ Periksa satu per satu: arah segitiga, sisi dan jenis belah ketupat, sisi multipl
 5. `ProgramStudi *-- Dosen` seharusnya agregasi karena dosen bisa pindah: `ProgramStudi o-- Dosen`.
 6. Multiplisitas tertukar sisi. Benar: `Mahasiswa "*" --> "1" ProgramStudi`.
 
+Diagram setelah keenam kesalahan diperbaiki:
+
+```mermaid
+classDiagram
+    class Pengguna {
+        -username : String
+        +login() boolean
+    }
+    class Mahasiswa {
+        -nim : String
+        -ipk : double
+    }
+    class Dosen {
+        -nidn : String
+    }
+    class ProgramStudi {
+        -nama : String
+    }
+    class Fakultas {
+        -nama : String
+    }
+    Pengguna <|-- Mahasiswa
+    Pengguna <|-- Dosen
+    Fakultas "1" *-- "1..*" ProgramStudi
+    ProgramStudi o-- Dosen
+    Mahasiswa "*" --> "1" ProgramStudi
+```
+
 </details>
 
 ---
 
-## Latihan 3 — Dari Kode ke Diagram (⭐⭐ Menengah)
+## Latihan 3: Dari Kode ke Diagram (⭐⭐ Menengah)
 
 **Tujuan:** *reverse engineering* kode menjadi diagram lengkap.
 
-**Soal:** Gambarkan diagram kelas lengkap (atribut, method, tipe, visibilitas, relasi, multiplisitas) dari potongan aplikasi galeri foto berikut. Pilih salah satu bahasa; isinya setara.
+**Soal:** Gambarkan diagram kelas lengkap (atribut, *method*, tipe, visibilitas, relasi, multiplisitas) dari potongan aplikasi galeri foto berikut. Pilih salah satu bahasa; isinya setara. Kode ini cukup dibaca, tidak perlu dijalankan.
 
 **Python:**
 
@@ -221,7 +255,7 @@ classDiagram
 
 ---
 
-## Latihan 4 — Dari Diagram ke Kode: Papan Tugas Kelompok (⭐⭐ Menengah)
+## Latihan 4: Papan Tugas Kelompok, dari Diagram ke Kode (⭐⭐ Menengah)
 
 **Tujuan:** *forward engineering*: menulis kode yang persis sesuai diagram.
 
@@ -262,11 +296,16 @@ classDiagram
     Tugas "*" --> "0..1" Anggota : penanggungJawab
 ```
 
-Aturan: nomor tugas dimulai dari 1; `tugaskan()` dan `selesaikan()` mencetak `Tugas nomor N tidak ada` jika nomornya tidak ditemukan; `progres()` = jumlah selesai × 100 / jumlah tugas, dibulatkan ke bawah (0 jika kosong); `baris()` berisi `[nomor] `, judul selebar 26 karakter, penanggung jawab (atau `-`) selebar 8 karakter, lalu `SELESAI` atau `proses`.
+Aturannya:
+
+- Nomor tugas dimulai dari 1.
+- `tugaskan()` dan `selesaikan()` mencetak `Tugas nomor N tidak ada` jika nomornya tidak ditemukan.
+- `progres()` = jumlah tugas selesai × 100 / jumlah tugas, dibulatkan ke bawah (0 jika belum ada tugas).
+- `baris()` berisi `[nomor] `, judul selebar 26 karakter, penanggung jawab (atau `-`) selebar 8 karakter, lalu `SELESAI` atau `proses`.
 
 Skenario: proyek "Aplikasi Kasir" dengan tugas Gambar diagram kelas, Tulis kelas Menu, Tulis kelas Pesanan, dan Uji semua fitur. Tugaskan 1 ke Ayu dan 2 ke Bima, selesaikan 1, cetak papan. Lalu tugaskan 3 ke Ayu, selesaikan 2 dan 3, coba tugaskan 9 ke Bima, dan cetak papan lagi.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === PAPAN TUGAS: Aplikasi Kasir ===
@@ -289,7 +328,7 @@ Progres: 75%
 <summary>💡 Petunjuk</summary>
 
 - Komposisi: objek `Tugas` dibuat di dalam `tambahTugas()`. Asosiasi `0..1`: `penanggungJawab` dimulai dari `None`/`null`.
-- `-cari()` adalah method privat (Python: `_cari`). Lebar kolom: Python `f"{judul:<26}"`, Java `String.format("%-26s", judul)`.
+- `-cari()` adalah *method* privat (Python: `_cari`). Lebar kolom: Python `f"{judul:<26}"`, Java `String.format("%-26s", judul)`.
 
 </details>
 
@@ -297,11 +336,11 @@ Progres: 75%
 
 ---
 
-## Latihan 5 — KedaiKita: Riwayat Poin Pelanggan (⭐⭐⭐ Tantangan)
+## Latihan 5 (KedaiKita): Riwayat Poin Pelanggan (⭐⭐⭐ Tantangan)
 
 **Tujuan:** mengembangkan KedaiKita dengan urutan yang benar: diagram dulu, kode kemudian.
 
-**Soal:** Pemilik KedaiKita ingin setiap perubahan poin tercatat. Rancangannya (kotak `Pelanggan` hanya menampilkan anggota yang baru atau berubah):
+**Soal:** Pemilik KedaiKita ingin setiap perubahan poin tercatat. Rancangannya (kotak `Pelanggan` hanya menampilkan anggota yang berkaitan dengan poin; anggota lainnya tetap seperti di studi kasus):
 
 ```mermaid
 classDiagram
@@ -325,9 +364,15 @@ classDiagram
     Pelanggan "1" *-- "*" RiwayatPoin : riwayat
 ```
 
-Salin kelas `Pelanggan` dari studi kasus, lalu: `tambahPoin()` mencatat `("Tambah poin", +jumlah)`; `tukarPoin()` mencatat `("Tukar poin", -jumlah)` hanya jika berhasil; `getRiwayat()` (Python: *property* `riwayat`) mengembalikan **salinan**; teks `RiwayatPoin` berisi keterangan selebar 14 karakter lalu perubahan bertanda `+`/`-`. Skenario untuk Budi Santoso: tambah 6, tambah 3, tukar 5, coba tukar 10, cetak riwayat, lalu kosongkan salinan riwayat dari luar.
+Langkahnya:
 
-**Contoh output yang diharapkan:**
+1. Buat *file* `latihan05_riwayat_poin.py` atau `Latihan05RiwayatPoin.java` di folder kerjamu. Salin kelas `Pelanggan` dari [`python/studi-kasus/pelanggan.py`](python/studi-kasus/pelanggan.py) atau [`java/studi-kasus/Pelanggan.java`](java/studi-kasus/Pelanggan.java) ke dalamnya.
+2. Tambahkan kelas `RiwayatPoin` sesuai diagram. Teksnya (`__str__` atau `toString()`) berisi keterangan selebar 14 karakter, lalu perubahan bertanda `+` atau `-`.
+3. Ubah `tambahPoin()` agar mencatat `("Tambah poin", +jumlah)`, dan `tukarPoin()` agar mencatat `("Tukar poin", -jumlah)` **hanya jika penukaran berhasil**.
+4. Buat `getRiwayat()` (Python: *property* `riwayat`) yang mengembalikan **salinan** *list*, serta `cetakRiwayat()`.
+5. Jalankan skenario untuk Budi Santoso (081234567890): tambah 6 poin, tambah 3 poin, tukar 5 poin, coba tukar 10 poin (gagal), cetak riwayat, lalu kosongkan salinan riwayat dari luar dan tunjukkan bahwa riwayat aslinya tetap utuh.
+
+**Contoh *output* yang diharapkan:**
 
 ```text
 === TRANSAKSI POIN ===
@@ -351,7 +396,8 @@ Riwayat asli : 3 catatan
 
 - Ini komposisi: objek `RiwayatPoin` dibuat **di dalam** `tambahPoin()` dan `tukarPoin()`.
 - Tanda plus: Python `f"{perubahan:+d}"`; Java `(perubahan >= 0 ? "+" : "") + perubahan`.
-- Pengguna Java: beri nama kelasmu `PelangganKedai` agar tidak bentrok dengan `Pelanggan` di folder studi kasus.
+- Untuk menulis `Rp5.000`, salin juga fungsi `format_rupiah()` dari `python/studi-kasus/utilitas.py` (Java: isi *method* `Rupiah.format()` dari `java/studi-kasus/Rupiah.java`) ke *file*-mu.
+- Pengguna Java: nama kelas `Pelanggan` boleh dipakai selama di folder kerjamu belum ada kelas lain bernama `Pelanggan`, misalnya salinan studi kasus. Jika sudah ada, pakai nama lain seperti `PelangganKedai`. *File* solusi memakai nama itu karena folder `java/` materi ini sudah punya kelas `Pelanggan` di `studi-kasus`, dan VS Code akan protes jika dua kelas bernama sama berada dalam satu folder yang dibuka.
 
 </details>
 
@@ -359,7 +405,7 @@ Riwayat asli : 3 catatan
 
 ---
 
-## Tugas Mandiri (dikumpulkan, tanpa kunci jawaban)
+## Tugas Mandiri (Dikumpulkan, tanpa Kunci Jawaban)
 
 ### Wisata Susur Sungai Mahakam
 
@@ -367,19 +413,19 @@ Sebuah usaha wisata di Samarinda melayani perjalanan kapal susur Sungai Mahakam.
 
 **Kebutuhan:**
 
-1. **Diagram kelas Mermaid**: minimal 5 kelas dan tiga jenis relasi berbeda; setiap garis punya multiplisitas dan nama peran; setiap anggota punya visibilitas dan tipe; minimal satu anggota *static*.
-2. **Kode** Python atau Java yang setia pada diagram, dengan demo minimal dua jadwal dan tiga pemesanan serta output yang deterministik.
-3. **Tabel keselarasan** minimal 10 baris: "baris diagram → baris kode".
+1. **Diagram kelas Mermaid**: minimal lima kelas dan tiga jenis relasi berbeda; setiap garis asosiasi, agregasi, dan komposisi punya multiplisitas dan nama peran; setiap anggota punya visibilitas dan tipe; minimal satu anggota *static*.
+2. **Kode** Python atau Java yang setia pada diagram, dengan demo minimal dua jadwal dan tiga pemesanan serta *output* yang deterministik (hasilnya selalu sama setiap kali dijalankan).
+3. **Tabel keselarasan** minimal sepuluh baris: "baris diagram → baris kode".
 4. Satu paragraf: relasi mana yang paling sulit kamu putuskan, dan mengapa.
 
-**Ketentuan pengumpulan:** satu file `.md` berisi diagram dan tabel, file kode, serta tangkapan layar output.
+**Ketentuan pengumpulan:** satu *file* `.md` berisi diagram dan tabel, *file* kode, serta tangkapan layar *output*.
 
 | Aspek penilaian | Bobot |
 |---|---|
 | Diagram benar dan lengkap (simbol, multiplisitas, nama peran, visibilitas, tipe) | 35% |
-| Kode sesuai diagram dan berjalan tanpa error | 30% |
+| Kode sesuai diagram dan berjalan tanpa *error* | 30% |
 | Tabel keselarasan diagram dan kode | 20% |
-| Alasan desain, kerapian, dan kejelasan output | 15% |
+| Alasan desain, kerapian, dan kejelasan *output* | 15% |
 
 ---
 

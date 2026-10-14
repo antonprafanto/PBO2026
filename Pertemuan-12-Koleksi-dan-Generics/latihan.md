@@ -1,31 +1,49 @@
-# Latihan — Pertemuan 12: Koleksi dan Generics
+# Latihan Pertemuan 12: Koleksi dan *Generics*
 
 [⬅️ Konsep](README.md) · [🏠 Beranda](../README.md) · [Kuis ➡️](kuis.md)
 
 **Cara mengerjakan:**
 
-1. Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
-2. Buat file baru untuk setiap latihan, lalu jalankan dan bandingkan output-mu dengan **contoh output** di soal.
-3. Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri.
-4. Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
+1. **Pilih bahasa.** Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
+2. **Siapkan folder jawabanmu.** Simpan jawaban di folder milikmu sendiri **di luar** folder materi, misalnya `Documents/PBO-latihan-saya/pertemuan-12`. Jangan menyimpannya di dalam folder `PBO2026`: perubahanmu bisa bentrok saat materi diperbarui, dan di jalur Java nama kelasmu bisa bentrok dengan kelas di folder `solusi`. Alasan lengkapnya ada di [Git dan GitHub bagian 5](../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri).
+
+   ```text
+   Documents/
+   ├── PBO2026/                          <- materi (jangan diubah)
+   └── PBO-latihan-saya/
+       └── pertemuan-12/                 <- jawabanmu di sini
+           ├── latihan01_daftar_hadir.py   (jalur Python)
+           └── Latihan01DaftarHadir.java   (jalur Java)
+   ```
+
+3. **Buat satu *file* untuk setiap latihan.** Beri nama yang sama dengan *file* solusinya agar mudah dibandingkan (lihat tautan **Solusi** di akhir setiap latihan).
+   - Python: tulis kelas dan fungsi `main()`, lalu akhiri dengan dua baris `if __name__ == "__main__":` dan `main()`, seperti di contoh.
+   - Java: nama *file* harus sama dengan nama kelas `public` yang berisi `main`, dan kelas itu ditulis paling atas. Kelas pembantunya ditulis di bawahnya **tanpa** `public`. Jangan lupa baris `import java.util...` yang dibutuhkan.
+4. **Jalankan *file*-mu.**
+   - Lewat VS Code: buka folder `pertemuan-12` (**File → Open Folder**), buka *file*-nya, lalu klik ▷ (**Run Python File**) untuk Python atau **Run** di atas baris `public static void main` untuk Java.
+   - Lewat terminal: terminal VS Code di jendela itu sudah berada di folder `pertemuan-12`. Dari terminal lain, masuk dulu dengan `cd Documents\PBO-latihan-saya\pertemuan-12` (Windows) atau `cd ~/Documents/PBO-latihan-saya/pertemuan-12` (macOS/Linux). Setelah itu, ketik `python latihan01_daftar_hadir.py` (macOS/Linux: `python3 latihan01_daftar_hadir.py`) atau `java Latihan01DaftarHadir.java`.
+5. **Bandingkan hasilnya.** Cocokkan *output*-mu dengan **Contoh *output* yang diharapkan** di soal, baris demi baris. Spasi, huruf besar-kecil, tanda baca, dan **urutan** baris sebaiknya sama persis.
+6. **Baru lihat solusi.** Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri: klik tautan **Solusi** untuk membaca kodenya, atau jalankan *file* solusinya dari folder `python/solusi` atau `java/solusi` pertemuan ini (caranya sama dengan menjalankan contoh di halaman praktik bagian Persiapan).
+
+Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
 
 > [!TIP]
-> Setiap kali mencetak isi set atau map berbasis hash, **urutkan dulu**. Tanpa itu, output-mu bisa berbeda urutan dengan contoh, padahal programmu sudah benar.
+> Setiap kali mencetak isi set atau map berbasis *hash*, **urutkan dulu**. Tanpa itu, *output*-mu bisa berbeda urutan dengan contoh, padahal programmu sudah benar.
 
 ---
 
-## Latihan 1 — Daftar Hadir Unik (⭐ Dasar)
+## Latihan 1: Daftar Hadir Unik (⭐ Dasar)
 
 **Tujuan:** memakai set untuk membuang data kembar dan menerapkan operasi himpunan.
 
-**Soal:** Kelas PBO berisi delapan mahasiswa: Ayu, Bima, Citra, Dimas, Eka, Fajar, Gita, dan Hadi. Kehadiran dicatat lewat scan QR, dan beberapa mahasiswa memindai dua kali.
+**Soal:** Kelas PBO berisi delapan mahasiswa: Ayu, Bima, Citra, Dimas, Eka, Fajar, Gita, dan Hadi. Kehadiran dicatat lewat pindai (*scan*) kode QR, dan beberapa mahasiswa memindai dua kali.
 
-- Scan pertemuan 1: Ayu, Bima, Citra, Ayu, Eka, Gita, Bima
-- Scan pertemuan 2: Bima, Citra, Dimas, Gita, Citra
+- Hasil pindai pertemuan 1: Ayu, Bima, Citra, Ayu, Eka, Gita, Bima
+- Hasil pindai pertemuan 2: Bima, Citra, Dimas, Gita, Citra
 
-Tampilkan jumlah scan dan jumlah mahasiswa unik per pertemuan, lalu siapa yang hadir di kedua pertemuan, siapa yang hadir sekali saja, dan siapa yang belum pernah hadir. Semua daftar nama diurutkan abjad.
+Tampilkan jumlah pindai dan jumlah mahasiswa unik per pertemuan, lalu siapa yang hadir di kedua pertemuan, siapa yang hadir sekali saja, dan siapa yang belum pernah hadir. Semua daftar nama diurutkan abjad.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === REKAP DAFTAR HADIR KELAS PBO ===
@@ -48,19 +66,19 @@ Belum pernah hadir      : Fajar, Hadi
 
 ---
 
-## Latihan 2 — Inventaris Sekretariat Himpunan (⭐ Dasar)
+## Latihan 2: Inventaris Sekretariat Himpunan (⭐ Dasar)
 
-**Tujuan:** memakai dict/Map sebagai pencatat jumlah, lengkap dengan exception saat gagal.
+**Tujuan:** memakai dict/Map sebagai pencatat jumlah, lengkap dengan *exception* saat gagal.
 
-**Soal:** Buat kelas `Inventaris` yang menyimpan stok dalam bentuk *nama barang → jumlah*, dengan method:
+**Soal:** Buat kelas `Inventaris` yang menyimpan stok dalam bentuk pasangan nama barang → jumlah, dengan *method*:
 
 - `tambah(nama, jumlah)`: barang yang belum ada otomatis terdaftar.
 - `ambil(nama, jumlah)`: melempar `ValueError` (Python) / `IllegalArgumentException` (Java) berpesan `barang tidak terdaftar` atau `stok hanya N`.
-- `cek(nama)` (0 jika tidak ada), `jumlah_jenis()`, `barang_habis()`, dan `tampilkan()` (urut sesuai urutan barang pertama kali didaftarkan).
+- `cek(nama)` (0 jika tidak ada), `jumlah_jenis()` / `jumlahJenis()`, `barang_habis()` / `barangHabis()`, dan `tampilkan()` (urut sesuai urutan barang pertama kali didaftarkan).
 
-Daftarkan spidol 12, kertas HVS (rim) 5, dan lakban 3. Lalu: tambah spidol 6, ambil lakban 3, ambil kertas HVS (rim) 10, ambil stapler 1, dan tambah stapler 2. Tangkap exception-nya dan laporkan hasil setiap transaksi.
+Daftarkan spidol 12, kertas HVS (rim) 5, dan lakban 3. Lalu: tambah spidol 6, ambil lakban 3, ambil kertas HVS (rim) 10, ambil stapler 1, dan tambah stapler 2. Tangkap *exception*-nya dan laporkan hasil setiap transaksi.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === INVENTARIS AWAL ===
@@ -97,7 +115,7 @@ Barang habis       : lakban
 
 ---
 
-## Latihan 3 — Frekuensi Kata (⭐⭐ Menengah)
+## Latihan 3: Frekuensi Kata (⭐⭐ Menengah)
 
 **Tujuan:** menghitung kemunculan dengan map, lalu mengurutkan dengan dua kriteria.
 
@@ -107,7 +125,7 @@ Barang habis       : lakban
 
 Tampilkan jumlah kata, jumlah kata unik, tiga kata terbanyak (jika seri, urut abjad), dan kata-kata yang muncul sekali (urut abjad).
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === FREKUENSI KATA ===
@@ -125,7 +143,7 @@ Muncul sekali   : aren, di, gula, hitam, juga, kedai, laris, paling, tapi
 
 - Bersihkan teks: `teks.lower().replace(".", "").replace(",", "")`, lalu `split()` / `split(" ")`.
 - Python: `sorted(frekuensi.items(), key=lambda p: (-p[1], p[0]))`.
-- Java: salin `entrySet()` ke `ArrayList`, lalu urutkan dengan lambda: `Integer.compare(b.getValue(), a.getValue())`, dan jika hasilnya 0, bandingkan kuncinya.
+- Java: salin `entrySet()` ke `ArrayList`, lalu urutkan dengan *lambda*: `Integer.compare(b.getValue(), a.getValue())`, dan jika hasilnya 0, bandingkan kuncinya.
 
 </details>
 
@@ -133,7 +151,7 @@ Muncul sekali   : aren, di, gula, hitam, juga, kedai, laris, paling, tapi
 
 ---
 
-## Latihan 4 — Ranking Nilai Mahasiswa (⭐⭐ Menengah)
+## Latihan 4: Ranking Nilai Mahasiswa (⭐⭐ Menengah)
 
 **Tujuan:** membedakan urutan alami dan urutan khusus tiga kriteria.
 
@@ -147,7 +165,7 @@ Muncul sekali   : aren, di, gula, hitam, juga, kedai, laris, paling, tapi
 | 2409106002 | Bima Saputra | 75 | 80 |
 | 2409106004 | Dimas Pratama | 64 | 60 |
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === URUT NIM (urutan alami) ===
@@ -180,7 +198,7 @@ Peringkat 1: Citra Dewi
 
 ---
 
-## Latihan 5 — KedaiKita: Menu Tak Laku dan Rata-rata Porsi (⭐⭐ Menengah)
+## Latihan 5 (KedaiKita): Menu Tak Laku dan Rata-Rata Porsi (⭐⭐ Menengah)
 
 **Tujuan:** mengembangkan laporan studi kasus KedaiKita dengan dict/Map dan set.
 
@@ -193,9 +211,9 @@ Peringkat 1: Citra Dewi
 | P003 (Rina) | M01 x 1, M04 x 1 |
 | P004 (Budi) | M01 x 1, M02 x 2 |
 
-Buat kelas `ItemBeli` (kode, jumlah) dan `AnalisisPenjualan` yang menerima daftar menu (kode → nama) dan daftar pesanan lunas, dengan method `porsi_per_menu()` (semua menu tampil, termasuk yang 0), `menu_tak_laku()`, `total_porsi()`, dan `rata_rata_porsi_x100()`.
+Buat kelas `ItemBeli` (kode, jumlah) dan `AnalisisPenjualan` yang menerima daftar menu (kode → nama) dan daftar pesanan lunas, dengan *method* `porsi_per_menu()` (semua menu tampil, termasuk yang 0), `menu_tak_laku()`, `total_porsi()`, dan `rata_rata_porsi_x100()`. Di Java, nama *method*-nya `porsiPerMenu()`, `menuTakLaku()`, `totalPorsi()`, dan `rataRataPorsiX100()`.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === PORSI TERJUAL PER MENU ===
@@ -219,8 +237,8 @@ Menu tak laku  : Teh Tarik, Roti Bakar Cokelat
 
 - Isi semua kode dengan 0 dulu: `{kode: 0 for kode in daftar_menu}` / perulangan `put(kode, 0)`, baru tambahkan porsinya.
 - Menu tak laku = himpunan semua kode **dikurangi** himpunan kode yang pernah terjual.
-- Rata-rata tanpa float: hitung `total * 100 // jumlah_pesanan` (275), lalu cetak sebagai `2` titik `75`.
-- Pengguna Java: jangan beri nama kelas `ItemPesanan` atau `LaporanPenjualan`, karena nama itu sudah dipakai studi kasus di folder `java/` yang sama.
+- Rata-rata tanpa *float* (bilangan pecahan): hitung `total * 100 // jumlah_pesanan` (Java: `/`), hasilnya 275. Lalu cetak hasil bagi 100 (`2`), sebuah titik, dan sisa bagi 100 sebagai dua digit (`75`).
+- Pengguna Java: jangan beri nama kelas `ItemPesanan` atau `LaporanPenjualan` karena nama itu sudah dipakai studi kasus di folder `java/` yang sama.
 
 </details>
 
@@ -228,13 +246,13 @@ Menu tak laku  : Teh Tarik, Roti Bakar Cokelat
 
 ---
 
-## Latihan 6 — Pengelompok Generik (⭐⭐⭐ Tantangan)
+## Latihan 6: Pengelompok Generik (⭐⭐⭐ Tantangan)
 
-**Tujuan:** menulis fungsi/method generik yang menerima lambda.
+**Tujuan:** menulis fungsi/*method* generik yang menerima *lambda*.
 
-**Soal:** Tulis fungsi generik `kelompokkan(daftar, kunci)` yang menerima list berisi tipe **apa pun** (`T`) dan sebuah fungsi `kunci` yang mengubah setiap isi menjadi kunci bertipe **apa pun** (`K`). Hasilnya map *kunci → list isi*, dengan kunci sesuai urutan kemunculan pertama. Uji dengan tiga kasus: buah (apel, anggur, belimbing, ceri, bisbul, alpukat) per huruf awal, buah per panjang nama, dan anggota UKM per angkatan (Bima 2023, Ayu 2024, Eka 2023, Citra 2024, Dimas 2025).
+**Soal:** Tulis fungsi generik `kelompokkan(daftar, kunci)` yang menerima *list* berisi tipe **apa pun** (`T`) dan sebuah fungsi `kunci` yang mengubah setiap isi menjadi kunci bertipe **apa pun** (`K`). Hasilnya map dari setiap kunci ke *list* berisi isi-isi yang kuncinya sama, dengan kunci sesuai urutan kemunculan pertama. Uji dengan tiga kasus: buah (apel, anggur, belimbing, ceri, bisbul, alpukat) per huruf awal, buah per panjang nama, dan anggota UKM per angkatan (Bima 2023, Ayu 2024, Eka 2023, Citra 2024, Dimas 2025).
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === BUAH PER HURUF AWAL ===
@@ -259,7 +277,7 @@ c: ceri
 
 - Python: `T = TypeVar("T")`, `K = TypeVar("K")`, dan tipe fungsi kuncinya `Callable[[T], K]` (dari `typing`). Kuncinya bisa `lambda kata: kata[0]`, fungsi bawaan `len`, atau `lambda a: a.angkatan`.
 - Java: `static <T, K> Map<K, List<T>> kelompokkan(List<T> daftar, Function<T, K> kunci)`. `Function` ada di `java.util.function`; panggil dengan `kunci.apply(isi)`. Kuncinya bisa `kata -> kata.substring(0, 1)`, `String::length`, atau `Anggota::getAngkatan`.
-- Jika kunci belum ada di map, simpan dulu list kosong untuk kunci itu, baru tambahkan isinya.
+- Jika kunci belum ada di map, simpan dulu *list* kosong untuk kunci itu, baru tambahkan isinya.
 
 </details>
 
@@ -267,7 +285,7 @@ c: ceri
 
 ---
 
-## Tugas Mandiri (dikumpulkan, tanpa kunci jawaban)
+## Tugas Mandiri (Dikumpulkan, tanpa Kunci Jawaban)
 
 ### Klasemen Turnamen Futsal Antarprodi
 
@@ -280,19 +298,19 @@ Himpunan mahasiswa mengadakan turnamen futsal antarprodi dan butuh program klase
 3. Kelas `Klasemen` yang menyimpan statistik setiap tim di dalam dict/Map (`Tim` → statistik): main, menang, seri, kalah, gol memasukkan, gol kemasukan, dan poin (menang 3, seri 1, kalah 0).
 4. Klasemen diurutkan dengan urutan khusus: poin terbanyak → selisih gol terbesar → gol memasukkan terbanyak → nama A-Z.
 5. Tampilkan klasemen dalam bentuk tabel rapi, lalu daftar tim yang **belum pernah menang** (pakai set, cetak urut abjad).
-6. Minimal 4 tim dan 6 pertandingan. Data ditulis langsung di program (tanpa input dari keyboard).
+6. Minimal 4 tim dan 6 pertandingan. Data ditulis langsung di program (tanpa *input* dari keyboard).
 
-**Ketentuan pengumpulan:** satu program (Python atau Java) beserta tangkapan layar output-nya.
+**Ketentuan pengumpulan:** satu program (Python atau Java) beserta tangkapan layar *output*-nya.
 
 **Rubrik penilaian:**
 
 | Aspek | Bobot |
 |---|---|
-| Kelas `Tim` dengan aturan kesamaan dan hash yang benar | 20% |
+| Kelas `Tim` dengan aturan kesamaan dan *hash* yang benar | 20% |
 | Pemakaian dict/Map dan set yang tepat | 25% |
 | Pengurutan empat kriteria benar, termasuk saat ada poin yang seri | 30% |
 | Kelas generik dipakai dengan benar | 10% |
-| Kerapian kode dan output (nama jelas, tabel rapi, output deterministik) | 15% |
+| Kerapian kode dan *output* (nama jelas, tabel rapi, *output* deterministik) | 15% |
 
 ---
 

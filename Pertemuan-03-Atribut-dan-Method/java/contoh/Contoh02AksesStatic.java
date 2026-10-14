@@ -24,7 +24,7 @@ public class Contoh02AksesStatic {
         ayu.masukLewatObjek();
         bima.masukLewatObjek();
         System.out.println("Total menurut kelas : " + Pengunjung.total);
-        System.out.println("Total menurut ayu   : " + ayu.total);  // [3] boleh, tapi menyesatkan
+        System.out.println("Total menurut ayu   : " + ayu.total);  // [3] boleh, tetapi menyesatkan
         System.out.println("Total menurut bima  : " + bima.total);
 
         System.out.println();

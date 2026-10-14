@@ -1,4 +1,4 @@
-# Kuis — Pertemuan 09: Polimorfisme
+# Kuis Pertemuan 09: Polimorfisme
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 10 ➡️](../Pertemuan-10-Abstract-Class-dan-Interface/README.md)
 
@@ -11,9 +11,9 @@
 Pernyataan mana yang paling tepat menggambarkan **polimorfisme**?
 
 - A. Satu kelas boleh punya banyak atribut dengan tipe berbeda
-- B. Kelas anak mewarisi semua atribut dan method kelas induk
-- C. Objek dari kelas berbeda menanggapi pemanggilan method yang sama dengan caranya masing-masing
-- D. Atribut disembunyikan agar hanya bisa diubah lewat method resmi
+- B. Kelas anak mewarisi semua atribut dan *method* kelas induk
+- C. Objek dari kelas berbeda menanggapi pemanggilan *method* yang sama dengan caranya masing-masing
+- D. Atribut disembunyikan agar hanya bisa diubah lewat *method* resmi
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -68,28 +68,28 @@ for (Hewan h : daftar) {
 }
 ```
 
-Apa output-nya (tiga baris, berurutan)?
+Apa *output*-nya (tiga baris, berurutan)?
 
 - A. `Meong`, `...`, `...`
 - B. `...`, `...`, `...`
 - C. `Meong`, `Meong`, `Meong`
-- D. Error, karena `Ikan` tidak menulis method `bersuara`
+- D. *Error* karena `Ikan` tidak menulis *method* `bersuara`
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: A**
 
-Pembahasan: objek `Kucing` memakai versi miliknya sendiri (`Meong`). `Ikan` tidak meng-*override*, jadi pencarian method naik ke kelas induk dan menemukan versi `Hewan` (`...`). Objek `Hewan` tentu memakai versinya sendiri. Pilihan B keliru karena mengira tipe variabel `Hewan` yang menentukan versi. Pilihan D keliru karena kelas anak tidak wajib meng-*override*.
+Pembahasan: objek `Kucing` memakai versi miliknya sendiri (`Meong`). `Ikan` tidak meng-*override*, jadi pencarian *method* naik ke kelas induk dan menemukan versi `Hewan` (`...`). Objek `Hewan` tentu memakai versinya sendiri. Pilihan B keliru karena mengira tipe variabel `Hewan` yang menentukan versi. Pilihan C keliru karena versi `Kucing` hanya dipakai oleh objek `Kucing`, bukan oleh objek kelas lain. Pilihan D keliru karena kelas anak tidak wajib meng-*override*.
 
 </details>
 
 ### Soal 3
 
-Untuk method yang di-*override*, versi mana yang dijalankan ditentukan oleh ...
+Untuk *method* yang di-*override*, versi mana yang dijalankan ditentukan oleh ...
 
 - A. tipe variabel yang tertulis di kode
-- B. kelas yang paling dulu ditulis di dalam file
+- B. kelas yang paling dulu ditulis di dalam *file*
 - C. jumlah kelas anak yang dimiliki kelas induk
 - D. tipe objek yang sebenarnya, saat program berjalan
 
@@ -98,16 +98,16 @@ Untuk method yang di-*override*, versi mana yang dijalankan ditentukan oleh ...
 
 **Jawaban: D**
 
-Pembahasan: inilah *dynamic dispatch*. Variabel bertipe `Hewan` yang menunjuk objek `Kucing` menjalankan `bersuara()` milik `Kucing`. Tipe variabel (pilihan A) hanya menentukan method apa saja yang **boleh dipanggil** di Java, bukan versi mana yang berjalan. Pilihan B dan C tidak berpengaruh sama sekali.
+Pembahasan: inilah *dynamic dispatch*. Variabel bertipe `Hewan` yang menunjuk objek `Kucing` menjalankan `bersuara()` milik `Kucing`. Tipe variabel (pilihan A) hanya menentukan *method* apa saja yang **boleh dipanggil** di Java, bukan versi mana yang berjalan. Pilihan B dan C tidak berpengaruh sama sekali.
 
 </details>
 
 ### Soal 4
 
-Di Latihan 5, kelas `PembayaranVoucher` ditambahkan ke KedaiKita. Mengapa method `Pesanan.bayar()` **tidak perlu diubah**?
+Di Latihan 5, kelas `PembayaranVoucher` ditambahkan ke KedaiKita. Mengapa *method* `Pesanan.bayar()` **tidak perlu diubah**?
 
 - A. Karena `bayar()` sudah memeriksa semua jenis pembayaran dengan `isinstance`/`instanceof`
-- B. Karena `bayar()` hanya memanggil method milik `Pembayaran`, dan objek voucher **adalah** `Pembayaran` yang meng-*override* method-method itu
+- B. Karena `bayar()` hanya memanggil *method* milik `Pembayaran`, dan objek voucher **adalah** `Pembayaran` yang meng-*override* *method-method* itu
 - C. Karena voucher tidak dikenai biaya layanan
 - D. Karena Python dan Java otomatis menulis ulang `bayar()` saat ada kelas baru
 
@@ -116,7 +116,7 @@ Di Latihan 5, kelas `PembayaranVoucher` ditambahkan ke KedaiKita. Mengapa method
 
 **Jawaban: B**
 
-Pembahasan: `bayar()` memanggil `hitung_biaya_layanan`, `nama_metode`, dan `proses` tanpa tahu jenis pembayarannya. Kelas baru cukup meng-*override* method itu. Pilihan A justru keliru: `bayar()` tidak punya pemeriksaan jenis, dan jika punya, kelas baru akan memaksa `bayar()` diubah. Pilihan C benar tentang voucher, tetapi bukan alasannya. Pilihan D tidak pernah terjadi.
+Pembahasan: `bayar()` memanggil `hitung_biaya_layanan`, `nama_metode`, dan `proses` tanpa tahu jenis pembayarannya. Kelas baru cukup meng-*override* *method* itu. Pilihan A justru keliru: `bayar()` tidak punya pemeriksaan jenis, dan jika punya, kelas baru akan memaksa `bayar()` diubah. Pilihan C benar tentang voucher, tetapi bukan alasannya. Pilihan D tidak pernah terjadi.
 
 </details>
 
@@ -161,10 +161,10 @@ Kendaraan k = new Motor();
 System.out.println(k.info());
 ```
 
-Apa output-nya?
+Apa *output*-nya?
 
 - A. `Punya 4 roda`
-- B. Error, karena `Motor` tidak menulis method `info`
+- B. *Error* karena `Motor` tidak menulis *method* `info`
 - C. `Punya 2 roda`
 - D. `Punya 4 roda`, lalu `Punya 2 roda`
 
@@ -173,7 +173,7 @@ Apa output-nya?
 
 **Jawaban: C**
 
-Pembahasan: `info()` memang milik `Kendaraan`, tetapi di dalamnya `roda()` dipanggil lewat `self`/`this`, yaitu objek `Motor`. Karena itu versi `Motor` yang dipakai. Inilah polimorfisme dari dalam kelas. Pilihan A adalah jebakan "kode induk pasti memanggil versi induk". Pilihan B keliru karena `info()` diwarisi.
+Pembahasan: `info()` memang milik `Kendaraan`, tetapi di dalamnya `roda()` dipanggil lewat `self`/`this`, yaitu objek `Motor`. Karena itu, versi `Motor` yang dipakai. Inilah polimorfisme dari dalam kelas. Pilihan A adalah jebakan "kode induk pasti memanggil versi induk". Pilihan B keliru karena `info()` diwarisi. Pilihan D keliru karena `info()` hanya dipanggil sekali dan hanya menghasilkan satu teks.
 
 </details>
 
@@ -181,7 +181,7 @@ Pembahasan: `info()` memang milik `Kendaraan`, tetapi di dalamnya `roda()` dipan
 
 Pernyataan yang **benar** tentang *upcasting* dan *downcasting* adalah ...
 
-- A. *Downcasting* sebaiknya didahului pemeriksaan jenis, karena objek yang dipandang sebagai induk belum tentu kelas anak yang dituju
+- A. *Downcasting* sebaiknya didahului pemeriksaan jenis karena objek yang dipandang sebagai induk belum tentu kelas anak yang dituju
 - B. *Upcasting* di Java wajib ditulis eksplisit, misalnya `(Pengguna) mhs`
 - C. *Casting* mengubah objek `Dosen` menjadi objek `Mahasiswa`
 - D. *Upcasting* berbahaya karena bisa memicu `ClassCastException`
@@ -197,7 +197,7 @@ Pembahasan: setiap mahasiswa pasti pengguna, jadi *upcasting* selalu aman dan ot
 
 ### Soal 7
 
-Kelas `Mahasiswa` adalah anak kelas `Pengguna`. Hanya `Mahasiswa` yang punya method `isi_krs()`/`isiKrs()`, yang mengembalikan `"KRS terisi"`. Perhatikan kode berikut.
+Kelas `Mahasiswa` adalah anak kelas `Pengguna`. Hanya `Mahasiswa` yang punya *method* `isi_krs()`/`isiKrs()`. *Method* itu mengembalikan teks `"KRS terisi"`. Perhatikan kode berikut.
 
 **Python:**
 
@@ -225,7 +225,7 @@ Apa yang terjadi?
 
 **Jawaban: D**
 
-Pembahasan: Python mencari method pada **objek** saat baris dijalankan. Objeknya `Mahasiswa`, jadi `isi_krs()` ditemukan. *Compiler* Java melihat **tipe variabel** `Pengguna`, yang tidak punya `isiKrs()`, sehingga muncul `cannot find symbol`. Perbaikannya di Java: `if (p instanceof Mahasiswa m) { ... m.isiKrs() ... }`. Pilihan C membalik perilaku kedua bahasa.
+Pembahasan: Python mencari *method* pada **objek** saat baris dijalankan. Objeknya `Mahasiswa`, jadi `isi_krs()` ditemukan. Hasilnya tetap sama walaupun ditulis dengan petunjuk tipe `p: Pengguna = Mahasiswa()` karena Python tidak memeriksa petunjuk tipe saat program berjalan. *Compiler* Java hanya melihat **tipe variabel** `p`, yaitu `Pengguna`. Kelas `Pengguna` tidak punya `isiKrs()` sehingga kompilasi gagal dengan pesan `cannot find symbol`. Perbaikannya di Java: `if (p instanceof Mahasiswa m) { ... m.isiKrs() ... }`. Pilihan A keliru karena Java menolak kode itu. Pilihan B keliru karena Python berhasil, dan kegagalan Java terjadi saat kompilasi, bukan saat berjalan. Pilihan C membalik perilaku kedua bahasa.
 
 </details>
 
@@ -234,9 +234,9 @@ Pembahasan: Python mencari method pada **objek** saat baris dijalankan. Objeknya
 Apa yang dimaksud dengan ***duck typing***?
 
 - A. Java mengizinkan objek tanpa induk bersama disimpan dalam satu `List`
-- B. Python menganggap objek cocok selama ia punya method yang dibutuhkan, tanpa memeriksa kelasnya
-- C. Teknik memeriksa jenis objek dengan `isinstance` sebelum memanggil method
-- D. Teknik menulis beberapa method bernama sama dengan parameter berbeda
+- B. Python menganggap objek cocok selama ia punya *method* yang dibutuhkan, tanpa memeriksa kelasnya
+- C. Teknik memeriksa jenis objek dengan `isinstance` sebelum memanggil *method*
+- D. Teknik menulis beberapa *method* bernama sama dengan parameter berbeda
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -249,19 +249,19 @@ Pembahasan: "jika berbunyi seperti bebek, anggap saja bebek". Ayam jago, alarm, 
 
 ### Soal 9
 
-Sebuah kelas Python punya dua method bernama `sapa`: yang pertama hanya punya parameter `self`, sedangkan yang kedua (ditulis di bawahnya) punya parameter `self` dan `nama`. Apa yang terjadi?
+Sebuah kelas Python punya dua *method* bernama `sapa`: yang pertama hanya punya parameter `self`, sedangkan yang kedua (ditulis di bawahnya) punya parameter `self` dan `nama`. Apa yang terjadi?
 
 - A. Python memilih versi yang cocok berdasarkan jumlah argumen, seperti *overloading* di Java
 - B. Python menolak kelas itu dengan `SyntaxError`
-- C. Method kedua menimpa method pertama, sehingga `sapa()` tanpa argumen menghasilkan `TypeError`
-- D. Kedua method otomatis digabung menjadi satu method dengan nilai bawaan
+- C. *Method* kedua menimpa *method* pertama sehingga `sapa()` tanpa argumen menghasilkan `TypeError`
+- D. Kedua *method* otomatis digabung menjadi satu *method* dengan nilai bawaan
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: C**
 
-Pembahasan: Python tidak punya *overloading*. Nama `sapa` hanya bisa menunjuk satu method, jadi `def` kedua menimpa `def` pertama tanpa pesan error. Error baru muncul saat seseorang memanggil `sapa()` tanpa argumen: `missing 1 required positional argument: 'nama'`. Cara Python yang benar adalah nilai bawaan, misalnya `def sapa(self, nama="teman")`.
+Pembahasan: Python tidak punya *overloading*. Nama `sapa` hanya bisa menunjuk satu *method*, jadi `def` kedua menimpa `def` pertama tanpa pesan *error*. *Error* baru muncul saat seseorang memanggil `sapa()` tanpa argumen: `missing 1 required positional argument: 'nama'`. Karena itu, pilihan A dan B keliru. Python juga tidak pernah menggabungkan dua *method* menjadi satu (pilihan D). Cara Python yang benar adalah nilai bawaan, misalnya `def sapa(self, nama="teman")`.
 
 </details>
 
@@ -279,7 +279,7 @@ Pasangan pernyataan mana yang **benar**?
 
 **Jawaban: B**
 
-Pembahasan: pilihan A tertukar. Pilihan C keliru, karena *overriding* dipilih saat program berjalan berdasarkan objek (ingat contoh 07 Java: `sambut(rina)` memakai versi `Tamu`, tetapi `rina.fasilitas()` memakai versi `TamuVip`). Pilihan D keliru, karena dua method dengan nama dan parameter sama ditolak *compiler* walaupun tipe kembaliannya berbeda (`is already defined`).
+Pembahasan: pilihan A tertukar. Pilihan C keliru karena *overriding* dipilih saat program berjalan berdasarkan objek (ingat contoh 07 Java: `sambut(rina)` memakai versi `Tamu`, tetapi `rina.fasilitas()` memakai versi `TamuVip`). Pilihan D keliru karena dua *method* dengan nama dan parameter sama ditolak *compiler* walaupun tipe kembaliannya berbeda (`is already defined`).
 
 </details>
 
@@ -289,9 +289,9 @@ Pembahasan: pilihan A tertukar. Pilihan C keliru, karena *overriding* dipilih sa
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Konsep polimorfisme sudah kuat | Lanjut ke [Pertemuan 10](../Pertemuan-10-Abstract-Class-dan-Interface/README.md) |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 2 dan 4 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan contoh 01, 03, dan 04 di halaman praktik, lalu coba "Coba sendiri" |
+| 8—10 | Mantap! Konsep polimorfisme sudah kuat | Lanjut ke [Pertemuan 10](../Pertemuan-10-Abstract-Class-dan-Interface/README.md) |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 2 dan 4 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan contoh 01, 03, dan 04 di halaman praktik, lalu coba "Coba sendiri" |
 
 ---
 

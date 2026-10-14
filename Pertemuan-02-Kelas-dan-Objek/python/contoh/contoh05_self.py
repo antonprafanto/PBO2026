@@ -3,11 +3,11 @@ Contoh 05 - Memahami self
 Pertemuan 02 - Kelas dan Objek
 
 self adalah "objek yang sedang menjalankan method ini".
-- self.email   -> atribut milik objek
-- email        -> parameter (variabel lokal method)
+- self.email    -> atribut milik objek
+- email         -> parameter (variabel lokal method)
 - self.method() -> memanggil method lain milik objek yang sama
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/contoh; macOS/Linux: python3):
     python contoh05_self.py
 """
 

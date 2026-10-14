@@ -12,8 +12,9 @@ Ide penyelesaian:
 
 Agar file ini bisa dijalankan sendiri, Pesanan, PenyimpananPesanan,
 PenyimpananMemori, dan Kedai disalin dalam versi RINGKAS. Satu-satunya kelas
-yang BARU adalah PenyimpananTerbatas. Di proyekmu, tambahkan kelas itu ke
-penyimpanan.py.
+yang BARU adalah PenyimpananTerbatas. Di salinan studi kasus milikmu (Cara A
+di latihan.md), tambahkan kelas itu di file baru, misalnya
+penyimpanan_terbatas.py.
 
 Cara menjalankan:
     python latihan04_penyimpanan_terbatas.py

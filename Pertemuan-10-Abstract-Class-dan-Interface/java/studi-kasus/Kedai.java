@@ -6,7 +6,7 @@
  *                       menu bisa tetap ada walau tidak terdaftar di kedai)
  * - Kedai --> Pesanan : ASOSIASI (kedai mencatat pesanan-pesanan yang dibuat)
  *
- * Yang baru di Pertemuan 10: Kedai meng-implements interface DapatDicetak,
+ * Yang baru di Pertemuan 10: Kedai mengimplementasikan interface DapatDicetak
  * sehingga tampilkanMenu() diganti nama menjadi cetak().
  */
 

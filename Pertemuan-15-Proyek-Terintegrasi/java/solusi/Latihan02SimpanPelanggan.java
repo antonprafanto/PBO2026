@@ -12,9 +12,12 @@
  *   file (bukan memakai objek lama di memori).
  *
  * Catatan nama kelas: kelasnya diberi nama PelangganKedai, BUKAN Pelanggan,
- * karena folder java/ pertemuan ini sudah punya kelas Pelanggan (di
- * studi-kasus). VS Code akan protes jika ada dua kelas bernama sama dalam
- * satu folder proyek. Di proyekmu sendiri, nama Pelanggan boleh dipakai.
+ * agar tidak tertukar dengan kelas Pelanggan milik studi kasus di folder
+ * java/ pertemuan ini. Sebenarnya Java mengizinkan keduanya: kelas milik
+ * studi kasus berada di package kedaikita (nama lengkapnya
+ * kedaikita.Pelanggan), sedangkan kelas di file ini tidak ber-package.
+ * Materi ini tetap memakai nama kelas yang unik di setiap folder java/
+ * pertemuan agar mudah dibaca. Di folder latihanmu, nama Pelanggan boleh dipakai.
  *
  * Cara menjalankan (Java 11 ke atas):
  *     java Latihan02SimpanPelanggan.java

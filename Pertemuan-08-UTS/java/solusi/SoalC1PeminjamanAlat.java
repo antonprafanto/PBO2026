@@ -19,7 +19,7 @@
  * pemformat sendiri (RupiahToko). Editor seperti VS Code menganggap satu
  * folder sebagai satu proyek, sehingga nama kelas di dalamnya harus unik.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/solusi (Java 11 ke atas):
  *     java SoalC1PeminjamanAlat.java
  */
 import java.util.ArrayList;

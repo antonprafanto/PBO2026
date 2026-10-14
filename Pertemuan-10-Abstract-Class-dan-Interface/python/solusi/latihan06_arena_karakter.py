@@ -9,7 +9,7 @@ Ide penyelesaian:
   menyerang" ditulis sekali, lalu besar serangan ditanyakan ke method
   abstrak kekuatan_serangan() milik kelas anak.
 - BisaMenyembuhkan adalah "interface" (can-do). Penyihir (sebuah Karakter)
-  dan RamuanObat (BUKAN Karakter) sama-sama memenuhinya, sehingga
+  dan RamuanObat (BUKAN Karakter) sama-sama memenuhinya sehingga
   fase_penyembuhan() bisa memakai keduanya.
 
 Cara menjalankan:

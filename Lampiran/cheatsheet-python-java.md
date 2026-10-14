@@ -1,6 +1,6 @@
-# Cheat Sheet Python ↔ Java
+# *Cheat Sheet* Python ↔ Java
 
-[🏠 Beranda](../README.md) · [Lampiran](README.md) · [Glosarium](glosarium.md) · **Cheat Sheet** · [Referensi](referensi.md) · [FAQ](faq.md)
+[🏠 Beranda](../README.md) · [Lampiran](README.md) · [Glosarium](glosarium.md) · ***Cheat Sheet* Python ↔ Java** · [Referensi](referensi.md) · [FAQ](faq.md)
 
 > Contekan sintaks penting dari Pertemuan 01 sampai 15, dengan Python dan Java berdampingan. Contohnya bertema KedaiKita. Gunakan halaman ini saat kamu lupa cara menulis sesuatu, atau saat membaca kode di jalur yang bukan pilihanmu.
 
@@ -9,37 +9,56 @@
 - Setiap bagian dibuka dengan **tabel ringkas**, lalu **contoh kode Python** diikuti **contoh kode Java** untuk ide yang sama.
 - Hasil yang dicetak sebuah baris ditulis sebagai komentar di ujung baris itu, misalnya `# 36000` atau `// 36000`.
 - Setiap bagian berdiri sendiri. Kelas seperti `Menu` sengaja dibuat berbeda-beda di tiap bagian, disederhanakan sesuai topiknya.
-- Potongan Java yang berupa **pernyataan** (bukan deklarasi kelas) diletakkan di dalam method `main`. Potongan yang memakai `List`, `ArrayList`, `Map`, dan sejenisnya membutuhkan `import java.util.*;` (atau `import` satu per satu) di awal file.
+- Potongan Java yang berupa **pernyataan** (bukan deklarasi kelas) diletakkan di dalam *method* `main`, seperti pada kerangka `Coba.java` di bawah.
 - Semua potongan kode sudah diuji agar berjalan di Python 3.10 ke atas dan Java 17 ke atas.
 
+**Ingin mencoba sebuah potongan?** Buat *file* baru di folder latihan pribadimu, misalnya `PBO-latihan-saya/pertemuan-12` (lihat [Git dan GitHub](../00-Persiapan/git-dan-github.md) bagian 5), bukan di folder materi.
+
+- **Python:** salin potongannya ke *file* baru, misalnya `coba.py`. Jika bagian itu memakai kelas dari bagian lain, salin juga kelas tersebut ke atasnya. Jalankan di terminal, dari folder tempat *file* itu disimpan: `python coba.py`. Di macOS/Linux, ketik `python3` sebagai ganti `python`, termasuk pada perintah lain di halaman ini.
+- **Java:** susun *file* `Coba.java` seperti kerangka di bawah ini, lalu jalankan di terminal, dari folder tempat *file* itu disimpan: `java Coba.java`. Jika sebuah potongan diawali baris `import`, pindahkan baris itu ke bagian paling atas *file*.
+
+```java
+import java.util.*;  // dibutuhkan jika memakai List, Map, dan sejenisnya
+
+public class Coba {  // kelas yang punya main ditulis PALING ATAS
+    public static void main(String[] args) {
+        // tempel potongan PERNYATAAN di sini
+    }
+}
+
+// tempel potongan DEKLARASI KELAS (class ..., interface ...) di sini, di bawah kelas Coba
+```
+
 > [!TIP]
-> Contekan ini hanya pengingat. Penjelasan lengkap, alasan, dan jebakannya ada di halaman konsep, praktik, dan **Jembatan Python ↔ Java** di setiap pertemuan.
+> Contekan ini hanya pengingat. Penjelasan lengkap, alasan, dan jebakannya ada di halaman konsep, praktik, dan **Jembatan Python ↔ Java** di setiap pertemuan. Tautan **Materi lengkap** di awal setiap bagian membawamu langsung ke pertemuannya.
 
 ## Daftar Isi
 
 0. [Dasar Sintaks (Pertemuan 01)](#0-dasar-sintaks-pertemuan-01)
 1. [Kelas, Objek, dan Konstruktor (Pertemuan 02)](#1-kelas-objek-dan-konstruktor-pertemuan-02)
-2. [Atribut Kelas dan Method Static (Pertemuan 03)](#2-atribut-kelas-dan-method-static-pertemuan-03)
+2. [Atribut Kelas dan *Method* Milik Kelas (Pertemuan 03)](#2-atribut-kelas-dan-method-milik-kelas-pertemuan-03)
 3. [Representasi Teks Objek (Pertemuan 03)](#3-representasi-teks-objek-pertemuan-03)
 4. [Referensi dan Nilai Kosong (Pertemuan 03)](#4-referensi-dan-nilai-kosong-pertemuan-03)
 5. [Enkapsulasi (Pertemuan 04)](#5-enkapsulasi-pertemuan-04)
-6. [Relasi Antarobjek dan List (Pertemuan 05)](#6-relasi-antarobjek-dan-list-pertemuan-05)
+6. [Relasi Antarkelas dan *List* (Pertemuan 05)](#6-relasi-antarkelas-dan-list-pertemuan-05)
 7. [Dari Diagram UML ke Kode (Pertemuan 06)](#7-dari-diagram-uml-ke-kode-pertemuan-06)
-8. [Pewarisan dan super (Pertemuan 07)](#8-pewarisan-dan-super-pertemuan-07)
+8. [Pewarisan dan `super` (Pertemuan 07)](#8-pewarisan-dan-super-pertemuan-07)
 9. [Polimorfisme (Pertemuan 09)](#9-polimorfisme-pertemuan-09)
 10. [Kelas Abstrak (Pertemuan 10)](#10-kelas-abstrak-pertemuan-10)
-11. [Interface dan Protocol (Pertemuan 10)](#11-interface-dan-protocol-pertemuan-10)
-12. [Exception (Pertemuan 11)](#12-exception-pertemuan-11)
-13. [Koleksi, Generics, dan Pengurutan (Pertemuan 12)](#13-koleksi-generics-dan-pengurutan-pertemuan-12)
+11. [*Interface* dan `Protocol` (Pertemuan 10)](#11-interface-dan-protocol-pertemuan-10)
+12. [*Exception* (Pertemuan 11)](#12-exception-pertemuan-11)
+13. [Koleksi, *Generics*, dan Pengurutan (Pertemuan 12)](#13-koleksi-generics-dan-pengurutan-pertemuan-12)
 14. [Kesamaan dan Urutan Alami Objek (Pertemuan 12)](#14-kesamaan-dan-urutan-alami-objek-pertemuan-12)
 15. [Prinsip SOLID dalam Kode (Pertemuan 13)](#15-prinsip-solid-dalam-kode-pertemuan-13)
-16. [Design Pattern (Pertemuan 14)](#16-design-pattern-pertemuan-14)
-17. [File, Package, dan Unit Test (Pertemuan 15)](#17-file-package-dan-unit-test-pertemuan-15)
-18. [Jebakan Saat Pindah Bahasa](#18-jebakan-saat-pindah-bahasa)
+16. [*Design Pattern* (Pertemuan 14)](#16-design-pattern-pertemuan-14)
+17. [*File*, *Package*, dan *Unit Test* (Pertemuan 15)](#17-file-package-dan-unit-test-pertemuan-15)
+18. [Jebakan saat Pindah Bahasa](#18-jebakan-saat-pindah-bahasa)
 
 ---
 
 ## 0. Dasar Sintaks (Pertemuan 01)
+
+Materi lengkap: [Pertemuan 01: Pengenalan PBO dan Persiapan Alat](../Pertemuan-01-Pengenalan-PBO/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
@@ -58,12 +77,12 @@
 | Pembagian bulat | `7 // 2` menghasilkan `3` | `7 / 2` menghasilkan `3` (jika keduanya `int`) |
 | Pembagian desimal | `7 / 2` menghasilkan `3.5` | `7 / 2.0` menghasilkan `3.5` |
 | Panjang teks | `len(nama)` | `nama.length()` |
-| Ukuran daftar | `len(daftar)` | `daftar.size()` (List) atau `arr.length` (array) |
+| Ukuran daftar | `len(daftar)` | `daftar.size()` (*List*) atau `arr.length` (*array*) |
 | Blok kode | indentasi | kurung kurawal `{ }` |
 | Akhir pernyataan | ganti baris | titik koma `;` |
-| Titik masuk program | `if __name__ == "__main__":` lalu `main()` | `public static void main(String[] args)` |
+| Pintu masuk program | `if __name__ == "__main__":` lalu `main()` | `public static void main(String[] args)` |
 
-**Python:**
+**Python** (*file* `program_pertama.py`, jalankan dengan `python program_pertama.py`):
 
 ```python
 def main():
@@ -76,7 +95,7 @@ if __name__ == "__main__":
     main()
 ```
 
-**Java** (file `ProgramPertama.java`):
+**Java** (*file* `ProgramPertama.java`, jalankan dengan `java ProgramPertama.java`):
 
 ```java
 public class ProgramPertama {
@@ -90,6 +109,8 @@ public class ProgramPertama {
 
 ## 1. Kelas, Objek, dan Konstruktor (Pertemuan 02)
 
+Materi lengkap: [Pertemuan 02: Kelas dan Objek](../Pertemuan-02-Kelas-dan-Objek/README.md).
+
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
 | Mendefinisikan kelas | `class Menu:` | `class Menu { }` |
@@ -97,8 +118,8 @@ public class ProgramPertama {
 | Konstruktor | `def __init__(self, nama, harga):` | `Menu(String nama, int harga) { }` |
 | Kata ganti objek | `self` (wajib ditulis sebagai parameter pertama) | `this` (tersedia otomatis) |
 | Membuat objek | `Menu("Kopi", 18000)` | `new Menu("Kopi", 18000)` |
-| Memanggil method | `kopi.hitung_total(2)` | `kopi.hitungTotal(2)` |
-| Gaya nama method | `snake_case` | `camelCase` |
+| Memanggil *method* | `kopi.hitung_total(2)` | `kopi.hitungTotal(2)` |
+| Gaya nama *method* | `snake_case` | `camelCase` |
 
 **Python:**
 
@@ -141,15 +162,17 @@ System.out.println(kopi.nama);            // Kopi Susu Gula Aren
 System.out.println(kopi.hitungTotal(2));  // 36000
 ```
 
-## 2. Atribut Kelas dan Method Static (Pertemuan 03)
+## 2. Atribut Kelas dan *Method* Milik Kelas (Pertemuan 03)
+
+Materi lengkap: [Pertemuan 03: Atribut dan *Method* Lebih Dalam](../Pertemuan-03-Atribut-dan-Method/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
 | Atribut milik kelas | ditulis di badan kelas: `jumlah_menu = 0` | `static int jumlahMenu = 0;` |
 | Mengakses atribut kelas | `Menu.jumlah_menu` | `Menu.jumlahMenu` |
-| Method milik kelas | `@classmethod` (menerima `cls`) atau `@staticmethod` | `static` |
+| *Method* milik kelas | `@classmethod` (menerima `cls`) atau `@staticmethod` | `static` |
 | Konstruktor alternatif | `@classmethod def dari_teks(cls, teks)` | `static Menu dariTeks(String teks)` |
-| Parameter bawaan | `def __init__(self, ..., stok=0)` | tidak ada; pakai *overloading* konstruktor |
+| Nilai bawaan parameter | `def __init__(self, ..., stok=0)` | tidak ada; pakai *overloading* konstruktor |
 | Memanggil konstruktor lain | (tidak perlu) | `this(kode, nama, harga, kategori, 0);` |
 
 **Python:**
@@ -246,11 +269,13 @@ System.out.println(Rupiah.format(kopi.harga));  // Rp18.000
 
 ## 3. Representasi Teks Objek (Pertemuan 03)
 
+Materi lengkap: [Pertemuan 03: Atribut dan *Method* Lebih Dalam](../Pertemuan-03-Atribut-dan-Method/README.md).
+
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
 | Teks saat objek dicetak | `def __str__(self):` | `public String toString()` dengan `@Override` |
-| Dipakai oleh | `print(objek)`, `str(objek)`, f-string | `System.out.println(objek)`, `"..." + objek` |
-| Teks untuk programmer | `def __repr__(self):` | (biasanya cukup `toString()`) |
+| Dipakai oleh | `print(objek)`, `str(objek)`, *f-string* | `System.out.println(objek)`, `"..." + objek` |
+| Teks untuk pemrogram | `def __repr__(self):` | (biasanya cukup `toString()`) |
 
 **Python:**
 
@@ -295,11 +320,11 @@ System.out.println(budi);  // Budi Santoso (081234567890) - 0 poin
 ```
 
 > [!NOTE]
-> `toString()` wajib ditulis `public`, karena ia menimpa (meng-*override*) method `public` milik kelas `Object`. Detailnya dibahas di Pertemuan 07.
+> `toString()` wajib ditulis `public` karena ia menimpa (meng-*override*) *method* `public` milik kelas `Object`. Detailnya dibahas di Pertemuan 07.
 
 ## 4. Referensi dan Nilai Kosong (Pertemuan 03)
 
-Contoh di bagian ini memakai kelas `Menu` dari [bagian 1](#1-kelas-objek-dan-konstruktor-pertemuan-02).
+Materi lengkap: [Pertemuan 03: Atribut dan *Method* Lebih Dalam](../Pertemuan-03-Atribut-dan-Method/README.md). Contoh di bagian ini memakai kelas `Menu` dari [bagian 1](#1-kelas-objek-dan-konstruktor-pertemuan-02).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
@@ -351,6 +376,8 @@ System.out.println(kategori.equals("Minuman"));  // true: bandingkan ISI teks de
 
 ## 5. Enkapsulasi (Pertemuan 04)
 
+Materi lengkap: [Pertemuan 04: Enkapsulasi](../Pertemuan-04-Enkapsulasi/README.md).
+
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
 | Atribut yang disembunyikan | konvensi `self._harga` | `private int harga;` |
@@ -358,7 +385,7 @@ System.out.println(kategori.equals("Minuman"));  // true: bandingkan ISI teks de
 | Mengubah nilai | `@harga.setter` lalu `kopi.harga = 20000` | *setter*: `kopi.setHarga(20000)` |
 | Menolak data tidak valid | `raise ValueError("...")` | `throw new IllegalArgumentException("...")` |
 | Atribut *read-only* | `@property` tanpa *setter* | *getter* tanpa *setter* |
-| Nama *getter* untuk boolean | `kopi.dingin` | `kopi.isDingin()` |
+| Nama *getter* untuk *boolean* | `kopi.dingin` | `kopi.isDingin()` |
 
 **Python:**
 
@@ -460,11 +487,11 @@ try {
 
 **Jangkauan *access modifier* Java:**
 
-| Modifier | Kelas itu sendiri | Kelas lain di *package* yang sama | Kelas anak di *package* lain | Semua kelas lain |
+| *Modifier* | Kelas itu sendiri | Kelas lain di *package* yang sama | Kelas anak di *package* lain | Semua kelas lain |
 |---|---|---|---|---|
 | `public` | ya | ya | ya | ya |
 | `protected` | ya | ya | ya | tidak |
-| (tanpa modifier) | ya | ya | tidak | tidak |
+| (tanpa *modifier*) | ya | ya | tidak | tidak |
 | `private` | ya | tidak | tidak | tidak |
 
 **Konvensi nama di Python:**
@@ -475,13 +502,13 @@ try {
 | `_nama` | urusan internal kelas; masih bisa diakses, tetapi sebaiknya tidak |
 | `__nama` | *name mangling*: Python mengganti namanya menjadi `_NamaKelas__nama`. Ini bukan fitur keamanan. |
 
-## 6. Relasi Antarobjek dan List (Pertemuan 05)
+## 6. Relasi Antarkelas dan *List* (Pertemuan 05)
 
-Contoh di bagian ini memakai `Menu` dari [bagian 5](#5-enkapsulasi-pertemuan-04) dan `Pelanggan` dari [bagian 3](#3-representasi-teks-objek-pertemuan-03).
+Materi lengkap: [Pertemuan 05: Relasi Antarkelas](../Pertemuan-05-Relasi-Antarkelas/README.md). Contoh di bagian ini memakai `Menu` dari [bagian 5](#5-enkapsulasi-pertemuan-04) dan `Pelanggan` dari [bagian 3](#3-representasi-teks-objek-pertemuan-03).
 
 | Relasi | Ciri di kode | Contoh KedaiKita |
 |---|---|---|
-| Dependensi | objek lain hanya dipakai sebagai parameter atau variabel lokal | method yang menerima `Pembayaran` sebagai parameter |
+| Dependensi | objek lain hanya dipakai sebagai parameter atau variabel lokal | `Kedai` hanya menerima `Pelanggan` sebagai parameter saat membuat pesanan |
 | Asosiasi | atribut berisi referensi ke objek lain | `ItemPesanan` menyimpan `Menu` |
 | Agregasi | menyimpan objek yang **diterima dari luar**; bagian bisa hidup sendiri | `Kedai` menyimpan daftar `Menu` |
 | Komposisi | **membuat sendiri** objek bagian dan menyimpannya; bagian ikut lenyap | `Pesanan` membuat `ItemPesanan` |
@@ -628,11 +655,11 @@ System.out.println(pesanan.getDaftarItem().size());  // 2
 System.out.println(kedai.cariMenu("M99"));           // null
 ```
 
-**Operasi list yang paling sering dipakai:**
+**Operasi *list* yang paling sering dipakai:**
 
 | Operasi | 🐍 Python (`list`) | ☕ Java (`List`/`ArrayList`) |
 |---|---|---|
-| Membuat list kosong | `daftar = []` | `List<Menu> daftar = new ArrayList<>();` |
+| Membuat *list* kosong | `daftar = []` | `List<Menu> daftar = new ArrayList<>();` |
 | Menambah di akhir | `daftar.append(menu)` | `daftar.add(menu)` |
 | Mengambil elemen ke-0 | `daftar[0]` | `daftar.get(0)` |
 | Jumlah elemen | `len(daftar)` | `daftar.size()` |
@@ -641,23 +668,25 @@ System.out.println(kedai.cariMenu("M99"));           // null
 | Menghapus | `daftar.remove(menu)` | `daftar.remove(menu)` |
 | Membuat salinan | `list(daftar)` | `new ArrayList<>(daftar)` |
 
-**Program banyak file:**
+**Program banyak *file*:**
 
 | | 🐍 Python | ☕ Java |
 |---|---|---|
-| Satu file berisi | boleh beberapa kelas; nama file bebas, misalnya `menu.py` | satu kelas `public` per file; nama file = nama kelas, misalnya `Menu.java` |
-| Memakai kelas dari file lain | `from menu import Menu` | tidak perlu `import` jika di folder (*package*) yang sama |
+| Satu *file* berisi | boleh beberapa kelas; nama *file* bebas, misalnya `menu.py` | satu kelas `public` per *file*; nama *file* = nama kelas, misalnya `Menu.java` |
+| Memakai kelas dari *file* lain | `from menu import Menu` | tidak perlu `import` jika di folder (*package*) yang sama |
 | Menjalankan | `python main.py` | `javac *.java` lalu `java Main` |
 
 ## 7. Dari Diagram UML ke Kode (Pertemuan 06)
+
+Materi lengkap: [Pertemuan 06: UML *Class Diagram*](../Pertemuan-06-UML-Class-Diagram/README.md).
 
 | Di diagram UML | Artinya | 🐍 Python | ☕ Java |
 |---|---|---|---|
 | `+ nama: String` | atribut publik | `self.nama` | `public String nama;` |
 | `- harga: int` | atribut privat | `self._harga` (konvensi) | `private int harga;` |
 | `# stok: int` | atribut *protected* | `self._stok` (konvensi) | `protected int stok;` |
-| `~ kode: String` | atribut *package* | (tidak ada padanannya) | `String kode;` (tanpa modifier) |
-| `+ hitungTotal(jumlah: int): int` | method publik | `def hitung_total(self, jumlah: int) -> int:` | `public int hitungTotal(int jumlah)` |
+| `~ kode: String` | atribut *package* | (tidak ada padanannya) | `String kode;` (tanpa *modifier*) |
+| `+ hitungTotal(jumlah: int): int` | *method* publik | `def hitung_total(self, jumlah: int) -> int:` | `public int hitungTotal(int jumlah)` |
 | nama digarisbawahi | milik kelas (*static*) | atribut kelas, `@classmethod`, atau `@staticmethod` | `static` |
 | nama dicetak miring | abstrak | `@abstractmethod` | `abstract` |
 
@@ -688,20 +717,27 @@ classDiagram
     Kedai "1" o-- "*" Menu : menyimpan
 ```
 
-## 8. Pewarisan dan super (Pertemuan 07)
+## 8. Pewarisan dan `super` (Pertemuan 07)
+
+Materi lengkap: [Pertemuan 07: Pewarisan (*Inheritance*)](../Pertemuan-07-Pewarisan/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
 | Membuat kelas anak | `class Makanan(Menu):` | `class Makanan extends Menu` |
-| Memanggil konstruktor induk | `super().__init__(...)` | `super(...);` (wajib baris pertama konstruktor) |
-| Memanggil method induk | `super().__str__()` | `super.toString()` |
-| Menandai *override* | (tidak ada tanda khusus) | `@Override` |
+| Memanggil konstruktor induk | `super().__init__(...)` | `super(...);` di baris pertama konstruktor (wajib di Java 17 dan 21) |
+| Memanggil *method* induk | `super().__str__()` | `super.toString()` |
+| Menandai *override* | (tidak ada tanda wajib) | `@Override` |
 | Memeriksa jenis objek | `isinstance(nasi, Menu)` | `nasi instanceof Menu` |
 | Mewarisi beberapa kelas | boleh: `class C(A, B):` | tidak boleh untuk kelas; gunakan *interface* |
 | Kelas akar semua kelas | `object` | `Object` |
 | Mencegah *override* | (konvensi saja) | `final` |
 
-**Python** (memakai `format_rupiah()` dari [bagian 2](#2-atribut-kelas-dan-method-static-pertemuan-03)):
+> [!NOTE]
+> Java 25 melonggarkan aturan `super(...)` di baris pertama: pernyataan yang tidak memakai objek yang sedang dibuat, misalnya memeriksa nilai parameter, boleh ditulis sebelum `super(...)`. Mata kuliah ini berpatokan pada Java 17, dan menulis `super(...)` di baris pertama tetap aman di semua versi.
+>
+> Sejak Python 3.12, modul `typing` punya dekorator `@override`, dan sejak lama ada `@final`. Keduanya hanya diperiksa alat pemeriksa tipe, misalnya mypy atau Pylance di VS Code (pemeriksaan Pylance mati secara bawaan), bukan oleh Python saat program berjalan. Karena itu, materi ini tidak memakainya.
+
+**Python** (memakai `format_rupiah()` dari [bagian 2](#2-atribut-kelas-dan-method-milik-kelas-pertemuan-03)):
 
 ```python
 class Menu:
@@ -730,7 +766,7 @@ print(nasi.kategori)  # Makanan
 print(isinstance(nasi, Menu))  # True
 ```
 
-**Java** (memakai kelas `Rupiah` dari [bagian 2](#2-atribut-kelas-dan-method-static-pertemuan-03)):
+**Java** (memakai kelas `Rupiah` dari [bagian 2](#2-atribut-kelas-dan-method-milik-kelas-pertemuan-03)):
 
 ```java
 class Menu {
@@ -760,7 +796,7 @@ class Makanan extends Menu {  // Makanan ADALAH Menu
     private int levelPedas;  // atribut tambahan khusus Makanan
 
     public Makanan(String kode, String nama, int harga, int levelPedas) {
-        super(kode, nama, harga, "Makanan");  // konstruktor induk, WAJIB paling awal
+        super(kode, nama, harga, "Makanan");  // konstruktor induk, ditulis paling awal
         this.levelPedas = levelPedas;
     }
 
@@ -779,9 +815,11 @@ System.out.println(nasi instanceof Menu);  // true
 ```
 
 > [!TIP]
-> Uji cepat sebelum memakai pewarisan: apakah kalimat "X **adalah** Y" masuk akal? "Makanan adalah Menu" cocok untuk pewarisan. "Pesanan adalah Pelanggan" tidak masuk akal, karena hubungannya "pesanan **punya** pelanggan", sehingga lebih cocok memakai asosiasi atau komposisi.
+> Uji cepat sebelum memakai pewarisan: apakah kalimat "X **adalah** Y" masuk akal? "Makanan adalah Menu" cocok untuk pewarisan. "Pesanan adalah Pelanggan" tidak masuk akal karena hubungannya adalah "pesanan **punya** pelanggan". Untuk hubungan seperti itu, asosiasi atau komposisi lebih cocok.
 
 ## 9. Polimorfisme (Pertemuan 09)
+
+Materi lengkap: [Pertemuan 09: Polimorfisme](../Pertemuan-09-Polimorfisme/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
@@ -789,8 +827,8 @@ System.out.println(nasi instanceof Menu);  // true
 | *Upcasting* | tidak perlu dipikirkan | otomatis: `Pembayaran p = new PembayaranKartu();` |
 | *Downcasting* | tidak perlu | eksplisit: `(PembayaranKartu) p` |
 | Memeriksa jenis | `isinstance(p, PembayaranKartu)` | `p instanceof PembayaranKartu` |
-| *Overloading* | tidak ada; gunakan parameter bawaan | boleh: nama sama, parameter berbeda |
-| *Duck typing* | ya: cukup punya method yang sama | tidak; butuh induk atau *interface* yang sama |
+| *Overloading* | tidak ada; gunakan nilai bawaan parameter | boleh: nama sama, parameter berbeda |
+| *Duck typing* | ya: cukup punya *method* yang sama | tidak; butuh induk atau *interface* yang sama |
 
 **Python:**
 
@@ -888,7 +926,7 @@ for (Pembayaran pembayaran : daftar) {
 
 Sejak Java 16, pemeriksaan dan *downcasting* bisa digabung: `if (pembayaran instanceof PembayaranKartu kartu) { kartu.siapkanMesinEdc(); }`.
 
-**Khusus Python, *duck typing*:** objek dari kelas yang tidak berhubungan pun bisa ikut, asalkan punya method yang dibutuhkan.
+**Khusus Python, *duck typing*:** objek dari kelas yang tidak berhubungan pun bisa ikut asalkan punya *method* yang dibutuhkan.
 
 ```python
 class Voucher:  # TIDAK mewarisi Pembayaran
@@ -902,7 +940,7 @@ class Voucher:  # TIDAK mewarisi Pembayaran
 daftar.append(Voucher())  # tetap bisa ikut di perulangan yang sama
 ```
 
-**Khusus Java, *overloading*:** beberapa method bernama sama dengan parameter berbeda. Padanannya di Python adalah parameter bawaan.
+**Khusus Java, *overloading*:** beberapa *method* bernama sama dengan parameter berbeda. Padanannya di Python adalah nilai bawaan parameter.
 
 ```java
 class Kalkulator {
@@ -926,14 +964,16 @@ def total(harga, jumlah=1):  # Python: pakai nilai bawaan, bukan overloading
 
 ## 10. Kelas Abstrak (Pertemuan 10)
 
+Materi lengkap: [Pertemuan 10: *Abstract Class* dan *Interface*](../Pertemuan-10-Abstract-Class-dan-Interface/README.md).
+
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
 | Kelas abstrak | `class Pembayaran(ABC):` | `abstract class Pembayaran` |
-| Method abstrak | `@abstractmethod` | `public abstract String namaMetode();` |
-| Mencoba membuat objeknya | `TypeError` saat program **berjalan** | error saat **kompilasi** |
-| Boleh punya konstruktor, atribut, method biasa | ya | ya |
+| *Method* abstrak | `@abstractmethod` | `public abstract String namaMetode();` |
+| Mencoba membuat objeknya | `TypeError` saat program **berjalan** | *error* saat **kompilasi** |
+| Boleh punya konstruktor, atribut, *method* biasa | ya | ya |
 
-**Python** (memakai `format_rupiah()` dari [bagian 2](#2-atribut-kelas-dan-method-static-pertemuan-03)):
+**Python** (memakai `format_rupiah()` dari [bagian 2](#2-atribut-kelas-dan-method-milik-kelas-pertemuan-03)):
 
 ```python
 from abc import ABC, abstractmethod
@@ -957,7 +997,7 @@ print(PembayaranQRIS().deskripsi(26400))  # QRIS untuk Rp26.400
 # Pembayaran()  -> TypeError saat berjalan: kelas abstrak tidak bisa dibuat objeknya
 ```
 
-**Java** (memakai kelas `Rupiah` dari [bagian 2](#2-atribut-kelas-dan-method-static-pertemuan-03)):
+**Java** (memakai kelas `Rupiah` dari [bagian 2](#2-atribut-kelas-dan-method-milik-kelas-pertemuan-03)):
 
 ```java
 abstract class Pembayaran {
@@ -981,15 +1021,17 @@ System.out.println(new PembayaranQRIS().deskripsi(26400));  // QRIS untuk Rp26.4
 // new Pembayaran();  -> error kompilasi: Pembayaran is abstract; cannot be instantiated
 ```
 
-## 11. Interface dan Protocol (Pertemuan 10)
+## 11. *Interface* dan `Protocol` (Pertemuan 10)
+
+Materi lengkap: [Pertemuan 10: *Abstract Class* dan *Interface*](../Pertemuan-10-Abstract-Class-dan-Interface/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
-| Kontrak kemampuan | kelas `ABC` yang semua method-nya abstrak | `interface DapatDicetak` |
+| Kontrak kemampuan | kelas `ABC` yang semua *method*-nya abstrak | `interface DapatDicetak` |
 | Memenuhi kontrak | mewarisi: `class Kedai(DapatDicetak):` | `class Kedai implements DapatDicetak` |
 | Banyak kontrak sekaligus | `class Bebek(BisaTerbang, BisaBerenang):` | `class Bebek implements BisaTerbang, BisaBerenang` |
-| Kontrak tanpa pewarisan | `typing.Protocol` (cukup punya method yang sama) | tidak ada; harus `implements` |
-| Method berisi di kontrak | method biasa di kelas `ABC` | `default` method (sejak Java 8) |
+| Kontrak tanpa pewarisan | `typing.Protocol` (cukup punya *method* yang sama) | tidak ada; harus `implements` |
+| *Method* berisi di kontrak | *method* biasa di kelas `ABC` | `default` *method* (sejak Java 8) |
 
 **Python**, gaya kelas abstrak (dipakai KedaiKita):
 
@@ -1041,6 +1083,8 @@ def cetak_dokumen(dokumen: BisaDicetak):
 cetak_dokumen(Struk())  # === STRUK ===
 ```
 
+Kecocokan `Protocol` (*structural typing*) hanya diperiksa alat pemeriksa tipe, misalnya Pylance di VS Code setelah pengaturan **Python › Analysis: Type Checking Mode** diubah dari `off` (bawaan) menjadi `standard`. Saat program berjalan, Python tidak memeriksanya.
+
 **Java:**
 
 ```java
@@ -1082,16 +1126,20 @@ dokumen.cetakDenganJudul("Hari ini");  // ## Hari ini, lalu === MENU KedaiKita =
 | Jumlah per kelas (Java) | hanya satu induk | boleh banyak |
 | Cocok untuk | berbagi kode di antara kelas-kelas yang sejenis | kemampuan yang bisa dimiliki kelas-kelas yang tidak sejenis |
 
-## 12. Exception (Pertemuan 11)
+## 12. *Exception* (Pertemuan 11)
+
+Materi lengkap: [Pertemuan 11: *Exception Handling*](../Pertemuan-11-Exception-Handling/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
 | Menangkap | `try:` ... `except ValueError as e:` | `try { } catch (IllegalArgumentException e) { }` |
-| Blok jika tidak ada error | `else:` | (tidak ada; tulis di akhir blok `try`) |
+| Blok jika tidak ada *error* | `else:` | (tidak ada; tulis di akhir blok `try`) |
 | Blok yang selalu dijalankan | `finally:` | `finally { }` |
 | Melempar | `raise ValueError("pesan")` | `throw new IllegalArgumentException("pesan");` |
+| Melempar ulang yang sedang ditangani | `raise` | `throw e;` |
 | Beberapa jenis sekaligus | `except (ValueError, KeyError) as e:` | `catch (IllegalArgumentException \| NullPointerException e)` |
-| Membawa penyebab | `raise KedaiError("...") from e` | `throw new KedaiException("...", e);` (konstruktornya harus menerima penyebab) |
+| *Exception chaining* (menyimpan penyebab) | `raise KedaiError("...") from e` | `throw new KedaiException("...", e);` (konstruktornya harus menerima penyebab) |
+| Membaca penyebab | `e.__cause__` | `e.getCause()` |
 | Mengambil pesan | `str(e)` atau langsung `f"{e}"` | `e.getMessage()` |
 | *Exception* buatan sendiri | `class KedaiError(Exception):` | `class KedaiException extends Exception` |
 | Wajib ditangani? | tidak pernah | ya untuk *checked exception*; tidak untuk turunan `RuntimeException` |
@@ -1154,6 +1202,8 @@ class StokTidakCukupException extends KedaiException {
 }
 ```
 
+*Method* `static` berikut ditulis di dalam kelas yang berisi `main`, sejajar dengan `main` (bukan di dalamnya). Potongan `try` sesudahnya diletakkan di dalam `main`.
+
 ```java
 static int kurangiStok(int stok, int jumlah) throws KedaiException {  // wajib diumumkan
     if (jumlah > stok) {
@@ -1184,12 +1234,14 @@ try {
 |---|---|---|
 | Data tidak valid | `ValueError` | `IllegalArgumentException` |
 | Teks bukan angka | `int("abc")` melempar `ValueError` | `Integer.parseInt("abc")` melempar `NumberFormatException` |
-| Indeks di luar batas | `IndexError` | `IndexOutOfBoundsException` (List) atau `ArrayIndexOutOfBoundsException` (array) |
+| Indeks di luar batas | `IndexError` | `IndexOutOfBoundsException` (*List*) atau `ArrayIndexOutOfBoundsException` (*array*) |
 | Pembagian bilangan bulat dengan nol | `ZeroDivisionError` | `ArithmeticException` |
-| Memakai variabel yang kosong | `AttributeError` (pada `None`) | `NullPointerException` |
+| Memanggil *method* lewat variabel yang kosong | `AttributeError` (variabelnya berisi `None`) | `NullPointerException` (variabelnya berisi `null`) |
 | Kunci tidak ada | `KeyError` | tidak ada *exception*; `map.get(kunci)` mengembalikan `null` |
 
-## 13. Koleksi, Generics, dan Pengurutan (Pertemuan 12)
+## 13. Koleksi, *Generics*, dan Pengurutan (Pertemuan 12)
+
+Materi lengkap: [Pertemuan 12: Koleksi dan *Generics*](../Pertemuan-12-Koleksi-dan-Generics/README.md).
 
 **Memilih koleksi:**
 
@@ -1290,7 +1342,7 @@ List<Menu> daftar = List.of(
         new Menu("Nasi Goreng Kampung", 25000, "Makanan"),
         new Menu("Es Teh Manis", 8000, "Minuman"),
         new Menu("Kopi Susu Gula Aren", 18000, "Minuman"));
-List<Menu> termurah = new ArrayList<>(daftar);  // salin dulu, karena sort() mengubah list
+List<Menu> termurah = new ArrayList<>(daftar);  // salin dulu: sort() mengubah list, padahal List.of() tidak boleh diubah
 termurah.sort(Comparator.comparing(Menu::getHarga));
 List<Menu> termahal = new ArrayList<>(daftar);
 termahal.sort(Comparator.comparing(Menu::getHarga).reversed());
@@ -1303,10 +1355,12 @@ for (Menu m : termurah) {
 
 | Cara mengurutkan | 🐍 Python | ☕ Java |
 |---|---|---|
-| Dengan *lambda* | `sorted(daftar, key=lambda m: m.harga)` | `daftar.sort((a, b) -> Integer.compare(a.getHarga(), b.getHarga()));` |
+| Menghasilkan *list* baru | `sorted(daftar, key=...)` | salin dulu dengan `new ArrayList<>(daftar)`, lalu `.sort(...)` |
+| Mengubah urutan *list* itu sendiri | `daftar.sort(key=...)`; hasilnya `None`, bukan *list* baru | `daftar.sort(...)` atau `Collections.sort(daftar)`; gagal jika *list* dibuat dengan `List.of(...)` |
 | Berdasarkan satu nilai | `key=lambda m: m.harga` | `Comparator.comparing(Menu::getHarga)` |
+| *Lambda* pembanding dua objek | jarang perlu; cukup pakai `key` | `(a, b) -> Integer.compare(a.getHarga(), b.getHarga())` |
 | Terbalik | `reverse=True` | `.reversed()` |
-| Dua kriteria | `key=lambda m: (m.kategori, m.nama)` | `.thenComparing(Menu::getNama)` |
+| Dua kriteria | `key=lambda m: (m.kategori, m.nama)` | `Comparator.comparing(Menu::getKategori).thenComparing(Menu::getNama)` |
 | Urutan alami | `__lt__` (lihat bagian 14) | `implements Comparable<Menu>` (lihat bagian 14) |
 | Menyaring daftar | `[m for m in daftar if m.harga < 20000]` | perulangan `for` + `if`, atau *stream* (bonus) |
 
@@ -1371,6 +1425,8 @@ System.out.println(nama + " (" + porsi + " porsi)");  // Es Teh Manis (2 porsi)
 > ```
 
 ## 14. Kesamaan dan Urutan Alami Objek (Pertemuan 12)
+
+Materi lengkap: [Pertemuan 12: Koleksi dan *Generics*](../Pertemuan-12-Koleksi-dan-Generics/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
@@ -1468,13 +1524,15 @@ for (Menu m : urut) {
 
 ## 15. Prinsip SOLID dalam Kode (Pertemuan 13)
 
-| Prinsip | Pertanyaan untuk menguji kodemu | Contoh di KedaiKita |
-|---|---|---|
-| SRP | Apakah kelas ini hanya punya satu alasan untuk berubah? | `StrukPesanan` hanya mengurus format struk |
-| OCP | Bisakah aku menambah fitur baru tanpa mengubah kelas lama? | promo baru = kelas `Diskon` baru |
-| LSP | Bisakah objek kelas anak dipakai di mana pun induknya dipakai, tanpa kejutan? | semua `Diskon` mengembalikan potongan yang tidak negatif |
-| ISP | Apakah *interface*-nya kecil dan fokus? | `PenyimpananPesanan` hanya berisi `simpan()` dan `semua()` |
-| DIP | Apakah kelas ini bergantung pada abstraksi, bukan pada kelas konkret? | `Kedai` menerima `PenyimpananPesanan` lewat konstruktor |
+Materi lengkap: [Pertemuan 13: Prinsip SOLID](../Pertemuan-13-Prinsip-SOLID/README.md).
+
+| Prinsip | Arti singkat | Pertanyaan untuk menguji kodemu | Contoh di KedaiKita |
+|---|---|---|---|
+| SRP | satu kelas, satu alasan untuk berubah | Adakah lebih dari satu pihak atau aturan yang bisa memaksa kelas ini berubah? | `StrukPesanan` hanya mengurus format struk |
+| OCP | terbuka untuk ditambah, tertutup untuk diubah | Bisakah fitur baru ditambahkan tanpa membongkar kelas lama? | promo baru = kelas `Diskon` baru |
+| LSP | kelas anak bisa menggantikan induknya tanpa kejutan | Apakah kelas anak menepati semua janji kelas induknya? | semua `Diskon` menepati jaminan "potongan tidak pernah negatif" |
+| ISP | *interface* kecil yang fokus | Adakah kelas yang dipaksa menulis *method* yang tidak ia butuhkan? | `PenyimpananPesanan` hanya mewajibkan `simpan()` dan `semua()` |
+| DIP | bergantung pada abstraksi, bukan pada kelas konkret | Apakah kelas pengatur ini terikat langsung pada kelas konkret, misalnya menciptakan sendiri alat yang dipakainya? | `Kedai` menerima `PenyimpananPesanan` lewat konstruktor (*dependency injection*) |
 
 **Python** (contoh disederhanakan):
 
@@ -1569,16 +1627,19 @@ kasir.aturDiskon(new DiskonPersen(10));       // promo baru tanpa mengubah kelas
 System.out.println(kasir.totalBayar(61000));  // 54900
 ```
 
-## 16. Design Pattern (Pertemuan 14)
+## 16. *Design Pattern* (Pertemuan 14)
+
+Materi lengkap: [Pertemuan 14: *Design Pattern* Dasar](../Pertemuan-14-Design-Pattern/README.md).
 
 | Pola | Masalah yang diselesaikan | Ciri di kode | Contoh di KedaiKita |
 |---|---|---|---|
-| Singleton | butuh tepat satu objek untuk seluruh program | konstruktor tertutup dan method `get_instance()`/`getInstance()` | `PengaturanKedai` (pajak 10%) |
-| Factory | pembuatan objek bergantung pada pilihan | satu method `buat(jenis)` yang mengembalikan objek yang sesuai | `PembayaranFactory` |
-| Strategy | aturan atau algoritma ingin bisa ditukar | objek aturan disimpan di atribut dan bisa diganti | kelas-kelas `Diskon` |
-| Observer | banyak pihak perlu tahu saat sesuatu berubah | subjek menyimpan daftar pengamat lalu memanggil method mereka | `LayarDapur`, `NotifikasiPelanggan` |
+| *Singleton* | butuh tepat satu objek untuk seluruh program | konstruktor tertutup dan *method* `get_instance()`/`getInstance()` | `PengaturanKedai` (pajak 10%) |
+| *Simple Factory* | pembuatan objek bergantung pada pilihan | satu *method* (biasanya `static`) `buat(jenis)` berisi `if` yang mengembalikan objek yang sesuai | `PembayaranFactory` |
+| *Factory Method* (GoF) | kelas anak yang menentukan objek apa yang dibuat | *method* pembuat di kelas induk (biasanya abstrak) yang di-*override* kelas anak | tidak dipakai di KedaiKita; lihat contoh 05 Pertemuan 14 |
+| *Strategy* | aturan atau algoritma ingin bisa ditukar | objek aturan disimpan di atribut dan bisa diganti | kelas-kelas `Diskon` |
+| *Observer* | banyak pihak perlu tahu saat sesuatu berubah | subjek menyimpan daftar pengamat lalu memanggil *method* mereka | `LayarDapur`, `NotifikasiPelanggan` |
 
-### Singleton
+### *Singleton*
 
 **Python:**
 
@@ -1631,9 +1692,9 @@ System.out.println(a == b);  // true: objek yang sama
 ```
 
 > [!NOTE]
-> Python tidak punya konstruktor `private`, sehingga `PengaturanKedai()` tetap bisa dipanggil langsung. Versi KedaiKita menolaknya dengan melempar `RuntimeError` jika objeknya sudah ada. Detailnya ada di Pertemuan 14.
+> Python tidak punya konstruktor `private` sehingga `PengaturanKedai()` tetap bisa dipanggil langsung. Versi KedaiKita menolaknya dengan melempar `RuntimeError` jika objeknya sudah ada. Versi *lazy* di atas juga belum *thread-safe*: jika dua alur kerja (*thread*) memintanya bersamaan, bisa tercipta dua objek. Program kita hanya punya satu alur kerja, jadi aman. Detailnya ada di Pertemuan 14.
 
-### Factory
+### *Simple Factory*
 
 Contoh ini memakai kelas `Pembayaran`, `PembayaranTunai`, dan `PembayaranQRIS` seperti di KedaiKita.
 
@@ -1677,11 +1738,14 @@ Pembayaran pembayaran = PembayaranFactory.buat("qris", 50000);  // tidak perlu t
 System.out.println(pembayaran.namaMetode());  // QRIS
 ```
 
-### Strategy
+> [!NOTE]
+> *Simple Factory* bukan salah satu dari 23 pola GoF, melainkan idiom populer yang lebih sederhana. Pola GoF yang mirip adalah *Factory Method*: kelas induk menyediakan *method* pembuat (biasanya abstrak), lalu setiap kelas anak meng-*override*-nya. Menambah jenis baru pada *Simple Factory* berarti menambah cabang `if`, sedangkan pada *Factory Method* cukup menambah kelas anak baru.
 
-Kelas-kelas `Diskon` di [bagian 15](#15-prinsip-solid-dalam-kode-pertemuan-13) sebenarnya sudah menerapkan pola Strategy. Setiap kelas diskon adalah satu "strategi", dan `kasir.atur_diskon(DiskonPersen(10))` atau `kasir.aturDiskon(new DiskonPersen(10))` menukar strategi itu saat program berjalan.
+### *Strategy*
 
-### Observer
+Kelas-kelas `Diskon` di [bagian 15](#15-prinsip-solid-dalam-kode-pertemuan-13) sebenarnya sudah menerapkan pola *Strategy*. Setiap kelas diskon adalah satu "strategi", dan `kasir.atur_diskon(DiskonPersen(10))` atau `kasir.aturDiskon(new DiskonPersen(10))` menukar strategi itu saat program berjalan.
+
+### *Observer*
 
 **Python:**
 
@@ -1773,20 +1837,22 @@ pesanan.tambahPengamat(new LayarDapur());
 pesanan.ubahStatus("DIPROSES");  // [DAPUR] P001 -> DIPROSES
 ```
 
-## 17. File, Package, dan Unit Test (Pertemuan 15)
+## 17. *File*, *Package*, dan *Unit Test* (Pertemuan 15)
+
+Materi lengkap: [Pertemuan 15: Proyek Terintegrasi](../Pertemuan-15-Proyek-Terintegrasi/README.md).
 
 | Konsep | 🐍 Python | ☕ Java |
 |---|---|---|
-| Alamat file | `Path("data") / "menu.csv"` | `Path.of("data", "menu.csv")` |
-| Menutup file otomatis | `with open(...) as f:` | `try (BufferedWriter w = ...) { }` (*try-with-resources*) |
+| Alamat *file* | `Path("data") / "menu.csv"` | `Path.of("data", "menu.csv")` |
+| Menutup *file* otomatis | `with open(...) as f:` | `try (BufferedWriter w = ...) { }` (*try-with-resources*) |
 | Pengodean teks | `encoding="utf-8"` | `StandardCharsets.UTF_8` |
 | Membaca semua baris | `for baris in f:` | `Files.readAllLines(path, StandardCharsets.UTF_8)` |
 | Memecah kolom CSV | modul `csv` dengan `delimiter=";"` | `baris.split(";", -1)` |
-| Menandai *package* | folder berisi file `__init__.py` | baris `package kedaikita;` di awal setiap file |
+| Menandai *package* | folder berisi *file* `__init__.py` | baris `package kedaikita;` di awal setiap *file* |
 | Memakai kelas dari *package* | `from kedaikita.menu import Menu` | `import kedaikita.Menu;` (jika dari *package* lain) |
 | Kerangka *unit test* | `unittest` (bawaan) | JUnit (standar industri, perlu dipasang) |
 
-**Python** (program lengkap; file contoh dibuat lalu dihapus lagi):
+**Python** (program lengkap, misalnya *file* `contoh_file.py`; *file* CSV contohnya dibuat lalu dihapus lagi):
 
 ```python
 import csv
@@ -1813,7 +1879,7 @@ if __name__ == "__main__":
     main()
 ```
 
-**Java** (program lengkap, file `ContohFile.java`):
+**Java** (program lengkap, *file* `ContohFile.java`; *file* CSV contohnya juga dibuat lalu dihapus):
 
 ```java
 import java.io.BufferedWriter;
@@ -1864,9 +1930,9 @@ python main.py                          javac -d out src/kedaikita/*.java
                                         java -cp out kedaikita.Main
 ```
 
-### Unit test
+### *Unit test*
 
-**Python** dengan `unittest`:
+**Python** dengan `unittest` (program lengkap, misalnya *file* `uji_menu.py`, jalankan dengan `python uji_menu.py`):
 
 ```python
 import unittest
@@ -1901,7 +1967,7 @@ if __name__ == "__main__":
 
 Jika semua pengujian lulus, `unittest` menampilkan ringkasan seperti `Ran 2 tests` lalu `OK`.
 
-**Java** tanpa pustaka tambahan (penguji mini buatan sendiri, file `UjiMenu.java`):
+**Java** tanpa pustaka tambahan (penguji mini buatan sendiri, *file* `UjiMenu.java`, jalankan dengan `java UjiMenu.java`):
 
 ```java
 public class UjiMenu {
@@ -1956,23 +2022,25 @@ class Menu {  // kelas yang diuji (disederhanakan)
 
 Di dunia kerja, pengujian Java biasanya memakai JUnit. Penguji mini di atas memperlihatkan ide dasarnya tanpa perlu memasang pustaka apa pun.
 
-## 18. Jebakan Saat Pindah Bahasa
+## 18. Jebakan saat Pindah Bahasa
 
-| Jika terbiasa dengan... | Lalu menulis di... | Jebakannya |
+| Jika terbiasa dengan ... | Lalu menulis di ... | Jebakannya |
 |---|---|---|
 | Python | Java | lupa `;`, lupa menulis tipe, atau lupa `new` saat membuat objek |
 | Python | Java | membandingkan teks dengan `==`; gunakan `.equals()` |
-| Python | Java | `7 / 2` menghasilkan `3`, bukan `3.5`, karena keduanya `int` |
+| Python | Java | `7 / 2` menghasilkan `3` (bukan `3.5`) karena keduanya `int` |
 | Python | Java | `"Total: " + 36000 + 25000` menjadi `Total: 3600025000`; beri kurung pada penjumlahan |
 | Python | Java | menulis `True`/`False`/`None`, padahal di Java `true`/`false`/`null` |
-| Python | Java | memberi tipe kembalian `void` pada konstruktor, sehingga ia berubah menjadi method biasa |
-| Java | Python | lupa menulis `self` sebagai parameter pertama method |
+| Python | Java | memberi tipe kembalian `void` pada konstruktor sehingga ia berubah menjadi *method* biasa |
+| Python | Java | `remove(1)` pada `List<Integer>` menghapus **indeks** 1, bukan angka 1; untuk angka 1, tulis `remove(Integer.valueOf(1))` |
+| Java | Python | menulis `hasil = daftar.sort()`, padahal `sort()` mengembalikan `None`; pakai `sorted(daftar)` jika butuh *list* baru |
+| Java | Python | lupa menulis `self` sebagai parameter pertama *method* |
 | Java | Python | menulis `harga` padahal maksudnya `self.harga` |
-| Java | Python | menulis dua method bernama sama dan berharap terjadi *overloading* |
+| Java | Python | menulis dua *method* bernama sama dan berharap terjadi *overloading* |
 | Java | Python | mengira `_harga` benar-benar privat; itu hanya konvensi |
 | Java | Python | lupa titik dua `:` di akhir `if`, `for`, `def`, dan `class` |
 | keduanya | keduanya | memakai bilangan desimal untuk uang; gunakan bilangan bulat (rupiah) |
 
 ---
 
-[🏠 Beranda](../README.md) · [Lampiran](README.md) · [Glosarium](glosarium.md) · **Cheat Sheet** · [Referensi](referensi.md) · [FAQ](faq.md)
+[🏠 Beranda](../README.md) · [Lampiran](README.md) · [Glosarium](glosarium.md) · ***Cheat Sheet* Python ↔ Java** · [Referensi](referensi.md) · [FAQ](faq.md)

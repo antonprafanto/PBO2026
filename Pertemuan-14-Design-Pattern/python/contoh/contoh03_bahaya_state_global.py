@@ -8,8 +8,8 @@ mengubahnya dari mana pun. Akibatnya:
   dari parameternya),
 - hasil pengujian bisa bergantung pada URUTAN uji dijalankan.
 
-Solusinya (ingat DIP di Pertemuan 13): kirim kebutuhan lewat parameter atau
-konstruktor, sehingga setiap pengujian bisa memakai nilainya sendiri.
+Solusinya (ingat dependency injection di Pertemuan 13): kirim kebutuhan lewat
+parameter atau konstruktor sehingga setiap pengujian bisa memakai nilainya sendiri.
 
 Cara menjalankan:
     python contoh03_bahaya_state_global.py

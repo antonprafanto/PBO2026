@@ -6,7 +6,8 @@
  * - Armada adalah kelas abstrak: semua armada punya pengemudi dan jenis.
  *   Ini hubungan "adalah" (is-a), jadi cocok memakai kelas abstrak.
  * - BisaAntarPenumpang dan BisaAntarMakanan adalah interface (kemampuan,
- *   hubungan "bisa"). Satu kelas boleh meng-implements lebih dari satu.
+ *   hubungan "bisa"). Satu kelas boleh mengimplementasikan lebih dari satu
+ *   interface.
  * - instanceof dipakai untuk memeriksa KEMAMPUAN, lalu objeknya di-cast ke
  *   tipe interface itu agar method-nya bisa dipanggil (downcasting, P09).
  *

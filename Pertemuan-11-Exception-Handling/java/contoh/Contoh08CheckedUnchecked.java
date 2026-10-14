@@ -11,7 +11,7 @@
  *
  * KelasPenuhException sengaja dibuat checked: kelas kuliah yang penuh adalah
  * situasi WAJAR yang harus dipikirkan setiap pemanggil (misalnya dengan
- * menyarankan kelas paralel). Kapasitas 0 adalah kesalahan programmer, jadi
+ * menyarankan kelas paralel). Kapasitas 0 adalah kesalahan pemrogram, jadi
  * cukup IllegalArgumentException (unchecked).
  *
  * Python tidak punya pembagian ini (lihat Jembatan Python - Java).

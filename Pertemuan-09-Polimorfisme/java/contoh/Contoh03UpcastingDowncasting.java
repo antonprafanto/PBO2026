@@ -120,6 +120,6 @@ class Dosen extends Pengguna {
     }
 
     public String inputNilai(String mataKuliah, String nilai) { // method KHUSUS dosen
-        return getNama() + " menginput nilai " + mataKuliah + ": " + nilai;
+        return getNama() + " memasukkan nilai " + mataKuliah + ": " + nilai;
     }
 }

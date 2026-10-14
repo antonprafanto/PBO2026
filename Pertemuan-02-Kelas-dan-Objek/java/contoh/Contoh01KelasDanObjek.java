@@ -9,7 +9,7 @@
  * Catatan: mengisi atribut dari luar seperti ini bisa dilakukan, tetapi bukan
  * kebiasaan yang baik. Di contoh 02 kita memakai konstruktor.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/contoh (Java 11 ke atas):
  *     java Contoh01KelasDanObjek.java
  */
 public class Contoh01KelasDanObjek {

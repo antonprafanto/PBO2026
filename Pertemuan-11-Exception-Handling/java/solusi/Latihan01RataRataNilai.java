@@ -5,7 +5,7 @@
  * Ide penyelesaian:
  * - Setiap teks diubah dengan Integer.parseInt() di dalam try. Jika gagal
  *   (NumberFormatException), cetak pesan, lalu perulangan lanjut.
- * - Penjumlahan ditulis di AKHIR blok try (Java tidak punya blok else),
+ * - Penjumlahan ditulis di AKHIR blok try (Java tidak punya blok else)
  *   sehingga hanya dijalankan jika parseInt() berhasil.
  * - Rata-rata = total / jumlahValid. Jika TIDAK ADA nilai yang valid,
  *   jumlahValid = 0 sehingga pembagian melempar ArithmeticException.

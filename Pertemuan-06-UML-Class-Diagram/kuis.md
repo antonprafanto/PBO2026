@@ -1,4 +1,4 @@
-# Kuis — Pertemuan 06: UML Class Diagram
+# Kuis Pertemuan 06: UML *Class Diagram*
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 07 ➡️](../Pertemuan-07-Pewarisan/README.md)
 
@@ -20,7 +20,7 @@ Pernyataan yang paling tepat tentang UML adalah ...
 
 **Jawaban: A**
 
-Pembahasan: UML adalah bahasa **pemodelan** visual yang distandarkan oleh OMG sejak 1997. UML bukan bahasa pemrograman (B salah) dan tidak bisa dijalankan. Mermaid atau StarUML adalah **alat** untuk menggambar UML, bukan UML itu sendiri (C salah). UML netral terhadap bahasa, sehingga bisa dipakai untuk Python, Java, maupun bahasa lain (D salah).
+Pembahasan: UML adalah bahasa **pemodelan** visual yang distandarkan oleh OMG sejak 1997. UML bukan bahasa pemrograman (B salah) dan tidak bisa dijalankan. Mermaid atau StarUML adalah **alat** untuk menggambar UML, bukan UML itu sendiri (C salah). UML netral terhadap bahasa sehingga bisa dipakai untuk Python, Java, maupun bahasa lain (D salah).
 
 </details>
 
@@ -38,13 +38,13 @@ Di sebuah kotak kelas tertulis `#biayaAdmin : int`. Artinya ...
 
 **Jawaban: C**
 
-Pembahasan: `#` berarti *protected*. Publik ditulis `+` (A), akses satu paket ditulis `~` (D), sedangkan *static* tidak ditandai dengan simbol di depan, tetapi dengan garis bawah (di Mermaid: `$` di akhir baris), sehingga B salah.
+Pembahasan: `#` berarti *protected*. Publik ditulis `+` (A), akses satu paket ditulis `~` (D), sedangkan *static* tidak ditandai dengan simbol di depan, tetapi dengan garis bawah (di Mermaid: `$` di akhir baris) sehingga B salah.
 
 </details>
 
 ### Soal 3
 
-Kamu ingin menuliskan method *static* `jumlahPaket()` yang mengembalikan `int` di dalam kotak kelas Mermaid. Penulisan yang benar adalah ...
+Kamu ingin menuliskan *method* *static* `jumlahPaket()` yang mengembalikan `int` di dalam kotak kelas Mermaid. Penulisan yang benar adalah ...
 
 - A. `+$jumlahPaket() int`
 - B. `+static jumlahPaket() int`
@@ -56,7 +56,7 @@ Kamu ingin menuliskan method *static* `jumlahPaket()` yang mengembalikan `int` d
 
 **Jawaban: D**
 
-Pembahasan: di Mermaid, anggota *static* ditandai `$` di **paling akhir** baris, lalu digambar bergaris bawah. Tanda `*` di akhir baris (C) berarti **abstrak**, sehingga method tampil miring. Mermaid tidak mengenal kata `static` di dalam kotak (B), dan `$` tidak diletakkan di depan nama (A).
+Pembahasan: di Mermaid, anggota *static* ditandai `$` di **paling akhir** baris, lalu digambar bergaris bawah. Tanda `*` di akhir baris (C) berarti **abstrak** sehingga *method* tampil miring. Mermaid tidak menganggap kata `static` sebagai penanda (B); kata itu hanya ikut tercetak sebagai bagian dari nama. Tanda `$` di depan nama (A) juga hanya tercetak sebagai huruf biasa, tanpa garis bawah.
 
 </details>
 
@@ -74,7 +74,7 @@ Perhatikan relasi `Pesanan "1" *-- "*" ItemPesanan`. Pernyataan yang benar adala
 
 **Jawaban: A**
 
-Pembahasan: dibaca dari `Pesanan`, angka di ujung seberang adalah `*`: satu pesanan berisi nol atau lebih item. Dibaca dari `ItemPesanan`, angka di ujung seberang adalah `1`: setiap item milik tepat satu pesanan, jadi B dan C salah. Belah ketupat penuh berarti komposisi: item tidak berarti tanpa pesanannya, sehingga D juga salah.
+Pembahasan: dibaca dari `Pesanan`, angka di ujung seberang adalah `*`: satu pesanan berisi nol atau lebih item. Dibaca dari `ItemPesanan`, angka di ujung seberang adalah `1`: setiap item milik tepat satu pesanan, jadi B dan C salah. Belah ketupat penuh berarti komposisi: item tidak berarti tanpa pesanannya sehingga D juga salah.
 
 </details>
 
@@ -116,7 +116,7 @@ Pembahasan: pada generalisasi, segitiga kosong menempel pada **induk**. `Menu <|
 
 ### Soal 7
 
-Perhatikan kode berikut.
+Perhatikan potongan kode berikut.
 
 **Python:**
 
@@ -148,13 +148,13 @@ Relasi `Motor` ke `SPBU` yang paling tepat adalah ...
 
 **Jawaban: C**
 
-Pembahasan: objek `SPBU` hanya datang sebagai **parameter** dan tidak disimpan di atribut atau field mana pun. Pemakaian sementara seperti ini adalah dependensi. Asosiasi (A) dan agregasi (B) mensyaratkan referensi yang disimpan di atribut. Motor juga bukan "jenis" SPBU (D).
+Pembahasan: objek `SPBU` hanya datang sebagai **parameter** dan tidak disimpan di atribut atau *field* mana pun. Pemakaian sementara seperti ini adalah dependensi. Asosiasi (A) dan agregasi (B) mensyaratkan referensi yang disimpan di atribut. Motor juga bukan "jenis" SPBU (D).
 
 </details>
 
 ### Soal 8
 
-Perhatikan kode berikut.
+Perhatikan potongan kode berikut.
 
 **Python:**
 
@@ -193,13 +193,13 @@ Baris diagram yang tepat untuk penghitung `terjual` (versi Python: `_terjual`) a
 
 **Jawaban: B**
 
-Pembahasan: penghitung itu **privat** (Java `private`, Python awalan `_`), bertipe `int`, bernilai awal 0, dan **milik kelas** (Java `static`, Python atribut kelas), sehingga ditulis `-terjual : int = 0$`. A salah visibilitas dan tidak *static*. C menggambarkannya sebagai method. D memakai `#` (*protected*), yang tidak sesuai dengan kodenya.
+Pembahasan: penghitung itu **privat** (Java `private`, Python awalan `_`), bertipe `int`, bernilai awal 0, dan **milik kelas** (Java `static`, Python atribut kelas) sehingga ditulis `-terjual : int = 0$`. A salah visibilitas dan tidak *static*. C menggambarkannya sebagai *method*. D memakai `#` (*protected*), yang tidak sesuai dengan kodenya.
 
 </details>
 
 ### Soal 9
 
-Perhatikan kode berikut.
+Perhatikan potongan kode berikut.
 
 **Python:**
 
@@ -243,7 +243,7 @@ Multiplisitas yang tepat di ujung `Penonton` pada relasi `Kursi --> Penonton` ad
 
 **Jawaban: A**
 
-Pembahasan: setiap kursi menyimpan **paling banyak satu** penonton, dan nilainya boleh kosong (`None`/`null`) sebelum dipesan. Itulah `0..1`. Multiplisitas `1` (B) berarti wajib ada sejak awal, biasanya lewat konstruktor. `1..*` (C) dan `*` (D) berarti banyak penonton, padahal atributnya hanya satu objek, bukan list.
+Pembahasan: setiap kursi menyimpan **paling banyak satu** penonton, dan nilainya boleh kosong (`None`/`null`) sebelum dipesan. Itulah `0..1`. Multiplisitas `1` (B) berarti wajib ada sejak awal, biasanya lewat konstruktor. `1..*` (C) dan `*` (D) berarti banyak penonton, padahal atributnya hanya satu objek, bukan *list*.
 
 </details>
 
@@ -271,9 +271,9 @@ Pembahasan: membuat diagram **dari** kode yang sudah ada disebut *reverse engine
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Kamu sudah fasih membaca dan menulis diagram kelas | Lanjut ke [Pertemuan 07](../Pertemuan-07-Pewarisan/README.md) dan bawa diagram rencana `Menu`, `Makanan`, `Minuman` |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 2 dan 3 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, terutama bagian relasi dan multiplisitas, lalu cocokkan setiap contoh di halaman praktik dengan diagramnya |
+| 8—10 | Mantap! Kamu sudah fasih membaca dan menulis diagram kelas | Lanjut ke [Pertemuan 07](../Pertemuan-07-Pewarisan/README.md) dan bawa diagram rencana `Menu`, `Makanan`, `Minuman` |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 2 dan 3 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, terutama bagian relasi dan multiplisitas, lalu cocokkan setiap contoh di halaman praktik dengan diagramnya |
 
 ---
 

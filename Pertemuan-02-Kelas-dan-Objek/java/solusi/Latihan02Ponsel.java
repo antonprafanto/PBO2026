@@ -8,7 +8,7 @@
  *   baterai menjadi 0 dan ponsel mati.
  * - isiDaya(persen): baterai bertambah, tetapi tidak boleh lebih dari 100.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/solusi (Java 11 ke atas):
  *     java Latihan02Ponsel.java
  */
 public class Latihan02Ponsel {

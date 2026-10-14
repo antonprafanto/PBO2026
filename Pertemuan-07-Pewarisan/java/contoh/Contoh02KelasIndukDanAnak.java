@@ -58,7 +58,7 @@ class Motor extends Kendaraan { // [2] Motor adalah Kendaraan
     private String transmisi; // [4] field tambahan khusus motor
 
     public Motor(String merek, String platNomor, int tahun, String transmisi) {
-        super(merek, platNomor, tahun); // [3] bagian induk diisi induk, WAJIB paling awal
+        super(merek, platNomor, tahun); // [3] bagian induk diisi induk, PALING AWAL
         this.transmisi = transmisi;
     }
 

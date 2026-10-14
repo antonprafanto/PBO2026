@@ -4,7 +4,8 @@
  *
  * - Hewan adalah kelas abstrak (punya field nama + method abstrak bersuara).
  * - BisaTerbang dan BisaBerenang adalah interface.
- * - Bebek meng-extends SATU kelas (Hewan) dan meng-implements DUA interface.
+ * - Bebek mewarisi SATU kelas (extends Hewan) dan mengimplementasikan DUA
+ *   interface (implements BisaTerbang, BisaBerenang).
  * - Pesawat bukan Hewan, tetapi tetap BisaTerbang.
  *
  * Cara menjalankan (Java 11 ke atas):

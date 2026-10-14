@@ -4,11 +4,11 @@
  *
  * Yang baru di Pertemuan 10:
  * - Pembayaran kini kelas abstrak (abstract class). Objeknya TIDAK BISA dibuat
- *   langsung, karena "pembayaran umum" memang tidak ada di dunia nyata.
+ *   langsung karena "pembayaran umum" memang tidak ada di dunia nyata.
  * - namaMetode() dan proses() menjadi method abstrak: setiap kelas anak
  *   WAJIB meng-override keduanya.
- * - hitungBiayaLayanan() dan deskripsi() tetap method biasa (konkret)
- *   yang langsung diwarisi kelas anak.
+ * - hitungBiayaLayanan() tetap method biasa (konkret), dan deskripsi()
+ *   adalah method konkret baru. Keduanya langsung diwarisi kelas anak.
  */
 
 /** Kelas abstrak: kerangka untuk semua metode pembayaran. */

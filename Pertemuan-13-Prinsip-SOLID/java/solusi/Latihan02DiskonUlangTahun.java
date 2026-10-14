@@ -3,7 +3,7 @@
  * Pertemuan 13 - Prinsip SOLID
  *
  * Ide penyelesaian:
- * - Aturan diskon baru = kelas BARU yang meng-implements interface diskon.
+ * - Aturan diskon baru = kelas BARU yang mengimplementasikan interface diskon.
  *   Kelas pesanan, kelas diskon lain, dan pencetak struk TIDAK diubah (OCP).
  * - DiskonUlangTahun: gratis 1 porsi menu TERMURAH di dalam pesanan.
  * - Menepati janji Diskon (LSP): potongan tidak pernah negatif, tidak pernah
@@ -65,7 +65,6 @@ public class Latihan02DiskonUlangTahun {
         pesananBudi.tambahItem(nasiGoreng, 1);
         pesananBudi.aturDiskon(new DiskonUlangTahun());
         cetakStruk(pesananBudi);
-
 
         System.out.println();
         System.out.println("=== PESANAN KOSONG (UJI LSP) ===");

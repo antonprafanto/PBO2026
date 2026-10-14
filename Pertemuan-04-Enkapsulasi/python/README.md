@@ -1,24 +1,30 @@
-# 🐍 Praktik Python — Pertemuan 04: Enkapsulasi
+# 🐍 Praktik Python Pertemuan 04: Enkapsulasi
 
 [⬅️ Konsep](../README.md) · [☕ Praktik Java](../java/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
-> **Prasyarat:** sudah membaca [Konsep Pertemuan 04](../README.md). Semua kode di halaman ini ada di folder `contoh/` dan `studi-kasus/`, dan bisa langsung dijalankan.
+> **Prasyarat:** sudah membaca [Konsep Pertemuan 04](../README.md). Kode contoh di halaman ini ada di folder `contoh/` dan `studi-kasus/`, dan bisa langsung dijalankan. Potongan kode lain diberi keterangan cara mencobanya.
 
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
+  - [Cara Menjalankan Contoh](#cara-menjalankan-contoh)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
 1. [Masalah: Data yang Bisa Diubah Sembarangan](#1-masalah-data-yang-bisa-diubah-sembarangan)
-2. [Satu Garis Bawah dan Name Mangling](#2-satu-garis-bawah-dan-name-mangling)
-3. [Property: Getter dan Setter ala Python](#3-property-getter-dan-setter-ala-python)
+2. [Satu Garis Bawah dan *Name Mangling*](#2-satu-garis-bawah-dan-name-mangling)
+3. [*Property*: *Getter* dan *Setter* ala Python](#3-property-getter-dan-setter-ala-python)
 4. [Validasi di Konstruktor](#4-validasi-di-konstruktor)
-5. [Atribut Read-Only](#5-atribut-read-only)
-6. [Method Penjaga Aturan](#6-method-penjaga-aturan)
+5. [Atribut *Read-Only*](#5-atribut-read-only)
+6. [*Method* Penjaga Aturan](#6-method-penjaga-aturan)
 7. [Atribut Kelas yang Dilindungi](#7-atribut-kelas-yang-dilindungi)
 8. [Anatomi Kelas Python yang Terenkapsulasi](#8-anatomi-kelas-python-yang-terenkapsulasi)
 9. [Studi Kasus KedaiKita](#9-studi-kasus-kedaikita)
-10. [Kesalahan Umum dan Cara Membaca Pesan Error](#10-kesalahan-umum-dan-cara-membaca-pesan-error)
+10. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#10-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
@@ -29,23 +35,52 @@ python/
 └── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
 ```
 
-Cara menjalankan sebuah contoh dari terminal (Command Prompt, PowerShell, atau terminal VS Code):
+### Cara Menjalankan Contoh
+
+Pilih salah satu cara. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-04-Enkapsulasi/python`. Buka *file* contoh yang ingin dicoba, misalnya `contoh/contoh01_data_bocor.py`, lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-04-Enkapsulasi/python/contoh` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu, jalankan:
 
 ```bash
-cd Pertemuan-04-Enkapsulasi/python/contoh
 python contoh01_data_bocor.py
 ```
 
-> [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Jika kamu memakai VS Code, buka file `.py`-nya lalu klik tombol ▶ (*Run Python File*) di pojok kanan atas. Panduan instalasi lengkap ada di [00-Persiapan](../../00-Persiapan/README.md).
+Jika berhasil, *output* yang muncul sama persis dengan *output* yang ditampilkan di [bagian 1](#1-masalah-data-yang-bisa-diubah-sembarangan).
 
-Saran belajar: **ketik ulang** kodenya, jangan hanya menyalin. Jari yang mengetik membantu otak mengingat.
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+> [!NOTE]
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya.
+
+### Tempat Menyimpan Kodemu Sendiri
+
+Simpan semua kode buatanmu (hasil mengetik ulang, percobaan "Coba sendiri", *file* coretan seperti `coba.py`, dan jawaban latihan) di folder `PBO-latihan-saya/pertemuan-04/`, **di luar** folder materi. Jika sebuah percobaan memintamu mengubah *file* contoh atau studi kasus, salin dulu *file* itu ke folder tersebut, lalu ubah dan jalankan salinannya. Untuk menjalankan salinan itu, buka folder tersebut di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**) atau arahkan terminal ke sana dengan `cd`. Alasan dan cara menyalinnya ada di [aturan emas 00-Persiapan](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri).
+
+### Cara Membaca Kode di Halaman Ini
+
+- Setiap bagian diawali baris ***File*:** atau **Potongan dari** yang menautkan *file* contohnya.
+- ***File*:** berarti kode di bawahnya adalah isi lengkap *file* itu, hanya tanpa komentar pembuka, termasuk dua baris penutup `if __name__ == "__main__":` dan `main()`. Hasil ketik ulangnya bisa langsung dijalankan.
+- **Potongan dari** berarti yang ditampilkan hanya sebagian. Jangan mengetik ulang potongannya saja; jalankan *file* lengkapnya dengan cara di atas.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di dalam kode dijelaskan satu per satu tepat di bawah blok kode.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan.
+
+Saran belajar: **ketik ulang** contoh yang ditampilkan lengkap ke folder latihanmu, jangan hanya menyalin. Jari yang mengetik membantu otak mengingat.
 
 ## 1. Masalah: Data yang Bisa Diubah Sembarangan
 
-File: [`contoh/contoh01_data_bocor.py`](contoh/contoh01_data_bocor.py)
+*File*: [`contoh/contoh01_data_bocor.py`](contoh/contoh01_data_bocor.py)
 
-Kita mulai dengan membandingkan dua kelas tabungan. Yang pertama "bocor", yang kedua menjaga saldonya sendiri.
+Kita mulai dengan membandingkan dua kelas tabungan. Yang pertama "bocor", yang kedua menjaga saldonya sendiri. Berikut isi lengkap *file*-nya, tanpa komentar pembuka:
 
 ```python
 class TabunganBocor:
@@ -101,9 +136,13 @@ def main():
     aman.setor(250000)
     aman.tarik(100000)
     aman.cek_saldo()
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === TABUNGAN BOCOR ===
@@ -123,34 +162,38 @@ Tarik Rp100000 berhasil
 Penjelasan:
 
 - **[1]** `saldo` adalah atribut biasa, persis seperti yang kita tulis di Pertemuan 02 dan 03. Siapa pun yang memegang objeknya bisa mengubah nilainya.
-- **[2]** Nama yang diawali **satu garis bawah** (`_saldo`) adalah tanda bagi sesama programmer Python: "atribut ini urusan internal kelas, jangan diakses dari luar".
-- **[3]** Method `setor()` menjadi satu-satunya pintu resmi untuk menambah saldo. Sebelum mengubah `_saldo`, method ini memeriksa aturannya dulu.
-- **[4]** Method `tarik()` menolak jumlah yang tidak masuk akal dan penarikan yang melebihi saldo.
+- **[2]** Nama yang diawali **satu garis bawah** (`_saldo`) adalah tanda bagi sesama pemrogram Python: "atribut ini urusan internal kelas, jangan diakses dari luar".
+- **[3]** *Method* `setor()` menjadi satu-satunya pintu resmi untuk menambah saldo. Sebelum mengubah `_saldo`, *method* ini memeriksa aturannya dulu.
+- **[4]** *Method* `tarik()` menolak jumlah yang tidak masuk akal dan penarikan yang melebihi saldo.
 - **[5]** Pada tabungan bocor, saldo bisa langsung dikurangi melebihi isinya. Hasilnya minus, dan tidak ada yang mencegah.
 - **[6]** Lebih parah lagi, saldo bisa "disulap" menjadi angka berapa pun.
-- **[7]** Pada tabungan aman, kode di luar kelas tidak pernah menyentuh `_saldo`. Semua perubahan lewat method, sehingga aturan selalu diperiksa.
+- **[7]** Pada tabungan aman, kode di luar kelas tidak pernah menyentuh `_saldo`. Semua perubahan lewat *method* sehingga aturan selalu diperiksa.
+
+Di contoh ini, penolakan masih berupa `print`. Cara itu punya kelemahan: kode pemanggil tidak tahu bahwa perintahnya gagal. Mulai bagian 3, kita memakai cara yang lebih tegas, yaitu *exception*.
 
 > [!WARNING]
-> Garis bawah hanyalah **kesepakatan**. Python tidak melarang kode seperti `aman._saldo = 999999999`, dan kode itu tetap berjalan. Bedanya, setiap programmer Python yang membacanya tahu bahwa baris itu **melanggar aturan main**. Bagian berikutnya membahas apakah ada cara yang "lebih kuat".
-
-> [!NOTE]
-> Di contoh ini, penolakan masih berupa `print`. Cara itu punya kelemahan: kode pemanggil tidak tahu bahwa perintahnya gagal. Mulai bagian 3, kita memakai cara yang lebih tegas, yaitu *exception*.
+> Garis bawah hanyalah **kesepakatan**. Python tidak melarang kode seperti `aman._saldo = 999999999`, dan kode itu tetap berjalan. Bedanya, setiap pemrogram Python yang membacanya tahu bahwa baris itu **melanggar aturan main**. Bagian berikutnya membahas apakah ada cara yang "lebih kuat".
 
 > [!TIP]
-> **Coba sendiri:** di akhir `main()`, buat `TabunganAman("Rina", -100000)` lalu panggil `cek_saldo()`-nya. Apakah saldo awal yang negatif itu ditolak?
+> **Coba sendiri:** salin `contoh01_data_bocor.py` ke folder `PBO-latihan-saya/pertemuan-04/`. Di salinan itu, tambahkan dua baris berikut di akhir fungsi `main()`, tepat di bawah baris `aman.cek_saldo()` yang terakhir (dengan empat spasi di depannya, sejajar dengan baris di atasnya). Simpan, jalankan salinan itu, lalu bandingkan dengan jawaban di bawah. Apakah saldo awal yang negatif ditolak?
+>
+> ```python
+>     rina = TabunganAman("Rina", -100000)
+>     rina.cek_saldo()
+> ```
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Tidak ditolak. Tercetak `Saldo Rina: Rp-100000`. Method `setor()` dan `tarik()` memang sudah menjaga aturan, tetapi **konstruktor** masih menyimpan saldo awal tanpa memeriksanya. Celah ini kita tutup di bagian 4.
+Tidak ditolak. Di baris paling bawah *output* muncul `Saldo Rina: Rp-100000`. *Method* `setor()` dan `tarik()` memang sudah menjaga aturan, tetapi **konstruktor** masih menyimpan saldo awal tanpa memeriksanya. Celah ini kita tutup di bagian 4.
 
 </details>
 
-## 2. Satu Garis Bawah dan Name Mangling
+## 2. Satu Garis Bawah dan *Name Mangling*
 
-File: [`contoh/contoh02_name_mangling.py`](contoh/contoh02_name_mangling.py)
+*File*: [`contoh/contoh02_name_mangling.py`](contoh/contoh02_name_mangling.py)
 
-Bagaimana jika atribut diberi **dua** garis bawah? Contoh ini membandingkan `_pemilik` (satu garis bawah) dengan `__pin` (dua garis bawah), lalu mengintip apa yang sebenarnya disimpan Python.
+Bagaimana jika atribut diberi **dua** garis bawah? Contoh ini membandingkan `_pemilik` (satu garis bawah) dengan `__pin` (dua garis bawah), lalu mengintip apa yang sebenarnya disimpan Python. Berikut isi lengkap *file*-nya, tanpa komentar pembuka:
 
 ```python
 class Brankas:
@@ -190,9 +233,13 @@ def main():
     print()
     print("=== NAME MANGLING BUKAN KEAMANAN ===")
     print(f"brankas._Brankas__pin : {brankas._Brankas__pin}")  # [7] PIN terbaca!
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === MEMAKAI BRANKAS LEWAT METHOD ===
@@ -212,13 +259,13 @@ Penjelasan:
 
 - **[1]** `_pemilik` memakai satu garis bawah. Python tidak melakukan apa pun terhadap nama ini.
 - **[2]** `__pin` memakai dua garis bawah di depan. Karena ditulis **di dalam kelas** `Brankas`, Python diam-diam menggantinya menjadi `_Brankas__pin`. Penggantian nama otomatis ini disebut ***name mangling***.
-- **[3]** Di dalam kelas, kita tetap menulis `self.__pin`. Python otomatis menerjemahkannya ke nama baru, jadi method `buka()` bekerja normal.
+- **[3]** Di dalam kelas, kita tetap menulis `self.__pin`. Python otomatis menerjemahkannya ke nama baru, jadi *method* `buka()` bekerja normal.
 - **[4]** Atribut bergaris bawah satu tetap bisa dibaca dari luar. Python tidak menghalangi.
-- **[5]** Fungsi bawaan `hasattr(objek, "nama")` memeriksa apakah objek punya atribut dengan nama tertentu. Hasilnya `False` (dicetak sebagai "tidak" oleh fungsi `ya_tidak()`), karena nama `__pin` sudah tidak ada.
+- **[5]** Fungsi bawaan `hasattr(objek, "nama")` memeriksa apakah objek punya atribut dengan nama tertentu. Hasilnya `False` (dicetak sebagai "tidak" oleh fungsi `ya_tidak()`) karena nama `__pin` sudah tidak ada.
 - **[6]** Fungsi bawaan `vars(objek)` menampilkan semua atribut objek beserta nilainya. Terlihat jelas bahwa yang tersimpan adalah `_Brankas__pin`.
-- **[7]** Siapa pun yang tahu "rumus" penggantian nama bisa membaca PIN-nya. Jadi *name mangling* **bukan** pengamanan.
+- **[7]** Siapa pun yang tahu "rumus" penggantian nama bisa membaca PIN-nya. Jadi, *name mangling* **bukan** pengamanan.
 
-Jika di akhir `main()` kamu menambahkan baris `print(brankas.__pin)`, Python berhenti dengan pesan:
+Bagaimana jika kita nekat membaca `brankas.__pin` dari luar kelas? Salin `contoh02_name_mangling.py` ke folder `PBO-latihan-saya/pertemuan-04/`. Di salinan itu, tambahkan baris `print(brankas.__pin)` di akhir fungsi `main()`, tepat di bawah baris bertanda `# [7]`, dengan empat spasi di depannya. Simpan, lalu jalankan salinan itu. Setelah *output* biasa, Python berhenti dengan pesan *error* berikut (lokasi *file* dipersingkat):
 
 ```text
 Traceback (most recent call last):
@@ -231,7 +278,7 @@ Traceback (most recent call last):
 AttributeError: 'Brankas' object has no attribute '__pin'
 ```
 
-Pesan itu muncul karena nama aslinya sudah diganti, **bukan** karena atributnya dikunci. Berikut gambaran penggantian nama tersebut:
+Pesan `AttributeError: 'Brankas' object has no attribute '__pin'` berarti "objek `Brankas` tidak punya atribut bernama `__pin`". Pesan itu muncul karena nama aslinya sudah diganti, **bukan** karena atributnya dikunci. Berikut gambaran penggantian nama tersebut:
 
 ```text
 Yang kamu tulis di dalam kelas Brankas    Yang disimpan Python di objek
@@ -243,10 +290,11 @@ self.__pin = pin                   --->   _Brankas__pin   (nama diganti!)
 Lalu, untuk apa *name mangling* ada? Tujuan aslinya adalah **mencegah bentrok nama** saat sebuah kelas diwarisi oleh kelas lain (pewarisan, Pertemuan 07). Fitur ini tidak dirancang untuk menyembunyikan data.
 
 > [!IMPORTANT]
-> Kebiasaan programmer Python: pakai **satu garis bawah** (`_pin`) untuk data internal, lalu sediakan *property* sebagai pintu resminya (bagian 3). Pakai dua garis bawah hanya jika kamu benar-benar butuh pencegahan bentrok nama dalam pewarisan.
+> Kebiasaan pemrogram Python: pakai **satu garis bawah** (`_pin`) untuk data internal, lalu sediakan *property* sebagai pintu resminya (bagian 3). Pakai dua garis bawah hanya jika kamu benar-benar butuh pencegahan bentrok nama dalam pewarisan.
 
 > [!TIP]
-> **Coba sendiri:** di akhir file, tambahkan kode berikut lalu jalankan. Apakah brankas bisa dibuka dengan PIN `000000`?
+> **Coba sendiri:** lanjutkan di salinan `contoh02_name_mangling.py` milikmu. Hapus dulu baris `print(brankas.__pin)` dari percobaan tadi agar program bisa berjalan sampai akhir. Lalu, di baris paling bawah *file* (di bawah baris `main()` yang terakhir), tambahkan empat baris berikut **tanpa** spasi di depannya. Simpan, lalu jalankan. Tebak dulu: apakah brankas bisa dibuka dengan PIN `000000`?
+>
 > ```python
 > brankas = Brankas("Budi", "246810")
 > brankas.__pin = "000000"
@@ -257,22 +305,22 @@ Lalu, untuk apa *name mangling* ada? Tujuan aslinya adalah **mencegah bentrok na
 <details>
 <summary>Lihat jawaban</summary>
 
-Setelah output `main()`, muncul dua baris tambahan:
+Setelah *output* `main()`, muncul dua baris tambahan:
 
 ```text
 {'_pemilik': 'Budi', '_Brankas__pin': '246810', '__pin': '000000'}
 PIN salah. Brankas tetap terkunci.
 ```
 
-Penggantian nama hanya terjadi untuk kode yang ditulis **di dalam kelas**. Baris `brankas.__pin = "000000"` ditulis di luar kelas, sehingga Python membuat atribut **baru** yang benar-benar bernama `__pin`. PIN asli di `_Brankas__pin` tidak tersentuh, dan brankas tetap terkunci.
+Penggantian nama hanya terjadi untuk kode yang ditulis **di dalam kelas**. Baris `brankas.__pin = "000000"` ditulis di luar kelas sehingga Python membuat atribut **baru** yang benar-benar bernama `__pin`. PIN asli di `_Brankas__pin` tidak tersentuh, dan brankas tetap terkunci.
 
 </details>
 
-## 3. Property: Getter dan Setter ala Python
+## 3. *Property*: *Getter* dan *Setter* ala Python
 
-File: [`contoh/contoh03_property.py`](contoh/contoh03_property.py)
+*File*: [`contoh/contoh03_property.py`](contoh/contoh03_property.py)
 
-Data internal sudah ditandai dengan garis bawah. Sekarang kita buat **pintu resminya**. Di Python, pintu itu bernama *property*.
+Data internal sudah ditandai dengan garis bawah. Sekarang kita buat **pintu resminya**. Di Python, pintu itu bernama *property*. Berikut isi lengkap *file*-nya, tanpa komentar pembuka:
 
 ```python
 class Televisi:
@@ -318,9 +366,13 @@ def main():
     except ValueError as e:
         print(f"Ditolak: {e}")
     print(f"Volume tetap {tv.volume}")
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === TV BARU DINYALAKAN ===
@@ -338,14 +390,14 @@ Volume tetap 35
 
 Penjelasan:
 
-- **[1]** Tanda `@property` di atas method disebut *decorator*. Ia mengubah method `merek()` menjadi **getter**: method yang otomatis dijalankan saat kita membaca `tv.merek`. Karena `merek` tidak punya setter, ia bersifat read-only.
-- **[2]** `@volume.setter` membuat **setter** untuk property `volume`. Nama method-nya harus **sama persis** dengan nama property (`volume`), dan setter ditulis **setelah** getter-nya. Parameter `nilai` berisi nilai baru yang ingin disimpan.
-- **[3]** `raise ValueError("...")` **melempar** *exception*. Perintah langsung dihentikan, dan baris setelahnya di dalam setter tidak dijalankan. `ValueError` adalah jenis exception bawaan Python untuk "nilai yang tidak sesuai".
-- **[4]** Nilai disimpan ke `self._volume` (dengan garis bawah). Jangan menulis `self.volume = nilai` di sini, karena baris itu akan memanggil setter ini lagi tanpa henti (lihat [Kesalahan 2](#kesalahan-2-setter-memanggil-dirinya-sendiri)).
-- **[5]** Dari luar, property dibaca **tanpa tanda kurung**: `tv.merek`, bukan `tv.merek()`.
-- **[6]** `tv.volume = 25` terlihat seperti mengisi atribut biasa. Padahal, Python menjalankan setter dengan `nilai = 25`.
-- **[7]** `tv.volume += 10` sama dengan `tv.volume = tv.volume + 10`. Getter membaca 25, lalu setter menerima 35 dan memeriksanya.
-- **[8]** `try`/`except` kita intip sekilas. Python **mencoba** menjalankan blok `try`. Saat setter melempar `ValueError`, sisa blok `try` dilewati (baris "tidak pernah tercetak" memang tidak tercetak), lalu blok `except` dijalankan. Variabel `e` berisi exception tersebut, dan mencetaknya menampilkan pesannya.
+- **[1]** Tanda `@property` di atas *method* disebut *decorator*. Ia mengubah *method* `merek()` menjadi ***getter***: *method* yang otomatis dijalankan saat kita membaca `tv.merek`. Karena `merek` tidak punya *setter*, ia bersifat *read-only*.
+- **[2]** `@volume.setter` membuat ***setter*** untuk *property* `volume`. Nama *method*-nya harus **sama persis** dengan nama *property* (`volume`), dan *setter* ditulis **setelah** *getter*-nya. Parameter `nilai` berisi nilai baru yang ingin disimpan.
+- **[3]** `raise ValueError("...")` **melempar** *exception*. Perintah langsung dihentikan, dan baris setelahnya di dalam *setter* tidak dijalankan. `ValueError` adalah jenis *exception* bawaan Python untuk "nilai yang tidak sesuai".
+- **[4]** Nilai disimpan ke `self._volume` (dengan garis bawah). Jangan menulis `self.volume = nilai` di sini karena baris itu akan memanggil *setter* ini lagi tanpa henti (lihat [Kesalahan 2](#kesalahan-2-setter-memanggil-dirinya-sendiri)).
+- **[5]** Dari luar, *property* dibaca **tanpa tanda kurung**: `tv.merek`, bukan `tv.merek()`.
+- **[6]** `tv.volume = 25` terlihat seperti mengisi atribut biasa. Padahal, Python menjalankan *setter* dengan `nilai = 25`.
+- **[7]** `tv.volume += 10` sama dengan `tv.volume = tv.volume + 10`. *Getter* membaca 25, lalu *setter* menerima 35 dan memeriksanya.
+- **[8]** `try`/`except` kita intip sekilas. Python **mencoba** menjalankan blok `try`. Saat *setter* melempar `ValueError`, sisa blok `try` dilewati (baris "tidak pernah tercetak" memang tidak tercetak), lalu blok `except` dijalankan. Variabel `e` berisi *exception* tersebut, dan mencetaknya menampilkan pesannya.
 
 ```text
 tv.volume = 150
@@ -362,7 +414,7 @@ except ValueError as e:  -->  print(f"Ditolak: {e}")
 
 ### Kenapa tidak memakai `get_volume()` dan `set_volume()`?
 
-Kamu mungkin pernah melihat gaya Java seperti `getVolume()`. Gaya itu bisa saja ditiru di Python, tetapi hasilnya terasa janggal:
+Kamu mungkin pernah melihat gaya Java seperti `getVolume()`. Gaya itu bisa saja ditiru di Python, tetapi hasilnya terasa janggal (potongan ilustrasi, tidak untuk dijalankan sendiri):
 
 ```python
 # Gaya Java yang dipaksakan ke Python (tidak lazim)
@@ -372,17 +424,17 @@ tv.set_volume(tv.get_volume() + 10)
 tv.volume += 10
 ```
 
-Ada tiga alasan programmer Python memilih *property*:
+Ada tiga alasan pemrogram Python memilih *property*:
 
 1. **Lebih mudah dibaca.** Data tetap diakses seperti atribut, sedangkan pemeriksaan terjadi di balik layar.
-2. **Kode lama tidak perlu diubah.** Di Pertemuan 03, kita menulis `kopi.harga` dan `kopi.harga = 20000`. Saat `harga` diubah menjadi property, semua baris itu tetap berjalan, hanya sekarang ikut diperiksa.
-3. **Kesepakatan komunitas.** Panduan gaya resmi Python (PEP 8) menganjurkan atribut biasa untuk data sederhana, lalu menggantinya dengan property jika kelak butuh pemeriksaan.
+2. **Kode lama tidak perlu diubah.** Di Pertemuan 03, kita menulis `kopi.harga` dan `kopi.harga = 20000`. Saat `harga` diubah menjadi *property*, semua baris itu tetap berjalan, hanya sekarang ikut diperiksa.
+3. **Kesepakatan komunitas.** Panduan gaya resmi Python (PEP 8) menganjurkan atribut biasa untuk data sederhana, lalu menggantinya dengan *property* jika kelak butuh pemeriksaan.
 
 ## 4. Validasi di Konstruktor
 
-File: [`contoh/contoh04_validasi_konstruktor.py`](contoh/contoh04_validasi_konstruktor.py)
+Potongan dari [`contoh/contoh04_validasi_konstruktor.py`](contoh/contoh04_validasi_konstruktor.py). Untuk melihat hasilnya, jalankan *file* lengkapnya.
 
-Setter sudah rajin memeriksa. Namun, data juga masuk lewat **konstruktor**. Contoh ini menunjukkan apa yang terjadi jika pintu yang satu itu lupa dijaga.
+*Setter* sudah rajin memeriksa. Namun, data juga masuk lewat **konstruktor**. Contoh ini menunjukkan apa yang terjadi jika pintu yang satu itu lupa dijaga. Potongan pertama, awal kelas `MahasiswaBercelah`:
 
 ```python
 class MahasiswaBercelah:
@@ -393,7 +445,7 @@ class MahasiswaBercelah:
         self._semester = semester  # [1] celah: disimpan langsung tanpa diperiksa
 ```
 
-Getter `nama`, getter `semester`, dan setter `semester` milik `MahasiswaBercelah` sama persis dengan milik kelas `Mahasiswa` berikut. Perbedaannya hanya di konstruktor:
+Sisa kelas `MahasiswaBercelah` (*getter* `nama`, *getter* `semester`, dan *setter* `semester`) sama persis dengan milik kelas `Mahasiswa` berikut. Perbedaan pentingnya ada di konstruktor. Selain itu, `Mahasiswa` juga punya *setter* `nama`. Potongan kedua, kelas `Mahasiswa` selengkapnya:
 
 ```python
 class Mahasiswa:
@@ -424,7 +476,7 @@ class Mahasiswa:
         self._semester = nilai
 ```
 
-Program utamanya:
+Potongan ketiga, isi fungsi `main()`:
 
 ```python
     print("=== VERSI BERCELAH ===")
@@ -450,7 +502,7 @@ Program utamanya:
         print(f"Gagal membuat mahasiswa: {e}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === VERSI BERCELAH ===
@@ -465,24 +517,24 @@ Gagal membuat mahasiswa: Nama tidak boleh kosong
 
 Penjelasan:
 
-- **[1]** Konstruktor `MahasiswaBercelah` menulis langsung ke `self._semester`. Setter-nya tidak pernah dipanggil, sehingga nilai apa pun lolos.
-- **[2]** Di kelas `Mahasiswa`, konstruktor menulis `self.nama = nama` **tanpa** garis bawah. Karena `nama` adalah property, baris ini menjalankan setter `nama`.
-- **[3]** Begitu juga `self.semester = semester`. Aturan semester cukup ditulis **sekali** di setter, lalu dipakai oleh konstruktor dan oleh siapa pun yang mengubah semester kelak.
-- **[4]** `strip()` membuang spasi di awal dan akhir teks. Jadi nama yang hanya berisi spasi juga dianggap kosong.
-- **[5]** Lihat keanehannya: semester 20 lolos saat objek dibuat, tetapi semester 21 ditolak saat diubah lewat setter. Data objek ini tidak konsisten.
-- **[6]** Pada versi aman, objek dengan semester 20 **tidak pernah tercipta**. Exception dilempar dari dalam konstruktor, sehingga baris `print` di bawahnya dilewati dan variabel `citra` tidak pernah terisi.
+- **[1]** Konstruktor `MahasiswaBercelah` menulis langsung ke `self._semester`. *Setter*-nya tidak pernah dipanggil sehingga nilai apa pun lolos.
+- **[2]** Di kelas `Mahasiswa`, konstruktor menulis `self.nama = nama` **tanpa** garis bawah. Karena `nama` adalah *property*, baris ini menjalankan *setter* `nama`.
+- **[3]** Begitu juga `self.semester = semester`. Aturan semester cukup ditulis **sekali** di *setter*, lalu dipakai oleh konstruktor dan oleh siapa pun yang mengubah semester kelak.
+- **[4]** `strip()` membuang spasi di awal dan akhir teks. Jadi, nama yang hanya berisi spasi juga dianggap kosong.
+- **[5]** Lihat keanehannya: semester 20 lolos saat objek dibuat, tetapi semester 21 ditolak saat diubah lewat *setter*. Data objek ini tidak konsisten.
+- **[6]** Pada versi aman, objek dengan semester 20 **tidak pernah tercipta**. *Exception* dilempar dari dalam konstruktor sehingga baris `print` di bawahnya dilewati dan variabel `citra` tidak pernah terisi.
 
 > [!IMPORTANT]
-> Di dalam `__init__`, isi atribut yang punya setter **tanpa** garis bawah, misalnya `self.semester = semester`. Dengan begitu, konstruktor ikut melewati pemeriksaan yang sama.
+> Di dalam `__init__`, isi atribut yang punya *setter* **tanpa** garis bawah, misalnya `self.semester = semester`. Dengan begitu, konstruktor ikut melewati pemeriksaan yang sama.
 
 > [!NOTE]
-> Batas semester 1–14 hanyalah aturan contoh di program ini. Di dunia nyata, aturan seperti ini mengikuti ketentuan kampus masing-masing.
+> Batas semester 1—14 hanyalah aturan contoh di program ini. Di dunia nyata, aturan seperti ini mengikuti ketentuan kampus masing-masing.
 
-## 5. Atribut Read-Only
+## 5. Atribut *Read-Only*
 
-File: [`contoh/contoh05_read_only.py`](contoh/contoh05_read_only.py)
+Potongan dari [`contoh/contoh05_read_only.py`](contoh/contoh05_read_only.py). Untuk melihat hasilnya, jalankan *file* lengkapnya.
 
-Property tanpa setter menghasilkan atribut yang hanya bisa dibaca. Kita pakai contoh data KTP: NIK tidak pernah berubah, tetapi alamat boleh berubah.
+*Property* tanpa *setter* menghasilkan atribut yang hanya bisa dibaca. Kita pakai contoh data KTP: NIK tidak pernah berubah, tetapi alamat boleh berubah. Potongan pertama, kelas `Penduduk`:
 
 ```python
 class Penduduk:
@@ -514,7 +566,7 @@ class Penduduk:
         self._alamat = nilai
 ```
 
-Program utamanya:
+Potongan kedua, isi fungsi `main()`:
 
 ```python
     warga = Penduduk("1234567890123456", "Rina Wulandari", "Jl. Pramuka, Samarinda")
@@ -542,7 +594,7 @@ Program utamanya:
     print(f"Alamat {warga.nama} tetap: {warga.alamat}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === DATA AWAL ===
@@ -561,11 +613,19 @@ Alamat Rina Wulandari tetap: Jl. Juanda, Samarinda
 
 Penjelasan:
 
-- **[1]** Karena `nik` tidak punya setter, pemeriksaannya ditulis langsung di konstruktor. Inilah satu-satunya kesempatan untuk memeriksa NIK.
-- **[2]** `nik` dan `nama` hanya punya getter. Dari luar, keduanya bisa dibaca tetapi tidak bisa diubah.
-- **[3]** `alamat` punya getter dan setter, jadi boleh diubah asal tidak kosong.
-- **[4]** Mengubah alamat diizinkan dan tetap diperiksa oleh setter.
-- **[5]** Baris ini sengaja diberi tanda `#` di awalnya. Jika tanda `#` pertama itu dihapus, program berhenti tepat di baris tersebut:
+- **[1]** Karena `nik` tidak punya *setter*, pemeriksaannya ditulis langsung di konstruktor. Inilah satu-satunya kesempatan untuk memeriksa NIK.
+- **[2]** `nik` dan `nama` hanya punya *getter*. Dari luar, keduanya bisa dibaca, tetapi tidak bisa diubah.
+- **[3]** `alamat` punya *getter* dan *setter*, jadi boleh diubah asal tidak kosong.
+- **[4]** Mengubah alamat diizinkan dan tetap diperiksa oleh *setter*.
+- **[5]** Baris ini sengaja diberi tanda `#` di awalnya agar tidak dijalankan. Langkah mencobanya ada di bawah.
+
+Ingin melihat apa yang terjadi jika baris [5] dijalankan? Ikuti langkah berikut:
+
+1. Salin `contoh05_read_only.py` ke folder `PBO-latihan-saya/pertemuan-04/`, lalu buka salinannya.
+2. Di baris 58, hapus tanda `#` pertama **beserta satu spasi sesudahnya** sehingga baris itu sejajar dengan baris di atasnya. Jika spasinya tertinggal, Python menolak dengan `IndentationError: unexpected indent`, artinya "baris ini menjorok terlalu dalam".
+3. Simpan, lalu jalankan salinan itu.
+
+Program berhenti tepat di baris tersebut (lokasi *file* dipersingkat):
 
 ```text
 Traceback (most recent call last):
@@ -578,16 +638,16 @@ Traceback (most recent call last):
 AttributeError: property 'nik' of 'Penduduk' object has no setter
 ```
 
-Pesan itu berarti: "property `nik` milik objek `Penduduk` tidak punya setter". Dengan kata lain, `nik` memang dirancang read-only.
+Pesan itu berarti: "*property* `nik` milik objek `Penduduk` tidak punya *setter*". Dengan kata lain, `nik` memang dirancang *read-only*.
 
 > [!NOTE]
-> Di Python 3.10, pesan yang sama berbunyi `AttributeError: can't set attribute 'nik'`. Kata-katanya berbeda, tetapi jenis error-nya sama.
+> Di Python 3.10, pesan yang sama berbunyi `AttributeError: can't set attribute 'nik'`. Kata-katanya berbeda, tetapi jenis *error*-nya sama.
 
-## 6. Method Penjaga Aturan
+## 6. *Method* Penjaga Aturan
 
-File: [`contoh/contoh06_method_penjaga_aturan.py`](contoh/contoh06_method_penjaga_aturan.py)
+Potongan dari [`contoh/contoh06_method_penjaga_aturan.py`](contoh/contoh06_method_penjaga_aturan.py). Untuk melihat hasilnya, jalankan *file* lengkapnya.
 
-Jumlah motor di parkiran tidak diberi setter. Jumlah itu hanya berubah lewat dua pintu resmi, `masuk()` dan `keluar()`, yang masing-masing menjaga aturannya sendiri.
+Jumlah motor di parkiran tidak diberi *setter*. Jumlah itu hanya berubah lewat dua pintu resmi, yaitu `masuk()` dan `keluar()`. Masing-masing menjaga aturannya sendiri. Potongan pertama, awal kelas `Parkiran`:
 
 ```python
 class Parkiran:
@@ -601,7 +661,7 @@ class Parkiran:
         self._terisi = 0  # [1] tanpa setter: hanya berubah lewat masuk()/keluar()
 ```
 
-Property `nama`, `kapasitas`, dan `terisi` hanya berisi getter biasa. Bagian yang menarik ada setelahnya:
+*Property* `nama`, `kapasitas`, dan `terisi` hanya berisi *getter* biasa. Bagian yang menarik ada setelahnya (potongan kedua, sisa kelas `Parkiran`):
 
 ```python
     @property
@@ -628,7 +688,7 @@ Property `nama`, `kapasitas`, dan `terisi` hanya berisi getter biasa. Bagian yan
         self._terisi -= jumlah
 ```
 
-Program utamanya (fungsi `tampilkan()` mencetak satu baris status parkiran):
+Potongan ketiga, isi fungsi `main()`. Fungsi `tampilkan()` yang dipanggil di sini mencetak satu baris status parkiran (lihat *file* lengkapnya):
 
 ```python
     parkiran = Parkiran("Parkiran Gedung C", 5)
@@ -661,7 +721,7 @@ Program utamanya (fungsi `tampilkan()` mencetak satu baris status parkiran):
         print(f"Ditolak: {e}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PAGI: MOTOR BERDATANGAN ===
@@ -680,15 +740,15 @@ Ditolak: Jumlah motor harus lebih dari 0
 
 Penjelasan:
 
-- **[1]** Atribut `_terisi` hanya punya getter (property `terisi`). Tidak ada cara resmi untuk menulis `parkiran.terisi = 100`.
-- **[2]** Property `sisa` tidak menyimpan apa pun. Nilainya **dihitung** setiap kali dibaca, sehingga selalu cocok dengan `kapasitas` dan `terisi`.
-- **[3]** Property `penuh` mengembalikan `True` atau `False`. Agar output-nya sama dengan versi Java, nilai itu dicetak sebagai "ya" atau "tidak" lewat fungsi `ya_tidak()`.
+- **[1]** Atribut `_terisi` hanya punya *getter* (*property* `terisi`). Tidak ada cara resmi untuk menulis `parkiran.terisi = 100`.
+- **[2]** *Property* `sisa` tidak menyimpan apa pun. Nilainya **dihitung** setiap kali dibaca sehingga selalu cocok dengan `kapasitas` dan `terisi`.
+- **[3]** *Property* `penuh` mengembalikan `True` atau `False`. Agar *output*-nya sama dengan versi Java, nilai itu dicetak sebagai "ya" atau "tidak" lewat fungsi `ya_tidak()`.
 - **[4]** `masuk()` menolak jumlah nol atau negatif, juga jumlah yang melebihi sisa tempat.
-- **[5]** `keluar()` menolak jumlah yang melebihi motor yang ada, sehingga `_terisi` tidak pernah minus.
+- **[5]** `keluar()` menolak jumlah yang melebihi motor yang ada sehingga `_terisi` tidak pernah minus.
 - **[6]** Kode di luar kelas cukup **menyuruh**: "parkiran, catat 3 motor masuk". Parkiran sendiri yang memeriksa aturannya.
-- **[7]** Tanpa pemeriksaan `jumlah <= 0`, perintah `masuk(-2)` diam-diam akan **mengurangi** jumlah motor dan melewati aturan di `keluar()`. Selalu periksa tanda bilangan pada method penjaga aturan.
+- **[7]** Tanpa pemeriksaan `jumlah <= 0`, perintah `masuk(-2)` diam-diam akan **mengurangi** jumlah motor dan melewati aturan di `keluar()`. Selalu periksa tanda bilangan pada *method* penjaga aturan.
 
-Bandingkan dengan gaya "bertanya", yaitu mengambil datanya lalu mengubahnya sendiri dari luar kelas:
+Bandingkan dengan gaya "bertanya", yaitu mengambil datanya lalu mengubahnya sendiri dari luar kelas (potongan ilustrasi, tidak untuk dijalankan sendiri):
 
 ```python
 # Gaya "bertanya" (hindari): aturan ditulis di luar kelas
@@ -699,13 +759,13 @@ if parkiran.terisi + 3 <= parkiran.kapasitas:
 parkiran.masuk(3)
 ```
 
-Desain kelas `Parkiran` **memaksa** kita memakai gaya menyuruh, karena `terisi` memang tidak punya setter.
+Desain kelas `Parkiran` **memaksa** kita memakai gaya menyuruh karena `terisi` memang tidak punya *setter*.
 
 ## 7. Atribut Kelas yang Dilindungi
 
-File: [`contoh/contoh07_atribut_kelas_privat.py`](contoh/contoh07_atribut_kelas_privat.py)
+*File*: [`contoh/contoh07_atribut_kelas_privat.py`](contoh/contoh07_atribut_kelas_privat.py)
 
-Penghitung milik kelas juga perlu dilindungi. Contoh ini membuat tiket antrean bernomor otomatis yang tidak boleh kembar.
+Penghitung milik kelas juga perlu dilindungi. Contoh ini membuat tiket antrean bernomor otomatis yang tidak boleh kembar. Berikut isi lengkap *file*-nya, tanpa komentar pembuka:
 
 ```python
 class TiketAntrean:
@@ -748,9 +808,13 @@ def main():
 
     print()
     print(f"Jumlah tiket tercetak: {TiketAntrean.jumlah_tiket()}")  # [6]
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PENGAMBILAN TIKET ===
@@ -765,21 +829,22 @@ Jumlah tiket tercetak: 3
 Penjelasan:
 
 - **[1]** `_nomor_terakhir` adalah **atribut kelas** (ingat Pertemuan 03): satu nilai yang dipakai bersama oleh semua tiket. Garis bawah menandakan bahwa atribut ini urusan internal.
-- **[2]** Penghitung dinaikkan **setelah** pemeriksaan nama lolos. Jika nama kosong, exception sudah dilempar lebih dulu, sehingga penghitung tidak berubah.
-- **[3]** `@classmethod` menjadikan `jumlah_tiket()` method milik kelas. Parameter `cls` berisi kelas `TiketAntrean` itu sendiri. Method ini berperan sebagai getter untuk atribut kelas.
-- **[4]** Getter `nomor` tidak mengembalikan angka mentah, tetapi teks rapi seperti `A001`. Format `:03d` artinya "bilangan bulat, minimal 3 digit, diawali nol".
+- **[2]** Penghitung dinaikkan **setelah** pemeriksaan nama lolos. Jika nama kosong, *exception* sudah dilempar lebih dulu sehingga penghitung tidak berubah.
+- **[3]** `@classmethod` menjadikan `jumlah_tiket()` *method* milik kelas. Parameter `cls` berisi kelas `TiketAntrean` itu sendiri. *Method* ini berperan sebagai *getter* untuk atribut kelas.
+- **[4]** *Getter* `nomor` tidak mengembalikan angka mentah, tetapi teks rapi seperti `A001`. Format `:03d` artinya "bilangan bulat, minimal 3 digit, diawali nol".
 - **[5]** Tiket dengan nama kosong ditolak, dan tidak ada nomor yang "hangus".
 - **[6]** Dari luar, jumlah tiket dibaca lewat nama kelas: `TiketAntrean.jumlah_tiket()`.
 
 > [!TIP]
-> **Coba sendiri:** tepat sebelum baris `rina = TiketAntrean("Rina")`, tambahkan baris `TiketAntrean._nomor_terakhir = 0`. Tebak dulu nomor tiket Rina, baru jalankan.
+> **Coba sendiri:** salin `contoh07_atribut_kelas_privat.py` ke folder `PBO-latihan-saya/pertemuan-04/`. Di salinan itu, di fungsi `main()`, tepat di atas baris `rina = TiketAntrean("Rina")`, tambahkan baris `TiketAntrean._nomor_terakhir = 0` (dengan empat spasi di depannya). Simpan, tebak dulu nomor tiket Rina, baru jalankan salinan itu.
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Rina mendapat nomor **A001**, kembar dengan Budi, dan jumlah tiket tercetak menjadi 1:
+Rina mendapat nomor **A001**, kembar dengan Budi, dan jumlah tiket tercetak menjadi 1. *Output* lengkapnya:
 
 ```text
+=== PENGAMBILAN TIKET ===
 A001 - Budi
 A002 - Siti
 Ditolak: Nama tidak boleh kosong
@@ -788,13 +853,13 @@ A001 - Rina
 Jumlah tiket tercetak: 1
 ```
 
-Python tidak mencegah baris itu, karena garis bawah hanyalah kesepakatan. Itulah sebabnya kesepakatan ini harus dihormati: melanggarnya bisa merusak data yang dijaga kelas. Di Java, baris serupa ditolak oleh compiler.
+Python tidak mencegah baris itu karena garis bawah hanyalah kesepakatan. Itulah sebabnya kesepakatan ini harus dihormati: melanggarnya bisa merusak data yang dijaga kelas. Di Java, baris serupa ditolak oleh *compiler*.
 
 </details>
 
 ## 8. Anatomi Kelas Python yang Terenkapsulasi
 
-Berikut rangkuman bagian-bagian kelas Python yang menjaga datanya sendiri. Simpan gambar ini di kepala.
+Berikut rangkuman bagian-bagian kelas Python yang menjaga datanya sendiri. Ini hanya gambaran ringkas, bukan *file* yang bisa dijalankan. Tanda `<-` menunjuk keterangan untuk baris di sebelah kirinya. Simpan gambar ini di kepala.
 
 ```text
 class Menu:
@@ -830,7 +895,7 @@ class Menu:
 
 ## 9. Studi Kasus KedaiKita
 
-File: [`studi-kasus/kedaikita.py`](studi-kasus/kedaikita.py)
+Potongan dari [`studi-kasus/kedaikita.py`](studi-kasus/kedaikita.py). Untuk melihat hasilnya, jalankan *file* lengkapnya (caranya ada di akhir bagian ini).
 
 Saatnya KedaiKita menjaga datanya sendiri. Rancangan dan daftar aturannya sudah dibahas di [halaman konsep](../README.md#11-studi-kasus-kedaikita-menu-yang-menjaga-dirinya).
 
@@ -839,15 +904,15 @@ Saatnya KedaiKita menjaga datanya sendiri. Rancangan dan daftar aturannya sudah 
 | Bagian | Pertemuan 03 | Pertemuan 04 |
 |---|---|---|
 | Atribut `Menu` | `self.harga`, `self.stok`, ... (bebas diubah) | `self._harga`, `self._stok`, ... (internal) |
-| Membaca data | `kopi.harga` | tetap `kopi.harga`, tetapi lewat property |
-| Mengubah harga | `kopi.harga = 20000` tanpa pemeriksaan | `kopi.harga = 20000` lewat setter yang memeriksa |
-| Kode, nama, kategori | bisa diubah | read-only |
+| Membaca data | `kopi.harga` | tetap `kopi.harga`, tetapi lewat *property* |
+| Mengubah harga | `kopi.harga = 20000` tanpa pemeriksaan | `kopi.harga = 20000` lewat *setter* yang memeriksa |
+| Kode, nama, kategori | bisa diubah | *read-only* |
 | Stok | `kopi.stok = 15` | hanya lewat `tambah_stok()` dan `kurangi_stok()` |
 | Penghitung menu | `Menu.jumlah_menu` (atribut kelas publik) | `Menu._jumlah_menu` + `@classmethod` `Menu.jumlah_menu()` |
 | Poin pelanggan | `budi.poin` bisa diubah langsung | hanya lewat `tambah_poin()` dan `tukar_poin()` |
 | Data tidak valid | diterima begitu saja | ditolak dengan `raise ValueError(...)` |
 
-Fungsi `format_rupiah()` tidak berubah. Berikut bagian-bagian yang baru. Pertama, konstruktor dan getter milik kelas:
+Fungsi `format_rupiah()` tidak berubah. Berikut bagian-bagian yang baru. Pertama, konstruktor dan *getter* milik kelas:
 
 ```python
 class Menu:
@@ -872,11 +937,11 @@ class Menu:
 ```
 
 - Stok awal diperiksa paling awal. Stok negatif langsung ditolak.
-- Harga disimpan **lewat setter** (`self.harga = harga`), sehingga menu berharga 0 ditolak sejak dibuat.
+- Harga disimpan **lewat *setter*** (`self.harga = harga`) sehingga menu berharga 0 ditolak sejak dibuat.
 - Penghitung naik di baris paling akhir. Menu yang gagal dibuat tidak ikut terhitung.
 - Nama `jumlah_menu` kini dipakai oleh `@classmethod`, sedangkan angkanya disimpan di `_jumlah_menu`. Karena itu, dari luar kita menulis `Menu.jumlah_menu()` **dengan** tanda kurung.
 
-Kedua, getter dan setter. Property `kode`, `nama`, `kategori`, dan `stok` hanya punya getter (bentuknya sama seperti `nik` di contoh 05), sehingga keempatnya **read-only** dari luar. Hanya `harga` yang punya setter:
+Kedua, *getter* dan *setter*. *Property* `kode`, `nama`, `kategori`, dan `stok` hanya punya *getter* (bentuknya sama seperti `nik` di contoh 05) sehingga keempatnya ***read-only*** dari luar. Hanya `harga` yang punya *setter*:
 
 ```python
     # ----- getter + setter dengan validasi -----
@@ -891,9 +956,9 @@ Kedua, getter dan setter. Property `kode`, `nama`, `kategori`, dan `stok` hanya 
         self._harga = nilai
 ```
 
-- Setter menolak harga nol atau negatif. Karena konstruktor memakai setter ini, aturan yang sama berlaku sejak menu dibuat.
+- *Setter* menolak harga nol atau negatif. Karena konstruktor memakai *setter* ini, aturan yang sama berlaku sejak menu dibuat.
 
-Ketiga, method penjaga aturan untuk stok:
+Ketiga, *method* penjaga aturan untuk stok:
 
 ```python
     # ----- method pengubah stok -----
@@ -910,11 +975,11 @@ Ketiga, method penjaga aturan untuk stok:
         self._stok -= jumlah
 ```
 
-- Stok **tidak** punya setter. Restok memakai `tambah_stok()`, penjualan memakai `kurangi_stok()`.
-- `kurangi_stok()` menolak penjualan yang melebihi stok, sehingga stok tidak pernah minus.
-- Method `hitung_total()`, `harga_setelah_diskon()`, `stok_cukup()`, dan `__str__()` sama seperti Pertemuan 03. Bedanya, kini method itu membaca atribut bergaris bawah (`self._harga`, `self._stok`).
+- Stok **tidak** punya *setter*. Restok memakai `tambah_stok()`, penjualan memakai `kurangi_stok()`.
+- `kurangi_stok()` menolak penjualan yang melebihi stok sehingga stok tidak pernah minus.
+- *Method* `hitung_total()`, `harga_setelah_diskon()`, `stok_cukup()`, dan `__str__()` sama seperti Pertemuan 03. Bedanya, kini *method* itu membaca atribut bergaris bawah (`self._harga`, `self._stok`).
 
-Keempat, kelas `Pelanggan`. Data `nama`, `no_hp`, dan `poin` kini disimpan di atribut bergaris bawah dan hanya punya getter (read-only). Poinnya hanya berubah lewat dua method berikut:
+Keempat, kelas `Pelanggan`. Data `nama`, `no_hp`, dan `poin` kini disimpan di atribut bergaris bawah dan hanya punya *getter* (*read-only*). Poinnya hanya berubah lewat dua *method* berikut:
 
 ```python
     def tambah_poin(self, jumlah):
@@ -930,8 +995,8 @@ Keempat, kelas `Pelanggan`. Data `nama`, `no_hp`, dan `poin` kini disimpan di at
         return jumlah * 1000
 ```
 
-- `tambah_poin()` menolak jumlah nol atau negatif, sehingga poin tidak bisa "dikurangi diam-diam" lewat pintu tambah.
-- `tukar_poin()` adalah method penjaga aturan yang juga **mengembalikan nilai**, yaitu besar potongan harga dalam rupiah.
+- `tambah_poin()` menolak jumlah nol atau negatif sehingga poin tidak bisa "dikurangi diam-diam" lewat pintu tambah.
+- `tukar_poin()` adalah *method* penjaga aturan yang juga **mengembalikan nilai**, yaitu besar potongan harga dalam rupiah.
 
 Terakhir, cara program utama menangani data yang ditolak (potongan dari `main()`):
 
@@ -944,16 +1009,16 @@ Terakhir, cara program utama menangani data yang ditolak (potongan dari `main()`
     print(f"Jumlah menu terdaftar tetap: {Menu.jumlah_menu()}")
 ```
 
-Pola yang sama dipakai untuk setter harga, `kurangi_stok()`, dan `tukar_poin()`. Kode lengkapnya ada di file studi kasus.
+Pola yang sama dipakai untuk *setter* harga, `kurangi_stok()`, dan `tukar_poin()`. Kode lengkapnya ada di *file* studi kasus.
 
-Cara menjalankan:
+Cara menjalankan: buka *file* `studi-kasus/kedaikita.py` di VS Code, lalu klik tombol ▷ (**Run Python File**). Bisa juga lewat terminal. Dari folder utama materi, ketik:
 
 ```bash
 cd Pertemuan-04-Enkapsulasi/python/studi-kasus
 python kedaikita.py
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === MENU KEDAIKITA ===
@@ -988,25 +1053,40 @@ Gagal menukar poin: Poin tidak cukup (sisa 2)
 Perhatikan bahwa setiap penolakan meninggalkan data dalam keadaan **utuh**: jumlah menu tetap 3, harga es teh tetap Rp10.000, stok kopi tetap 25, dan poin Budi tetap 2.
 
 > [!TIP]
-> **Coba sendiri:**
-> 1. Di bagian `=== DATA TIDAK VALID DITOLAK ===`, tambahkan percobaan membuat `Menu("M05", "Pisang Goreng Keju", 15000, "Makanan", -3)` di dalam `try`/`except` yang serupa. Pesan apa yang muncul, dan berapa jumlah menu terdaftar sesudahnya?
-> 2. Tambahkan baris `kopi.stok = 100` di bagian stok, **tanpa** `try`. Apa yang terjadi?
+> **Coba sendiri:** salin `studi-kasus/kedaikita.py` ke folder `PBO-latihan-saya/pertemuan-04/`. Lakukan perubahan berikut di fungsi `main()` salinan itu, lalu simpan dan jalankan setelah setiap perubahan.
+>
+> 1. Cari baris `print(f"Jumlah menu terdaftar tetap: {Menu.jumlah_menu()}")`. Tepat di atasnya, tambahkan blok berikut (empat spasi di depan `try` dan `except`). Pesan apa yang muncul, dan berapa jumlah menu terdaftar sesudahnya?
+>
+>    ```python
+>        try:
+>            Menu("M05", "Pisang Goreng Keju", 15000, "Makanan", -3)
+>        except ValueError as e:
+>            print(f"Gagal membuat menu: {e}")
+>    ```
+>
+> 2. Tepat di bawah baris `print("=== MENGELOLA STOK ===")`, tambahkan baris `kopi.stok = 100` (empat spasi di depannya, **tanpa** `try`). Apa yang terjadi?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-1. Tercetak `Gagal membuat menu: Stok tidak boleh negatif`, dan jumlah menu terdaftar tetap 3. Pemeriksaan stok terjadi sebelum penghitung dinaikkan.
-2. Program berhenti dengan `AttributeError: property 'stok' of 'Menu' object has no setter`. Stok hanya boleh berubah lewat `tambah_stok()` dan `kurangi_stok()`.
+1. Muncul baris baru `Gagal membuat menu: Stok tidak boleh negatif`, dan jumlah menu terdaftar tetap 3. Pemeriksaan stok terjadi sebelum penghitung dinaikkan.
+2. Program berhenti dengan `AttributeError: property 'stok' of 'Menu' object has no setter` (di Python 3.10: `can't set attribute 'stok'`). Stok hanya boleh berubah lewat `tambah_stok()` dan `kurangi_stok()`.
 
 </details>
 
-## 10. Kesalahan Umum dan Cara Membaca Pesan Error
+## 10. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-Pesan error Python dibaca **dari bawah ke atas**. Baris paling bawah menyebutkan jenis error dan penyebabnya. Baris di atasnya menunjukkan lokasi (nama file dan nomor baris).
+Pesan *error* Python dibaca **dari bawah ke atas**. Baris paling bawah menyebutkan jenis *error* dan penyebabnya. Baris di atasnya menunjukkan lokasi (nama *file* dan nomor baris).
 
-Untuk mencoba kesalahan 1, 3, 4, dan 5, buat file baru `coba.py` di folder `studi-kasus/`, lalu jalankan dengan `python coba.py`. Baris `from kedaikita import Menu` meminjam kelas `Menu` dari file `kedaikita.py` di folder yang sama (cara kerja `import` antarfile dibahas di Pertemuan 05).
+Setiap kesalahan di bawah ini ditampilkan dalam dua blok: kode yang salah (jangan ditiru) dan pesan *error* yang muncul. Ingin melihatnya sendiri? Kerjakan di folder latihanmu, jangan di folder materi:
 
-### Kesalahan 1: Mengubah atribut yang read-only
+1. Pastikan folder `PBO-latihan-saya/pertemuan-04/` berisi salinan `kedaikita.py` dari folder `studi-kasus`. Jika belum ada, salin dulu.
+2. Di folder latihan itu, buat *file* baru bernama `coba.py`.
+3. Salin kode kesalahan yang ingin dicoba ke dalam `coba.py`, simpan, lalu jalankan dengan tombol ▷ atau perintah `python coba.py`. Setiap kali pindah ke kesalahan lain, ganti seluruh isi `coba.py`.
+
+Baris `from kedaikita import Menu` di kesalahan 1, 3, 4, dan 5 meminjam kelas `Menu` dari *file* `kedaikita.py`. Karena itu, `coba.py` harus berada satu folder dengan salinan `kedaikita.py` (cara kerja `import` antar-*file* dibahas di Pertemuan 05). Kesalahan 2 tidak memakai `kedaikita.py`.
+
+### Kesalahan 1: Mengubah atribut yang *read-only*
 
 ```python
 from kedaikita import Menu
@@ -1014,6 +1094,8 @@ from kedaikita import Menu
 kopi = Menu("M01", "Kopi Susu Gula Aren", 18000, "Minuman", 20)
 kopi.kode = "M10"
 ```
+
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
@@ -1023,9 +1105,9 @@ Traceback (most recent call last):
 AttributeError: property 'kode' of 'Menu' object has no setter
 ```
 
-**Artinya:** `kode` adalah property tanpa setter, jadi tidak bisa diubah dari luar. Di Python 3.10, pesannya berbunyi `AttributeError: can't set attribute 'kode'`. **Perbaikan:** jika perubahan itu memang perlu, tambahkan setter (lengkap dengan validasinya). Jika tidak, berarti desainnya sudah benar dan kode pemanggil yang harus diubah.
+**Artinya:** `kode` adalah *property* tanpa *setter*, jadi tidak bisa diubah dari luar. Di Python 3.10, pesannya berbunyi `AttributeError: can't set attribute 'kode'`. **Perbaikan:** jika perubahan itu memang perlu, tambahkan *setter* (lengkap dengan validasinya). Jika tidak, berarti desainnya sudah benar dan kode pemanggil yang harus diubah.
 
-### Kesalahan 2: Setter memanggil dirinya sendiri
+### Kesalahan 2: *Setter* memanggil dirinya sendiri
 
 ```python
 class Menu:
@@ -1047,6 +1129,8 @@ class Menu:
 kopi = Menu("Kopi Susu Gula Aren", 18000)
 ```
 
+Pesan *error*-nya:
+
 ```text
 Traceback (most recent call last):
   File "coba.py", line 17, in <module>
@@ -1067,9 +1151,9 @@ Traceback (most recent call last):
 RecursionError: maximum recursion depth exceeded
 ```
 
-**Artinya:** di dalam setter, `self.harga = nilai` memanggil setter `harga` **lagi**, yang memanggil setter lagi, dan seterusnya. Setelah sekitar seribu kali, Python menyerah dengan `RecursionError`. Baris `[Previous line repeated 995 more times]` adalah petunjuk khas kesalahan ini. **Perbaikan:** di dalam getter dan setter, selalu pakai atribut bergaris bawah: `self._harga = nilai`.
+**Artinya:** di dalam *setter*, `self.harga = nilai` memanggil *setter* `harga` **lagi**. *Setter* itu memanggil dirinya lagi, dan begitu seterusnya. Setelah sekitar seribu kali, Python menyerah dengan `RecursionError`. Baris `[Previous line repeated 995 more times]` adalah petunjuk khas kesalahan ini. **Perbaikan:** di dalam *getter* dan *setter*, selalu pakai atribut bergaris bawah: `self._harga = nilai`.
 
-### Kesalahan 3: Memanggil property dengan tanda kurung
+### Kesalahan 3: Memanggil *property* dengan tanda kurung
 
 ```python
 from kedaikita import Menu
@@ -1077,6 +1161,8 @@ from kedaikita import Menu
 kopi = Menu("M01", "Kopi Susu Gula Aren", 18000, "Minuman", 20)
 print(kopi.harga())
 ```
+
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
@@ -1086,9 +1172,9 @@ Traceback (most recent call last):
 TypeError: 'int' object is not callable
 ```
 
-**Artinya:** `kopi.harga` sudah menghasilkan angka `18000`. Menambahkan `()` berarti mencoba "memanggil" angka itu seperti fungsi, padahal angka tidak bisa dipanggil (*not callable*). **Perbaikan:** baca property tanpa tanda kurung: `kopi.harga`. Ingat, `Menu.jumlah_menu()` tetap memakai tanda kurung karena ia `@classmethod`, bukan property.
+**Artinya:** `kopi.harga` sudah menghasilkan angka `18000`. Menambahkan `()` berarti mencoba "memanggil" angka itu seperti fungsi, padahal angka tidak bisa dipanggil (*not callable*). **Perbaikan:** baca *property* tanpa tanda kurung: `kopi.harga`. Ingat, `Menu.jumlah_menu()` tetap memakai tanda kurung karena ia `@classmethod`, bukan *property*.
 
-### Kesalahan 4: Exception yang tidak ditangkap
+### Kesalahan 4: *Exception* yang tidak ditangkap
 
 ```python
 from kedaikita import Menu
@@ -1097,6 +1183,8 @@ kopi = Menu("M01", "Kopi Susu Gula Aren", 18000, "Minuman", 20)
 kopi.harga = -5000
 print("Baris ini tidak pernah dijalankan")
 ```
+
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
@@ -1108,7 +1196,7 @@ Traceback (most recent call last):
 ValueError: Harga harus lebih dari 0
 ```
 
-**Artinya:** ini bukan *bug* pada kelas `Menu`. Justru validasinya **bekerja**: harga negatif ditolak dengan `ValueError`. Karena tidak ada `try`/`except` yang menangkapnya, program berhenti. Baca dari bawah: jenis error-nya `ValueError`, dilempar di `kedaikita.py` baris 70 (setter `harga`), akibat baris 4 di file kita. **Perbaikan:** jangan memasukkan data yang tidak valid, atau bungkus perintahnya dengan `try`/`except` jika data berasal dari luar (misalnya input pengguna).
+**Artinya:** ini bukan *bug* pada kelas `Menu`. Justru validasinya **bekerja**: harga negatif ditolak dengan `ValueError`. Karena tidak ada `try`/`except` yang menangkapnya, program berhenti. Baca dari bawah: jenis *error*-nya `ValueError`, dilempar di `kedaikita.py` baris 70 (*setter* `harga`), akibat baris 4 di *file* kita. **Perbaikan:** jangan memasukkan data yang tidak valid, atau bungkus perintahnya dengan `try`/`except` jika data berasal dari luar (misalnya *input* pengguna).
 
 ### Kesalahan 5: Membobol lewat atribut bergaris bawah
 
@@ -1120,33 +1208,33 @@ kopi._harga = -5000
 print(kopi)
 ```
 
-Tidak ada error sama sekali. Hasilnya:
+Tidak ada *error* sama sekali. Hasilnya:
 
 ```text
 [M01] Kopi Susu Gula Aren (Minuman) - Rp-5.000 | stok 20
 ```
 
-**Artinya:** Python tidak melarang akses ke `_harga`, sehingga setter terlewati dan harga menjadi minus. Inilah *bug* paling licin, karena Python diam saja. **Perbaikan:** jangan pernah menyentuh atribut bergaris bawah milik objek lain. Pakai pintu resminya: `kopi.harga = ...`.
+**Artinya:** Python tidak melarang akses ke `_harga` sehingga *setter* terlewati dan harga menjadi minus. Inilah *bug* paling licin karena Python diam saja. **Perbaikan:** jangan pernah menyentuh atribut bergaris bawah milik objek lain. Pakai pintu resminya: `kopi.harga = ...`.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python. Misalnya, tanda `^^^^` di bawah baris kode baru muncul sejak Python 3.11, dan jumlah pada `[Previous line repeated ...]` bisa sedikit berbeda. Fokuslah pada **jenis error** (`AttributeError`, `RecursionError`, `TypeError`, `ValueError`) dan kata-kata kunci di dalamnya.
+> Bunyi pesan *error* bisa sedikit berbeda antarversi Python. Misalnya, tanda `^^^^` di bawah baris kode baru muncul sejak Python 3.11, dan jumlah pada `[Previous line repeated ...]` bisa sedikit berbeda. Di komputermu, lokasi *file* juga ditampilkan lengkap (misalnya `C:\Users\...\PBO-latihan-saya\pertemuan-04\coba.py`), sedangkan di halaman ini dipersingkat menjadi nama *file*-nya saja. Fokuslah pada **jenis *error*** (`AttributeError`, `RecursionError`, `TypeError`, `ValueError`) dan kata-kata kunci di dalamnya.
 
 ## 📝 Ringkasan Sintaks
 
 | Konsep | Sintaks Python | Contoh |
 |---|---|---|
 | Atribut internal | `self._nama = nilai` | `self._harga = harga` |
-| Name mangling (jarang dipakai) | `self.__nama = nilai` | `self.__pin = pin` menjadi `_Brankas__pin` |
-| Getter (property) | `@property` + `def nama(self): return self._nama` | `kopi.harga` |
-| Setter | `@nama.setter` + `def nama(self, nilai): ...` | `kopi.harga = 20000` |
-| Read-only | property **tanpa** setter | `kopi.kode` |
-| Property hasil hitungan | `@property` yang mengembalikan hasil hitungan | `parkiran.sisa` |
+| *Name mangling* (jarang dipakai) | `self.__nama = nilai` | `self.__pin = pin` menjadi `_Brankas__pin` |
+| *Getter* (*property*) | `@property` + `def nama(self): return self._nama` | `kopi.harga` |
+| *Setter* | `@nama.setter` + `def nama(self, nilai): ...` | `kopi.harga = 20000` |
+| *Read-only* | *property* **tanpa** *setter* | `kopi.kode` |
+| *Property* hasil hitungan | `@property` yang mengembalikan hasil hitungan | `parkiran.sisa` |
 | Menolak data | `raise ValueError("pesan")` | `raise ValueError("Harga harus lebih dari 0")` |
 | Menangkap (intip) | `try: ... except ValueError as e: ...` | `print(f"Ditolak: {e}")` |
-| Validasi di konstruktor | panggil setter: `self.nama = nama` | `self.harga = harga` |
+| Validasi di konstruktor | panggil *setter*: `self.nama = nama` | `self.harga = harga` |
 | Atribut kelas internal | `_nama = nilai` di badan kelas | `_jumlah_menu = 0` |
-| Getter milik kelas | `@classmethod` + `def nama(cls): ...` | `Menu.jumlah_menu()` |
-| Method penjaga aturan | method biasa yang memeriksa lalu mengubah | `kopi.kurangi_stok(5)` |
+| *Getter* milik kelas | `@classmethod` + `def nama(cls): ...` | `Menu.jumlah_menu()` |
+| *Method* penjaga aturan | *method* biasa yang memeriksa lalu mengubah | `kopi.kurangi_stok(5)` |
 
 ## ➡️ Langkah Berikutnya
 

@@ -1,8 +1,8 @@
-# Pertemuan 09 — Polimorfisme
+# Pertemuan 09: Polimorfisme
 
 [⬅️ Pertemuan 08](../Pertemuan-08-UTS/README.md) · [🏠 Beranda](../README.md) · [Pertemuan 10 ➡️](../Pertemuan-10-Abstract-Class-dan-Interface/README.md)
 
-> Selamat datang kembali setelah UTS! Hari ini kita mempelajari pilar ketiga PBO: **polimorfisme**. Dengan polimorfisme, satu perintah yang sama bisa dijalankan dengan cara yang berbeda-beda oleh objek yang berbeda. Hasilnya, kode pemanggil tetap pendek dan rapi, dan jenis baru bisa ditambahkan tanpa membongkar kode lama. KedaiKita akan memakainya untuk menerima pembayaran tunai, QRIS, dan kartu kredit lewat **satu** method yang sama.
+> Selamat datang kembali setelah UTS! Hari ini kita mempelajari pilar ketiga PBO: **polimorfisme**. Dengan polimorfisme, satu perintah yang sama bisa dijalankan dengan cara yang berbeda-beda oleh objek yang berbeda. Hasilnya, kode pemanggil tetap pendek dan rapi, dan jenis baru bisa ditambahkan tanpa membongkar kode lama. KedaiKita akan memakainya untuk menerima pembayaran tunai, QRIS, dan kartu kredit lewat **satu** *method* yang sama.
 
 ## 🎯 Tujuan Pembelajaran
 
@@ -10,10 +10,10 @@ Setelah pertemuan ini, kamu mampu:
 
 1. Menjelaskan arti **polimorfisme** dengan analogi sehari-hari dan mengenali wujudnya di dalam kode.
 2. Menjelaskan cara kerja polimorfisme saat program berjalan: *override* ditambah ***dynamic dispatch***, termasuk beda **tipe variabel** dan **tipe objek**.
-3. Merancang **koleksi polimorfik** sehingga jenis baru bisa ditambahkan tanpa mengubah kode pemanggil.
+3. Merancang **koleksi polimorfik** sehingga jenis baru bisa ditambahkan tanpa mengubah kode pemanggil, seperti pembayaran tunai, QRIS, dan kartu di KedaiKita.
 4. Membedakan ***upcasting*** dan ***downcasting***, serta menentukan kapan jenis objek perlu diperiksa dengan `isinstance`/`instanceof`.
-5. Membedakan *overriding* dan *overloading*, serta menjelaskan padanannya di Python (nilai bawaan, `*args`) dan ***duck typing***.
-6. Menjelaskan rancangan pembayaran KedaiKita yang polimorfik.
+5. Menjelaskan ***duck typing*** di Python dan alasan Java membutuhkan tipe bersama.
+6. Membedakan *overriding* dan *overloading*, serta memakai pengganti *overloading* di Python: nilai bawaan, argumen kata kunci, dan `*args`.
 
 ## 🧭 Peta Belajar
 
@@ -29,23 +29,23 @@ Setelah pertemuan ini, kamu mampu:
 
 Pertemuan 08 adalah UTS. Materi terakhir sebelum UTS ada di [Pertemuan 07](../Pertemuan-07-Pewarisan/README.md):
 
-- **Pewarisan** membuat kelas anak mewarisi atribut dan method kelas induk. Hubungannya *is-a*: `Makanan` **adalah** `Menu`.
-- Kelas anak boleh meng-***override*** method induk, yaitu menulis ulang method dengan nama dan parameter yang sama.
+- **Pewarisan** membuat kelas anak mewarisi atribut dan *method* kelas induk. Hubungannya *is-a*: `Makanan` **adalah** `Menu`.
+- Kelas anak boleh meng-***override*** *method* induk, yaitu menulis ulang *method* dengan nama dan parameter yang sama.
 - Objek anak juga terhitung objek induk. Program bisa memeriksanya dengan `isinstance` (Python) atau `instanceof` (Java).
-- Di studi kasus Pertemuan 07, method yang menampilkan menu kedai hanya mencetak `menu` tanpa tahu jenisnya, tetapi makanan tampil dengan level pedas dan minuman tampil dengan suhu. Saat itu penjelasannya kita tunda ke pertemuan ini. Jawabannya adalah polimorfisme.
+- Di studi kasus Pertemuan 07, *method* yang menampilkan menu kedai hanya mencetak `menu` tanpa tahu jenisnya, tetapi makanan tampil dengan level pedas dan minuman tampil dengan suhu. Saat itu penjelasannya kita tunda ke pertemuan ini. Jawabannya adalah polimorfisme.
 - Di [Pertemuan 03](../Pertemuan-03-Atribut-dan-Method/README.md), kita juga sudah mengenal konstruktor yang luwes: **nilai bawaan** di Python dan ***overloading*** di Java. Di [Pertemuan 06](../Pertemuan-06-UML-Class-Diagram/README.md), kita sempat mengintip diagram `Pembayaran` dengan tiga kelas anak. Hari ini keduanya dibahas tuntas.
 
 ## Daftar Isi
 
 1. [Masalah: Kasir dengan Banyak Cara Bayar](#1-masalah-kasir-dengan-banyak-cara-bayar)
 2. [Polimorfisme: Satu Perintah, Banyak Bentuk](#2-polimorfisme-satu-perintah-banyak-bentuk)
-3. [Cara Kerjanya: Override dan Dynamic Dispatch](#3-cara-kerjanya-override-dan-dynamic-dispatch)
+3. [Cara Kerjanya: *Override* dan *Dynamic Dispatch*](#3-cara-kerjanya-override-dan-dynamic-dispatch)
 4. [Koleksi Polimorfik dan Menambah Jenis Baru](#4-koleksi-polimorfik-dan-menambah-jenis-baru)
-5. [Polimorfisme dari Dalam Kelas](#5-polimorfisme-dari-dalam-kelas)
-6. [Upcasting, Downcasting, dan Memeriksa Jenis Objek](#6-upcasting-downcasting-dan-memeriksa-jenis-objek)
-7. [Duck Typing: Yang Penting Bisa, Bukan Siapa](#7-duck-typing-yang-penting-bisa-bukan-siapa)
-8. [Overloading: Satu Nama, Daftar Parameter Berbeda](#8-overloading-satu-nama-daftar-parameter-berbeda)
-9. [Aturan Override yang Perlu Diingat](#9-aturan-override-yang-perlu-diingat)
+5. [Polimorfisme dari dalam Kelas](#5-polimorfisme-dari-dalam-kelas)
+6. [*Upcasting*, *Downcasting*, dan Memeriksa Jenis Objek](#6-upcasting-downcasting-dan-memeriksa-jenis-objek)
+7. [*Duck Typing*: Yang Penting Bisa, Bukan Siapa](#7-duck-typing-yang-penting-bisa-bukan-siapa)
+8. [*Overloading*: Satu Nama, Daftar Parameter Berbeda](#8-overloading-satu-nama-daftar-parameter-berbeda)
+9. [Aturan *Override* yang Perlu Diingat](#9-aturan-override-yang-perlu-diingat)
 10. [Studi Kasus KedaiKita: Banyak Cara Bayar](#10-studi-kasus-kedaikita-banyak-cara-bayar)
 11. [Miskonsepsi yang Sering Terjadi](#11-miskonsepsi-yang-sering-terjadi)
 
@@ -53,15 +53,15 @@ Pertemuan 08 adalah UTS. Materi terakhir sebelum UTS ada di [Pertemuan 07](../Pe
 
 ## 1. Masalah: Kasir dengan Banyak Cara Bayar
 
-Sejak Pertemuan 05, KedaiKita sudah bisa mencatat pesanan dan mencetak struk. Namun pesanan belum bisa **dibayar**. Pemilik kedai ingin menerima tiga cara bayar:
+Sejak Pertemuan 05, KedaiKita sudah bisa mencatat pesanan dan mencetak struk. Namun, pesanan belum bisa **dibayar**. Pemilik kedai ingin menerima tiga cara bayar:
 
 | Cara bayar | Aturannya |
 |---|---|
 | Tunai | Uang yang diterima harus cukup. Kasir menghitung kembalian |
-| QRIS | Saldo e-wallet pelanggan dipotong. Gagal jika saldo kurang |
+| QRIS | Saldo *e-wallet* (dompet digital) pelanggan dipotong. Gagal jika saldo kurang |
 | Kartu kredit | Selalu disetujui, tetapi pelanggan dikenai biaya layanan 2% |
 
-Cara yang paling cepat terpikir: buat satu fungsi `bayar` dengan percabangan berdasarkan **jenis** pembayaran.
+Cara yang paling cepat terpikir: buat satu fungsi `bayar` dengan percabangan berdasarkan **jenis** pembayaran. Berikut gambarannya dalam *pseudocode*, yaitu kode kasar berbahasa sehari-hari (bukan Python, bukan Java):
 
 ```text
 fungsi bayar(pesanan, jenis, data):
@@ -77,7 +77,7 @@ fungsi bayar(pesanan, jenis, data):
 
 Kodenya memang berjalan. Masalahnya baru terasa ketika program tumbuh:
 
-| Kejadian | Akibatnya pada kode berpercabangan |
+| Kejadian | Akibatnya, pada kode berpercabangan |
 |---|---|
 | Kedai ingin menerima voucher | Fungsi `bayar` harus **dibongkar** untuk menambah satu cabang lagi |
 | Struk, laporan harian, dan biaya layanan juga butuh tahu jenis pembayaran | Percabangan yang sama **tersebar** di banyak tempat. Lupa mengubah satu tempat, hasilnya tidak konsisten |
@@ -88,17 +88,17 @@ Akar masalahnya: **pemanggil** dipaksa tahu semua jenis pembayaran dan cara kerj
 
 ## 2. Polimorfisme: Satu Perintah, Banyak Bentuk
 
-Pikirkan tombol **"Bayar"** di aplikasi pesan antar makanan. Kamu selalu menekan tombol yang sama. Namun yang terjadi di baliknya berbeda-beda:
+Pikirkan tombol **"Bayar"** di aplikasi pesan-antar makanan. Kamu selalu menekan tombol yang sama. Namun, yang terjadi di baliknya berbeda-beda:
 
-- Jika metodenya **tunai**, aplikasi memberi tahu driver untuk menerima uang.
-- Jika metodenya **e-wallet**, saldo di dompet digitalmu langsung terpotong.
+- Jika metodenya **tunai**, aplikasi memberi tahu pengemudi untuk menerima uang.
+- Jika metodenya ***e-wallet***, saldo di dompet digitalmu langsung terpotong.
 - Jika metodenya **kartu kredit**, aplikasi menghubungi bank.
 
-Tombolnya satu, perilakunya banyak. Contoh lain: tombol ▶ di ponselmu. Tombol yang sama bisa memutar lagu, video, atau podcast. Setiap jenis media tahu sendiri cara memutar dirinya.
+Tombolnya satu, perilakunya banyak. Contoh lain: tombol ▶ di ponselmu. Tombol yang sama bisa memutar lagu, video, atau *podcast*. Setiap jenis media tahu sendiri cara memutar dirinya.
 
 Kata **polimorfisme** berasal dari bahasa Yunani: *poly* berarti "banyak" dan *morph* berarti "bentuk". Jadi, polimorfisme berarti "banyak bentuk".
 
-> **Polimorfisme** (*polymorphism*) adalah kemampuan objek-objek dari kelas yang berbeda untuk menanggapi **pemanggilan method yang sama** dengan **cara masing-masing**. Pemanggil cukup tahu *apa* yang diminta, tanpa perlu tahu *bagaimana* setiap objek mengerjakannya.
+> **Polimorfisme** (*polymorphism*) adalah kemampuan objek-objek dari kelas yang berbeda untuk menanggapi **pemanggilan *method* yang sama** dengan **cara masing-masing**. Pemanggil cukup tahu *apa* yang diminta, tanpa perlu tahu *bagaimana* setiap objek mengerjakannya.
 
 ```mermaid
 flowchart LR
@@ -126,8 +126,8 @@ Satu simbol atau satu perintah, perilakunya menyesuaikan siapa yang menerimanya.
 
 Polimorfisme yang paling sering dipakai di PBO berdiri di atas dua bahan:
 
-1. **Kelas anak meng-*override* method induk.** Ini sudah kamu pelajari di Pertemuan 07. `Kucing`, `Anjing`, dan `Bebek` masing-masing menulis ulang method `bersuara()` milik `Hewan`.
-2. **Saat program berjalan, pemanggilan method memilih versi milik objek yang sebenarnya.** Mekanisme ini disebut ***dynamic dispatch*** (pemilihan method secara dinamis), atau juga *late binding*.
+1. **Kelas anak meng-*override* *method* induk.** Caranya sudah kamu pelajari di Pertemuan 07. Di contoh pertemuan ini, `Kucing`, `Anjing`, dan `Bebek` masing-masing menulis ulang *method* `bersuara()` milik `Hewan`.
+2. **Saat program berjalan, pemanggilan *method* memilih versi milik objek yang sebenarnya.** Mekanisme ini disebut ***dynamic dispatch*** (pemilihan *method* secara dinamis), atau juga *late binding*.
 
 ### Tipe variabel dan tipe objek
 
@@ -142,13 +142,13 @@ Di kode, label kardus adalah **tipe variabel**, sedangkan isinya adalah **tipe o
                                       bersuara() -> "Meong!"
 ```
 
-- **Tipe variabel** adalah jenis yang ditulis saat variabel dideklarasikan. Di Java, misalnya `Hewan hewan = ...`. Python tidak menulis tipe variabel, tetapi idenya sama: variabel hanyalah label yang menunjuk objek.
+- **Tipe variabel** adalah jenis yang ditulis saat variabel dideklarasikan. Di Java, misalnya `Hewan hewan = ...`. Python tidak mewajibkan tipe variabel (petunjuk tipe seperti `hewan: Hewan` hanya keterangan), tetapi idenya sama: variabel hanyalah label yang menunjuk objek.
 - **Tipe objek** adalah kelas yang dipakai saat objek dibuat, misalnya `Kucing`. Tipe objek melekat seumur hidup objek dan tidak pernah berubah.
 
 > [!IMPORTANT]
-> Untuk method yang di-*override*, yang menentukan versi mana yang berjalan adalah **tipe objek**, bukan tipe variabel. Variabel bertipe `Hewan` yang menunjuk objek `Kucing` akan menjalankan `bersuara()` milik `Kucing`.
+> Untuk *method* yang di-*override*, yang menentukan versi mana yang berjalan adalah **tipe objek**, bukan tipe variabel. Variabel bertipe `Hewan` yang menunjuk objek `Kucing` akan menjalankan `bersuara()` milik `Kucing`.
 
-Sekilas wujudnya di kedua bahasa (detailnya di halaman praktik):
+Sekilas wujudnya di kedua bahasa. Ini potongan kode untuk dibaca, tidak untuk dijalankan sendiri. Versi lengkapnya adalah contoh 01 di halaman praktik.
 
 **Python:**
 
@@ -168,11 +168,11 @@ hewan = new Anjing("Bruno");
 System.out.println(hewan.bersuara());   // Guk guk!
 ```
 
-Baris `hewan.bersuara()` ditulis persis sama dua kali, tetapi hasilnya berbeda, karena objek yang ditunjuk berbeda.
+Baris `hewan.bersuara()` ditulis persis sama dua kali, tetapi hasilnya berbeda karena objek yang ditunjuk berbeda.
 
-### Bagaimana program mencari method?
+### Bagaimana program mencari *method*?
 
-Saat sebuah method dipanggil, program mencarinya mulai dari **kelas objek itu sendiri**. Jika tidak ditemukan, pencarian naik ke kelas induk, lalu ke induknya lagi, sampai ketemu.
+Saat sebuah *method* dipanggil, program mencarinya mulai dari **kelas objek itu sendiri**. Jika tidak ditemukan, pencarian naik ke kelas induk, lalu ke induknya lagi, sampai ketemu.
 
 ```mermaid
 flowchart TD
@@ -184,11 +184,13 @@ flowchart TD
     E -->|tidak| D
 ```
 
-Contohnya, kelas `Ikan` tidak meng-*override* `bersuara()`. Saat objek ikan disuruh bersuara, pencarian naik ke `Hewan` dan menemukan versi umum: `(diam saja)`. Jadi polimorfisme tidak mewajibkan semua anak meng-*override*. Anak yang tidak meng-*override* otomatis memakai versi induk.
+Contohnya, kelas `Ikan` tidak meng-*override* `bersuara()`. Saat objek ikan disuruh bersuara, pencarian naik ke `Hewan` dan menemukan versi umum: `(diam saja)`. Jadi, polimorfisme tidak mewajibkan semua anak meng-*override*. Anak yang tidak meng-*override* otomatis memakai versi induk.
+
+Bagaimana jika sampai kelas akar (`object` di Python, `Object` di Java) pun *method* itu tidak ditemukan? Python menghentikan program dengan `AttributeError` saat baris itu dijalankan. Java tidak pernah sampai ke situ karena *compiler* sudah menolak kodenya sebelum program berjalan.
 
 ## 4. Koleksi Polimorfik dan Menambah Jenis Baru
 
-Kekuatan polimorfisme paling terasa ketika objek-objek berbeda jenis disimpan dalam **satu koleksi** (list atau array), lalu diproses dengan **satu perulangan**.
+Kekuatan polimorfisme paling terasa ketika objek-objek berbeda jenis disimpan dalam **satu koleksi** (*list* atau *array*), lalu diproses dengan **satu perulangan**.
 
 > **Koleksi polimorfik** adalah koleksi yang dideklarasikan untuk tipe induk, tetapi isinya objek dari berbagai kelas anak.
 
@@ -202,19 +204,27 @@ classDiagram
     }
     class Persegi {
         -sisi : int
+        +nama() String
+        +luas() int
     }
     class PersegiPanjang {
         -panjang : int
         -lebar : int
+        +nama() String
+        +luas() int
     }
     class Segitiga {
         -alas : int
         -tinggi : int
+        +nama() String
+        +luas() int
     }
     class Trapesium {
         -sisiAtas : int
         -sisiBawah : int
         -tinggi : int
+        +nama() String
+        +luas() int
     }
     BangunDatar <|-- Persegi
     BangunDatar <|-- PersegiPanjang
@@ -222,7 +232,7 @@ classDiagram
     BangunDatar <|-- Trapesium
 ```
 
-Fungsi pencetak laporan cukup berbunyi seperti ini:
+Setiap kelas anak menulis versi `nama()` dan `luas()` miliknya sendiri karena rumus luas setiap bangun memang berbeda. Dalam *pseudocode*, fungsi pencetak laporan cukup berbunyi seperti ini:
 
 ```text
 untuk setiap bangun di daftar:
@@ -236,21 +246,21 @@ Fungsi itu **tidak menyebut satu pun** kelas anak. Ia hanya mengenal `BangunData
 |---|---|---|
 | Menambah jenis trapesium | Tambah cabang baru di **setiap** fungsi yang memeriksa jenis | Tulis kelas `Trapesium` saja |
 | Fungsi pencetak laporan | Ikut diubah | **Tidak disentuh sama sekali** |
-| Risiko merusak kode lama | Besar | Kecil, karena kode lama tidak diubah |
+| Risiko merusak kode lama | Besar | Kecil karena kode lama tidak diubah |
 | Rumus luas trapesium tersimpan di | Fungsi pencetak (bercampur dengan rumus lain) | Kelas `Trapesium` sendiri |
 
-Prinsip ini punya nama: kode sebaiknya **terbuka untuk penambahan, tetapi tertutup untuk perubahan**. Programmer menyebutnya *Open/Closed Principle*, dan kita akan membahasnya lagi di Pertemuan 13 (Prinsip SOLID).
+Prinsip ini punya nama: kode sebaiknya **terbuka untuk penambahan, tetapi tertutup untuk perubahan**. Pemrogram menyebutnya *Open/Closed Principle*, dan kita akan membahasnya lagi di Pertemuan 13 (Prinsip SOLID).
 
 > [!NOTE]
 > Di contoh praktik, `BangunDatar` "umum" mengembalikan luas 0. Rasanya janggal, bukan? Bangun datar tanpa bentuk memang tidak masuk akal untuk dibuat objeknya. Di Pertemuan 10, kita belajar cara melarangnya dengan **kelas abstrak**.
 
-## 5. Polimorfisme dari Dalam Kelas
+## 5. Polimorfisme dari dalam Kelas
 
-Sejauh ini, method dipanggil dari **luar** objek. Polimorfisme juga bekerja ketika sebuah method milik induk memanggil method lain milik objek yang sama.
+Sejauh ini, *method* dipanggil dari **luar** objek. Polimorfisme juga bekerja ketika sebuah *method* milik induk memanggil *method* lain milik objek yang sama.
 
 Bayangkan percetakan kartu ucapan di dekat kampus. Semua kartu dicetak dengan **kerangka** yang sama: baris salam, baris isi, lalu nama pengirim. Kartu ulang tahun dan kartu wisuda hanya berbeda **isinya**.
 
-Kerangka itu cukup ditulis sekali di kelas induk `KartuUcapan`, dalam method `tulis()`:
+Kerangka itu cukup ditulis sekali di kelas induk `KartuUcapan`, dalam *method* `tulis()`. Dalam *pseudocode*:
 
 ```text
 tulis():
@@ -259,25 +269,25 @@ tulis():
     cetak nama pengirim
 ```
 
-Ketika objek `KartuWisuda` menjalankan `tulis()`, method `tulis()` yang berjalan memang milik induk. Namun di dalamnya, `salam()` dan `isi()` dipanggil lewat `self`/`this`, yaitu objek kartu wisuda itu sendiri. Akibatnya, versi milik `KartuWisuda` yang dipakai.
+Ketika objek `KartuWisuda` menjalankan `tulis()`, *method* `tulis()` yang berjalan memang milik induk. Namun, di dalamnya, `salam()` dan `isi()` dipanggil lewat `self`/`this`, yaitu objek kartu wisuda itu sendiri. Akibatnya, versi milik `KartuWisuda` yang dipakai.
 
 ```mermaid
 flowchart TD
-    A["kartu_wisuda.tulis"] --> B["Menjalankan tulis milik KartuUcapan"]
-    B --> C["self.salam: objeknya KartuWisuda"]
+    A["Objek KartuWisuda disuruh tulis"] --> B["Yang berjalan: tulis milik KartuUcapan"]
+    B --> C["self/this.salam: objeknya KartuWisuda"]
     C --> D["Salam versi KartuWisuda"]
-    B --> E["self.isi: objeknya KartuWisuda"]
+    B --> E["self/this.isi: objeknya KartuWisuda"]
     E --> F["Isi versi KartuWisuda"]
 ```
 
 > [!IMPORTANT]
 > `self` (Python) dan `this` (Java) **selalu** menunjuk objek yang sebenarnya, bahkan ketika kode yang sedang berjalan ditulis di kelas induk.
 
-Pola "kerangka di induk, isian di anak" sangat berguna. Di Pertemuan 10, pola ini diresmikan dengan nama *template method*.
+Pola "kerangka di induk, isian di anak" sangat berguna. Di Pertemuan 10, pola ini diresmikan dengan nama ***template method***.
 
 ## 6. *Upcasting*, *Downcasting*, dan Memeriksa Jenis Objek
 
-Bayangkan Sistem Informasi Akademik (SIA) kampus. Pemakainya ada mahasiswa dan dosen. Keduanya **adalah** pengguna SIA, jadi keduanya bisa login dan membuka profil. Namun hanya mahasiswa yang bisa **mengisi KRS**, dan hanya dosen yang bisa **menginput nilai**.
+Bayangkan Sistem Informasi Akademik (SIA) kampus. Pemakainya ada mahasiswa dan dosen. Keduanya **adalah** pengguna SIA, jadi keduanya bisa *login* dan membuka profil. Namun, hanya mahasiswa yang bisa **mengisi KRS**, dan hanya dosen yang bisa **memasukkan nilai**.
 
 ```mermaid
 classDiagram
@@ -299,17 +309,19 @@ classDiagram
 
 ### *Upcasting*: memandang anak sebagai induk
 
-Ketika objek `Mahasiswa` disimpan dalam variabel atau list bertipe `Pengguna`, kita sedang memandang objek itu sebagai "pengguna secara umum".
+Ketika objek `Mahasiswa` disimpan dalam variabel atau *list* bertipe `Pengguna`, kita sedang memandang objek itu sebagai "pengguna secara umum".
 
-> ***Upcasting*** adalah memperlakukan objek kelas anak sebagai objek kelas induknya. Upcasting selalu **aman** dan terjadi **otomatis**, karena setiap mahasiswa pasti seorang pengguna.
+> ***Upcasting*** adalah memperlakukan objek kelas anak sebagai objek kelas induknya. *Upcasting* selalu **aman** dan terjadi **otomatis** karena setiap mahasiswa pasti seorang pengguna.
 
-Lewat "kacamata" `Pengguna`, kita hanya boleh meminta hal yang bisa dilakukan **semua** pengguna, seperti `peran()` dan `menuUtama()`. Hasilnya tetap versi milik objek sebenarnya (polimorfisme).
+Lewat "kacamata" `Pengguna`, kita hanya boleh meminta hal yang bisa dilakukan **semua** pengguna, seperti `peran()` dan `menuUtama()`. Di Java, aturan ini dijaga ketat oleh *compiler*. Hasilnya tetap versi milik objek sebenarnya (polimorfisme).
 
 ### *Downcasting*: memandang induk sebagai anak tertentu
 
-Bagaimana jika kita perlu memanggil `isiKrs()`, yang hanya dimiliki mahasiswa? Kita harus memandang objek itu kembali sebagai `Mahasiswa`.
+Bagaimana jika kita perlu memanggil `isiKrs()`? *Method* itu hanya dimiliki mahasiswa. Kita harus memandang objek itu kembali sebagai `Mahasiswa`.
 
-> ***Downcasting*** adalah memperlakukan objek yang sedang dipandang sebagai kelas induk menjadi kelas anak tertentu. Downcasting **tidak selalu aman**, karena belum tentu setiap pengguna adalah mahasiswa.
+> ***Downcasting*** adalah memperlakukan objek yang sedang dipandang sebagai kelas induk menjadi kelas anak tertentu. *Downcasting* **tidak selalu aman** karena belum tentu setiap pengguna adalah mahasiswa.
+
+Di Java, *downcasting* ditulis dengan ***cast***, yaitu nama kelas tujuan di dalam tanda kurung sebelum variabelnya: `(Mahasiswa) p`. Python tidak punya *cast* karena variabelnya tidak bertipe.
 
 Analogi: seorang petugas parkir melihat "kendaraan" yang masuk. Sebelum meminta pengemudinya menunjukkan SIM C, petugas harus **yakin dulu** bahwa kendaraan itu motor. Meminta SIM C dari pengemudi truk tentu keliru.
 
@@ -324,23 +336,23 @@ Analogi: seorang petugas parkir melihat "kendaraan" yang masuk. Sebelum meminta 
 
 | | Python | Java |
 |---|---|---|
-| Upcasting | Tidak ada istilah khusus. Variabel tidak bertipe | Otomatis: `Pengguna p = new Mahasiswa(...)` |
-| Memanggil method khusus anak | Langsung bisa dipanggil. Jika objeknya tidak punya method itu, muncul `AttributeError` saat **program berjalan** | Ditolak *compiler* jika tipe variabelnya induk. Harus di-*cast* dulu: `(Mahasiswa) p` |
+| *Upcasting* | Tidak ada istilah khusus. Variabel tidak bertipe | Otomatis: `Pengguna p = new Mahasiswa(...)` |
+| Memanggil *method* khusus anak | Langsung bisa dipanggil. Jika objeknya tidak punya *method* itu, muncul `AttributeError` saat **program berjalan** | Ditolak *compiler* jika tipe variabelnya induk. Harus di-*cast* dulu: `(Mahasiswa) p` |
 | Memeriksa jenis objek | `isinstance(p, Mahasiswa)` | `p instanceof Mahasiswa` |
-| Salah menebak jenis | `AttributeError` | `ClassCastException` saat program berjalan |
+| Salah menebak jenis | `AttributeError` saat program berjalan | `ClassCastException` saat program berjalan |
 
 Java juga punya bentuk singkat sejak Java 16: `p instanceof Mahasiswa m` memeriksa jenis **sekaligus** menyiapkan variabel `m` yang sudah bertipe `Mahasiswa`. Halaman praktik Java menunjukkan kedua bentuknya.
 
 > [!WARNING]
-> Memeriksa jenis objek itu ibarat obat, bukan makanan sehari-hari. Jika kodemu penuh `isinstance`/`instanceof` untuk memilih perilaku, itu tanda rancangannya belum memanfaatkan polimorfisme. Pindahkan perilaku itu ke dalam kelas masing-masing sebagai method yang di-*override*. Pemeriksaan jenis pantas dipakai hanya untuk fitur yang memang **khusus** dimiliki satu jenis, seperti kembalian pada pembayaran tunai.
+> Memeriksa jenis objek itu ibarat obat, bukan makanan sehari-hari. Jika kodemu penuh `isinstance`/`instanceof` untuk memilih perilaku, itu tanda rancangannya belum memanfaatkan polimorfisme. Pindahkan perilaku itu ke dalam kelas masing-masing sebagai *method* yang di-*override*. Pemeriksaan jenis pantas dipakai hanya untuk fitur yang memang **khusus** dimiliki satu jenis, seperti kembalian pada pembayaran tunai.
 
 ## 7. *Duck Typing*: Yang Penting Bisa, Bukan Siapa
 
-Ada pepatah dari dunia pemrograman: *"Jika sesuatu berjalan seperti bebek dan berbunyi seperti bebek, anggap saja ia bebek."*
+Ada pepatah dari dunia pemrograman: "Jika sesuatu berjalan seperti bebek dan berbunyi seperti bebek, anggap saja ia bebek." Dari pepatah itulah nama *duck typing* berasal (*duck* berarti bebek).
 
-Bayangkan pagi hari di asrama mahasiswa. Yang membangunkan penghuni bisa ayam jago tetangga, alarm ponsel, atau kentongan pos ronda. Ketiganya sama sekali tidak bersaudara. Namun kamu tidak peduli **siapa** mereka. Yang penting, ketiganya **bisa berbunyi**.
+Bayangkan pagi hari di asrama mahasiswa. Yang membangunkan penghuni bisa ayam jago tetangga, alarm ponsel, atau kentongan pos ronda. Ketiganya sama sekali tidak bersaudara. Namun, kamu tidak peduli **siapa** mereka. Yang penting, ketiganya **bisa berbunyi**.
 
-> ***Duck typing*** adalah gaya polimorfisme yang tidak memeriksa kelas sebuah objek. Objek dianggap cocok selama ia **punya method yang dibutuhkan**, walaupun tidak mewarisi kelas induk yang sama.
+> ***Duck typing*** adalah gaya polimorfisme yang tidak memeriksa kelas sebuah objek. Objek dianggap cocok selama ia **punya *method* yang dibutuhkan** walaupun tidak mewarisi kelas induk yang sama.
 
 | | Python | Java |
 |---|---|---|
@@ -348,7 +360,7 @@ Bayangkan pagi hari di asrama mahasiswa. Yang membangunkan penghuni bisa ayam ja
 | Jika ternyata ada objek yang tidak punya `bunyikan()` | `AttributeError` saat program berjalan | Sudah ketahuan saat kompilasi |
 | Kelebihan | Luwes dan ringkas | Kesalahan tertangkap lebih awal |
 
-Python menganut *duck typing* secara alami. Java mewajibkan tipe bersama. Untuk sekarang, tipe bersama itu berupa kelas induk. Namun "ayam jago **adalah** sumber bunyi" terdengar dipaksakan, bukan? Untuk kemampuan bersama seperti "bisa berbunyi", Java punya alat yang lebih tepat bernama ***interface***, yang kita pelajari di Pertemuan 10.
+Python menganut *duck typing* secara alami. Java mewajibkan tipe bersama. Untuk sekarang, tipe bersama itu berupa kelas induk. Namun, "ayam jago **adalah** sumber bunyi" terdengar dipaksakan, bukan? Untuk kemampuan bersama seperti "bisa berbunyi", Java punya alat yang lebih tepat bernama ***interface***. Kita mempelajarinya di Pertemuan 10.
 
 ## 8. *Overloading*: Satu Nama, Daftar Parameter Berbeda
 
@@ -356,7 +368,9 @@ Polimorfisme yang dibahas sejauh ini terjadi saat program **berjalan**. Ada satu
 
 Bayangkan katalog perpustakaan kampus. Ada satu menu bernama "Cari". Kamu boleh mencari dengan judul saja, dengan tahun terbit saja, atau dengan keduanya. Nama menunya tetap satu, tetapi isian yang kamu berikan berbeda-beda.
 
-> ***Overloading*** adalah menulis beberapa method (atau konstruktor) dengan **nama yang sama** di kelas yang sama, tetapi **daftar parameternya berbeda**: jumlahnya, tipenya, atau urutan tipenya.
+> ***Overloading*** adalah menulis beberapa *method* (atau konstruktor) dengan **nama yang sama** di kelas yang sama, tetapi **daftar parameternya berbeda**: jumlahnya, tipenya, atau urutan tipenya.
+
+Dalam gaya penulisan Java, katalog tadi punya tiga *method* `cari` berikut (hanya kepala *method*-nya):
 
 ```text
 cari(String kataKunci)              <- cari judul saja
@@ -364,24 +378,24 @@ cari(int tahun)                     <- cari tahun saja (tipe parameter berbeda)
 cari(String kataKunci, int tahun)   <- cari keduanya (jumlah parameter berbeda)
 ```
 
-*Compiler* Java memilih versi yang cocok dengan argumen **saat kompilasi**, berdasarkan tipe argumen yang tertulis di kode. Karena itu overloading disebut **polimorfisme waktu kompilasi** (*compile-time polymorphism*). Sebaliknya, *override* + *dynamic dispatch* disebut **polimorfisme waktu berjalan** (*run-time polymorphism*).
+*Compiler* Java memilih versi yang cocok dengan argumen **saat kompilasi**, berdasarkan tipe argumen yang tertulis di kode. Karena itu, *overloading* disebut **polimorfisme waktu kompilasi** (*compile-time polymorphism*). Sebaliknya, *override* + *dynamic dispatch* disebut **polimorfisme waktu berjalan** (*run-time polymorphism*).
 
-Kamu sebenarnya sudah lama memakai overloading. `System.out.println` di Java punya banyak versi: untuk `int`, `String`, `boolean`, dan lainnya. Konstruktor dengan `this(...)` di Pertemuan 03 juga overloading.
+Kamu sebenarnya sudah lama memakai *overloading*. `System.out.println` di Java punya banyak versi: untuk `int`, `String`, `boolean`, dan lainnya. Beberapa konstruktor dengan daftar parameter berbeda di Pertemuan 03, yang saling memanggil lewat `this(...)`, juga contoh *overloading*.
 
 > [!WARNING]
-> Tipe kembalian saja **tidak cukup** untuk membedakan dua versi. `int hitung(int x)` dan `String hitung(int x)` ditolak *compiler*, karena saat memanggil `hitung(5)`, *compiler* tidak bisa menebak versi mana yang dimaksud.
+> Tipe kembalian saja **tidak cukup** untuk membedakan dua versi. `int hitung(int x)` dan `String hitung(int x)` ditolak *compiler* karena saat memanggil `hitung(5)`, *compiler* tidak bisa menebak versi mana yang dimaksud.
 
 ### Bagaimana dengan Python?
 
-Python **tidak punya** overloading. Jika sebuah kelas menulis dua `def` dengan nama yang sama, `def` kedua diam-diam **menimpa** `def` pertama. Tidak ada pesan error saat kelas ditulis. Error baru muncul ketika seseorang memanggil "versi pertama" yang ternyata sudah hilang.
+Python **tidak punya** *overloading*. Jika sebuah kelas menulis dua `def` dengan nama yang sama, `def` kedua diam-diam **menimpa** `def` pertama. Tidak ada pesan *error* saat kelas ditulis. *Error* baru muncul ketika seseorang memanggil "versi pertama" yang ternyata sudah hilang.
 
-Python menyediakan cara lain agar satu method bisa dipanggil dengan banyak cara:
+Python menyediakan cara lain agar satu *method* bisa dipanggil dengan banyak cara:
 
 | Kebutuhan | Java | Python |
 |---|---|---|
-| Parameter boleh tidak diisi | Tulis versi overload yang lebih pendek | **Nilai bawaan**: `def cari(self, kata_kunci="", tahun=0)` |
-| Memilih parameter yang diisi | Versi overload terpisah | **Argumen kata kunci**: `cari(tahun=1980)` |
-| Jumlah argumen bebas | *Varargs*: `tambahBuku(Buku... daftar)` | `*args`: `def tambah_buku(self, *daftar_buku)` |
+| Parameter boleh tidak diisi | Tulis versi *overload* yang lebih pendek | **Nilai bawaan**: `def cari(self, kata_kunci="", tahun=0)` |
+| Memilih parameter yang diisi | Versi *overload* terpisah | **Argumen kata kunci**: `cari(tahun=1980)` |
+| Jumlah argumen bebas | *Varargs*: `tambahBuku(Buku... daftarBuku)` | `*args`: `def tambah_buku(self, *daftar_buku)` |
 
 ### Dua jenis polimorfisme
 
@@ -396,12 +410,12 @@ flowchart TD
 
 | | *Overriding* | *Overloading* |
 |---|---|---|
-| Letak | Di kelas **anak**, menimpa method induk | Di kelas yang **sama** (atau ditambah di kelas anak) |
-| Nama method | Sama | Sama |
+| Letak | Di kelas **anak**, menimpa *method* induk | Di kelas yang **sama** (atau ditambah di kelas anak) |
+| Nama *method* | Sama | Sama |
 | Daftar parameter | **Sama** | **Berbeda** |
-| Versi dipilih | Saat program berjalan, berdasarkan **tipe objek** | Saat kompilasi, berdasarkan **tipe argumen** |
+| Versi dipilih | Saat program berjalan, berdasarkan **tipe objek** | Saat kompilasi, berdasarkan **tipe argumen** yang tertulis di kode |
 | Tujuan | Mengganti perilaku untuk jenis yang lebih khusus | Menyediakan beberapa cara memanggil satu kemampuan |
-| Python | Ada | Tidak ada (pakai nilai bawaan atau `*args`) |
+| Python | Ada | Tidak ada (pakai nilai bawaan, argumen kata kunci, atau `*args`) |
 
 ## 9. Aturan *Override* yang Perlu Diingat
 
@@ -409,12 +423,12 @@ Polimorfisme hanya bekerja jika versi anak benar-benar **menimpa** versi induk. 
 
 | Aturan | Python | Java |
 |---|---|---|
-| Nama method sama persis | Wajib. Salah ketik berarti method baru, dan versi induk diam-diam tetap dipakai | Wajib |
-| Daftar parameter sama | Tidak diperiksa. Jika berbeda, pemanggilan polimorfik gagal saat berjalan (`TypeError`) | Wajib. Jika berbeda, yang terjadi justru **overloading**, bukan override |
-| Tipe kembalian | Tidak diperiksa, tetapi sebaiknya sejenis. Jangan sampai versi induk mengembalikan teks, sedangkan versi anak hanya mencetak | Sama dengan induk (atau kelas anak dari tipe itu) |
+| Nama *method* sama persis | Wajib. Salah ketik berarti *method* baru, dan versi induk diam-diam tetap dipakai | Wajib |
+| Daftar parameter sama | Tidak diperiksa. Jika berbeda, pemanggilan polimorfik bisa gagal saat berjalan (`TypeError`) | Wajib. Jika berbeda, yang terjadi justru ***overloading***, bukan *override* |
+| Tipe kembalian | Tidak diperiksa, tetapi sebaiknya sejenis. Jangan sampai versi induk mengembalikan teks, sedangkan versi anak hanya mencetak | Sama dengan induk. Untuk tipe objek, boleh kelas anak dari tipe itu |
 | Hak akses | Tidak berlaku | Tidak boleh lebih sempit dari versi induk |
 | Penanda | Tidak ada | `@Override`. Selalu tulis! *Compiler* menolak jika ternyata tidak ada yang ditimpa |
-| Tidak bisa di-override | Tidak ada pembatasan | Method `final`, `private`, dan `static` |
+| Tidak bisa di-*override* | Tidak ada pembatasan | *Method* `final`, `private`, dan `static` |
 
 Satu prinsip menyatukan semua aturan itu: **objek anak harus bisa dipakai di mana pun objek induk diharapkan**, tanpa membuat pemanggil kaget. Jika `BangunDatar.luas()` dijanjikan mengembalikan angka tanpa butuh argumen, setiap kelas anak harus menepati janji itu. Prinsip ini akan muncul lagi di Pertemuan 13 dengan nama *Liskov Substitution Principle*.
 
@@ -463,18 +477,18 @@ classDiagram
 ```
 
 > [!NOTE]
-> Diagram ini memakai gaya nama Java. Di Python, `tambahItem(menu)` tidak ada sebagai method terpisah. Python memakai **satu** method `tambah_item(menu, jumlah=1)` dengan nilai bawaan.
+> Diagram ini memakai gaya nama Java. Di Python, `tambahItem(menu)` tidak ada sebagai *method* terpisah. Python memakai **satu** *method* `tambah_item(menu, jumlah=1)` dengan nilai bawaan.
 
 **Yang baru:**
 
-- `Pembayaran` menjadi **kelas induk** dengan tiga method: nama metode, biaya layanan (bawaannya 0), dan proses pembayaran.
-- `PembayaranTunai`, `PembayaranQRIS`, dan `PembayaranKartu` meng-*override* method yang perlu saja. Hanya kartu kredit yang meng-*override* biaya layanan (2%).
+- `Pembayaran` menjadi **kelas induk** dengan tiga *method*: nama metode, biaya layanan (bawaannya 0), dan proses pembayaran.
+- `PembayaranTunai`, `PembayaranQRIS`, dan `PembayaranKartu` meng-*override* *method* yang perlu saja. Hanya kartu kredit yang meng-*override* biaya layanan (2%).
 - `Pesanan.bayar(pembayaran)` menerima pembayaran **jenis apa pun**. Di dalamnya, tiga panggilan bersifat polimorfik: `hitungBiayaLayanan()`, `namaMetode()`, dan `proses()`.
-- Pesanan kini punya **status**: `BARU`, lalu menjadi `LUNAS` setelah pembayaran berhasil. Pelanggan mendapat 1 poin untuk setiap Rp10.000.
-- `tambahItem(menu)` boleh dipanggil tanpa jumlah (berarti 1 porsi). Java memakai overloading, Python memakai nilai bawaan.
-- Program utama memeriksa jenis pembayaran dengan `isinstance`/`instanceof` hanya untuk satu fitur khusus: **kembalian**, yang hanya dimiliki pembayaran tunai.
+- Pesanan kini punya **status**: `BARU`, lalu menjadi `LUNAS` setelah pembayaran berhasil. Jika pembayaran gagal, statusnya tetap `BARU` sehingga pesanan bisa dibayar lagi dengan cara lain. Pelanggan mendapat 1 poin untuk setiap Rp10.000 dari total pesanan (biaya layanan tidak dihitung).
+- `tambahItem(menu)` boleh dipanggil tanpa jumlah (berarti 1 porsi). Java memakai *overloading*, Python memakai nilai bawaan.
+- Program utama memeriksa jenis pembayaran dengan `isinstance`/`instanceof` hanya untuk satu fitur khusus milik pembayaran tunai: **kembalian**.
 
-Alur method `bayar()`:
+Alur *method* `bayar()`:
 
 ```mermaid
 flowchart TD
@@ -483,13 +497,13 @@ flowchart TD
     C --> D["Cetak nama metode versi objek pembayaran"]
     D --> E{"Proses versi objek pembayaran berhasil?"}
     E -->|ya| F["Status LUNAS dan pelanggan dapat poin"]
-    E -->|tidak| G["Status GAGAL, pilih metode lain"]
+    E -->|tidak| G["Cetak GAGAL, status tetap BARU"]
 ```
 
-Perhatikan bahwa `bayar()` **tidak punya satu pun percabangan** berdasarkan jenis pembayaran. Jika besok kedai menerima voucher, cukup tulis kelas `PembayaranVoucher` (kamu akan mencobanya di [Latihan 5](latihan.md)). Method `bayar()` tidak perlu diubah.
+Perhatikan bahwa `bayar()` **tidak punya satu pun percabangan** berdasarkan jenis pembayaran. Jika besok kedai menerima voucher, cukup tulis kelas `PembayaranVoucher` (kamu akan mencobanya di [Latihan 5](latihan.md)). *Method* `bayar()` tidak perlu diubah.
 
 > [!NOTE]
-> Ada yang terasa janggal? Kelas `Pembayaran` "umum" bisa dibuat objeknya, dan nama metodenya hanya `"Pembayaran umum"`. Di dunia nyata, tidak ada pelanggan yang membayar dengan "pembayaran umum". Kelas ini sebenarnya hanya **kerangka** bagi kelas-kelas anaknya. Di Pertemuan 10, kita memperbaikinya dengan menjadikan `Pembayaran` **kelas abstrak**, sehingga objeknya tidak bisa dibuat lagi.
+> Ada yang terasa janggal? Kelas `Pembayaran` "umum" bisa dibuat objeknya, dan nama metodenya hanya `"Pembayaran umum"`. Di dunia nyata, tidak ada pelanggan yang membayar dengan "pembayaran umum". Kelas ini sebenarnya hanya **kerangka** bagi kelas-kelas anaknya. Di Pertemuan 10, kita memperbaikinya dengan menjadikan `Pembayaran` **kelas abstrak** sehingga objeknya tidak bisa dibuat lagi.
 
 **Skenario program:**
 
@@ -523,61 +537,64 @@ Pembayaran pesanan P002 (Siti Aminah)
   Status       : LUNAS (+3 poin)
 ```
 
-Satu method `bayar()`, dua jenis pembayaran, dua perilaku berbeda. Kode lengkap dan seluruh output-nya dibahas di halaman praktik: [🐍 Python](python/README.md#8-studi-kasus-kedaikita) atau [☕ Java](java/README.md#8-studi-kasus-kedaikita).
+Satu *method* `bayar()`, dua jenis pembayaran, dua perilaku berbeda. Kode lengkap dan seluruh *output*-nya dibahas di halaman praktik: [🐍 Python](python/README.md#8-studi-kasus-kedaikita) atau [☕ Java](java/README.md#8-studi-kasus-kedaikita).
 
 ## 11. Miskonsepsi yang Sering Terjadi
 
-> [!WARNING]
-> **"Polimorfisme butuh if-else untuk memilih versi method yang tepat."**
-> Justru sebaliknya. Polimorfisme **menggantikan** percabangan berdasarkan jenis. Pemilihan versi dikerjakan otomatis oleh *dynamic dispatch*.
+Enam anggapan keliru berikut paling sering muncul saat belajar polimorfisme. Cocokkan dengan pemahamanmu sendiri.
 
-> [!WARNING]
-> **"Tipe variabel menentukan method mana yang dijalankan."**
-> Untuk method yang di-*override*, yang menentukan adalah **tipe objek**. Tipe variabel (di Java) hanya menentukan method apa saja yang **boleh dipanggil**.
+1. **Keliru:** "Polimorfisme butuh percabangan `if`/`else` untuk memilih versi *method* yang tepat."
 
-> [!WARNING]
-> **"Casting mengubah objek menjadi kelas lain."**
-> Tidak. Casting hanya mengubah cara kita **memandang** objek. Objek `Dosen` tetap objek `Dosen` selamanya. Karena itu, memaksanya dipandang sebagai `Mahasiswa` berakhir dengan `ClassCastException`.
+   **Yang benar:** justru sebaliknya. Polimorfisme **menggantikan** percabangan berdasarkan jenis. Pemilihan versi dikerjakan otomatis oleh *dynamic dispatch*.
 
-> [!WARNING]
-> **"Python tidak punya polimorfisme, karena tidak punya overloading."**
-> Keliru. Overloading hanyalah satu bentuk polimorfisme. Python punya polimorfisme waktu berjalan (*override* + *dynamic dispatch*) dan bahkan lebih luwes lewat *duck typing*.
+2. **Keliru:** "Tipe variabel menentukan *method* mana yang dijalankan."
 
-> [!WARNING]
-> **"Makin sering memeriksa jenis objek, makin aman programnya."**
-> Pemeriksaan jenis yang berlebihan membuat kode kembali seperti percabangan di bagian 1. Setiap ada jenis baru, semua pemeriksaan itu harus diubah.
+   **Yang benar:** untuk *method* yang di-*override*, yang menentukan adalah **tipe objek**. Tipe variabel (di Java) hanya menentukan *method* apa saja yang **boleh dipanggil**.
 
-> [!WARNING]
-> **"Dua method boleh bernama sama asalkan tipe kembaliannya berbeda."**
-> Tidak. Overloading dibedakan oleh **daftar parameter**, bukan tipe kembalian.
+3. **Keliru:** "*Casting* mengubah objek menjadi kelas lain."
+
+   **Yang benar:** *casting* hanya mengubah cara kita **memandang** objek. Objek `Dosen` tetap objek `Dosen` selamanya. Karena itu, memaksanya dipandang sebagai `Mahasiswa` berakhir dengan `ClassCastException`.
+
+4. **Keliru:** "Python tidak punya polimorfisme karena tidak punya *overloading*."
+
+   **Yang benar:** *overloading* hanyalah satu bentuk polimorfisme. Python punya polimorfisme waktu berjalan (*override* + *dynamic dispatch*), bahkan lebih luwes lewat *duck typing*.
+
+5. **Keliru:** "Makin sering memeriksa jenis objek, makin aman programnya."
+
+   **Yang benar:** pemeriksaan jenis yang berlebihan membuat kode kembali seperti percabangan di bagian 1. Setiap ada jenis baru, semua pemeriksaan itu harus diubah. Pakai pemeriksaan jenis hanya untuk fitur yang benar-benar khusus.
+
+6. **Keliru:** "Dua *method* boleh bernama sama asalkan tipe kembaliannya berbeda."
+
+   **Yang benar:** *overloading* dibedakan oleh **daftar parameter**, bukan tipe kembalian. Dua *method* dengan nama dan daftar parameter yang sama ditolak *compiler* walaupun tipe kembaliannya berbeda.
 
 ## 📝 Ringkasan
 
-- **Polimorfisme** berarti "banyak bentuk": pemanggilan method yang sama ditanggapi dengan cara berbeda oleh objek yang berbeda.
-- Polimorfisme waktu berjalan = ***override*** + ***dynamic dispatch***. Versi yang dijalankan ditentukan oleh **tipe objek**, bukan tipe variabel. Jika kelas objek tidak punya method itu, pencarian naik ke kelas induk.
+- **Polimorfisme** berarti "banyak bentuk": pemanggilan *method* yang sama ditanggapi dengan cara berbeda oleh objek yang berbeda.
+- Polimorfisme waktu berjalan = ***override*** + ***dynamic dispatch***. Versi yang dijalankan ditentukan oleh **tipe objek**, bukan tipe variabel. Jika kelas objek tidak punya *method* itu, pencarian naik ke kelas induk.
 - **Koleksi polimorfik** memungkinkan satu perulangan memproses banyak jenis objek. Jenis baru cukup ditambahkan sebagai kelas baru tanpa mengubah pemanggil (terbuka untuk penambahan, tertutup untuk perubahan).
-- Method induk yang memanggil method lain lewat `self`/`this` juga polimorfik, karena `self`/`this` selalu menunjuk objek sebenarnya.
-- ***Upcasting*** (anak dipandang sebagai induk) selalu aman. ***Downcasting*** (induk dipandang sebagai anak) harus didahului pemeriksaan `isinstance`/`instanceof`. Salah cast di Java menghasilkan `ClassCastException`.
-- ***Duck typing*** (Python): objek cukup punya method yang dibutuhkan, tanpa induk bersama. Java butuh tipe bersama (kelas induk sekarang, *interface* di Pertemuan 10).
-- ***Overloading*** (Java): nama sama, daftar parameter berbeda, dipilih saat kompilasi. Python tidak punya overloading. `def` kedua menimpa `def` pertama, jadi Python memakai nilai bawaan, argumen kata kunci, dan `*args`.
+- *Method* induk yang memanggil *method* lain lewat `self`/`this` juga polimorfik karena `self`/`this` selalu menunjuk objek sebenarnya.
+- ***Upcasting*** (anak dipandang sebagai induk) selalu aman. ***Downcasting*** (induk dipandang sebagai anak) harus didahului pemeriksaan `isinstance`/`instanceof`. Salah *cast* di Java menghasilkan `ClassCastException`.
+- ***Duck typing*** (Python): objek cukup punya *method* yang dibutuhkan, tanpa induk bersama. Java butuh tipe bersama (kelas induk sekarang, *interface* di Pertemuan 10).
+- ***Overloading*** (Java): nama sama, daftar parameter berbeda, dipilih saat kompilasi. Python tidak punya *overloading*. `def` kedua menimpa `def` pertama, jadi Python memakai nilai bawaan, argumen kata kunci, dan `*args`.
 - KedaiKita: `Pesanan.bayar()` menerima pembayaran jenis apa pun tanpa percabangan. `Pembayaran` "umum" yang janggal akan diperbaiki di Pertemuan 10.
 
 ## 📖 Istilah Penting
 
 | Istilah | Arti singkat |
 |---|---|
-| Polimorfisme (*polymorphism*) | Kemampuan objek berbeda menanggapi pemanggilan method yang sama dengan cara masing-masing |
-| *Dynamic dispatch* / *late binding* | Pemilihan versi method saat program berjalan, berdasarkan tipe objek |
-| Tipe variabel | Jenis yang tertulis pada deklarasi variabel (Java), menentukan method yang boleh dipanggil |
+| Polimorfisme (*polymorphism*) | Kemampuan objek berbeda menanggapi pemanggilan *method* yang sama dengan cara masing-masing |
+| *Dynamic dispatch* / *late binding* | Pemilihan versi *method* saat program berjalan, berdasarkan tipe objek |
+| Tipe variabel | Jenis yang tertulis pada deklarasi variabel (Java), menentukan *method* yang boleh dipanggil |
 | Tipe objek | Kelas yang dipakai saat objek dibuat, tidak pernah berubah |
-| Koleksi polimorfik | List/array bertipe induk yang berisi objek berbagai kelas anak |
+| Koleksi polimorfik | *List*/*array* bertipe induk yang berisi objek berbagai kelas anak |
 | *Upcasting* | Memandang objek anak sebagai induknya. Otomatis dan aman |
-| *Downcasting* | Memandang objek kembali sebagai kelas anak tertentu. Butuh cast eksplisit (Java) dan pemeriksaan jenis |
-| `ClassCastException` | Error Java saat program berjalan karena downcasting ke kelas yang salah |
-| *Duck typing* | Gaya Python: objek cocok jika punya method yang dibutuhkan, apa pun kelasnya |
-| *Overloading* | Beberapa method/konstruktor bernama sama dengan daftar parameter berbeda (Java) |
-| Polimorfisme waktu kompilasi | Overloading: versi dipilih *compiler* berdasarkan tipe argumen |
-| Polimorfisme waktu berjalan | Override + dynamic dispatch: versi dipilih berdasarkan tipe objek |
+| *Downcasting* | Memandang objek kembali sebagai kelas anak tertentu. Butuh *cast* eksplisit (Java) dan pemeriksaan jenis |
+| *Cast* | Penulisan nama kelas tujuan di dalam kurung, misalnya `(Mahasiswa) p`, untuk *downcasting* di Java |
+| `ClassCastException` | *Error* Java saat program berjalan karena *downcasting* ke kelas yang salah |
+| *Duck typing* | Gaya Python: objek cocok jika punya *method* yang dibutuhkan, apa pun kelasnya |
+| *Overloading* | Beberapa *method*/konstruktor bernama sama dengan daftar parameter berbeda (Java) |
+| Polimorfisme waktu kompilasi | *Overloading*: versi dipilih *compiler* berdasarkan tipe argumen |
+| Polimorfisme waktu berjalan | *Override* + *dynamic dispatch*: versi dipilih berdasarkan tipe objek |
 | *Varargs* / `*args` | Parameter yang menerima argumen dalam jumlah bebas (Java / Python) |
 
 ## ➡️ Langkah Berikutnya

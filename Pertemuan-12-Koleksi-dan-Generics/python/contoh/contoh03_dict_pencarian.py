@@ -37,7 +37,7 @@ def cari_di_list(daftar: list[Mahasiswa], nim: str) -> Mahasiswa | None:
     for mhs in daftar:
         langkah += 1
         if mhs.nim == nim:
-            print(f"  (list memeriksa {langkah} data sampai ketemu)")
+            print(f"  (list memeriksa {langkah} data sampai ditemukan)")
             return mhs
     return None
 

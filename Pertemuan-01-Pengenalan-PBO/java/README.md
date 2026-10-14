@@ -1,10 +1,10 @@
-# ☕ Praktik Java — Pertemuan 01: Pengenalan PBO & Persiapan Alat
+# ☕ Praktik Java Pertemuan 01: Pengenalan PBO dan Persiapan Alat
 
 [⬅️ Konsep](../README.md) · [🐍 Praktik Python](../python/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
-> **Prasyarat:** sudah membaca [Konsep Pertemuan 01](../README.md). Semua kode di halaman ini ada di folder `contoh/` dan `studi-kasus/`, dan bisa langsung dijalankan.
+> **Prasyarat:** sudah membaca [Konsep Pertemuan 01](../README.md). Semua contoh kode di halaman ini ada di folder `contoh/` dan `studi-kasus/`, dan bisa langsung dijalankan. Hanya kode di bagian 8 yang sengaja dibuat salah untuk menunjukkan pesan *error*.
 
-Mungkin ini pertama kalinya kamu menulis Java. Tenang, halaman ini dimulai dari nol. Kita belajar anatomi program Java, cara menjalankannya, tipe data, percabangan, perulangan, array, dan method. Setelah itu, kita membedah **KedaiKita versi prosedural** untuk melihat sendiri masalahnya, lalu mengintip versi berorientasi objeknya.
+Mungkin ini pertama kalinya kamu menulis Java. Tenang, halaman ini dimulai dari nol. Kita belajar anatomi program Java, cara menjalankannya, tipe data, percabangan, perulangan, *array*, dan *method*. Setelah itu, kita membedah **KedaiKita versi prosedural** untuk melihat sendiri masalahnya, lalu mengintip versi berorientasi objeknya.
 
 > [!TIP]
 > Sudah pernah belajar Python? Kamu akan menemukan banyak kemiripan. Perbedaan-perbedaan pentingnya dirangkum di halaman [Jembatan Python ↔ Java](../jembatan-python-java.md).
@@ -15,22 +15,40 @@ Mungkin ini pertama kalinya kamu menulis Java. Tenang, halaman ini dimulai dari 
 1. [Program Pertama: Anatomi Program Java](#1-program-pertama-anatomi-program-java)
 2. [Variabel dan Tipe Data](#2-variabel-dan-tipe-data)
 3. [Percabangan dan Perulangan](#3-percabangan-dan-perulangan)
-4. [Array: Menyimpan Banyak Data](#4-array-menyimpan-banyak-data)
-5. [Method static dengan Parameter dan Nilai Kembalian](#5-method-static-dengan-parameter-dan-nilai-kembalian)
+4. [*Array*: Menyimpan Banyak Data](#4-array-menyimpan-banyak-data)
+5. [*Method* `static` dengan Parameter dan Nilai Kembalian](#5-method-static-dengan-parameter-dan-nilai-kembalian)
 6. [Data Paralel: Rapi tetapi Rapuh](#6-data-paralel-rapi-tetapi-rapuh)
 7. [Studi Kasus KedaiKita](#7-studi-kasus-kedaikita)
-8. [Kesalahan Umum dan Cara Membaca Pesan Error](#8-kesalahan-umum-dan-cara-membaca-pesan-error)
+8. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#8-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
 
-### Cek instalasi Java
+**Yang perlu sudah siap:** JDK 17 atau lebih baru, VS Code dengan Extension Pack for Java, dan materi ini sudah ada di laptopmu (folder `PBO2026`, atau `PBO2026-master` jika kamu mengunduh ZIP). Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
-Untuk menulis dan menjalankan program Java, kamu butuh **JDK** (*Java Development Kit*) versi **17 atau lebih baru**. Buka terminal (Command Prompt atau PowerShell di Windows, Terminal di macOS/Linux, atau terminal bawaan VS Code), lalu ketik dua perintah ini:
+Ini pertemuan pertama, jadi kita jalani pelan-pelan: memeriksa JDK, menjalankan program pertama, lalu menyiapkan folder untuk latihanmu sendiri.
 
-```bash
-java -version
-javac -version
+Struktur folder Java pertemuan ini:
+
+```text
+java/
+├── contoh/          <- 6 contoh kecil untuk pemanasan dasar Java
+├── studi-kasus/     <- KedaiKita versi prosedural dan versi objek
+└── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
 ```
+
+### Cek Instalasi Java
+
+Untuk menulis dan menjalankan program Java, kamu butuh **JDK** (*Java Development Kit*) versi **17 atau lebih baru**.
+
+1. Buka terminal. Di Windows, klik **Start**, ketik `PowerShell`, lalu tekan Enter. Di macOS/Linux, buka aplikasi **Terminal**. Kamu juga bisa memakai terminal di dalam VS Code lewat menu **Terminal → New Terminal**.
+2. Ketik dua perintah berikut **di terminal** (bukan di dalam *file*), satu per satu. Tekan Enter setelah setiap baris.
+
+   ```bash
+   java -version
+   javac -version
+   ```
+
+Arti kedua perintah itu:
 
 - `java` adalah perintah untuk **menjalankan** program Java.
 - `javac` (*Java compiler*) adalah perintah untuk **mengompilasi**, yaitu memeriksa dan menerjemahkan kode yang kita tulis menjadi bentuk yang bisa dijalankan Java.
@@ -45,36 +63,52 @@ javac 21.0.x                      <- hasil javac -version
 Yang penting, angka versi pertamanya **17 atau lebih besar**, misalnya 17, 21, atau 25.
 
 > [!WARNING]
-> Jika `java -version` berhasil tetapi `javac -version` menampilkan pesan bahwa perintah tidak dikenali, kemungkinan yang terpasang bukan JDK, atau pengaturan *PATH*-nya belum benar. Ikuti panduan [00-Persiapan](../../00-Persiapan/README.md).
+> Jika `java -version` berhasil tetapi `javac -version` menampilkan pesan bahwa perintah tidak dikenali, kemungkinan yang terpasang bukan JDK, atau pengaturan `PATH`-nya belum benar. Lihat [Instalasi Java](../../00-Persiapan/instalasi-java.md) dan [Mengatasi Masalah](../../00-Persiapan/mengatasi-masalah.md).
 
-### Struktur folder
+### Cara Menjalankan Contoh
 
-```text
-java/
-├── contoh/          <- 6 contoh kecil untuk pemanasan dasar Java
-├── studi-kasus/     <- KedaiKita versi prosedural dan versi objek
-└── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
-```
+Pilih salah satu cara. Hasilnya sama.
 
-### Cara menjalankan program
+**Cara 1: tombol Run di VS Code (paling mudah).**
 
-Ada dua cara. Pindah dulu ke folder tempat file berada dengan perintah `cd` (*change directory*).
+1. Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-01-Pengenalan-PBO/java` di dalam folder materi. Jika VS Code bertanya **Do you trust the authors of the files in this folder?**, pilih **Yes, I trust the authors**.
+2. Di panel **Explorer** (sebelah kiri), buka folder `contoh`, lalu klik *file* `Contoh01Halo.java`. Saat pertama kali, ekstensi Java butuh beberapa saat untuk bersiap. Tunggu sampai tulisan kecil **Run | Debug** muncul tepat di atas baris `public static void main`.
+3. Klik **Run** pada tulisan **Run | Debug** itu, atau klik tombol ▷ di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** (kadang **DEBUG CONSOLE**) di bagian bawah. Baris pertama di panel itu berisi perintah panjang yang diketik VS Code secara otomatis; *output* programmu muncul di bawahnya.
 
-**Cara 1 (paling praktis, Java 11 ke atas):** jalankan langsung file `.java`-nya.
+> [!IMPORTANT]
+> Buka folder `java` milik **satu pertemuan** saja, bukan seluruh folder materi. Beberapa pertemuan punya kelas dengan nama yang sama, misalnya `Menu`. Jika semuanya terbuka sekaligus, VS Code memberi garis merah dengan pesan seperti *The type Menu is already defined*, padahal kodenya tidak salah. Panduan lengkapnya ada di [Editor VS Code](../../00-Persiapan/editor-vscode.md).
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-01-Pengenalan-PBO/java/contoh` |
+| folder `java` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-01-Pengenalan-PBO/java/contoh
 java Contoh01Halo.java
 ```
 
-**Cara 2 (cara klasik, dua langkah):** kompilasi dulu dengan `javac`, lalu jalankan dengan `java`.
+Jika berhasil, terminal menampilkan tulisan `=== PROGRAM PERTAMAKU ===`, diikuti beberapa baris lain. Cocokkan hasilnya dengan *output* di [bagian 1](#1-program-pertama-anatomi-program-java). *File* di folder `studi-kasus` dan `solusi` dijalankan dengan cara yang sama; ganti saja `contoh` dengan nama folder itu.
+
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+> [!NOTE]
+> Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya. Tidak yakin sedang di folder mana? Ketik `dir` (Windows) atau `ls` (macOS/Linux). Jika nama *file* yang ingin dijalankan terlihat di daftar, kamu sudah berada di folder yang benar.
+
+### Di Balik Layar: Kompilasi dan JVM
+
+Perintah `java Contoh01Halo.java` di Cara 2 adalah **cara cepat** yang berlaku sejak Java 11. Ada juga **cara klasik** yang terdiri atas dua langkah: kompilasi dulu dengan `javac`, lalu jalankan dengan `java`. Dari folder `contoh`, ketik:
 
 ```bash
 javac Contoh01Halo.java
 java Contoh01Halo
 ```
 
-Perhatikan: pada langkah kedua, nama kelas ditulis **tanpa** akhiran `.java` maupun `.class`.
+Perhatikan: pada langkah kedua, nama kelas ditulis **tanpa** akhiran `.java` maupun `.class`. Langkah pertama tidak menampilkan apa pun jika kodenya benar. Langkah kedua menampilkan *output* yang sama dengan cara cepat.
 
 Apa yang sebenarnya terjadi di balik layar?
 
@@ -85,23 +119,54 @@ flowchart LR
     C --> D["Output tampil<br/>di layar"]
 ```
 
-- **Kode sumber** (*source code*, file `.java`) adalah kode yang kita tulis.
-- `javac` memeriksa kode sumber, lalu menerjemahkannya menjadi **bytecode** (file `.class`). Jika ada kesalahan penulisan, `javac` menolak dan menampilkan pesan error. Proses ini disebut **kompilasi** (*compile*).
-- **JVM** (*Java Virtual Machine*) menjalankan bytecode. Setiap sistem operasi punya JVM sendiri, sehingga bytecode yang sama bisa berjalan di Windows, macOS, maupun Linux. Inilah makna semboyan Java *"write once, run anywhere"*.
+- **Kode sumber** (*source code*, *file* `.java`) adalah kode yang kita tulis.
+- `javac` memeriksa kode sumber, lalu menerjemahkannya menjadi ***bytecode*** (*file* `.class`). Jika ada kesalahan penulisan, `javac` menolak dan menampilkan pesan *error*. Proses ini disebut **kompilasi** (*compile*).
+- **JVM** (*Java Virtual Machine*) menjalankan *bytecode*. Setiap sistem operasi punya JVM sendiri sehingga *bytecode* yang sama bisa berjalan di Windows, macOS, maupun Linux. Inilah makna semboyan Java *"write once, run anywhere"*.
 
 > [!NOTE]
-> Cara 1 tetap melakukan kompilasi, hanya saja di memori dan tanpa meninggalkan file `.class`. Cara 2 menghasilkan file `Contoh01Halo.class` di folder yang sama. File `.class` boleh dihapus kapan saja, dan sudah diabaikan oleh Git di repositori ini.
+> Cara cepat (`java Contoh01Halo.java`) tetap melakukan kompilasi, hanya saja di memori dan tanpa meninggalkan *file* `.class`. Cara klasik menghasilkan *file* `Contoh01Halo.class` di folder yang sama. *File* `.class` boleh dihapus kapan saja, dan sudah diabaikan oleh Git di repositori ini.
 
-> [!TIP]
-> Jika memakai VS Code, buka folder `java/` **milik pertemuan ini** (*File → Open Folder*), bukan seluruh repositori. Alasannya, beberapa pertemuan punya kelas dengan nama yang sama (misalnya `Menu`), dan VS Code akan protes jika dua kelas bernama sama berada dalam satu proyek. Panduan lengkap ada di [00-Persiapan](../../00-Persiapan/README.md).
+### Tempat Menyimpan Kodemu Sendiri
+
+Anggap folder materi sebagai buku pegangan: dibaca dan dijalankan, tetapi tidak diubah. Semua kodemu sendiri, yaitu hasil ketik ulang, percobaan **Coba sendiri**, *file* coretan seperti `Coba.java`, dan jawaban latihan, disimpan di folder `PBO-latihan-saya/pertemuan-01/` di **luar** folder materi. Alasannya ada di [aturan emas menyimpan latihan](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri). Polanya untuk setiap **Coba sendiri**: salin *file* contohnya ke folder itu, buka salinannya, ubah, simpan, jalankan, lalu bandingkan hasilnya dengan jawaban.
+
+Cara menyiapkannya (cukup sekali untuk pertemuan ini):
+
+1. Dengan File Explorer (Windows), Finder (macOS), atau pengelola *file* di Linux, buat folder `pertemuan-01` di dalam `Documents/PBO-latihan-saya`. Jika folder `PBO-latihan-saya` belum ada, buat dulu.
+2. Di VS Code, buka jendela baru lewat **File → New Window**, lalu buka folder `pertemuan-01` tadi lewat **File → Open Folder**. Jika ditanya soal kepercayaan, pilih lagi **Yes, I trust the authors**.
+3. Untuk menyalin *file* contoh, pakai File Explorer atau Finder: pilih *file*-nya di folder materi, tekan Ctrl+C (macOS: Cmd+C), buka folder `pertemuan-01`, lalu tekan Ctrl+V (macOS: Cmd+V). Untuk mengetik ulang, klik ikon **New File...** di panel **Explorer** VS Code, ketik nama *file*-nya, misalnya `Contoh01Halo.java`, lalu tekan Enter. Nama *file* harus sama persis dengan nama kelas `public` di dalamnya, termasuk huruf besar dan kecilnya.
+4. Simpan dengan Ctrl+S (macOS: Cmd+S), lalu klik **Run** pada tulisan **Run | Debug** di atas `main`. Jika ingin lewat terminal, buka **Terminal → New Terminal** di jendela itu. Terminalnya otomatis berada di folder `pertemuan-01`, jadi kamu cukup mengetik `java Contoh01Halo.java`.
+
+Untuk Java, setiap pertemuan punya subfolder sendiri di `PBO-latihan-saya` (`pertemuan-01`, `pertemuan-02`, dan seterusnya), dan subfolder itu dibuka di VS Code satu per satu. Alasannya sama dengan folder materi: nama kelas dari pertemuan yang berbeda bisa bentrok.
 
 Saran belajar: **ketik ulang** kodenya, jangan hanya menyalin. Jari yang mengetik membantu otak mengingat.
 
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*** menautkan *file* yang sedang dibahas. Blok kode di bawahnya berisi isi lengkap *file* itu, termasuk kelas yang memiliki `main`, jadi hasil ketik ulangmu bisa langsung dijalankan. Agar ringkas, komentar pembuka (`/* ... */`) di bagian paling atas hanya ditampilkan di contoh 01.
+- Blok yang diawali tulisan **Potongan dari** hanya berisi sebagian *file*, misalnya di studi kasus. Jangan mengetik ulang potongan itu untuk dijalankan. Jalankan *file* lengkapnya.
+- Tanda `// [1]`, `// [2]`, dan seterusnya di komentar kode dijelaskan di daftar **Penjelasan** tepat di bawah blok kodenya.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan. Kode di bagian 8 sengaja dibuat salah, jadi yang ditampilkan di sana adalah pesan *error*-nya.
+
 ## 1. Program Pertama: Anatomi Program Java
 
-File: [`contoh/Contoh01Halo.java`](contoh/Contoh01Halo.java)
+*File*: [`contoh/Contoh01Halo.java`](contoh/Contoh01Halo.java) (isi lengkap)
 
 ```java
+/*
+ * Contoh 01 - Program Pertamaku
+ * Pertemuan 01 - Pengenalan PBO
+ *
+ * - Setiap program Java berada di dalam sebuah kelas (class).
+ * - Method main adalah "pintu masuk": Java mulai menjalankan program dari sini.
+ * - System.out.println() menampilkan teks ke layar, lalu pindah ke baris baru.
+ *
+ * Cara menjalankan (Java 11 ke atas):
+ *     java Contoh01Halo.java
+ * Atau cara klasik dua langkah (kompilasi dulu, lalu jalankan):
+ *     javac Contoh01Halo.java
+ *     java Contoh01Halo
+ */
 public class Contoh01Halo { // [1] kelas pembungkus; namanya sama dengan nama file
 
     public static void main(String[] args) { // [2] method main: pintu masuk program
@@ -118,7 +183,7 @@ public class Contoh01Halo { // [1] kelas pembungkus; namanya sama dengan nama fi
 } // akhir kelas Contoh01Halo
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PROGRAM PERTAMAKU ===
@@ -133,13 +198,13 @@ Langkah 3: jalankan program
 
 Penjelasan:
 
-- **[1]** Setiap program Java berada di dalam sebuah **kelas** (*class*). Baris `public class Contoh01Halo` membuat kelas bernama `Contoh01Halo`. Kelas yang diberi kata `public` wajib bernama **sama persis** dengan nama filenya, yaitu `Contoh01Halo.java`.
-- **[2]** Method `main` adalah **pintu masuk** program. Saat program dijalankan, Java mencari method `main`, lalu menjalankan isinya. Bentuk `public static void main(String[] args)` adalah bentuk standar yang berlaku di semua versi Java.
+- **[1]** Setiap program Java berada di dalam sebuah **kelas** (*class*). Baris `public class Contoh01Halo` membuat kelas bernama `Contoh01Halo`. Kelas yang diberi kata `public` wajib bernama **sama persis** dengan nama *file*-nya, yaitu `Contoh01Halo.java`.
+- **[2]** *Method* `main` adalah **pintu masuk** program. Saat program dijalankan, Java mencari *method* `main`, lalu menjalankan isinya. Bentuk `public static void main(String[] args)` adalah bentuk standar yang berlaku di semua versi Java.
 - **[3]** `System.out.println(...)` mencetak teks lalu pindah ke baris baru. Teks diapit tanda kutip **ganda**.
 - **[4]** `System.out.println()` tanpa isi mencetak baris kosong.
-- **[5]** Komentar satu baris diawali `//`. Komentar beberapa baris diapit `/*` dan `*/`, seperti penjelasan di bagian atas setiap file contoh. Java mengabaikan semua komentar.
+- **[5]** Komentar satu baris diawali `//`. Komentar beberapa baris diapit `/*` dan `*/`, seperti penjelasan di bagian atas *file* ini. Komentar pembuka itu menjelaskan apa yang dipelajari di *file* dan cara menjalankannya. Java mengabaikan semua komentar.
 - **[6]** Setiap **perintah** (*statement*) diakhiri titik koma `;`. Lupa titik koma adalah kesalahan paling umum pemula Java.
-- **[7]** Kurung kurawal `{` dan `}` menandai awal dan akhir sebuah **blok**: blok kelas, blok method, dan nanti blok percabangan serta perulangan. Setiap `{` wajib punya pasangan `}`.
+- **[7]** Kurung kurawal `{` dan `}` menandai awal dan akhir sebuah **blok**: blok kelas, blok *method*, dan nanti blok percabangan serta perulangan. Setiap `{` wajib punya pasangan `}`.
 
 Perintah di dalam `main` dijalankan **berurutan dari atas ke bawah**. Inilah ciri khas gaya prosedural.
 
@@ -149,9 +214,9 @@ Baris `main` memang terlihat panjang. Kita bedah satu per satu:
 |---|---|
 | `public` | boleh dipanggil dari luar kelas, termasuk oleh Java saat program dimulai (hak akses dibahas di Pertemuan 04) |
 | `static` | bisa dijalankan tanpa membuat objek lebih dulu (dibahas di Pertemuan 03) |
-| `void` | method ini tidak mengembalikan nilai apa pun |
-| `main` | nama khusus; Java mencari method yang bernama persis `main` |
-| `String[] args` | parameter berupa array teks, berisi argumen tambahan dari terminal; belum kita pakai |
+| `void` | *method* ini tidak mengembalikan nilai apa pun |
+| `main` | nama khusus; Java mencari *method* yang bernama persis `main` |
+| `String[] args` | parameter berupa *array* teks, berisi argumen tambahan dari terminal; belum kita pakai |
 
 Begitu juga dengan `System.out.println`:
 
@@ -173,17 +238,17 @@ public class Contoh01Halo {                    <- kelas pembungkus; nama = nama 
 ```
 
 > [!NOTE]
-> **Kenapa sudah ada kata `class`, padahal kita belum belajar kelas?** Java dirancang berorientasi objek sejak awal, sehingga **semua kode wajib berada di dalam kelas**. Untuk sekarang, anggap kelas di contoh-contoh ini sebagai "pembungkus" wajib. Isinya masih bergaya prosedural. Mulai Pertemuan 02, kita memakai kelas sebagaimana mestinya.
+> **Kenapa sudah ada kata `class`, padahal kita belum belajar kelas?** Java dirancang berorientasi objek sejak awal sehingga **semua kode wajib berada di dalam kelas**. Untuk sekarang, anggap kelas di contoh-contoh ini sebagai "pembungkus" wajib. Isinya masih bergaya prosedural. Mulai Pertemuan 02, kita memakai kelas sebagaimana mestinya.
 >
-> Java 25 juga menerima bentuk yang lebih ringkas, misalnya `void main()` tanpa kelas pembungkus yang ditulis sendiri. Mata kuliah ini tetap memakai bentuk standar di atas, agar semua program berjalan di Java 17 maupun versi sesudahnya.
+> Java 25 juga menerima bentuk yang lebih ringkas, misalnya `void main()` tanpa kelas pembungkus yang ditulis sendiri. Mata kuliah ini tetap memakai bentuk standar di atas agar semua program berjalan di Java 17 maupun versi sesudahnya.
 
 > [!IMPORTANT]
-> Java membedakan huruf besar dan kecil (*case-sensitive*). `System` tidak sama dengan `system`, dan `String` tidak sama dengan `string`. Kebiasaan penamaan di Java: nama kelas memakai **PascalCase** (`Contoh01Halo`), sedangkan nama variabel dan method memakai **camelCase** (`hargaKopi`, `hitungOngkos`).
+> Java membedakan huruf besar dan kecil (*case-sensitive*). `System` tidak sama dengan `system`, dan `String` tidak sama dengan `string`. Kebiasaan penamaan di Java: nama kelas memakai ***PascalCase*** (`Contoh01Halo`), sedangkan nama variabel dan *method* memakai ***camelCase*** (`hargaKopi`, `hitungOngkos`).
 
 Berbeda dengan Python, Java tidak memakai indentasi untuk menandai blok, melainkan kurung kurawal. Meski begitu, tetap rapikan indentasi (4 spasi per tingkat) agar kodemu mudah dibaca.
 
 > [!TIP]
-> **Coba sendiri:** ganti `println` pada baris "Langkah 1" dan "Langkah 2" menjadi `print`, lalu jalankan. Tebak dulu tampilannya.
+> **Coba sendiri:** di salinan `Contoh01Halo.java` milikmu (di folder `PBO-latihan-saya/pertemuan-01/`), ganti `println` pada baris "Langkah 1" dan "Langkah 2" menjadi `print`. Simpan, lalu jalankan lagi. Tebak dulu tampilannya.
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -194,13 +259,13 @@ Ketiga langkah menempel di satu baris:
 Langkah 1: siapkan alatLangkah 2: tulis kodeLangkah 3: jalankan program
 ```
 
-`print` tidak pindah baris setelah mencetak, sehingga teks berikutnya langsung menyambung di baris yang sama.
+`print` tidak pindah baris setelah mencetak sehingga teks berikutnya langsung menyambung di baris yang sama.
 
 </details>
 
 ## 2. Variabel dan Tipe Data
 
-File: [`contoh/Contoh02VariabelDanTipe.java`](contoh/Contoh02VariabelDanTipe.java)
+*File*: [`contoh/Contoh02VariabelDanTipe.java`](contoh/Contoh02VariabelDanTipe.java)
 
 Variabel adalah "kotak bernama" untuk menyimpan nilai. Di Java, setiap variabel **wajib dideklarasikan** beserta tipenya, dengan format `Tipe namaVariabel = nilai;`.
 
@@ -240,7 +305,7 @@ public class Contoh02VariabelDanTipe {
 }
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === DATA MAHASISWA ===
@@ -263,11 +328,11 @@ Semester depan Ayu Lestari masuk semester 4
 Penjelasan:
 
 - **[1]** Deklarasi variabel terdiri atas **tipe**, **nama**, lalu nilai awal. Tanda `=` berarti **mengisi**, bukan "sama dengan". Setelah dideklarasikan, sebuah variabel hanya boleh berisi nilai yang sesuai dengan tipenya. Variabel `semester` yang bertipe `int` tidak bisa diisi teks.
-- **[2]** Operator `+` antara teks dan nilai lain **menggabungkan** keduanya menjadi teks baru. Angka diubah menjadi teks secara otomatis, sehingga `"Semester : " + 3` menjadi `"Semester : 3"`.
+- **[2]** Operator `+` antara teks dan nilai lain **menggabungkan** keduanya menjadi teks baru. Angka diubah menjadi teks secara otomatis sehingga `"Semester : " + 3` menjadi `"Semester : 3"`.
 - **[3]** Pembagian dua bilangan `int` menghasilkan `int`, dan bagian desimalnya **dibuang**: `50000 / 18000` hasilnya `2`.
 - **[4]** `%` (modulo) menghasilkan sisa hasil bagi: `50000 % 18000` hasilnya `14000`.
 - **[5]** Perhitungan diletakkan di dalam kurung agar dikerjakan **lebih dulu**, baru kemudian digabung dengan teks. Lihat jebakannya di bawah.
-- **[6]** Saat mengubah nilai variabel yang sudah ada, tipenya **tidak ditulis lagi**. Menulis `int semester = ...` untuk kedua kalinya justru ditolak, karena variabel itu sudah ada.
+- **[6]** Saat mengubah nilai variabel yang sudah ada, tipenya **tidak ditulis lagi**. Menulis `int semester = ...` untuk kedua kalinya justru ditolak karena variabel itu sudah ada.
 
 Tipe data dasar yang akan sering kita pakai:
 
@@ -281,7 +346,7 @@ Tipe data dasar yang akan sering kita pakai:
 | `String` | teks | `"Ayu Lestari"`, `"A"` | diapit kutip **ganda** |
 
 > [!NOTE]
-> `int`, `long`, `double`, `boolean`, dan `char` disebut **tipe primitif** dan selalu ditulis dengan huruf kecil. `String` berbeda: ia sebuah **kelas**, itulah sebabnya diawali huruf kapital. Maknanya akan makin jelas setelah kita belajar kelas mulai Pertemuan 02.
+> `int`, `long`, `double`, `boolean`, dan `char` disebut **tipe primitif** dan selalu ditulis dengan huruf kecil. `String` berbeda: `String` adalah sebuah **kelas**, itulah sebabnya diawali huruf kapital. Maknanya akan makin jelas setelah kita belajar kelas mulai Pertemuan 02.
 
 Operator aritmetika:
 
@@ -293,11 +358,11 @@ Operator aritmetika:
 | `%` | sisa bagi | `7 % 2` | `1` |
 
 > [!IMPORTANT]
-> Di seluruh materi ini, **uang selalu disimpan sebagai `int`** (Rupiah), tidak pernah sebagai `double`. Bilangan pecahan disimpan komputer dalam bentuk biner, sehingga kadang tidak tepat. Untuk menghitung persen, gunakan pola `nilai * persen / 100`.
+> Di seluruh materi ini, **uang selalu disimpan sebagai `int`** (Rupiah), tidak pernah sebagai `double`. Bilangan pecahan disimpan komputer dalam bentuk biner sehingga kadang tidak tepat. Untuk menghitung persen, gunakan pola `nilai * persen / 100`.
 
 ### Jebakan: urutan penggabungan teks
 
-Java mengerjakan `+` dari **kiri ke kanan**. Begitu bertemu teks, `+` berikutnya ikut berarti "gabungkan", bukan "jumlahkan". Perhatikan tiga baris berikut:
+Java mengerjakan `+` dari **kiri ke kanan**. Begitu bertemu teks, `+` berikutnya ikut berarti "gabungkan", bukan "jumlahkan". Perhatikan tiga baris berikut. Ini potongan kode untuk dibaca. Jika ingin mencobanya, buat *file* coretan `Coba.java` di folder `PBO-latihan-saya/pertemuan-01/` berisi `public class Coba` dengan *method* `main`. Tempel ketiga baris itu di dalam `main`, dan tulis dulu `int i = 0;` di atasnya.
 
 ```java
 System.out.println("Total: Rp" + 36000 + 8000);
@@ -313,23 +378,23 @@ Total: Rp44000
 Mahasiswa ke-01
 ```
 
-Baris pertama menggabungkan `"Total: Rp"` dengan `36000`, lalu menggabungkan lagi dengan `8000`. Baris kedua benar, karena penjumlahan di dalam kurung dikerjakan lebih dulu. Baris ketiga salah dengan cara yang sama, dan harus ditulis `"Mahasiswa ke-" + (i + 1)`.
+Baris pertama menggabungkan `"Total: Rp"` dengan `36000`, lalu menggabungkan lagi dengan `8000`. Baris kedua benar karena penjumlahan di dalam kurung dikerjakan lebih dulu. Baris ketiga salah dengan cara yang sama, dan harus ditulis `"Mahasiswa ke-" + (i + 1)`.
 
 > [!WARNING]
 > Bungkus setiap **penjumlahan** dengan kurung saat menggabungkannya dengan teks. Perkalian dan pembagian sebenarnya selalu dikerjakan lebih dulu, tetapi menambahkan kurung tetap membuat kodemu lebih mudah dibaca.
 
 Aturan memberi nama variabel:
 
-- Gunakan gaya **camelCase**: kata pertama huruf kecil, kata berikutnya diawali huruf kapital, misalnya `uangSaku` atau `hargaKopi`.
+- Gunakan gaya ***camelCase***: kata pertama huruf kecil, kata berikutnya diawali huruf kapital, misalnya `uangSaku` atau `hargaKopi`.
 - Huruf besar dan kecil dibedakan: `nama` dan `Nama` adalah dua variabel yang berbeda.
 - Nama tidak boleh diawali angka, tidak boleh mengandung spasi, dan tidak boleh berupa kata kunci Java seperti `class` atau `int`.
 
 > [!TIP]
-> **Coba sendiri:** tambahkan baris `semester = "empat";` tepat sebelum baris `semester = semester + 1;`, lalu jalankan. Java langsung menolak dengan pesan `incompatible types: String cannot be converted to int`. Inilah salah satu perbedaan besar dengan Python: kesalahan tipe ketahuan **sebelum** program berjalan.
+> **Coba sendiri:** di salinan `Contoh02VariabelDanTipe.java` milikmu, tambahkan baris `semester = "empat";` tepat di atas baris `semester = semester + 1;`, lalu simpan. Di VS Code, baris itu langsung diberi garis merah bergelombang. Jalankan lewat terminal dengan `java Contoh02VariabelDanTipe.java`: Java menolak dengan pesan `incompatible types: String cannot be converted to int`, dan tidak satu baris pun tercetak. Inilah salah satu perbedaan besar dengan Python: kesalahan tipe ketahuan **sebelum** program berjalan. Setelah itu, hapus lagi baris tadi agar programnya kembali normal.
 
 ## 3. Percabangan dan Perulangan
 
-File: [`contoh/Contoh03PercabanganPerulangan.java`](contoh/Contoh03PercabanganPerulangan.java)
+*File*: [`contoh/Contoh03PercabanganPerulangan.java`](contoh/Contoh03PercabanganPerulangan.java)
 
 ```java
 public class Contoh03PercabanganPerulangan {
@@ -387,7 +452,7 @@ public class Contoh03PercabanganPerulangan {
 }
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PERCABANGAN: DISKON TOKO ALAT TULIS ===
@@ -415,11 +480,14 @@ Target Rp100000 tercapai dalam 4 minggu
 Penjelasan:
 
 - **[1]** Tipe `boolean` hanya punya dua nilai: `true` dan `false`, ditulis dengan huruf kecil.
-- **[2]** `if`, `else if`, dan `else` diperiksa dari atas ke bawah. Kondisi ditulis di dalam kurung `( )`, dan blok perintahnya di dalam `{ }`. Total 120000 sudah memenuhi syarat pertama, jadi diskonnya 10. Variabel `persenDiskon` sengaja dideklarasikan tanpa nilai awal, lalu diisi di setiap cabang. Java memeriksa bahwa variabel ini **pasti** sudah terisi sebelum dipakai.
-- **[3]** `if (member)` artinya "jika `member` bernilai `true`". Diskon bertambah 5, menjadi 15.
-- **[4]** `||` artinya "atau": bernilai benar jika **salah satu** syarat benar. Perhatikan bahwa teks dibandingkan dengan method `.equals()`, bukan `==`. Alasannya ada di peringatan di bawah.
+- **[2]** `if`, `else if`, dan `else` diperiksa dari atas ke bawah. Kondisi ditulis di dalam kurung `( )`, dan blok perintahnya di dalam `{ }`. Total 120000 sudah memenuhi syarat pertama, jadi `persenDiskon` bernilai 10. Variabel `persenDiskon` sengaja dideklarasikan tanpa nilai awal, lalu diisi di setiap cabang. Java memeriksa bahwa variabel ini **pasti** sudah terisi sebelum dipakai.
+- **[3]** `if (member)` artinya "jika `member` bernilai `true`". Karena itu, `persenDiskon` bertambah 5 menjadi 15.
+- **[4]** `||` artinya "atau": bernilai benar jika **salah satu** syarat benar. Perhatikan bahwa teks dibandingkan dengan *method* `.equals()`, bukan `==`. Alasannya ada di peringatan di bawah.
 - **[5]** Perulangan `for` punya tiga bagian di dalam kurung. Lihat diagram di bawah.
 - **[6]** `while` mengulang **selama** kondisinya benar. Setelah minggu ke-4, tabungan menjadi 120000, kondisi `tabungan < target` menjadi salah, dan perulangan berhenti.
+
+> [!WARNING]
+> Pada `while`, pastikan ada baris yang membuat kondisinya suatu saat menjadi salah. Jika baris `tabungan = tabungan + 30000;` terhapus, tabungan tidak pernah bertambah dan perulangan berjalan **tanpa henti**. Hentikan program seperti itu dengan menekan **Ctrl+C** di terminal. Jika programnya berjalan lewat **Run | Debug**, klik dulu panel **TERMINAL**, baru tekan Ctrl+C.
 
 Tiga bagian perulangan `for`:
 
@@ -447,34 +515,36 @@ Operator perbandingan dan logika:
 | `!` | "tidak": membalik nilai benar/salah | `!member` |
 
 > [!WARNING]
-> **Membandingkan teks di Java memakai `.equals()`**, misalnya `hari.equals("Sabtu")`. Operator `==` pada teks memeriksa apakah keduanya **objek yang sama** di memori, bukan apakah isinya sama, sehingga hasilnya bisa menipu. Penjelasan lengkapnya ada di Pertemuan 03. Untuk angka (`int`, `double`), `==` tetap dipakai seperti biasa.
-
-> [!WARNING]
-> Pada `while`, pastikan ada baris yang membuat kondisinya suatu saat menjadi salah. Jika baris `tabungan = tabungan + 30000;` terhapus, tabungan tidak pernah bertambah dan perulangan berjalan **tanpa henti**. Hentikan program seperti itu dengan menekan **Ctrl+C** di terminal.
+> **Membandingkan teks di Java memakai `.equals()`**, misalnya `hari.equals("Sabtu")`. Operator `==` pada teks memeriksa apakah keduanya **objek yang sama** di memori, bukan apakah isinya sama. Akibatnya, hasilnya bisa menipu. Penjelasan lengkapnya ada di Pertemuan 03. Untuk angka (`int`, `double`), `==` tetap dipakai seperti biasa.
 
 > [!TIP]
-> **Coba sendiri:** hapus cabang `else { persenDiskon = 0; }` sehingga yang tersisa hanya `if` dan `else if`, lalu jalankan. Tebak dulu apa yang terjadi.
+> **Coba sendiri:** di salinan `Contoh03PercabanganPerulangan.java` milikmu, hapus cabang `else` beserta isinya, yaitu dua baris `} else {` dan `persenDiskon = 0;`. Kurung kurawal `}` di bawahnya jangan ikut dihapus karena kurung itu kini menutup blok `else if`. Simpan, lalu jalankan lewat terminal dengan `java Contoh03PercabanganPerulangan.java`. Tebak dulu apa yang terjadi.
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Program ditolak sebelum sempat berjalan. Pesan pertamanya:
+Program ditolak sebelum sempat berjalan. Pesannya:
 
 ```text
 Contoh03PercabanganPerulangan.java:28: error: variable persenDiskon might not have been initialized
             persenDiskon = persenDiskon + 5;
                            ^
+Contoh03PercabanganPerulangan.java:31: error: variable persenDiskon might not have been initialized
+        int potongan = totalBelanja * persenDiskon / 100;
+                                      ^
+2 errors
+error: compilation failed
 ```
 
-Tanpa `else`, ada kemungkinan (misalnya total belanja di bawah 50000) `persenDiskon` tidak pernah diisi. Java tidak mau mengambil risiko itu, sehingga program ditolak saat kompilasi.
+Kedua pesan menunjuk penyebab yang sama. Tanpa `else`, ada kemungkinan (misalnya total belanja di bawah 50000) `persenDiskon` tidak pernah diisi. Java tidak mau mengambil risiko itu sehingga program ditolak saat kompilasi. Nomor barisnya bisa berbeda jika *file*-mu ditulis tanpa komentar pembuka.
 
 </details>
 
-## 4. Array: Menyimpan Banyak Data
+## 4. *Array*: Menyimpan Banyak Data
 
-File: [`contoh/Contoh04Array.java`](contoh/Contoh04Array.java)
+*File*: [`contoh/Contoh04Array.java`](contoh/Contoh04Array.java)
 
-Bayangkan menyimpan nilai kuis 40 mahasiswa dengan 40 variabel berbeda. Repot sekali! **Array** menyimpan banyak nilai bertipe sama dalam satu variabel.
+Bayangkan menyimpan nilai kuis 40 mahasiswa dengan 40 variabel berbeda. Repot sekali! ***Array*** menyimpan banyak nilai bertipe sama dalam satu variabel.
 
 ```java
 import java.util.Arrays; // [1] Arrays: kelas bawaan Java berisi alat bantu untuk array
@@ -522,7 +592,7 @@ public class Contoh04Array {
 }
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === NILAI KUIS ===
@@ -546,7 +616,7 @@ Setelah diurutkan            : [70, 75, 78, 88, 92]
 Kota urut abjad: Balikpapan, Bontang, Samarinda
 ```
 
-Setiap elemen array punya nomor urut yang disebut **indeks**, dimulai dari **0**:
+Setiap elemen *array* punya nomor urut yang disebut **indeks**, dimulai dari **0**:
 
 ```text
 int[] nilai = { 78,  92,  65,  88,  70 };
@@ -555,30 +625,30 @@ indeks:         0    1    2    3    4
 
 Penjelasan:
 
-- **[1]** `import java.util.Arrays;` memberi tahu Java bahwa kita memakai kelas bawaan `Arrays` dari paket (*package*) `java.util`. Baris `import` ditulis paling atas, sebelum kelas. Kelas `System` dan `String` tidak perlu di-*import*, karena keduanya selalu tersedia otomatis.
-- **[2]** `int[]` dibaca "array int". Isi awalnya ditulis di dalam kurung kurawal `{ }`, dipisah koma.
+- **[1]** `import java.util.Arrays;` memberi tahu Java bahwa kita memakai kelas bawaan `Arrays` dari paket (*package*) `java.util`. Baris `import` ditulis paling atas, sebelum kelas. Kelas `System` dan `String` tidak perlu di-*import* karena keduanya selalu tersedia otomatis.
+- **[2]** `int[]` dibaca "*array* int". Isi awalnya ditulis di dalam kurung kurawal `{ }`, dipisah koma.
 - **[3]** `nilai.length` memberi banyaknya elemen, yaitu 5. Perhatikan: **tanpa** tanda kurung. (Untuk teks, panjangnya diambil dengan `nama.length()`, **dengan** tanda kurung. Jangan tertukar.)
 - **[4]** `nilai[0]` adalah elemen **pertama**. Elemen terakhir ada di indeks `nilai.length - 1`, yaitu 4.
 - **[5]** Perulangan `for` dengan indeks dipakai jika kita butuh nomor indeksnya. Kurung pada `(i + 1)` wajib, sesuai jebakan penggabungan teks di bagian 2.
 - **[6]** Perulangan *for-each* `for (int n : nilai)` dibaca "untuk setiap `n` di dalam `nilai`". Lebih ringkas jika nomor indeks tidak dibutuhkan.
-- **[7]** Isi array bisa diubah lewat indeksnya.
-- **[8]** `Arrays.toString(nilai)` mengubah isi array menjadi teks seperti `[78, 92, 75, 88, 70]`.
-- **[9]** `Arrays.sort(nilai)` mengurutkan isi array **itu sendiri** dari kecil ke besar. Untuk teks, urutannya sesuai abjad. Ingat baik-baik perintah ini, karena ia akan muncul lagi di studi kasus.
-- **[10]** `String.join(", ", kota)` menggabungkan semua teks di dalam array, dengan `", "` sebagai pemisah.
+- **[7]** Isi *array* bisa diubah lewat indeksnya.
+- **[8]** `Arrays.toString(nilai)` mengubah isi *array* menjadi teks seperti `[78, 92, 75, 88, 70]`.
+- **[9]** `Arrays.sort(nilai)` mengurutkan isi *array* **itu sendiri** dari kecil ke besar. Untuk teks, urutannya sesuai abjad. Ingat baik-baik perintah ini karena perintah ini akan muncul lagi di studi kasus.
+- **[10]** `String.join(", ", kota)` menggabungkan semua teks di dalam *array*, dengan `", "` sebagai pemisah.
 
 > [!NOTE]
-> - Ukuran array **tetap** sejak dibuat. Array berisi 5 elemen tidak bisa ditambah menjadi 6. Wadah yang ukurannya bisa bertambah, `ArrayList`, kita pakai mulai Pertemuan 05.
-> - Array juga bisa dibuat kosong dengan ukuran tertentu: `int[] skor = new int[5];` menghasilkan lima elemen yang semuanya bernilai `0`.
-> - Semua elemen dalam satu array harus bertipe sama.
+> - Ukuran *array* **tetap** sejak dibuat. *Array* berisi 5 elemen tidak bisa ditambah menjadi 6. Wadah yang ukurannya bisa bertambah, `ArrayList`, kita pakai mulai Pertemuan 05.
+> - *Array* juga bisa dibuat kosong dengan ukuran tertentu: `int[] skor = new int[5];` menghasilkan lima elemen yang semuanya bernilai `0`.
+> - Semua elemen dalam satu *array* harus bertipe sama.
 
 > [!TIP]
-> **Coba sendiri:** ganti `Arrays.toString(nilai)` dengan `nilai` saja, lalu jalankan. Yang tercetak adalah sesuatu seperti `[I@1ee807c6`, bukan isi array. Itu adalah tanda pengenal objek array (`[I` artinya "array int"), dan angka di belakangnya bisa berbeda di komputermu. Karena itu, gunakan `Arrays.toString()` untuk mencetak isi array.
+> **Coba sendiri:** di salinan `Contoh04Array.java` milikmu, cari baris yang mencetak `"Setelah nilai ke-3 diperbaiki: "`. Di baris itu, ganti `Arrays.toString(nilai)` dengan `nilai` saja. Simpan, lalu jalankan. Yang tercetak adalah sesuatu seperti `[I@1ee807c6`, bukan isi *array*. Itu adalah tanda pengenal objek *array* (`[I` artinya "*array* int"), dan angka di belakangnya bisa berbeda di komputermu. Karena itu, gunakan `Arrays.toString()` untuk mencetak isi *array*.
 
-## 5. Method static dengan Parameter dan Nilai Kembalian
+## 5. *Method* `static` dengan Parameter dan Nilai Kembalian
 
-File: [`contoh/Contoh05MethodStatic.java`](contoh/Contoh05MethodStatic.java)
+*File*: [`contoh/Contoh05MethodStatic.java`](contoh/Contoh05MethodStatic.java)
 
-Di Java, "fungsi" disebut **method** dan selalu berada di dalam kelas. Untuk program bergaya prosedural seperti ini, method-nya kita beri kata kunci `static` agar bisa dipanggil langsung dari `main`. Contoh ini menghitung ongkos ojek online dengan tarif rekaan: Rp10000 untuk 4 km pertama, ditambah Rp2500 untuk setiap km berikutnya.
+Di Java, "fungsi" disebut ***method*** dan selalu berada di dalam kelas. Untuk program bergaya prosedural seperti ini, *method*-nya kita beri kata kunci `static` agar bisa dipanggil langsung dari `main`. Contoh ini menghitung ongkos ojek *online* dengan tarif rekaan: Rp10.000 untuk 4 km pertama, ditambah Rp2.500 untuk setiap km berikutnya.
 
 ```java
 public class Contoh05MethodStatic {
@@ -639,7 +709,7 @@ public class Contoh05MethodStatic {
 }
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === TARIF OJEK ONLINE ===
@@ -655,14 +725,17 @@ Total setelah promo : Rp46000
 
 Penjelasan:
 
-- **[1]** **Konstanta** adalah nilai yang tidak boleh berubah. Kata kunci `final` membuat Java **menolak** setiap usaha mengubahnya. Konstanta ditulis di dalam kelas tetapi di luar method, sehingga bisa dipakai semua method. Namanya ditulis HURUF_BESAR dengan garis bawah.
-- **[2]** Di depan nama method ditulis **tipe nilai kembaliannya** (`int`). Setiap parameter ditulis lengkap dengan tipenya (`int jarakKm`).
-- **[3]** `return` mengirim hasil kembali ke pemanggil sekaligus **mengakhiri** method. Java juga memeriksa bahwa nilai yang dikembalikan memang bertipe `int`.
-- **[4]** Method bertipe `void` tidak mengembalikan apa pun; tugasnya hanya mencetak. `"-".repeat(panjang)` mengulang teks `"-"` sebanyak `panjang` kali (tersedia sejak Java 11).
-- **[5]** Hasil `return` disimpan ke variabel yang tipenya cocok (`int`), sehingga bisa dipakai lagi untuk menghitung total.
-- **[6]** Nilai kembalian juga bisa langsung dipakai saat menggabungkan teks. Satu perintah yang panjang boleh dipecah ke beberapa baris, karena Java hanya melihat titik koma sebagai akhir perintah.
+- **[1]** **Konstanta** adalah nilai yang tidak boleh berubah. Kata kunci `final` membuat Java **menolak** setiap usaha mengubahnya. Konstanta ditulis di dalam kelas tetapi di luar *method* sehingga bisa dipakai semua *method*. Namanya ditulis HURUF_BESAR dengan garis bawah.
+- **[2]** Di depan nama *method* ditulis **tipe nilai kembaliannya** (`int`). Setiap parameter ditulis lengkap dengan tipenya (`int jarakKm`).
+- **[3]** `return` mengirim hasil kembali ke pemanggil sekaligus **mengakhiri** *method*. Java juga memeriksa bahwa nilai yang dikembalikan memang bertipe `int`.
+- **[4]** *Method* bertipe `void` tidak mengembalikan apa pun; tugasnya hanya mencetak. `"-".repeat(panjang)` mengulang teks `"-"` sebanyak `panjang` kali (tersedia sejak Java 11).
+- **[5]** Hasil `return` disimpan ke variabel yang tipenya cocok (`int`) sehingga bisa dipakai lagi untuk menghitung total.
+- **[6]** Nilai kembalian juga bisa langsung dipakai saat menggabungkan teks. Satu perintah yang panjang boleh dipecah ke beberapa baris karena Java hanya melihat titik koma sebagai akhir perintah.
 
-Anatomi sebuah method `static`:
+> [!IMPORTANT]
+> Bedakan **mencetak** (`System.out.println`) dengan **mengembalikan** (`return`). Hasil *method* yang di-`return` bisa disimpan, dijumlahkan, atau dibandingkan. Sebaliknya, apa yang hanya dicetak oleh *method* `void` tidak bisa diolah lagi oleh program.
+
+Anatomi sebuah *method* `static` (potongan kode untuk dibaca, bukan untuk dijalankan):
 
 ```text
 static  int  hitungOngkos(int jarakKm) {
@@ -676,31 +749,28 @@ int ongkos = hitungOngkos(7);       <- argumen 7 masuk ke parameter jarakKm,
                                        hasilnya (17500) disimpan ke ongkos
 ```
 
-Nilai yang dikirim saat memanggil method, misalnya `7`, disebut **argumen**. Variabel penerimanya di dalam method, yaitu `jarakKm`, disebut **parameter**.
-
-> [!IMPORTANT]
-> Bedakan **mencetak** (`System.out.println`) dengan **mengembalikan** (`return`). Hasil method yang di-`return` bisa disimpan, dijumlahkan, atau dibandingkan. Method `void` yang hanya mencetak, hasilnya tidak bisa diolah lagi.
+Nilai yang dikirim saat memanggil *method*, misalnya `7`, disebut **argumen**. Variabel penerimanya di dalam *method*, yaitu `jarakKm`, disebut **parameter**.
 
 > [!NOTE]
-> Urutan method di dalam kelas bebas: `main` boleh ditulis di atas maupun di bawah method lain. Di materi ini, method pembantu ditulis lebih dulu dan `main` di akhir, mengikuti urutan versi Python.
+> Urutan *method* di dalam kelas bebas: `main` boleh ditulis di atas maupun di bawah *method* lain. Di materi ini, *method* pembantu ditulis lebih dulu dan `main` di akhir, mengikuti urutan versi Python.
 
 > [!TIP]
-> **Coba sendiri:** berapa ongkos untuk jarak 4 km dan 5 km? Tebak dulu, lalu buktikan dengan menambahkan `System.out.println(hitungOngkos(4));` dan `System.out.println(hitungOngkos(5));` di `main`.
+> **Coba sendiri:** berapa ongkos untuk jarak 4 km dan 5 km? Tebak dulu. Lalu, di salinan `Contoh05MethodStatic.java` milikmu, tambahkan dua baris `System.out.println(hitungOngkos(4));` dan `System.out.println(hitungOngkos(5));` di akhir `main`, yaitu tepat di atas kurung kurawal `}` penutup `main`. Simpan, lalu jalankan.
 
 <details>
 <summary>Lihat jawaban</summary>
 
-4 km → Rp10000 (masih tarif dasar). 5 km → 10000 + (5 - 4) x 2500 = Rp12500.
+Dua baris baru muncul di akhir *output*: `10000` dan `12500`. Untuk jarak 4 km, ongkosnya masih tarif dasar. Untuk jarak 5 km, ongkosnya 10000 + (5 - 4) x 2500 = 12500.
 
 </details>
 
 ## 6. Data Paralel: Rapi tetapi Rapuh
 
-File: [`contoh/Contoh06DataParalel.java`](contoh/Contoh06DataParalel.java)
+*File*: [`contoh/Contoh06DataParalel.java`](contoh/Contoh06DataParalel.java)
 
-Sekarang kita gabungkan semua bekal tadi untuk melihat masalah yang dibahas di halaman konsep. Data empat mahasiswa disimpan di tiga array **paralel**: nama, NIM, dan nilai. Indeks yang sama berarti mahasiswa yang sama.
+Sekarang kita gabungkan semua bekal tadi untuk melihat masalah yang dibahas di halaman konsep. Data empat mahasiswa disimpan di tiga *array* **paralel**: nama, NIM, dan nilai. Indeks yang sama berarti mahasiswa yang sama.
 
-Ceritanya begini. Method pengurut ditulis ketika datanya baru berisi nama dan nilai. Belakangan, array NIM ditambahkan, tetapi method pengurut **lupa diperbarui**.
+Ceritanya begini. *Method* pengurut ditulis ketika datanya baru berisi nama dan nilai. Belakangan, *array* NIM ditambahkan, tetapi *method* pengurut **lupa diperbarui**.
 
 ```java
 public class Contoh06DataParalel {
@@ -752,7 +822,7 @@ public class Contoh06DataParalel {
 }
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === DATA AWAL ===
@@ -773,17 +843,17 @@ Sekarang NIM 2409106001 milik Ayu tercatat bersama Bima!
 
 Penjelasan:
 
-- **[1]** Method ini memakai algoritma *bubble sort*: dua elemen yang bertetangga dibandingkan, lalu ditukar jika urutannya salah. Proses ini diulang sampai semua urut. Tidak perlu menghafal algoritmanya. Fokuslah pada bagian penukarannya.
-- **[2]** Menukar dua nilai di Java butuh **variabel sementara**. Setiap kali dua nilai ditukar, dua nama di posisi yang sama juga ditukar, agar tetap sejajar.
-- **[3]** Ketiga array sejajar: `nama[0]`, `nim[0]`, dan `nilai[0]` adalah milik Ayu.
-- **[4]** Method menerima array yang **sama** dengan milik `main`, bukan salinannya. Karena itu, perubahan urutan di dalam method ikut terlihat di `main` (alasan lengkapnya dibahas di Pertemuan 03). Masalahnya, array `nim` tidak pernah dikirim, sehingga tidak ikut ditukar.
+- **[1]** *Method* ini memakai algoritma *bubble sort*: dua elemen yang bertetangga dibandingkan, lalu ditukar jika urutannya salah. Proses ini diulang sampai semua urut. Tidak perlu menghafal algoritmanya. Fokuslah pada bagian penukarannya.
+- **[2]** Menukar dua nilai di Java butuh **variabel sementara**. Setiap kali dua nilai ditukar, dua nama di posisi yang sama juga ditukar agar tetap sejajar.
+- **[3]** Ketiga *array* sejajar: `nama[0]`, `nim[0]`, dan `nilai[0]` adalah milik Ayu.
+- **[4]** *Method* menerima *array* yang **sama** dengan milik `main`, bukan salinannya. Karena itu, perubahan urutan di dalam *method* ikut terlihat di `main` (alasan lengkapnya dibahas di Pertemuan 03). Masalahnya, *array* `nim` tidak pernah dikirim sehingga tidak ikut ditukar.
 
-Menukar isi dua elemen mirip menukar isi dua gelas: kamu butuh gelas ketiga yang kosong.
+Menukar isi dua elemen mirip menukar isi dua gelas: kamu butuh gelas ketiga sebagai gelas bantu.
 
 ```text
-int sementaraNilai = nilai[i];     1. tuang isi gelas A ke gelas kosong
+int sementaraNilai = nilai[i];     1. tuang isi gelas A ke gelas bantu yang kosong
 nilai[i] = nilai[i + 1];           2. tuang isi gelas B ke gelas A
-nilai[i + 1] = sementaraNilai;     3. tuang isi gelas kosong ke gelas B
+nilai[i + 1] = sementaraNilai;     3. tuang isi gelas bantu ke gelas B
 ```
 
 Seperti inilah yang terjadi pada penukaran pertama:
@@ -797,30 +867,62 @@ nim           :  "2409106001"  "2409106002"   <- TIDAK disentuh!
 ```
 
 > [!IMPORTANT]
-> Method `urutkanBerdasarkanNilai` **tidak salah saat ditulis**. Ia menjadi salah ketika program **membesar** dan array baru ditambahkan. Inilah kelemahan data paralel: setiap method yang memindahkan data harus selalu ingat **semua** array yang ada.
+> *Method* `urutkanBerdasarkanNilai` **tidak salah saat ditulis**. *Method* itu menjadi salah ketika program **membesar** dan *array* baru ditambahkan. Inilah kelemahan data paralel: setiap *method* yang memindahkan data harus selalu ingat **semua** *array* yang ada.
 
 > [!TIP]
-> **Coba sendiri:** perbaiki method-nya agar menerima parameter `String[] nim` dan ikut menukarnya. Berapa baris yang harus kamu tambahkan? Sekarang bayangkan jika ada sepuluh array dan dua puluh method yang memindahkan data.
+> **Coba sendiri:** perbaiki *method*-nya di salinan `Contoh06DataParalel.java` milikmu dengan tiga perubahan berikut, lalu simpan dan jalankan.
+>
+> 1. Ubah kepala *method* menjadi `static void urutkanBerdasarkanNilai(String[] nama, String[] nim, int[] nilai) {`.
+> 2. Tepat di bawah tiga baris yang menukar `nama`, tambahkan tiga baris untuk menukar `nim`: `String sementaraNim = nim[i];`, lalu `nim[i] = nim[i + 1];`, lalu `nim[i + 1] = sementaraNim;`.
+> 3. Di `main`, ubah pemanggilannya menjadi `urutkanBerdasarkanNilai(nama, nim, nilai);`.
+>
+> Hanya untuk satu *array* tambahan, kamu sudah mengubah dua baris dan menambah tiga baris. Sekarang bayangkan jika ada sepuluh *array* dan dua puluh *method* yang memindahkan data.
+
+<details>
+<summary>Lihat jawaban</summary>
+
+Bagian tengah *output* menjadi benar karena NIM ikut pindah bersama pemiliknya:
+
+```text
+=== DIURUTKAN DARI NILAI TERKECIL ===
+1. 2409106002 Bima - nilai 55
+2. 2409106004 Dimas - nilai 62
+3. 2409106003 Citra - nilai 78
+4. 2409106001 Ayu - nilai 90
+```
+
+Dua baris penutup program masih mencetak kalimat lama ("NIM tertinggal di tempatnya") karena kalimat itu ditulis langsung di kode. Kalimat itu kini tidak benar lagi, jadi hapus saja kedua perintah `System.out.println` terakhir itu.
+
+</details>
 
 ## 7. Studi Kasus KedaiKita
 
-Saatnya membedah studi kasus pertemuan ini. Ada dua file di folder `studi-kasus/`:
+Saatnya membedah studi kasus pertemuan ini. Ada dua *file* di folder `studi-kasus/`:
 
-| File | Isi |
+| *File* | Isi |
 |---|---|
-| [`KedaiKitaProsedural.java`](studi-kasus/KedaiKitaProsedural.java) | Versi prosedural: data menu di tiga array terpisah. Datanya tertukar saat diurutkan. |
+| [`KedaiKitaProsedural.java`](studi-kasus/KedaiKitaProsedural.java) | Versi prosedural: data menu di tiga *array* terpisah. Datanya tertukar saat diurutkan. |
 | [`KedaiKitaOop.java`](studi-kasus/KedaiKitaOop.java) | Versi berorientasi objek (intipan): setiap menu adalah satu objek. Datanya aman. |
 
 Skenario keduanya sudah kita bahas di [halaman konsep](../README.md#11-studi-kasus-kedaikita-apa-yang-kita-bangun-hari-ini).
 
 ### Versi prosedural: jalankan dulu
 
+Lewat VS Code, buka *file* `studi-kasus/KedaiKitaProsedural.java`, lalu klik **Run** pada tulisan **Run | Debug** di atas `main`. Lewat terminal, pindah dulu ke folder `studi-kasus`:
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-01-Pengenalan-PBO/java/studi-kasus` |
+| folder `java` pertemuan ini | `cd studi-kasus` |
+| folder `contoh` (setelah menjalankan contoh-contoh tadi) | `cd ../studi-kasus` |
+
+Setelah itu jalankan:
+
 ```bash
-cd Pertemuan-01-Pengenalan-PBO/java/studi-kasus
 java KedaiKitaProsedural.java
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === DAFTAR MENU KEDAIKITA ===
@@ -841,9 +943,11 @@ Lho? Es Teh Manis jadi Rp18000 dan Nasi Goreng Kampung jadi Rp8000!
 Data satu menu tercerai-berai di tiga list, jadi mudah tertukar.
 ```
 
-Output ini sama persis dengan versi Python, sampai ke kata "list" di baris terakhir. Sekarang kita bedah kodenya bagian demi bagian.
+*Output* ini sama persis dengan versi Python, sampai ke kata "*list*" di baris terakhir. Sekarang kita bedah kodenya bagian demi bagian, berurutan dari atas ke bawah. Setiap bagian hanya menampilkan **potongan** *file*. Untuk mencobanya, jalankan *file* lengkapnya seperti di atas, jangan mengetik ulang potongannya.
 
-### Bagian A — `import` dan data di tiga array static
+### Bagian A: `import` dan data di tiga *array* `static`
+
+Potongan dari [`studi-kasus/KedaiKitaProsedural.java`](studi-kasus/KedaiKitaProsedural.java):
 
 ```java
 import java.util.Arrays;
@@ -857,11 +961,13 @@ public class KedaiKitaProsedural {
 ```
 
 - `import java.util.Arrays;` dibutuhkan karena nanti kita memakai `Arrays.sort`.
-- Kelas `KedaiKitaProsedural` hanya berperan sebagai "pembungkus" wajib. Isinya tetap bergaya prosedural: data terpisah dari method yang mengolahnya.
-- Ketiga array ditulis di dalam kelas tetapi **di luar method**, dengan kata `static`. Akibatnya, semua method `static` di kelas ini bisa membaca dan mengubahnya. Inilah wujud **data global** versi Java.
-- Data Kopi Susu Gula Aren ada di indeks 0 pada ketiga array, Nasi Goreng Kampung di indeks 1, dan Es Teh Manis di indeks 2. Satu-satunya "lem" yang menyatukan data satu menu adalah **nomor indeks yang sama**.
+- Kelas `KedaiKitaProsedural` hanya berperan sebagai "pembungkus" wajib. Isinya tetap bergaya prosedural: data terpisah dari *method* yang mengolahnya.
+- Ketiga *array* ditulis di dalam kelas tetapi **di luar *method***, dengan kata `static`. Akibatnya, semua *method* `static` di kelas ini bisa membaca dan mengubahnya. Inilah wujud **data global** versi Java.
+- Data Kopi Susu Gula Aren ada di indeks 0 pada ketiga *array*, Nasi Goreng Kampung di indeks 1, dan Es Teh Manis di indeks 2. Satu-satunya "lem" yang menyatukan data satu menu adalah **nomor indeks yang sama**.
 
-### Bagian B — Method `tampilkanMenu()`
+### Bagian B: *Method* `tampilkanMenu()`
+
+Potongan dari [`studi-kasus/KedaiKitaProsedural.java`](studi-kasus/KedaiKitaProsedural.java):
 
 ```java
     /** Mencetak semua menu beserta harga dan stoknya. */
@@ -874,11 +980,13 @@ public class KedaiKitaProsedural {
     }
 ```
 
-- Komentar `/** ... */` adalah **komentar dokumentasi** (*Javadoc*): penjelasan singkat tentang tugas sebuah method.
-- Perulangan menghasilkan indeks 0, 1, 2. Untuk setiap indeks `i`, method mengambil elemen dari **tiga** array sekaligus. Method ini "percaya" bahwa indeks `i` di ketiga array adalah milik menu yang sama.
-- `(i + 1)` membuat penomoran dimulai dari 1. Di sini kurungnya sebenarnya tidak wajib, karena `i + 1` sudah dijumlahkan sebelum bertemu teks. Namun, kurung membuat maksudnya jelas.
+- Komentar `/** ... */` adalah **komentar dokumentasi** (*Javadoc*): penjelasan singkat tentang tugas sebuah *method*.
+- Perulangan menghasilkan indeks 0, 1, 2. Untuk setiap indeks `i`, *method* mengambil elemen dari **tiga** *array* sekaligus. *Method* ini "percaya" bahwa indeks `i` di ketiga *array* adalah milik menu yang sama.
+- `(i + 1)` membuat penomoran dimulai dari 1. Di sini kurungnya sebenarnya tidak wajib karena `i + 1` sudah dijumlahkan sebelum bertemu teks. Namun, kurung membuat maksudnya jelas.
 
-### Bagian C — Method `hitungTotal()`
+### Bagian C: *Method* `hitungTotal()`
+
+Potongan dari [`studi-kasus/KedaiKitaProsedural.java`](studi-kasus/KedaiKitaProsedural.java):
 
 ```java
     /**
@@ -898,7 +1006,7 @@ public class KedaiKitaProsedural {
     }
 ```
 
-- `int[][]` adalah **array dua dimensi**: array yang setiap elemennya berupa array `int`. Di sini, setiap elemen berisi pasangan dua angka: indeks menu dan jumlah porsi.
+- `int[][]` adalah ***array* dua dimensi**: *array* yang setiap elemennya berupa *array* `int`. Di sini, setiap elemen berisi pasangan dua angka: indeks menu dan jumlah porsi.
 
 ```text
 pesananBudi = { {0, 2}, {2, 1} }
@@ -908,9 +1016,11 @@ pesananBudi = { {0, 2}, {2, 1} }
 ```
 
 - `for (int[] pesanan : daftarPesanan)` mengambil satu pasangan pada setiap putaran. `pesanan[0]` adalah indeks menu dan `pesanan[1]` adalah jumlahnya.
-- Method ini menjumlahkan harga **dan** mengurangi stok di array static `stokMenu`. Perhatikan: method mana pun di kelas ini boleh mengubah data itu tanpa izin apa pun. Inilah "data global yang bisa diubah siapa saja" dari halaman konsep.
+- *Method* ini menjumlahkan harga **dan** mengurangi stok di *array* `static` bernama `stokMenu`. Perhatikan: *method* mana pun di kelas ini boleh mengubah data itu tanpa izin apa pun. Inilah "data global yang bisa diubah siapa saja" dari halaman konsep.
 
-### Bagian D — Method `main()`: skenarionya
+### Bagian D: *Method* `main()` dan skenarionya
+
+Potongan dari [`studi-kasus/KedaiKitaProsedural.java`](studi-kasus/KedaiKitaProsedural.java):
 
 ```java
     public static void main(String[] args) {
@@ -937,15 +1047,15 @@ pesananBudi = { {0, 2}, {2, 1} }
 }
 ```
 
-- Method `static` di kelas yang sama cukup dipanggil dengan namanya, misalnya `tampilkanMenu()`.
+- *Method* `static` di kelas yang sama cukup dipanggil dengan namanya, misalnya `tampilkanMenu()`.
 - Pesanan Budi ditulis dengan **indeks**, bukan nama menu. Totalnya 18000 x 2 + 8000 x 1 = 44000. Stok kopi berkurang dari 20 menjadi 18, dan stok es teh dari 30 menjadi 29.
-- `Arrays.sort(namaMenu)` adalah **sumber masalahnya**. Perintah ini hanya mengurutkan array nama. Array harga dan stok tidak tahu-menahu.
+- `Arrays.sort(namaMenu)` adalah **sumber masalahnya**. Perintah ini hanya mengurutkan *array* nama. *Array* harga dan stok tidak tahu-menahu.
 - Setelah itu, `tampilkanMenu()` dengan polos memasangkan nama di indeks `i` dengan harga dan stok di indeks `i`. Hasilnya kacau.
 
 ### Masalahnya: mengapa data tertukar?
 
 ```text
-            SEBELUM Arrays.sort(namaMenu)       SESUDAH Arrays.sort(namaMenu)
+           SEBELUM Arrays.sort(namaMenu)        SESUDAH Arrays.sort(namaMenu)
 indeks 0:  Kopi Susu Gula Aren | 18000 | 18     Es Teh Manis        | 18000 | 18
 indeks 1:  Nasi Goreng Kampung | 25000 | 15     Kopi Susu Gula Aren | 25000 | 15
 indeks 2:  Es Teh Manis        |  8000 | 29     Nasi Goreng Kampung |  8000 | 29
@@ -954,17 +1064,17 @@ indeks 2:  Es Teh Manis        |  8000 | 29     Nasi Goreng Kampung |  8000 | 29
 
 Pelajaran dari studi kasus ini:
 
-1. **Data satu menu tercerai-berai** di tiga array. Satu-satunya pengikatnya adalah nomor indeks.
-2. **Data global** (array `static`) bisa diubah oleh method atau perintah mana saja, termasuk perintah yang ceroboh.
+1. **Data satu menu tercerai-berai** di tiga *array*. Satu-satunya pengikatnya adalah nomor indeks.
+2. **Data global** (*array* `static`) bisa diubah oleh *method* atau perintah mana saja, termasuk perintah yang ceroboh.
 3. **Indeks itu rapuh.** Setelah diurutkan, indeks 0 bukan lagi Kopi Susu Gula Aren. Pesanan lama yang menyimpan `{0, 2}` kini menunjuk menu lain.
-4. **Tidak ada pesan error.** Kode lolos kompilasi dan berjalan dengan patuh. Kesalahan logika seperti ini paling sulit dilacak, bahkan oleh *compiler* Java yang ketat sekalipun.
+4. **Tidak ada pesan *error*.** Kode lolos kompilasi dan berjalan dengan patuh. Kesalahan logika seperti ini paling sulit dilacak, bahkan oleh *compiler* Java yang ketat sekalipun.
 
 > [!TIP]
-> **Coba sendiri:** hapus baris `Arrays.sort(namaMenu);` lalu jalankan lagi. Datanya tidak tertukar, tetapi menu juga tidak urut abjad. Bisakah kamu mengurutkan menu **tanpa** merusak data, tetap dengan tiga array? Itulah tantangan [Latihan 6](../latihan.md).
+> **Coba sendiri:** salin *file* `KedaiKitaProsedural.java` ke folder `PBO-latihan-saya/pertemuan-01/`. Di salinan itu, ubah baris `Arrays.sort(namaMenu);` menjadi komentar dengan menambahkan `//` di depannya sehingga menjadi `// Arrays.sort(namaMenu);`. Simpan, lalu jalankan. Datanya tidak lagi tertukar, tetapi menu juga tidak urut abjad. Dua baris "Lho? ..." tetap tercetak karena kalimatnya ditulis langsung di kode, jadi abaikan saja. Bisakah kamu mengurutkan menu **tanpa** merusak data, tetap dengan tiga *array*? Itulah tantangan [Latihan 6](../latihan.md).
 
 ### Intipan versi berorientasi objek
 
-File: [`studi-kasus/KedaiKitaOop.java`](studi-kasus/KedaiKitaOop.java)
+*File*: [`studi-kasus/KedaiKitaOop.java`](studi-kasus/KedaiKitaOop.java)
 
 > [!NOTE]
 > Bagian ini hanya **intipan**. Jangan khawatir jika `class Menu`, `new`, konstruktor, `this`, `ArrayList`, dan tanda `->` masih terasa asing. Semuanya kita bahas pelan-pelan mulai Pertemuan 02. Untuk sekarang, cukup perhatikan **idenya**.
@@ -1036,13 +1146,13 @@ class Menu {
 }
 ```
 
-Cara menjalankan (masih di folder `studi-kasus`):
+Cara menjalankan: di VS Code, buka *file* `studi-kasus/KedaiKitaOop.java`, lalu klik **Run** pada tulisan **Run | Debug** di atas `main`. Lewat terminal yang masih berada di folder `studi-kasus`, ketik:
 
 ```bash
 java KedaiKitaOop.java
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === DAFTAR MENU KEDAIKITA ===
@@ -1064,31 +1174,31 @@ Aman! Setiap menu membawa datanya sendiri, jadi tidak ada yang tertukar.
 
 Baca kodenya dengan "kacamata" konsep, tanpa memusingkan sintaksnya:
 
-- `class Menu` di bagian bawah file adalah **kelas**, rancangan untuk semua menu: setiap menu punya nama, harga, dan stok, serta bisa mengurangi stoknya.
+- `class Menu` di bagian bawah *file* adalah **kelas**, rancangan untuk semua menu: setiap menu punya nama, harga, dan stok, serta bisa mengurangi stoknya.
 - `new Menu("Kopi Susu Gula Aren", 18000, 20)` membuat satu **objek** menu. Kita membuat tiga objek dari satu kelas yang sama.
-- `kopi.harga` dibaca "harga milik kopi". Datanya menempel pada objek, bukan tersebar di array lain.
+- `kopi.harga` dibaca "harga milik kopi". Datanya menempel pada objek, bukan tersebar di *array* lain.
 - `kopi.kurangiStok(2)` adalah **mengirim pesan** ke objek kopi: "kurangi stokmu 2". Objek kopi sendiri yang mengurus stoknya.
 - `ArrayList<Menu>` adalah daftar berisi objek `Menu` yang ukurannya bisa bertambah lewat `add`.
-- `daftarMenu.sort((a, b) -> a.nama.compareTo(b.nama))` artinya "urutkan daftar menu berdasarkan nama setiap menu". Method `compareTo` membandingkan dua teks sesuai abjad. Yang berpindah adalah objeknya, utuh dengan harga dan stoknya.
+- `daftarMenu.sort((a, b) -> a.nama.compareTo(b.nama))` artinya "urutkan daftar menu berdasarkan nama setiap menu". *Method* `compareTo` membandingkan dua teks sesuai abjad. Yang berpindah adalah objeknya, utuh dengan harga dan stoknya.
 
 | Hal | Versi prosedural | Versi objek |
 |---|---|---|
 | Data satu menu | tersebar: `namaMenu[0]`, `hargaMenu[0]`, `stokMenu[0]` | menyatu: `kopi.nama`, `kopi.harga`, `kopi.stok` |
 | Menyebut menu yang dipesan | lewat indeks, misalnya `{0, 2}` | lewat objeknya, misalnya `kopi` |
-| Mengurangi stok | method mengubah array static | `kopi.kurangiStok(2)`: objek mengurus dirinya sendiri |
+| Mengurangi stok | *method* mengubah *array* `static` | `kopi.kurangiStok(2)`: objek mengurus dirinya sendiri |
 | Mengurutkan | `Arrays.sort(namaMenu)` hanya memindahkan nama | `daftarMenu.sort(...)` memindahkan objek utuh |
 | Hasil | harga dan stok tertukar | semua data tetap benar |
 
 > [!IMPORTANT]
-> Di file ini, kelas `KedaiKitaOop` (yang punya `main`) sengaja ditulis **paling atas**, dan kelas `Menu` di bawahnya. Perintah `java NamaFile.java` mencari `main` di kelas **pertama** di dalam file. Jika urutannya dibalik, program bisa gagal dengan pesan seperti `error: can't find main(String[]) method in class: Menu`. Kelas `Menu` juga tidak diberi kata `public`, karena dalam satu file hanya boleh ada **satu** kelas `public`, yang namanya sama dengan nama file.
+> Di *file* ini, kelas `KedaiKitaOop` (yang punya `main`) sengaja ditulis **paling atas**, dan kelas `Menu` di bawahnya. Pada Java 11 sampai 21, perintah `java NamaFile.java` mencari `main` di kelas **pertama** di dalam *file*. Jika urutannya dibalik, program gagal dengan pesan seperti `error: can't find main(String[]) method in class: Menu`. Java yang lebih baru sedikit lebih longgar, tetapi biasakan urutan ini agar programmu berjalan di semua versi. Kelas `Menu` juga tidak diberi kata `public` karena dalam satu *file* hanya boleh ada **satu** kelas `public`, yang namanya sama dengan nama *file*.
 
 > [!TIP]
-> **Coba sendiri:** tambahkan menu keempat dengan baris `Menu pisang = new Menu("Pisang Goreng Keju", 15000, 10);` lalu `daftarMenu.add(pisang);` tepat setelah `daftarMenu.add(esTeh);`. Jalankan dan perhatikan: kamu sama sekali **tidak perlu mengubah** perintah pengurutnya.
+> **Coba sendiri:** salin *file* `KedaiKitaOop.java` ke folder `PBO-latihan-saya/pertemuan-01/`. Di salinan itu, tambahkan dua baris berikut tepat di bawah baris `daftarMenu.add(esTeh);`: `Menu pisang = new Menu("Pisang Goreng Keju", 15000, 10);` lalu `daftarMenu.add(pisang);`. Simpan, lalu jalankan. Perhatikan: kamu sama sekali **tidak perlu mengubah** perintah pengurutnya.
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Bagian akhir output menjadi:
+Bagian akhir *output* menjadi:
 
 ```text
 Mengurutkan menu sesuai abjad...
@@ -1103,16 +1213,22 @@ Menu baru langsung ikut terurut dengan benar, tanpa satu pun perubahan pada peri
 
 </details>
 
-Selamat! Kamu baru saja melihat sendiri **mengapa** PBO dibutuhkan. Masalahnya hilang bukan karena kita lebih teliti, tetapi karena **cara menyimpan datanya** membuat kesalahan itu tidak mungkin terjadi. Di Pertemuan 02, kita belajar menulis kelas seperti `Menu` ini dari nol.
+Selamat! Kamu baru saja melihat sendiri **mengapa** PBO dibutuhkan. Masalahnya hilang bukan karena kita lebih teliti, melainkan karena **cara menyimpan datanya** membuat kesalahan itu tidak mungkin terjadi. Di Pertemuan 02, kita belajar menulis kelas seperti `Menu` ini dari nol.
 
-## 8. Kesalahan Umum dan Cara Membaca Pesan Error
+## 8. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
 Java punya dua jenis kesalahan:
 
-- **Error saat kompilasi** (*compile error*): ditemukan **sebelum** program berjalan. Pesannya diawali nama file dan nomor baris, misalnya `Halo.java:3: error: ...`, lalu tanda `^` menunjuk posisi kesalahannya. Jika dijalankan dengan `java Halo.java`, di akhir pesan muncul juga baris `error: compilation failed`.
-- **Error saat program berjalan** (*runtime error*): program sempat berjalan, lalu berhenti di tengah jalan. Pesannya diawali `Exception in thread "main"`.
+- ***Error* saat kompilasi** (*compile error*): ditemukan **sebelum** program berjalan. Pesannya diawali nama *file* dan nomor baris, misalnya `Halo.java:3: error: ...`, lalu tanda `^` menunjuk posisi kesalahannya. Jika dijalankan dengan `java Halo.java`, di akhir pesan muncul juga baris `error: compilation failed`.
+- ***Error* saat program berjalan** (*runtime error*): program sempat berjalan, lalu berhenti di tengah jalan. Pesannya diawali `Exception in thread "main"`.
 
-Pada contoh di bawah, kodenya disimpan sebagai file `Halo.java`, dan pesan error-nya berasal dari perintah `javac Halo.java`.
+Pada contoh di bawah, kodenya disimpan sebagai *file* `Halo.java`, dan pesan *error*-nya berasal dari perintah `javac Halo.java` yang diketik di terminal. Ingin melihat sendiri pesannya? Buat *file* `Halo.java` di folder `PBO-latihan-saya/pertemuan-01/` (bukan di folder materi), salin kodenya, simpan, lalu jalankan `javac Halo.java` dari folder itu.
+
+- Kesalahan 1, 6, dan 7 menampilkan isi lengkap `Halo.java`.
+- Kesalahan 2, 3, dan 5 hanya menampilkan **satu baris** yang salah. Untuk mencobanya, pakai `Halo.java` dari Kesalahan 1 yang sudah diperbaiki, lalu ganti baris 3 dengan baris yang salah itu.
+
+> [!NOTE]
+> Di VS Code, kesalahan kompilasi langsung ditandai garis merah bergelombang, bahkan sebelum program dijalankan. Arahkan *mouse* ke garis itu untuk membaca pesannya, atau lihat daftar semua kesalahan di panel **PROBLEMS** di bagian bawah. Bunyi pesannya bisa sedikit berbeda dengan pesan `javac` karena ekstensi Java memakai pemeriksa kodenya sendiri. Jika kamu tetap mengeklik **Run** saat masih ada kesalahan, VS Code biasanya bertanya apakah tetap ingin melanjutkan (*Build failed, do you want to continue?*). Pilih **Cancel**, lalu perbaiki dulu kesalahannya.
 
 ### Kesalahan 1: Lupa titik koma
 
@@ -1125,7 +1241,7 @@ public class Halo {
 }
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Halo.java:3: error: ';' expected
@@ -1142,7 +1258,7 @@ Halo.java:3: error: ';' expected
         system.out.println("Halo, Samarinda!");
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Halo.java:3: error: package system does not exist
@@ -1155,7 +1271,7 @@ Halo.java:3: error: package system does not exist
         string nama = "Ayu";
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Halo.java:3: error: cannot find symbol
@@ -1166,7 +1282,7 @@ Halo.java:3: error: cannot find symbol
 1 error
 ```
 
-**Artinya:** Java tidak mengenal `system` maupun `string` yang ditulis dengan huruf kecil. Pesan `cannot find symbol` berarti "nama ini tidak ditemukan". **Perbaikan:** tulis `System` dan `String` dengan huruf S kapital. Pesan `cannot find symbol` juga muncul jika kamu salah mengetik nama variabel atau method.
+**Artinya:** Java tidak mengenal `system` maupun `string` yang ditulis dengan huruf kecil. Pesan `cannot find symbol` berarti "nama ini tidak ditemukan". **Perbaikan:** tulis `System` dan `String` dengan huruf S kapital. Pesan `cannot find symbol` juga muncul jika kamu salah mengetik nama variabel atau *method*.
 
 ### Kesalahan 3: Kutip tunggal dan kutip ganda tertukar
 
@@ -1174,7 +1290,7 @@ Halo.java:3: error: cannot find symbol
         String sapaan = 'Halo';
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Halo.java:3: error: unclosed character literal
@@ -1193,7 +1309,7 @@ Halo.java:3: error: not a statement
         char inisial = "A";
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Halo.java:3: error: incompatible types: String cannot be converted to char
@@ -1202,14 +1318,14 @@ Halo.java:3: error: incompatible types: String cannot be converted to char
 1 error
 ```
 
-**Artinya:** di Java, kutip **tunggal** hanya untuk **satu karakter** (`char`), sedangkan kutip **ganda** untuk **teks** (`String`). Pada kasus pertama, Java bingung karena kutip tunggal berisi empat huruf, sehingga satu kesalahan memunculkan tiga pesan. **Perbaikan:** `String sapaan = "Halo";` dan `char inisial = 'A';`.
+**Artinya:** di Java, kutip **tunggal** hanya untuk **satu karakter** (`char`), sedangkan kutip **ganda** untuk **teks** (`String`). Pada kasus pertama, Java bingung karena kutip tunggal berisi empat huruf. Akibatnya, satu kesalahan memunculkan tiga pesan. **Perbaikan:** `String sapaan = "Halo";` dan `char inisial = 'A';`.
 
 > [!TIP]
-> Jika muncul banyak pesan error sekaligus, perbaiki yang **pertama** dulu, lalu kompilasi ulang. Sering kali pesan-pesan berikutnya hanyalah akibat dari kesalahan pertama.
+> Jika muncul banyak pesan *error* sekaligus, perbaiki yang **pertama** dulu, lalu kompilasi ulang. Sering kali pesan-pesan berikutnya hanyalah akibat dari kesalahan pertama.
 
-### Kesalahan 4: Nama file berbeda dengan nama kelas `public`
+### Kesalahan 4: Nama *file* berbeda dengan nama kelas `public`
 
-Misalkan file `Salah.java` berisi `public class Halo { ... }`. Perintah `javac Salah.java` menolak:
+Misalkan *file* `Salah.java` berisi `public class Halo { ... }`. Perintah `javac Salah.java` menolak:
 
 ```text
 Salah.java:1: error: class Halo is public, should be declared in a file named Halo.java
@@ -1218,10 +1334,10 @@ public class Halo {
 1 error
 ```
 
-**Artinya:** kelas `public` bernama `Halo` wajib disimpan di file `Halo.java`. **Perbaikan:** samakan nama file dengan nama kelas `public`-nya, termasuk huruf besar dan kecilnya.
+**Artinya:** kelas `public` bernama `Halo` wajib disimpan di *file* `Halo.java`. **Perbaikan:** samakan nama *file* dengan nama kelas `public`-nya, termasuk huruf besar dan kecilnya.
 
 > [!NOTE]
-> Perintah `java Salah.java` (cara 1) tidak memeriksa aturan nama file ini, sehingga programnya tetap berjalan. Namun, `javac`, VS Code, dan IntelliJ IDEA akan menolaknya. Jadi, biasakan selalu menyamakan nama file dengan nama kelas `public`.
+> Perintah `java Salah.java` (cara cepat) tidak memeriksa aturan nama *file* ini sehingga programnya tetap berjalan. Namun, `javac`, VS Code, dan IntelliJ IDEA akan menolaknya. Jadi, biasakan selalu menyamakan nama *file* dengan nama kelas `public`.
 
 ### Kesalahan 5: Mengisi bilangan pecahan ke variabel `int`
 
@@ -1229,7 +1345,7 @@ public class Halo {
         int harga = 18500.5;
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Halo.java:3: error: incompatible types: possible lossy conversion from double to int
@@ -1240,9 +1356,10 @@ Halo.java:3: error: incompatible types: possible lossy conversion from double to
 
 **Artinya:** `18500.5` adalah `double`. Memasukkannya ke `int` akan membuang bagian desimalnya (*lossy conversion*), dan Java tidak mau melakukannya diam-diam. **Perbaikan:** pakai tipe yang tepat. Untuk uang, gunakan bilangan bulat Rupiah. Jika memang ingin membuang desimalnya, tulis secara eksplisit dengan *cast*: `int harga = (int) 18500.5;`, hasilnya `18500`.
 
-### Kesalahan 6: Method lupa mengembalikan nilai di semua cabang
+### Kesalahan 6: *Method* lupa mengembalikan nilai di semua cabang
 
 ```java
+public class Halo {
     static String labelJarak(int jarakKm) {
         if (jarakKm <= 4) {
             return "dekat";
@@ -1250,9 +1367,14 @@ Halo.java:3: error: incompatible types: possible lossy conversion from double to
             return "sedang";
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println(labelJarak(7));
+    }
+}
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Halo.java:8: error: missing return statement
@@ -1261,23 +1383,27 @@ Halo.java:8: error: missing return statement
 1 error
 ```
 
-**Artinya:** method bertipe `String` wajib mengembalikan nilai di **semua** kemungkinan jalur. Jika jarak lebih dari 10, tidak ada `return` yang dijalankan. **Perbaikan:** tambahkan cabang `else { return "jauh"; }`, seperti di contoh 05.
+**Artinya:** *method* bertipe `String` wajib mengembalikan nilai di **semua** kemungkinan jalur. Jika jarak lebih dari 10, tidak ada `return` yang dijalankan. **Perbaikan:** tambahkan cabang `else { return "jauh"; }`, seperti di contoh 05.
 
-### Kesalahan 7: Indeks di luar batas array (saat program berjalan)
+### Kesalahan 7: Indeks di luar batas *array* (saat program berjalan)
 
 ```java
+public class Halo {
+    public static void main(String[] args) {
         int[] nilai = {78, 92, 65};
         System.out.println(nilai[3]);
+    }
+}
 ```
 
-Pesan error-nya:
+Kali ini `javac Halo.java` berhasil tanpa pesan apa pun. Pesan *error* baru muncul saat program dijalankan dengan `java Halo` (atau langsung `java Halo.java`):
 
 ```text
 Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
 	at Halo.main(Halo.java:4)
 ```
 
-**Artinya:** kode lolos kompilasi, tetapi saat berjalan program mencoba membaca indeks 3 dari array yang panjangnya 3. Indeks yang sah hanya 0, 1, dan 2. Baris `at Halo.main(Halo.java:4)` menunjukkan lokasinya: baris 4. **Perbaikan:** ingat bahwa indeks terakhir adalah `nilai.length - 1`.
+**Artinya:** kode lolos kompilasi, tetapi saat berjalan program mencoba membaca indeks 3 dari *array* yang panjangnya 3. Indeks yang sah hanya 0, 1, dan 2. Baris `at Halo.main(Halo.java:4)` menunjukkan lokasinya: baris 4. **Perbaikan:** ingat bahwa indeks terakhir adalah `nilai.length - 1`.
 
 > [!NOTE]
 > Contoh pesan di atas berasal dari JDK 21. Bunyi pesan bisa sedikit berbeda antarversi Java. Fokuslah pada **nomor baris**, tanda `^`, dan kata-kata kuncinya, misalnya `';' expected`, `cannot find symbol`, atau `incompatible types`.
@@ -1297,12 +1423,12 @@ Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 3 out
 | Membandingkan teks | `a.equals(b)` | `hari.equals("Sabtu")` |
 | Perulangan dengan penghitung | `for (int i = a; i <= b; i++) { }` | `for (int lembar = 1; lembar <= 5; lembar++)` |
 | Perulangan bersyarat | `while (kondisi) { }` | `while (tabungan < target)` |
-| Membuat array | `Tipe[] nama = {a, b, c};` | `int[] nilai = {78, 92, 65};` |
-| Mengakses elemen array | `nama[indeks]` | `nilai[0]` |
-| Banyak elemen array | `nama.length` | `nilai.length` |
-| Menelusuri array | `for (Tipe x : nama) { }` | `for (int n : nilai)` |
-| Mengurutkan array | `Arrays.sort(nama);` | `Arrays.sort(nilai);` |
-| Method static | `static TipeKembali nama(Tipe param) { return ...; }` | `static int hitungOngkos(int jarakKm)` |
+| Membuat *array* | `Tipe[] nama = {a, b, c};` | `int[] nilai = {78, 92, 65};` |
+| Mengakses elemen *array* | `nama[indeks]` | `nilai[0]` |
+| Banyak elemen *array* | `nama.length` | `nilai.length` |
+| Menelusuri *array* | `for (Tipe x : nama) { }` | `for (int n : nilai)` |
+| Mengurutkan *array* | `Arrays.sort(nama);` | `Arrays.sort(nilai);` |
+| *Method* `static` | `static TipeKembali nama(Tipe param) { return ...; }` | `static int hitungOngkos(int jarakKm)` |
 | Konstanta | `static final Tipe NAMA = nilai;` | `static final int TARIF_DASAR = 10000;` |
 
 ## ➡️ Langkah Berikutnya

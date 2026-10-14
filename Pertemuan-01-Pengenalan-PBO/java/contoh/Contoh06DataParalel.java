@@ -7,7 +7,7 @@
  * method yang memindahkan data wajib memindahkan SEMUA array bersama-sama.
  *
  * Ceritanya: method urutkanBerdasarkanNilai() ditulis ketika datanya baru
- * nama dan nilai. Belakangan array nim ditambahkan, tetapi method itu lupa
+ * nama dan nilai. Belakangan, array nim ditambahkan, tetapi method itu lupa
  * diperbarui. Perhatikan apa yang terjadi pada NIM setelah pengurutan!
  *
  * Cara menjalankan (Java 11 ke atas):

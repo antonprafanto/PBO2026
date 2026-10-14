@@ -3,11 +3,11 @@ Modul pembayaran: kelas ABSTRAK Pembayaran dan tiga kelas anaknya.
 
 Yang baru di Pertemuan 10:
 - Pembayaran kini kelas abstrak (turunan ABC). Objeknya TIDAK BISA dibuat
-  langsung, karena "pembayaran umum" memang tidak ada di dunia nyata.
+  langsung karena "pembayaran umum" memang tidak ada di dunia nyata.
 - nama_metode() dan proses() menjadi method abstrak: setiap kelas anak
   WAJIB meng-override keduanya.
-- hitung_biaya_layanan() dan deskripsi() tetap method biasa (konkret)
-  yang langsung diwarisi kelas anak.
+- hitung_biaya_layanan() tetap method biasa (konkret), dan deskripsi()
+  adalah method konkret baru. Keduanya langsung diwarisi kelas anak.
 """
 
 from abc import ABC, abstractmethod

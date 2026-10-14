@@ -294,7 +294,11 @@ class NotaLaundry {
         }
         hasil.add(baris("TOTAL", RupiahLaundry.format(p.total())));
         hasil.add(garis);
-        return String.join("\n", hasil);
+        // Baris disambung dengan pemisah baris milik sistem operasi, sama dengan
+        // yang dipakai println: "\r\n" di Windows, "\n" di macOS/Linux. Dengan
+        // begitu output-nya sama persis byte demi byte dengan SoalC2Sebelum.java
+        // di semua sistem operasi (penting saat membandingkan dengan fc/diff).
+        return String.join(System.lineSeparator(), hasil);
     }
 }
 
@@ -320,7 +324,7 @@ class LaporanHarian {
         hasil.add("Jumlah order : " + daftarPesanan.size());
         hasil.add("Total berat  : " + totalBerat + " kg");
         hasil.add("Pendapatan   : " + RupiahLaundry.format(pendapatan));
-        return String.join("\n", hasil);
+        return String.join(System.lineSeparator(), hasil); // lihat NotaLaundry
     }
 }
 

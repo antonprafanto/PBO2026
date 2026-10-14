@@ -1,18 +1,24 @@
-# 🐍 Solusi Praktik Python — Pertemuan 08: UTS
+# 🐍 Solusi Praktik Python Pertemuan 08: UTS
 
 [⬅️ Informasi UTS](../README.md) · [☕ Solusi Java](../java/README.md) · [Pembahasan ➡️](../pembahasan.md)
 
-> **Prasyarat:** sudah mencoba sendiri [Soal C1 dan C2](../latihan-soal.md#bagian-c-soal-praktik). Halaman ini menjelaskan cara menjalankan solusi Python dan bagian-bagian terpenting kodenya. Alasan pemilihan kelas dan relasi dibahas di [Pembahasan Bagian C](../pembahasan.md#pembahasan-bagian-c).
+> **Prasyarat:** sudah mencoba sendiri [Soal C1 dan C2](../latihan-soal.md#bagian-c-soal-praktik). Halaman ini menjelaskan cara menjalankan solusi Python, bagian-bagian terpenting kodenya, dan cara membandingkan *output* jawabanmu dengan solusi. Alasan pemilihan kelas dan relasi dibahas di [Pembahasan Bagian C](../pembahasan.md#pembahasan-bagian-c).
 
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
+  - [Cara Menjalankan Solusi](#cara-menjalankan-solusi)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membandingkan Jawabanmu dengan Solusi](#cara-membandingkan-jawabanmu-dengan-solusi)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
 1. [Soal C1: Peminjaman Alat Laboratorium](#1-soal-c1-peminjaman-alat-laboratorium)
 2. [Soal C2: Toko Buku Daring](#2-soal-c2-toko-buku-daring)
-3. [Membandingkan Output-mu dengan Solusi](#3-membandingkan-output-mu-dengan-solusi)
-4. [Kesalahan Umum dan Cara Membaca Pesan Error](#4-kesalahan-umum-dan-cara-membaca-pesan-error)
+3. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#3-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
@@ -23,36 +29,106 @@ python/
     └── soal_c2_toko_buku.py         <- solusi Soal C2
 ```
 
-Cara menjalankan dari terminal (Command Prompt, PowerShell, atau terminal VS Code):
+Setiap solusi ditulis dalam **satu *file*** agar mudah dibaca dan dikumpulkan. Di proyek sungguhan, kelas-kelasnya bisa dipecah ke beberapa *file* seperti KedaiKita sejak Pertemuan 05. Untuk ujian yang sebenarnya, ikuti aturan pengumpulan dari dosen.
+
+### Cara Menjalankan Solusi
+
+Pilih salah satu cara. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-08-UTS/python`. Di panel **Explorer**, buka folder `solusi`, klik *file* yang ingin dicoba (misalnya `soal_c1_peminjaman_alat.py`), lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah. Baris pertama di panel itu berisi perintah panjang yang diketik VS Code secara otomatis; *output* programmu muncul di bawahnya.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-08-UTS/python/solusi` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd solusi` |
+
+Setelah itu, jalankan solusi yang kamu inginkan:
 
 ```bash
-cd Pertemuan-08-UTS/python/solusi
 python soal_c1_peminjaman_alat.py
 python soal_c2_toko_buku.py
 ```
 
-> [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Solusi ini membutuhkan Python 3.10 atau lebih baru, karena memakai petunjuk tipe seperti `Alat | None`. Panduan instalasi ada di [00-Persiapan](../../00-Persiapan/README.md).
+Baris pertama yang tercetak adalah `=== ALAT Lab Pemrograman ===` (Soal C1) atau `=== KATALOG PustakaKita ===` (Soal C2). *Output* lengkapnya ada di bagian 1 dan 2, dan sama persis dengan contoh *output* di soal.
 
-Setiap solusi ditulis dalam **satu file** agar mudah dibaca dan dikumpulkan. Di proyek sungguhan, kelas-kelasnya bisa dipecah ke beberapa file seperti KedaiKita sejak Pertemuan 05. Saat ujian, ikuti aturan pengumpulan dari dosen.
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `solusi`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+> [!NOTE]
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya. Solusi ini membutuhkan Python 3.10 atau lebih baru karena memakai petunjuk tipe seperti `Alat | None`.
+
+### Tempat Menyimpan Kodemu Sendiri
+
+Kerjakan Soal C1 dan C2 di folder milikmu sendiri **di luar** folder materi, yaitu `PBO-latihan-saya/uts/` (aturan emasnya ada di [Git dan GitHub bagian 5](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri)). Folder materi cukup dibaca dan dijalankan, tidak diubah. Susunan yang disarankan:
+
+```text
+Documents/
+├── PBO2026/                    <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/           <- milikmu sendiri
+    └── uts/
+        ├── jawaban_c1.py       <- jawabanmu untuk Soal C1
+        ├── jawaban_c2.py       <- jawabanmu untuk Soal C2
+        └── coba/               <- tempat bereksperimen dengan salinan solusi
+```
+
+Untuk mengerjakan jawabanmu, buka folder `uts` di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**). Ingin bereksperimen dengan kode solusi, misalnya untuk "Coba sendiri" atau kesalahan di bagian 3? Salin dulu *file* solusinya dari folder `Pertemuan-08-UTS/python/solusi` ke folder `uts/coba` lewat File Explorer (Windows) atau Finder (macOS), lalu ubah salinannya. *File* di folder materi tetap utuh.
+
+### Cara Membandingkan Jawabanmu dengan Solusi
+
+Targetnya, *output* programmu **sama persis** dengan contoh *output* di soal, yang juga sama dengan *output* solusi. Biarkan komputer yang membandingkan karena mata mudah melewatkan satu spasi. Contoh di bawah memakai Soal C1.
+
+1. **Salin *file* solusi yang ingin dibandingkan**, yaitu `soal_c1_peminjaman_alat.py`, ke folder `PBO-latihan-saya/uts`. Salinan ini jangan diubah karena menjadi patokan.
+2. **Buka terminal di folder `uts` itu.** Caranya: di VS Code yang sedang membuka folder `uts`, pilih **Terminal → New Terminal**. Ketik `dir` (Windows) atau `ls` (macOS/Linux), lalu pastikan `jawaban_c1.py` dan `soal_c1_peminjaman_alat.py` muncul di daftar.
+3. **Simpan *output* kedua program ke *file* teks.** Tanda `>` artinya "jangan tampilkan hasilnya di layar, tetapi tulis ke *file* ini":
+
+   ```bash
+   python jawaban_c1.py > hasil_saya.txt
+   python soal_c1_peminjaman_alat.py > hasil_solusi.txt
+   ```
+
+   Kedua perintah itu tidak menampilkan apa-apa di layar, kecuali jika programmu berhenti karena *error*. Di macOS/Linux, ketik `python3`.
+4. **Bandingkan kedua *file*** dengan perintah yang sesuai dengan terminalmu:
+
+   | Terminal | Perintah | Jika kedua *file* sama persis |
+   |---|---|---|
+   | Windows: Command Prompt | `fc hasil_saya.txt hasil_solusi.txt` | muncul `FC: no differences encountered` |
+   | Windows: PowerShell (terminal bawaan VS Code) | `fc.exe hasil_saya.txt hasil_solusi.txt` | sama seperti di atas |
+   | macOS/Linux | `diff hasil_saya.txt hasil_solusi.txt` | tidak ada yang tercetak |
+
+   Di PowerShell, `fc` tanpa `.exe` berarti perintah lain, jadi selalu tulis `fc.exe`. Jika ada perbedaan, perintah itu menampilkan baris-baris yang tidak sama dari kedua *file*.
+
+Lebih suka cara klik? Di panel **Explorer** VS Code, klik kanan `hasil_saya.txt`, pilih **Select for Compare**, lalu klik kanan `hasil_solusi.txt` dan pilih **Compare with Selected**. VS Code menandai baris yang berbeda dengan warna. Untuk Soal C2, pakai `jawaban_c2.py` dan salinan `soal_c2_toko_buku.py`.
+
+> [!TIP]
+> Perbedaan yang paling sering ditemukan adalah spasi di akhir baris, huruf besar/kecil pada pesan *error*, dan lebar kolom. Salin teks pesan langsung dari soal agar tidak salah ketik.
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal bagian 1 dan 2 menunjuk *file* solusinya. Klik untuk melihat isi lengkapnya.
+- Blok kode di bawahnya adalah **potongan** penting dari *file* itu, disalin persis. Jangan menjalankan potongannya sendiri. Jalankan *file* lengkapnya dengan cara di atas.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di komentar kode dijelaskan di daftar **Penjelasan** di bawah blok kodenya.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan.
+- Kode di bagian 3 sengaja dibuat **salah** untuk menunjukkan pesan *error*. Jangan ditiru.
 
 ## 1. Soal C1: Peminjaman Alat Laboratorium
 
-File: [`solusi/soal_c1_peminjaman_alat.py`](solusi/soal_c1_peminjaman_alat.py)
+*File*: [`solusi/soal_c1_peminjaman_alat.py`](solusi/soal_c1_peminjaman_alat.py)
 
 **Peta kelas:**
 
 | Kelas | Tanggung jawab | Konsep |
 |---|---|---|
-| `Mahasiswa` | Menyimpan data peminjam secara *read-only* | `@property` tanpa setter (P04), `__str__` (P03) |
-| `Alat` | Menyimpan data dan status alat; meminjamkan, menerima kembali, menghitung denda | Enkapsulasi, method penjaga aturan (P04) |
+| `Mahasiswa` | Menyimpan data peminjam secara *read-only* | `@property` tanpa *setter* (P04), `__str__` (P03) |
+| `Alat` | Menyimpan data dan status alat; meminjamkan, menerima kembali, menghitung denda | Enkapsulasi, *method* penjaga aturan (P04) |
 | `AlatElektronik`, `KitPraktikum` | Menambah atribut, menentukan denda per hari, meng-*override* `__str__` | Pewarisan, `super()` (P07) |
 | `Peminjaman` | Nomor otomatis, daftar alat, pengembalian dan denda, bukti peminjaman | Atribut kelas (P03), agregasi dan asosiasi (P05) |
 | `Laboratorium` | Daftar alat, pencarian alat, catatan peminjaman | Agregasi, `None` (P05) |
 
 ### Kelas induk `Alat` dan kelas anaknya
 
-Bagian awal kelas `Alat`:
+Bagian awal kelas `Alat` (potongan dari *file* di atas):
 
 ```python
 class Alat:
@@ -67,7 +143,7 @@ class Alat:
         self._tersedia = True  # [1] alat baru selalu tersedia
 ```
 
-Setelah deretan `@property`, kelas `Alat` punya method-method berikut:
+Setelah deretan `@property`, kelas `Alat` punya *method* berikut:
 
 ```python
     def pinjamkan(self):
@@ -87,7 +163,7 @@ Setelah deretan `@property`, kelas `Alat` punya method-method berikut:
         return f"[{self._kode}] {self._nama} - {status}"
 ```
 
-Salah satu kelas anaknya:
+Salah satu kelas anaknya, `AlatElektronik`:
 
 ```python
 class AlatElektronik(Alat):
@@ -110,9 +186,9 @@ class AlatElektronik(Alat):
 
 Penjelasan:
 
-- **[1]** Status awal tidak diambil dari parameter. Setiap alat baru otomatis tersedia. Atribut ini hanya dibaca lewat `@property tersedia` dan **tidak punya setter**.
-- **[2]** `pinjamkan()` adalah satu-satunya pintu untuk mengubah status menjadi dipinjam. Jika alat sedang dipinjam, method menolak **sebelum** mengubah apa pun.
-- **[3]** Kelas anak memanggil konstruktor induk dan mengirim denda per hari yang tetap (`DENDA_ELEKTRONIK = 10000`). Karena itu, `hitung_denda()` cukup ditulis sekali di `Alat`. Pemeriksaan `daya_watt` dilakukan setelahnya, sama seperti urutan di versi Java.
+- **[1]** Status awal tidak diambil dari parameter. Setiap alat baru otomatis tersedia. Atribut ini hanya dibaca lewat `@property tersedia` dan **tidak punya *setter***.
+- **[2]** `pinjamkan()` adalah satu-satunya pintu untuk mengubah status menjadi dipinjam. Jika alat sedang dipinjam, *method* menolak **sebelum** mengubah apa pun.
+- **[3]** Kelas anak memanggil konstruktor induk dan mengirim denda per hari yang tetap, yaitu konstanta `DENDA_ELEKTRONIK = 10000` di bagian atas *file*. Karena itu, `hitung_denda()` cukup ditulis sekali di `Alat`. Pemeriksaan `daya_watt` dilakukan setelahnya, sama seperti urutan di versi Java.
 - **[4]** *Override* `__str__` memakai teks buatan induk lewat `super().__str__()`, lalu menambahkan informasi daya. Kelas `KitPraktikum` ditulis dengan pola yang sama.
 
 ### Kelas `Peminjaman`
@@ -134,7 +210,7 @@ class Peminjaman:
         self._selesai = False
 ```
 
-Dua method terpentingnya:
+Dua *method* terpentingnya:
 
 ```python
     def tambah_alat(self, alat: Alat):
@@ -160,13 +236,13 @@ Dua method terpentingnya:
 Penjelasan:
 
 - **[5]** `_nomor_terakhir` adalah atribut **kelas** (Pertemuan 03): satu penghitung untuk semua objek `Peminjaman`.
-- **[6]** Penghitung diubah lewat **nama kelas** (`Peminjaman._nomor_terakhir`), bukan lewat `self`, agar tidak terjadi jebakan atribut bayangan. Penghitung juga baru bertambah setelah `lama_hari` lolos pemeriksaan, sehingga peminjaman 10 hari yang ditolak tidak "menghabiskan" nomor.
+- **[6]** Penghitung diubah lewat **nama kelas** (`Peminjaman._nomor_terakhir`), bukan lewat `self` agar tidak terjadi jebakan atribut bayangan. Penghitung juga baru bertambah setelah `lama_hari` lolos pemeriksaan sehingga peminjaman 10 hari yang ditolak tidak "menghabiskan" nomor.
 - **[7]** Peminjaman hanya **menyimpan referensi** ke objek `Mahasiswa` yang sudah ada (asosiasi).
-- **[8]** List alat berisi objek-objek yang dibuat di luar, yaitu yang didaftarkan ke lab (agregasi). Getter `daftar_alat` mengembalikan `list(self._daftar_alat)`, yaitu salinannya.
+- **[8]** *List* alat berisi objek-objek yang dibuat di luar, yaitu yang didaftarkan ke lab (agregasi). *Getter* `daftar_alat` mengembalikan `list(self._daftar_alat)`, yaitu salinannya.
 - **[9]** `pinjamkan()` dipanggil **sebelum** `append`. Jika alat sedang dipinjam, `ValueError` dilempar dan baris `append` tidak pernah dijalankan.
 - **[10]** Peminjaman "mengirim pesan" ke setiap alat: terima kembali, lalu hitung dendamu. Total denda **dikembalikan** dengan `return`, bukan dicetak.
 
-Cara menjalankan:
+Cara menjalankannya dijelaskan di [Persiapan](#cara-menjalankan-solusi). Ringkasnya, dari folder utama materi:
 
 ```bash
 cd Pertemuan-08-UTS/python/solusi
@@ -174,9 +250,9 @@ python soal_c1_peminjaman_alat.py
 ```
 
 <details>
-<summary>Lihat output lengkap Soal C1</summary>
+<summary>Lihat hasil lengkap Soal C1</summary>
 
-**Output:**
+***Output:***
 
 ```text
 === ALAT Lab Pemrograman ===
@@ -242,33 +318,33 @@ Peminjaman tercatat: 2
 </details>
 
 > [!TIP]
-> **Coba sendiri:** di fungsi `main()`, ubah `proses_pengembalian(pinjam_bima, 0)` menjadi `proses_pengembalian(pinjam_bima, 3)`. Tebak dulu: berapa denda Bima?
+> **Coba sendiri:** buka salinan `soal_c1_peminjaman_alat.py` di folder latihanmu (`PBO-latihan-saya/uts/coba`). Di fungsi `main()` salinan itu, ubah `proses_pengembalian(pinjam_bima, 0)` menjadi `proses_pengembalian(pinjam_bima, 3)`, simpan, lalu jalankan. Tebak dulu: berapa denda Bima?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Bima hanya meminjam satu alat elektronik (Laptop Cadangan, denda Rp10.000 per hari). Terlambat 3 hari berarti 3 × 10.000, sehingga tercetak `PJ002 kembali terlambat 3 hari, denda Rp30.000`.
+Bima hanya meminjam satu alat elektronik (Laptop Cadangan, denda Rp10.000 per hari). Terlambat 3 hari berarti 3 × Rp10.000 sehingga baris itu berubah menjadi `PJ002 kembali terlambat 3 hari, denda Rp30.000`. Baris lainnya tetap sama.
 
 </details>
 
 ## 2. Soal C2: Toko Buku Daring
 
-File: [`solusi/soal_c2_toko_buku.py`](solusi/soal_c2_toko_buku.py)
+*File*: [`solusi/soal_c2_toko_buku.py`](solusi/soal_c2_toko_buku.py)
 
 **Peta kelas:**
 
 | Kelas | Tanggung jawab | Konsep |
 |---|---|---|
 | `Pelanggan` | Menyimpan data pemesan secara *read-only* | `@property`, `__str__` |
-| `Produk` | Data produk; harga tervalidasi; stok hanya berkurang lewat method | Setter dengan validasi, method penjaga aturan (P04) |
+| `Produk` | Data produk; harga tervalidasi; stok hanya berkurang lewat *method* | *Setter* dengan validasi, *method* penjaga aturan (P04) |
 | `Buku`, `AlatTulis` | Menambah atribut dan meng-*override* `__str__` | Pewarisan (P07) |
 | `ItemPesanan` | Satu baris pesanan: produk, jumlah, subtotal, berat | Asosiasi ke `Produk` (P05) |
-| `Pesanan` | Nomor otomatis, daftar item, subtotal, ongkir, total, invoice | Komposisi (P05), atribut kelas (P03) |
+| `Pesanan` | Nomor otomatis, daftar item, subtotal, ongkos kirim (ongkir), total, *invoice* | Komposisi (P05), atribut kelas (P03) |
 | `TokoBuku` | Katalog produk, pencarian, catatan pesanan, total penjualan | Agregasi, `None` (P05) |
 
-### Harga dijaga oleh setter
+### Harga dijaga oleh *setter*
 
-Konstruktor `Produk` mengisi harga **lewat setter**:
+Konstruktor `Produk` mengisi harga **lewat *setter*** (potongan dari *file* di atas):
 
 ```python
     def __init__(self, kode: str, nama: str, harga: int, stok: int,
@@ -284,7 +360,7 @@ Konstruktor `Produk` mengisi harga **lewat setter**:
         self.harga = harga  # [1] lewat setter, jadi ikut divalidasi
 ```
 
-Getter dan setter harganya:
+*Getter* dan *setter* harganya:
 
 ```python
     @property
@@ -321,12 +397,14 @@ class Buku(Produk):
 
 Penjelasan:
 
-- **[1]** `self.harga = harga` (tanpa garis bawah) **memanggil setter**. Aturan "harga harus lebih dari 0" hanya ditulis sekali, tetapi berlaku saat produk dibuat maupun saat harganya diubah.
-- **[2]** Setter memeriksa dulu, baru menyimpan. Itu sebabnya harga Bumi Manusia tetap Rp120.000 setelah percobaan mengisi -5000.
+- **[1]** `self.harga = harga` (tanpa garis bawah) **memanggil *setter***. Aturan "harga harus lebih dari 0" hanya ditulis sekali, tetapi berlaku saat produk dibuat maupun saat harganya diubah.
+- **[2]** *Setter* memeriksa dulu, baru menyimpan. Itu sebabnya harga Bumi Manusia tetap Rp120.000 setelah percobaan mengisi -5000.
 - **[3]** Judul buku dikirim ke induk sebagai `nama`. Semua atribut umum disiapkan oleh konstruktor `Produk`.
 - **[4]** Pola *override* yang sama dengan Soal C1 dan dengan `Makanan` di KedaiKita. Kelas `AlatTulis` menambahkan ` | warna ...` dengan cara yang sama.
 
 ### Kelas `Pesanan`: komposisi dan perhitungan
+
+Empat *method* milik kelas `Pesanan`:
 
 ```python
     def tambah_item(self, produk: Produk, jumlah: int):
@@ -355,12 +433,12 @@ Penjelasan:
 
 Penjelasan:
 
-- **[5]** Objek `ItemPesanan` dibuat **di dalam** pesanan, sehingga hubungannya komposisi. Konstruktor `ItemPesanan` sekaligus memeriksa jumlah, jadi jumlah 0 sudah ditolak di langkah ini, sebelum stok tersentuh.
+- **[5]** Objek `ItemPesanan` dibuat **di dalam** pesanan sehingga hubungannya komposisi. Konstruktor `ItemPesanan` sekaligus memeriksa jumlah, jadi jumlah 0 sudah ditolak di langkah ini, sebelum stok tersentuh.
 - **[6]** Stok hanya berkurang lewat `kurangi_stok()`, yang menolak permintaan melebihi stok.
-- **[7]** Item baru disimpan setelah kedua pemeriksaan lolos. Jika salah satu gagal, `ValueError` menghentikan method sebelum baris ini.
-- **[8]** `(berat_gram + 999) // 1000` membulatkan ke atas tanpa bilangan pecahan: 720 menjadi 1, 1080 menjadi 2, dan 1000 tetap 1.
+- **[7]** Item baru disimpan setelah kedua pemeriksaan lolos. Jika salah satu gagal, `ValueError` menghentikan *method* sebelum baris ini.
+- **[8]** `(berat_gram + 999) // 1000` membulatkan ke atas tanpa bilangan pecahan: 720 gram menjadi 1 kg, 1.080 gram menjadi 2 kg, dan 1.000 gram tetap 1 kg. Operator `//` adalah pembagian bulat (hasilnya dibulatkan ke bawah), jadi tambahan 999 itulah yang membuatnya "naik" ke kilogram berikutnya.
 
-Cara menjalankan:
+Dari folder utama materi:
 
 ```bash
 cd Pertemuan-08-UTS/python/solusi
@@ -368,9 +446,9 @@ python soal_c2_toko_buku.py
 ```
 
 <details>
-<summary>Lihat output lengkap Soal C2</summary>
+<summary>Lihat hasil lengkap Soal C2</summary>
 
-**Output:**
+***Output:***
 
 ```text
 === KATALOG PustakaKita ===
@@ -428,135 +506,146 @@ Total penjualan: Rp419.000
 </details>
 
 > [!TIP]
-> **Coba sendiri:** ubah konstanta `BATAS_GRATIS_ONGKIR` di bagian atas file menjadi `150000`. Tebak dulu: apa yang berubah pada invoice Budi dan pada total penjualan?
+> **Coba sendiri:** buka salinan `soal_c2_toko_buku.py` di folder latihanmu (`PBO-latihan-saya/uts/coba`). Di bagian atas salinan itu, ubah konstanta `BATAS_GRATIS_ONGKIR` menjadi `150000`, simpan, lalu jalankan. Tebak dulu: apa yang berubah pada *invoice* Budi dan pada total penjualan?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Subtotal Budi Rp193.000 kini sudah mencapai batas, sehingga ongkirnya menjadi `GRATIS` dan totalnya Rp193.000. Total penjualan menjadi Rp206.000 + Rp193.000 = **Rp399.000**. Cukup satu angka yang diubah, karena aturan itu disimpan sebagai konstanta.
+Subtotal Budi Rp193.000 kini sudah mencapai batas sehingga ongkirnya menjadi `GRATIS` dan totalnya Rp193.000. Total penjualan menjadi Rp206.000 + Rp193.000 = **Rp399.000**. Cukup satu angka yang diubah karena aturan itu disimpan sebagai konstanta.
 
 </details>
 
-## 3. Membandingkan Output-mu dengan Solusi
+## 3. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-Targetnya, output programmu **sama persis** dengan contoh output di soal. Mencocokkan dengan mata itu melelahkan, jadi biarkan komputer yang membandingkan. Simpan output kedua program ke file teks:
+Ingat, pesan *error* Python dibaca **dari bawah ke atas**: baris terakhir menyebutkan jenis *error*, dan baris-baris di atasnya menunjukkan jejak lokasinya.
 
-```bash
-python jawabanku.py > hasil_saya.txt
-python soal_c1_peminjaman_alat.py > hasil_solusi.txt
-```
-
-Lalu bandingkan:
-
-- **Command Prompt (Windows):** `fc hasil_saya.txt hasil_solusi.txt`
-- **PowerShell (Windows):** `fc.exe hasil_saya.txt hasil_solusi.txt` (di PowerShell, `fc` tanpa `.exe` berarti perintah lain)
-- **macOS/Linux:** `diff hasil_saya.txt hasil_solusi.txt`. Jika tidak ada yang tercetak, berarti kedua file sama.
-- **VS Code:** klik kanan file pertama, pilih *Select for Compare*, lalu klik kanan file kedua dan pilih *Compare with Selected*.
-
-> [!TIP]
-> Perbedaan yang paling sering ditemukan adalah spasi di akhir baris, huruf besar/kecil pada pesan error, dan lebar kolom. Salin teks pesan langsung dari soal agar tidak salah ketik.
-
-## 4. Kesalahan Umum dan Cara Membaca Pesan Error
-
-Ingat, pesan error Python dibaca **dari bawah ke atas**: baris terakhir menyebutkan jenis error, dan baris-baris di atasnya menunjukkan jejak lokasinya.
+Setiap kesalahan di bawah ini dibuat dengan mengubah sedikit **salinan** *file* solusi di folder latihanmu (`PBO-latihan-saya/uts/coba`), lalu menjalankannya. Jadi, kamu bisa mencobanya sendiri. Jangan ubah *file* solusi di folder materi. Setelah selesai mencoba satu kesalahan, salin ulang *file* solusi dari folder materi agar salinanmu kembali utuh. Alamat *file* di pesan *error* sengaja disingkat menjadi nama *file*-nya saja.
 
 ### Kesalahan 1: Lupa memanggil `super().__init__()`
 
+Di salinan `soal_c1_peminjaman_alat.py`, hapus baris `super().__init__(kode, nama, DENDA_ELEKTRONIK)` dari konstruktor `AlatElektronik`. Konstruktornya kini menjadi seperti ini (kode yang salah, jangan ditiru):
+
 ```python
-class AlatElektronik(Alat):
-    def __init__(self, kode, nama, daya_watt):
-        self._daya_watt = daya_watt  # lupa super().__init__(kode, nama)
+    def __init__(self, kode: str, nama: str, daya_watt: int):
+        if daya_watt <= 0:
+            raise ValueError("Daya harus lebih dari 0 watt")
+        self._daya_watt = daya_watt
 ```
 
-Saat objeknya dicetak, pesan error-nya:
+Saat dijalankan, baris `=== ALAT Lab Pemrograman ===` masih tercetak, lalu program berhenti dengan pesan *error* ini:
 
 ```text
 Traceback (most recent call last):
-  File "contoh.py", line 19, in <module>
-    print(proyektor)
-  File "contoh.py", line 15, in __str__
+  File "soal_c1_peminjaman_alat.py", line 326, in <module>
+    main()
+    ~~~~^^
+  File "soal_c1_peminjaman_alat.py", line 274, in main
+    lab.tampilkan_alat()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "soal_c1_peminjaman_alat.py", line 244, in tampilkan_alat
+    print(alat)  # memanggil __str__ milik kelas anak
+    ~~~~~^^^^^^
+  File "soal_c1_peminjaman_alat.py", line 109, in __str__
     return f"{super().__str__()} | {self._daya_watt} watt"
-  File "contoh.py", line 7, in __str__
-    return f"[{self._kode}] {self._nama}"
-AttributeError: 'AlatElektronik' object has no attribute '_kode'
+              ~~~~~~~~~~~~~~~^^
+  File "soal_c1_peminjaman_alat.py", line 91, in __str__
+    status = "tersedia" if self._tersedia else "dipinjam"
+                           ^^^^^^^^^^^^^^
+AttributeError: 'AlatElektronik' object has no attribute '_tersedia'. Did you mean: 'tersedia'?
 ```
 
-**Artinya:** konstruktor induk tidak pernah berjalan, sehingga atribut `_kode` dan `_nama` tidak pernah dibuat. Error-nya baru muncul ketika atribut itu dibaca, jauh dari tempat kesalahan sebenarnya. **Perbaikan:** panggil `super().__init__(...)` di awal konstruktor anak.
+**Artinya:** konstruktor induk tidak pernah berjalan sehingga atribut `_kode`, `_nama`, `_denda_per_hari`, dan `_tersedia` tidak pernah dibuat. Python tidak protes saat objeknya dibuat. *Error* baru muncul ketika atribut induk pertama kali dibaca, yaitu `_tersedia` di `__str__` milik `Alat`, jauh dari tempat kesalahan sebenarnya. Saran *Did you mean: 'tersedia'?* kali ini menyesatkan: masalahnya bukan salah ketik. **Perbaikan:** panggil `super().__init__(kode, nama, DENDA_ELEKTRONIK)` di baris pertama konstruktor anak.
 
-### Kesalahan 2: Setter memanggil dirinya sendiri
+### Kesalahan 2: *Setter* memanggil dirinya sendiri
+
+Di salinan `soal_c2_toko_buku.py`, ubah baris terakhir *setter* harga dari `self._harga = nilai` menjadi `self.harga = nilai` (kode yang salah, jangan ditiru):
 
 ```python
     @harga.setter
-    def harga(self, nilai):
+    def harga(self, nilai: int):
         if nilai <= 0:
+            # [2] ditolak SEBELUM atribut diubah, jadi harga lama tetap aman
             raise ValueError("Harga harus lebih dari 0")
-        self.harga = nilai  # salah: seharusnya self._harga
+        self.harga = nilai
 ```
 
-Pesan error-nya:
+Program langsung berhenti saat membuat produk pertama. Pesan *error*-nya sangat panjang. Bagian akhirnya seperti ini:
 
 ```text
-Traceback (most recent call last):
-  File "contoh.py", line 16, in <module>
-    buku = Produk(95000)
-  File "contoh.py", line 3, in __init__
-    self.harga = harga
-  File "contoh.py", line 13, in harga
-    self.harga = nilai  # salah: seharusnya self._harga
-  File "contoh.py", line 13, in harga
-    self.harga = nilai  # salah: seharusnya self._harga
-  File "contoh.py", line 13, in harga
-    self.harga = nilai  # salah: seharusnya self._harga
-  [Previous line repeated 995 more times]
+  File "soal_c2_toko_buku.py", line 62, in __init__
+    self.harga = harga  # [1] lewat setter, jadi ikut divalidasi
+    ^^^^^^^^^^
+  File "soal_c2_toko_buku.py", line 89, in harga
+    self.harga = nilai
+    ^^^^^^^^^^
+  File "soal_c2_toko_buku.py", line 89, in harga
+    self.harga = nilai
+    ^^^^^^^^^^
+  File "soal_c2_toko_buku.py", line 89, in harga
+    self.harga = nilai
+    ^^^^^^^^^^
+  [Previous line repeated 992 more times]
 RecursionError: maximum recursion depth exceeded
 ```
 
-**Artinya:** `self.harga = nilai` di dalam setter memanggil setter yang sama lagi, terus-menerus, sampai Python menyerah. **Perbaikan:** di dalam setter, simpan ke atribut berawalan garis bawah: `self._harga = nilai`.
+**Artinya:** di dalam *setter*, `self.harga = nilai` memanggil *setter* yang sama lagi, lalu lagi, terus-menerus, sampai Python menyerah setelah sekitar seribu panggilan. Angka 992 bisa sedikit berbeda di komputermu. Di Python 3.10, baris terakhirnya berbunyi `RecursionError: maximum recursion depth exceeded in comparison`. **Perbaikan:** di dalam *setter*, simpan nilainya ke atribut berawalan garis bawah: `self._harga = nilai`.
 
 ### Kesalahan 3: Mengisi atribut *read-only*
 
+Di salinan `soal_c1_peminjaman_alat.py`, tambahkan dua baris berikut tepat di bawah baris `lab = siapkan_lab()` di fungsi `main()` (kode yang salah, jangan ditiru):
+
 ```python
-alat = Alat("A01")
-alat.kode = "A99"
+    proyektor = lab.cari_alat("A01")
+    proyektor.kode = "A99"
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
-  File "contoh.py", line 11, in <module>
-    alat.kode = "A99"
-AttributeError: property 'kode' of 'Alat' object has no setter
+  File "soal_c1_peminjaman_alat.py", line 329, in <module>
+    main()
+    ~~~~^^
+  File "soal_c1_peminjaman_alat.py", line 276, in main
+    proyektor.kode = "A99"
+    ^^^^^^^^^^^^^^
+AttributeError: property 'kode' of 'AlatElektronik' object has no setter
 ```
 
-**Artinya:** `kode` dibuat dengan `@property` tanpa setter, jadi memang tidak boleh diubah dari luar. Enkapsulasinya bekerja! Di Python 3.10, pesannya berbunyi `can't set attribute 'kode'`. **Perbaikan:** jika suatu data memang perlu diubah, sediakan setter yang memvalidasi atau method khusus. Jika tidak, biarkan *read-only*.
+**Artinya:** `kode` dibuat dengan `@property` tanpa *setter*, jadi memang tidak boleh diubah dari luar. Enkapsulasinya bekerja! Pesan itu menyebut `AlatElektronik` karena objek A01 adalah alat elektronik, sedangkan *property* `kode` sendiri diwarisi dari `Alat`. Di Python 3.10, pesannya berbunyi `AttributeError: can't set attribute 'kode'`. **Perbaikan:** jika suatu data memang perlu diubah, sediakan *setter* yang memvalidasi atau *method* khusus. Jika tidak, biarkan *read-only*.
 
 ### Kesalahan 4: Memakai hasil pencarian yang ternyata `None`
 
+Di salinan `soal_c1_peminjaman_alat.py`, tambahkan dua baris berikut tepat di bawah baris `lab = siapkan_lab()` di fungsi `main()` (kode yang salah, jangan ditiru):
+
 ```python
-alat = lab.cari_alat("A09")
-alat.pinjamkan()
+    alat = lab.cari_alat("A09")
+    alat.pinjamkan()
 ```
 
-Pesan error-nya:
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
-  File "contoh.py", line 14, in <module>
+  File "soal_c1_peminjaman_alat.py", line 329, in <module>
+    main()
+    ~~~~^^
+  File "soal_c1_peminjaman_alat.py", line 276, in main
     alat.pinjamkan()
+    ^^^^^^^^^^^^^^
 AttributeError: 'NoneType' object has no attribute 'pinjamkan'
 ```
 
-**Artinya:** alat berkode A09 tidak ada, sehingga `cari_alat` mengembalikan `None`, dan `None` tidak punya method `pinjamkan`. **Perbaikan:** periksa dulu dengan `if alat is None:` sebelum memakai hasil pencarian.
+**Artinya:** alat berkode A09 tidak ada sehingga `cari_alat` mengembalikan `None`, dan `None` tidak punya *method* `pinjamkan`. **Perbaikan:** periksa dulu dengan `if alat is None:` sebelum memakai hasil pencarian, seperti pencarian `X99` di fungsi `main()` solusi.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python. Python 3.11 ke atas juga menambahkan tanda `^^^^` di bawah bagian kode yang bermasalah. Fokuslah pada **jenis error** di baris terakhir dan pada nomor barisnya.
+> Pesan di atas diambil dari Python 3.13. Bunyinya bisa sedikit berbeda antarversi Python. Mulai Python 3.11, di bawah sebagian baris juga muncul tanda `^` (kadang bersama `~`) yang menunjuk bagian kode yang bermasalah. Fokuslah pada **jenis *error*** di baris terakhir dan pada nomor barisnya.
 
 ## ➡️ Langkah Berikutnya
 
-- Bandingkan dengan solusi Java: [☕ Solusi Java](../java/README.md). Kelas, urutan langkah, dan output-nya sama persis.
+- Bandingkan dengan solusi Java: [☕ Solusi Java](../java/README.md). Kelas, urutan langkah, dan *output*-nya sama persis.
 - Baca pembahasan rancangannya: [Pembahasan Bagian C](../pembahasan.md#pembahasan-bagian-c).
-- Kembali ke [Informasi UTS](../README.md) untuk mengecek checklist kesiapanmu.
+- Kembali ke [Informasi UTS](../README.md) untuk mengecek *checklist* kesiapanmu.
 
 ---
 

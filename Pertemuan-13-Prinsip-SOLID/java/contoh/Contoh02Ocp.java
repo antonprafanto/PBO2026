@@ -6,7 +6,7 @@
  * Layanan baru (Same Day) belum dikenal, dan satu-satunya cara menambahkannya
  * adalah MEMBONGKAR method hitung() yang sudah berjalan.
  *
- * Versi SESUAI OCP: setiap layanan adalah kelas yang meng-implements
+ * Versi SESUAI OCP: setiap layanan adalah kelas yang mengimplementasikan
  * LayananKirim. Layanan Same Day ditambahkan sebagai kelas BARU;
  * KalkulatorOngkir dan layanan lama tidak disentuh sama sekali.
  *

@@ -8,7 +8,7 @@
  * - sapa()       -> memanggil method lain milik objek yang sama
  *                   (boleh juga ditulis this.sapa())
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/contoh (Java 11 ke atas):
  *     java Contoh05This.java
  */
 public class Contoh05This {

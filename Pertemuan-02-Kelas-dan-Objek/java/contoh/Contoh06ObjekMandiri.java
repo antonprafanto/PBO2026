@@ -5,7 +5,7 @@
  * Dua rekening dibuat dari kelas yang sama. Transaksi pada satu rekening
  * tidak memengaruhi rekening lain, karena setiap objek punya atribut sendiri.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/contoh (Java 11 ke atas):
  *     java Contoh06ObjekMandiri.java
  */
 public class Contoh06ObjekMandiri {

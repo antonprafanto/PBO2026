@@ -9,7 +9,7 @@ Pertemuan 02 - Kelas dan Objek
 Catatan: mengisi atribut dari luar seperti ini memang bisa di Python,
 tetapi bukan kebiasaan yang baik. Di contoh 02 kita memakai konstruktor.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/contoh; macOS/Linux: python3):
     python contoh01_kelas_dan_objek.py
 """
 

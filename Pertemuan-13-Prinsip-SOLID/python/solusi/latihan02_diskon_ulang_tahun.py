@@ -11,7 +11,8 @@ Ide penyelesaian:
 
 Agar file ini bisa dijalankan sendiri, kelas-kelas studi kasus yang
 dibutuhkan disalin dalam versi RINGKAS. Satu-satunya kelas yang BARU adalah
-DiskonUlangTahun. Di proyekmu, cukup tambahkan kelas itu ke diskon.py.
+DiskonUlangTahun. Di salinan studi kasus milikmu (Cara A di latihan.md), cukup
+tambahkan kelas itu di file baru, misalnya diskon_ulang_tahun.py.
 
 Cara menjalankan:
     python latihan02_diskon_ulang_tahun.py
@@ -176,7 +177,6 @@ def main():
     pesanan_budi.tambah_item(nasi_goreng, 1)
     pesanan_budi.atur_diskon(DiskonUlangTahun())
     cetak_struk(pesanan_budi)
-
 
     print()
     print("=== PESANAN KOSONG (UJI LSP) ===")

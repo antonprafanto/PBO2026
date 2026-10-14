@@ -9,7 +9,7 @@ Ide penyelesaian:
 - huruf() memakai nilai_akhir() (method memanggil method lain lewat self).
 - lulus(batas) mengembalikan True/False.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/solusi; macOS/Linux: python3):
     python latihan04_nilai_kuliah.py
 """
 

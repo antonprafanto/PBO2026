@@ -5,9 +5,11 @@
  * Ide penyelesaian:
  * - Perangkat adalah kelas abstrak. Konstruktor (merek, dayaWatt) dan
  *   method konkret info() cukup ditulis SEKALI di sini.
- * - jenis() dan fungsiUtama() dibuat abstrak, karena jawabannya berbeda untuk
+ * - jenis() dan fungsiUtama() dibuat abstrak karena jawabannya berbeda untuk
  *   setiap perangkat. info() memanggil keduanya (template method kecil).
  * - totalDaya() menerima list Perangkat jenis apa pun.
+ * - Percobaan di soal (membuat objek Perangkat langsung) ditulis sebagai
+ *   komentar di main() karena Java menolaknya saat kompilasi.
  *
  * Cara menjalankan (Java 11 ke atas):
  *     java Latihan01Perangkat.java
@@ -25,6 +27,10 @@ public class Latihan01Perangkat {
     }
 
     public static void main(String[] args) {
+        // Percobaan di soal, sengaja dijadikan komentar. Jika baris ini aktif,
+        // kompilasi gagal: error: Perangkat is abstract; cannot be instantiated
+        // Perangkat umum = new Perangkat("Polytron", 20);
+
         List<Perangkat> daftar = List.of(
                 new Laptop("Lenovo", 65),
                 new Ponsel("Samsung", 18),

@@ -4,13 +4,13 @@
  *
  * Ide penyelesaian:
  * - BarisDataException membawa nomorBaris dan alasan. Pesannya sudah memuat
- *   nomor baris, sehingga penangkap cukup mencetak getMessage().
+ *   nomor baris sehingga penangkap cukup mencetak getMessage().
  * - bacaPendaftar() memeriksa satu baris dari yang paling mendasar:
  *   jumlah kolom -> nama -> umur angka -> rentang umur. Kesalahan apa pun
  *   diubah menjadi BarisDataException, jadi pemanggil cukup menangkap SATU
  *   jenis.
  * - NumberFormatException dari parseInt() dibungkus dengan
- *   new BarisDataException(..., e) (exception chaining), sehingga penyebab
+ *   new BarisDataException(..., e) (exception chaining) sehingga penyebab
  *   aslinya tetap tersimpan dan bisa diambil dengan getCause().
  * - Java tidak punya blok else: baris yang lolos dicatat di AKHIR blok try.
  *

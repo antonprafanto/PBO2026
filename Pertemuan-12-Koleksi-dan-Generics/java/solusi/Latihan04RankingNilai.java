@@ -4,7 +4,7 @@
  *
  * Ide penyelesaian:
  * - Urutan ALAMI mahasiswa = urut NIM, ditulis di compareTo()
- *   (kelas meng-implements Comparable<NilaiMahasiswa>).
+ *   (kelas mengimplementasikan Comparable<NilaiMahasiswa>).
  * - Ranking memakai Comparator tiga kriteria:
  *     Comparator.comparing(NilaiMahasiswa::getNilaiAkhir).reversed()      -> akhir terbesar
  *         .thenComparing(NilaiMahasiswa::getNilaiUas, Comparator.reverseOrder()) -> UAS terbesar

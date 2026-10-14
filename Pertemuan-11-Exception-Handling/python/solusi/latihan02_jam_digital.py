@@ -6,7 +6,7 @@ Ide penyelesaian:
 - atur(jam, menit) MEMERIKSA dulu, baru mengubah atribut. Jika jam atau
   menit di luar batas, lempar ValueError berisi pesan yang jelas. Karena
   pemeriksaan dilakukan sebelum perubahan, waktu lama tetap utuh.
-- Di main(), tampilan jam dicetak di blok finally, sehingga SELALU muncul,
+- Di main(), tampilan jam dicetak di blok finally sehingga SELALU muncul,
   baik pengaturan berhasil maupun ditolak.
 
 Cara menjalankan:

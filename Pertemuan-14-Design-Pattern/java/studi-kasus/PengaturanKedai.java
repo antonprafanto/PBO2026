@@ -2,8 +2,8 @@
  * File PengaturanKedai.java: kelas PengaturanKedai dengan pola SINGLETON.
  *
  * Singleton menjamin hanya ada SATU objek pengaturan di seluruh program.
- * Semua bagian program (struk, pesanan, laporan) membaca nama kedai, alamat,
- * dan persentase pajak dari objek yang sama, sehingga tidak mungkin berbeda.
+ * Bagian program yang membutuhkannya (pesanan dan struk) membaca nama kedai,
+ * alamat, dan persentase pajak dari objek yang sama sehingga tidak mungkin berbeda.
  *
  * Cara memakainya:
  *     PengaturanKedai pengaturan = PengaturanKedai.getInstance();

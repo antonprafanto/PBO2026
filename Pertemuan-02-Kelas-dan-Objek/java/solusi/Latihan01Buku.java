@@ -7,7 +7,7 @@
  * 2. Method tampilkanInfo() mencetak data; method umur(tahunSekarang)
  *    MENGEMBALIKAN selisih tahun (tipe kembalian int).
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/solusi (Java 11 ke atas):
  *     java Latihan01Buku.java
  */
 public class Latihan01Buku {

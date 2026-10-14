@@ -1,4 +1,4 @@
-# 🐍 Praktik Python — Pertemuan 11: Exception Handling
+# 🐍 Praktik Python Pertemuan 11: *Exception Handling*
 
 [⬅️ Konsep](../README.md) · [☕ Praktik Java](../java/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
@@ -7,18 +7,25 @@
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
-1. [Exception Pertama: Pembagian dengan Nol](#1-exception-pertama-pembagian-dengan-nol)
+  - [Cara Menjalankan Contoh](#cara-menjalankan-contoh)
+  - [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
+1. [*Exception* Pertama: Pembagian dengan Nol](#1-exception-pertama-pembagian-dengan-nol)
 2. [Mengubah Teks Menjadi Angka](#2-mengubah-teks-menjadi-angka)
-3. [Indeks di Luar Batas dan Exception yang Merambat](#3-indeks-di-luar-batas-dan-exception-yang-merambat)
+3. [Indeks di Luar Batas dan *Exception* yang Merambat](#3-indeks-di-luar-batas-dan-exception-yang-merambat)
 4. [Banyak `except` dan Urutannya](#4-banyak-except-dan-urutannya)
 5. [`else` dan `finally`](#5-else-dan-finally)
 6. [`raise`: Melempar dan Melempar Ulang](#6-raise-melempar-dan-melempar-ulang)
-7. [Exception Buatan Sendiri dan Chaining](#7-exception-buatan-sendiri-dan-chaining)
-8. [Hierarki Exception Python](#8-hierarki-exception-python)
+7. [*Exception* Buatan Sendiri dan *Chaining*](#7-exception-buatan-sendiri-dan-chaining)
+8. [Hierarki *Exception* Python](#8-hierarki-exception-python)
 9. [Studi Kasus KedaiKita](#9-studi-kasus-kedaikita)
-10. [Kesalahan Umum dan Cara Membaca Pesan Error](#10-kesalahan-umum-dan-cara-membaca-pesan-error)
+10. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#10-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
@@ -29,33 +36,89 @@ python/
 └── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
 ```
 
-Cara menjalankan sebuah contoh dari terminal:
+### Cara Menjalankan Contoh
+
+Pilih salah satu cara. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-11-Exception-Handling/python`. Di panel **Explorer**, buka folder `contoh`, klik *file* yang ingin dicoba (misalnya `contoh01_pembagian_nol.py`), lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-11-Exception-Handling/python/contoh` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-11-Exception-Handling/python/contoh
 python contoh01_pembagian_nol.py
 ```
 
-Studi kasus terdiri atas beberapa file, jadi jalankan `main.py` **dari dalam** folder `studi-kasus`:
+Yang tercetak di terminal sama persis dengan blok ***Output:*** di bagian 1. Untuk contoh lain, ganti nama *file*-nya, misalnya `python contoh02_konversi_teks.py`. *File* di folder `solusi` dijalankan dengan cara yang sama; ganti saja `contoh` dengan `solusi`.
+
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+> [!NOTE]
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya.
+
+### Cara Menjalankan Studi Kasus
+
+Studi kasus terdiri atas sembilan *file* yang saling memakai lewat `import`. Yang dijalankan selalu `main.py`. *File* lain, seperti `menu.py` atau `pengecualian.py`, hanya berisi kelas sehingga tidak menampilkan apa-apa jika dijalankan sendiri.
+
+- **Cara 1:** di VS Code (folder `python` pertemuan ini sudah terbuka), buka `studi-kasus/main.py`, lalu klik tombol ▷.
+- **Cara 2:** lewat terminal, masuk dulu ke folder `studi-kasus`, lalu jalankan `main.py`.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi | `cd Pertemuan-11-Exception-Handling/python/studi-kasus` |
+| folder `python` pertemuan ini | `cd studi-kasus` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-11-Exception-Handling/python/studi-kasus
 python main.py
 ```
 
-> [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Di VS Code, kamu juga bisa membuka file lalu menekan tombol ▶ (*Run Python File*). Panduan instalasi ada di [00-Persiapan](../../00-Persiapan/README.md).
+Baris pertama yang muncul adalah `=== PESANAN BUDI: MENAMBAH ITEM ===`, dan *output* lengkapnya sama dengan yang ada di [bagian 9](#9-studi-kasus-kedaikita).
+
+### Tempat Menyimpan Kodemu Sendiri
+
+Halaman ini penuh **percobaan**: kode yang sengaja dibuat gagal agar kamu bisa melihat pesan *error*-nya. Kerjakan semua percobaan, "Coba sendiri", dan jawaban latihan di folder milikmu sendiri **di luar** folder materi, sesuai [aturan emas di 00-Persiapan](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri):
+
+```text
+Documents/
+├── PBO2026/                  <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/         <- milikmu sendiri
+    └── pertemuan-11/         <- percobaan dan latihan pertemuan ini
+```
+
+- **Mengubah *file* contoh:** salin dulu *file*-nya dari folder `contoh` ke folder `pertemuan-11` (lewat File Explorer di Windows atau Finder di macOS), lalu ubah **salinannya**. *File* asli di folder materi tetap utuh.
+- **Membuat *file* baru** (misalnya `patungan.py`): buat langsung di folder `pertemuan-11` lewat ikon **New File...** di panel **Explorer** VS Code.
+
+Untuk menjalankannya, buka folder `pertemuan-11` di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**), buka *file*-nya, lalu klik ▷. Terminal di jendela itu sudah berada di folder `pertemuan-11`, jadi kamu juga bisa langsung mengetik, misalnya, `python patungan.py`.
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal setiap bagian menunjuk *file* contohnya. Klik untuk melihat isi lengkapnya.
+- Blok kode sesudahnya biasanya **potongan** *file* itu, disalin persis. Jangan menjalankan potongannya sendiri. Jalankan *file* lengkapnya dengan cara di atas. Jika yang ditampilkan adalah isi lengkap *file*, keterangannya ditulis di atas blok kode.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di komentar kode dijelaskan di daftar **Penjelasan** di bawah blok kodenya.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan.
+- Paragraf yang diawali **Percobaan:** memintamu menulis atau mengubah kode di folder `pertemuan-11` milikmu. Hasil yang ditampilkan sesudahnya, termasuk pesan *error*, juga hasil asli.
 
 > [!NOTE]
-> Halaman ini banyak menampilkan **pesan error asli** dari potongan kode yang sengaja dibuat salah. Jalur folder sudah dipendekkan menjadi nama file. Bunyinya bisa sedikit berbeda antarversi Python: misalnya, Python 3.11 ke atas menambahkan garis penanda seperti `~~~~^^`, sedangkan Python 3.10 tidak. Fokuslah pada **jenis** exception, **pesannya**, dan **nomor barisnya**.
+> Pesan *error* di halaman ini diambil dari Python 3.13, dengan jalur folder dipendekkan menjadi nama *file*. Di versi lain, tampilannya sedikit berbeda. Python 3.10 tidak menampilkan garis penanda `~~~~` dan `^^^^`, sedangkan Python 3.11 dan 3.12 menaruhnya di baris yang sedikit berbeda. Mulai Python 3.14, pesan pembagian dengan nol berbunyi `ZeroDivisionError: division by zero`. Fokuslah pada **jenis** *exception*, **pesannya**, dan **nomor barisnya**.
 
-## 1. Exception Pertama: Pembagian dengan Nol
+## 1. *Exception* Pertama: Pembagian dengan Nol
 
-File: [`contoh/contoh01_pembagian_nol.py`](contoh/contoh01_pembagian_nol.py)
+*File*: [`contoh/contoh01_pembagian_nol.py`](contoh/contoh01_pembagian_nol.py)
 
 ### Tanpa penanganan: program berhenti mendadak
 
-Kita mulai dari program yang **belum** menangani exception. Simpan sebagai `patungan.py`, lalu jalankan:
+Sebelum membuka *file* contoh, rasakan dulu program yang **belum** menangani *exception*.
+
+**Percobaan:** di folder `pertemuan-11` milikmu, buat *file* baru bernama `patungan.py`, lalu salin kode berikut. Simpan, lalu jalankan dengan tombol ▷ (atau ketik `python patungan.py` di terminal folder itu).
 
 ```python
 def hitung_patungan(total: int, jumlah_orang: int) -> int:
@@ -71,7 +134,7 @@ def main():
 main()
 ```
 
-Hasilnya:
+Hasilnya (Python 3.13):
 
 ```text
 Menghitung patungan...
@@ -87,13 +150,16 @@ Traceback (most recent call last):
 ZeroDivisionError: integer division or modulo by zero
 ```
 
-Baca *traceback* **dari bawah ke atas** (*most recent call last*):
+Baca *traceback* **dari bawah ke atas**. Tulisan *most recent call last* artinya "panggilan terbaru ditulis paling akhir".
 
-- Baris terakhir menyebut **jenis** exception (`ZeroDivisionError`) dan **pesannya**.
-- Blok `File ...` tepat di atasnya adalah **tempat exception lahir**: baris 2, di dalam `hitung_patungan`. Blok-blok di atasnya menunjukkan siapa memanggil siapa, sampai ke titik awal program (baris 11).
-- `Hasil: Rp...` tidak pernah tercetak. Begitu exception dilempar, sisa program tidak dijalankan.
+- Baris terakhir menyebut **jenis** *exception* (`ZeroDivisionError`) dan **pesannya**: pembagian bilangan bulat (atau sisa bagi) dengan nol. Mulai Python 3.14, pesannya lebih singkat: `division by zero`.
+- Blok `File ...` tepat di atasnya adalah **tempat *exception* lahir**: baris 2, di dalam `hitung_patungan`. Garis `~` dan `^` di bawah kodenya menandai bagian yang sedang dikerjakan saat itu. Tanda `^^` tepat berada di bawah operator `//`.
+- Blok-blok di atasnya menunjukkan siapa memanggil siapa: baris 7 di dalam `main` memanggil `hitung_patungan`, dan baris 11 memanggil `main`. Tulisan `<module>` berarti bagian utama *file*, di luar fungsi mana pun. Di situlah program dimulai.
+- `Hasil: Rp...` tidak pernah tercetak. Begitu *exception* dilempar, sisa program tidak dijalankan.
 
 ### Dengan `try`/`except`: program tetap berjalan
+
+Sekarang buka *file* contohnya. Berikut isi lengkap *file* itu, tanpa komentar pembuka:
 
 ```python
 def hitung_patungan(total: int, jumlah_orang: int) -> int:
@@ -115,9 +181,13 @@ def main():
     except ZeroDivisionError:  # [5] exception ditangkap di sini
         print("Gagal: jumlah orang tidak boleh nol")
     print("Program tetap berjalan sampai baris terakhir")  # [6]
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PATUNGAN MAKAN DI WARUNG ===
@@ -131,28 +201,37 @@ Program tetap berjalan sampai baris terakhir
 
 Penjelasan:
 
-- **[1]** Operator `//` (pembagian bilangan bulat) melempar `ZeroDivisionError` jika pembaginya 0. Fungsi ini tidak menangkapnya, jadi exception merambat ke pemanggil.
+- **[1]** Operator `//` (pembagian bilangan bulat) melempar `ZeroDivisionError` jika pembaginya 0. Fungsi ini tidak menangkapnya, jadi *exception* merambat ke pemanggil.
 - **[2]** `try:` diikuti blok berindentasi berisi kode yang **mungkin** gagal.
-- **[3]** Di sinilah exception dilempar. Python langsung berhenti menjalankan blok `try`.
-- **[4]** Baris ini **dilewati**, karena ada di blok `try` setelah baris yang gagal.
-- **[5]** `except ZeroDivisionError:` hanya menangkap exception berjenis `ZeroDivisionError` (atau turunannya). Isinya dijalankan sebagai pengganti.
+- **[3]** Di sinilah *exception* dilempar. Python langsung berhenti menjalankan blok `try`.
+- **[4]** Baris ini **dilewati** karena ada di blok `try` setelah baris yang gagal.
+- **[5]** `except ZeroDivisionError:` hanya menangkap *exception* berjenis `ZeroDivisionError` (atau turunannya). Isinya dijalankan sebagai pengganti.
 - **[6]** Setelah blok `except` selesai, program melanjutkan ke baris **setelah** struktur `try`, bukan kembali ke baris yang gagal.
 
 > [!TIP]
-> **Coba sendiri:** ganti `except ZeroDivisionError:` menjadi `except ValueError:`, lalu jalankan. Tebak dulu: apakah exception-nya masih tertangkap?
+> **Coba sendiri:** salin `contoh/contoh01_pembagian_nol.py` ke folder `pertemuan-11` milikmu. Buka salinannya, ganti baris `except ZeroDivisionError:` menjadi `except ValueError:`, simpan, lalu jalankan. Tebak dulu: apakah *exception*-nya masih tertangkap?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Tidak. `ValueError` bukan jenis yang cocok, jadi exception lolos. Program berhenti dengan *traceback* yang berakhir `ZeroDivisionError: integer division or modulo by zero`, dan baris "Program tetap berjalan..." tidak pernah tercetak. Penangkap hanya bekerja untuk jenis yang **cocok**. Kembalikan menjadi `ZeroDivisionError`.
+Tidak. `ValueError` bukan jenis yang cocok, jadi *exception* lolos. Setelah baris `Menghitung patungan untuk 0 orang...`, program berhenti dengan *traceback* yang diakhiri baris-baris ini:
+
+```text
+  File "contoh01_pembagian_nol.py", line 17, in hitung_patungan
+    return total // jumlah_orang  # [1] gagal jika jumlah_orang = 0
+           ~~~~~~^^~~~~~~~~~~~~~
+ZeroDivisionError: integer division or modulo by zero
+```
+
+Baris "Program tetap berjalan..." tidak pernah tercetak. Penangkap hanya bekerja untuk jenis yang **cocok**.
 
 </details>
 
 ## 2. Mengubah Teks Menjadi Angka
 
-File: [`contoh/contoh02_konversi_teks.py`](contoh/contoh02_konversi_teks.py)
+*File*: [`contoh/contoh02_konversi_teks.py`](contoh/contoh02_konversi_teks.py)
 
-Data dari formulir, file, atau jaringan selalu datang sebagai **teks**. Saat teks diubah dengan `int()`, teks yang bukan bilangan bulat membuat Python melempar `ValueError`.
+Data dari formulir, *file*, atau jaringan selalu datang sebagai **teks**. Saat teks diubah dengan `int()`, teks yang bukan bilangan bulat membuat Python melempar `ValueError`. Berikut potongan *file*-nya, yaitu fungsi `main()`:
 
 ```python
 def main():
@@ -176,7 +255,7 @@ def main():
     print(f"Isian yang salah: {jumlah_salah}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === REKAP JUMLAH PORSI ===
@@ -193,35 +272,45 @@ Isian yang salah: 3
 
 Penjelasan:
 
-- **[1]** Data ditulis langsung di program (bukan dari `input()`), supaya hasilnya selalu sama. Bayangkan ini isian dari formulir pesanan online.
+- **[1]** Data ditulis langsung di program (bukan dari `input()`) supaya hasilnya selalu sama. Bayangkan ini isian dari formulir pesanan *online*.
 - **[2]** `int("dua")`, `int("2.5")`, dan `int("")` sama-sama melempar `ValueError`.
-- **[3]** Penjumlahan ada **setelah** `int()` di dalam blok `try`. Jika `int()` gagal, baris ini ikut dilewati, sehingga total tidak pernah tercemar data yang salah.
+- **[3]** Penjumlahan ada **setelah** `int()` di dalam blok `try`. Jika `int()` gagal, baris ini ikut dilewati sehingga total tidak pernah tercemar data yang salah.
 - **[4]** Karena `try` berada **di dalam** perulangan, satu isian yang salah tidak menghentikan perulangan. Isian berikutnya tetap diproses.
 
 > [!TIP]
-> **Coba sendiri:** exception adalah objek, dan `except ValueError as e:` menyimpannya ke variabel `e`. Ubah baris `except` menjadi bentuk itu, lalu tambahkan `print(f"  pesan asli: {e}")` di dalam bloknya. Pesan apa yang muncul untuk `'dua'`, `'2.5'`, dan `''`?
+> **Coba sendiri:** *exception* adalah objek, dan `except ValueError as e:` menyimpannya ke variabel `e`. Salin `contoh/contoh02_konversi_teks.py` ke folder `pertemuan-11` milikmu. Di salinannya, ubah `except ValueError:` menjadi `except ValueError as e:`. Lalu, tepat di bawah baris `print(f"'{teks}' -> bukan bilangan bulat, dilewati")`, tambahkan baris `print(f"  pesan asli: {e}")` dengan indentasi yang sama. Simpan, lalu jalankan. Pesan apa yang muncul untuk `'dua'`, `'2.5'`, dan `''`?
 
 <details>
 <summary>Lihat jawaban</summary>
 
 ```text
+=== REKAP JUMLAH PORSI ===
+'3' -> 3 porsi
+'dua' -> bukan bilangan bulat, dilewati
   pesan asli: invalid literal for int() with base 10: 'dua'
+'5' -> 5 porsi
+'2.5' -> bukan bilangan bulat, dilewati
   pesan asli: invalid literal for int() with base 10: '2.5'
+'' -> bukan bilangan bulat, dilewati
   pesan asli: invalid literal for int() with base 10: ''
+'4' -> 4 porsi
+
+Total porsi     : 12
+Isian yang salah: 3
 ```
 
-Pesan bawaan ini berguna untuk programmer, tetapi kurang ramah untuk pengguna. Karena itu, program kita menulis pesannya sendiri: `bukan bilangan bulat, dilewati`.
+Artinya kira-kira "teks ini tidak bisa dibaca sebagai bilangan bulat berbasis 10". Pesan bawaan ini berguna untuk pemrogram, tetapi kurang ramah untuk pengguna. Karena itu, program kita menulis pesannya sendiri: `bukan bilangan bulat, dilewati`.
 
 </details>
 
 > [!NOTE]
-> `int(" 7 ")` di Python **berhasil** menghasilkan 7, karena spasi di tepi teks diabaikan. Di Java, `Integer.parseInt(" 7 ")` justru gagal. Perbedaan kecil seperti ini dibahas di [Jembatan Python ↔ Java](../jembatan-python-java.md).
+> `int(" 7 ")` di Python **berhasil** menghasilkan 7 karena spasi di tepi teks diabaikan. Di Java, `Integer.parseInt(" 7 ")` justru gagal. Perbedaan kecil seperti ini dibahas di [Jembatan Python ↔ Java](../jembatan-python-java.md).
 
-## 3. Indeks di Luar Batas dan Exception yang Merambat
+## 3. Indeks di Luar Batas dan *Exception* yang Merambat
 
-File: [`contoh/contoh03_indeks_dan_merambat.py`](contoh/contoh03_indeks_dan_merambat.py)
+*File*: [`contoh/contoh03_indeks_dan_merambat.py`](contoh/contoh03_indeks_dan_merambat.py)
 
-Meminta elemen list di posisi yang tidak ada membuat Python melempar `IndexError`. Contoh ini juga memperlihatkan **perjalanan** exception melewati beberapa fungsi.
+Meminta elemen *list* di posisi yang tidak ada membuat Python melempar `IndexError`. Contoh ini juga memperlihatkan **perjalanan** *exception* melewati beberapa fungsi. Berikut potongan *file*-nya:
 
 ```python
 def ambil_kelompok(jadwal: list[str], giliran: int) -> str:
@@ -247,7 +336,7 @@ def main():
                   f"Hanya ada {len(jadwal)} kelompok.")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === JADWAL PRESENTASI ===
@@ -264,19 +353,19 @@ def main():
 
 Penjelasan:
 
-- **[1]** Giliran 5 berarti indeks 4, padahal list hanya punya indeks 0 sampai 2. Python melempar `IndexError: list index out of range`.
-- **[2]** `umumkan()` tidak punya `try`, jadi exception dari `ambil_kelompok()` **merambat** melewatinya.
-- **[3]** Akibatnya baris ini tidak pernah dijalankan untuk giliran 5. Bandingkan dengan giliran 1 dan 3 di output.
-- **[4]** dan **[5]** Exception baru tertangkap di `main()`. Inilah tempat yang tepat, karena `main()` tahu harus berkata apa kepada pengguna.
+- **[1]** Giliran 5 berarti indeks 4, padahal *list* hanya punya indeks 0 sampai 2. Python melempar `IndexError: list index out of range`.
+- **[2]** `umumkan()` tidak punya `try`, jadi *exception* dari `ambil_kelompok()` **merambat** melewatinya.
+- **[3]** Akibatnya, baris ini tidak pernah dijalankan untuk giliran 5. Bandingkan dengan giliran 1 dan 3 di *output*.
+- **[4]** dan **[5]** *Exception* baru tertangkap di `main()`. Inilah tempat yang tepat karena `main()` tahu harus berkata apa kepada pengguna.
 
 > [!WARNING]
-> Python mengizinkan **indeks negatif**: `jadwal[-1]` berarti elemen terakhir. Jika `umumkan(jadwal, 0)` dipanggil, indeksnya menjadi -1 dan **tidak ada error**. Program dengan tenang mencetak `Giliran 0: Kelompok Bekantan`, padahal giliran 0 tidak ada. Untuk kasus seperti ini, jangan menunggu exception bawaan. Periksa sendiri lebih awal, misalnya `if giliran < 1: raise ValueError(...)`. Caranya dibahas di bagian 6.
+> Python mengizinkan **indeks negatif**: `jadwal[-1]` berarti elemen terakhir. Jika `umumkan(jadwal, 0)` dipanggil, indeksnya menjadi -1 dan **tidak ada *error***. Program dengan tenang mencetak `Giliran 0: Kelompok Bekantan`, padahal giliran 0 tidak ada. Untuk kasus seperti ini, jangan menunggu *exception* bawaan. Periksa sendiri lebih awal, misalnya `if giliran < 1: raise ValueError(...)`. Caranya dibahas di bagian 6.
 
 ## 4. Banyak `except` dan Urutannya
 
-File: [`contoh/contoh04_banyak_except.py`](contoh/contoh04_banyak_except.py)
+*File*: [`contoh/contoh04_banyak_except.py`](contoh/contoh04_banyak_except.py)
 
-Setiap baris data berformat `nama;total_nilai;jumlah_tugas`. Satu baris bisa gagal dengan beberapa cara, dan setiap cara ditangani berbeda.
+Setiap baris data berformat `nama;total_nilai;jumlah_tugas`. Satu baris bisa gagal dengan beberapa cara, dan setiap cara ditangani berbeda. Berikut potongan *file*-nya:
 
 ```python
 def hitung_rata_rata(baris: str) -> int:
@@ -310,7 +399,7 @@ def main():
             print(f"Baris {nomor}: data tidak terbaca, dilewati")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === RATA-RATA NILAI TUGAS ===
@@ -326,13 +415,15 @@ Penjelasan:
 
 - **[1]** `"Citra;160".split(";")` hanya menghasilkan dua bagian, jadi `bagian[2]` melempar `IndexError`. `int("sembilan puluh")` melempar `ValueError`.
 - **[2]** Dimas belum punya tugas yang dinilai, jadi `0 // 0` melempar `ZeroDivisionError`.
-- **[3]** Tuple `(ValueError, IndexError)` berarti "tangkap salah satu dari keduanya". Cocok jika penanganannya sama.
+- **[3]** *Tuple* `(ValueError, IndexError)` berarti "tangkap salah satu dari keduanya". Cocok jika penanganannya sama.
 - **[4]** Penangkap khusus untuk pembagian dengan nol, dengan pesan yang berbeda.
-- **[5]** `Exception` menangkap hampir semua exception lain. Di sini ia menangkap baris 5: `None.split(";")` melempar `AttributeError`, jenis yang tidak kita duga. Karena paling umum, ia **wajib** ditulis paling bawah.
+- **[5]** `Exception` menangkap hampir semua *exception* lain. Di sini ia menangkap baris 5: `None.split(";")` melempar `AttributeError`, jenis yang tidak kita duga. Karena paling umum, ia **harus** ditulis paling bawah. Alasannya ada di bawah ini.
 
 ### Jika urutannya salah
 
 Apa jadinya jika penangkap umum ditulis lebih dulu?
+
+**Percobaan:** di folder `pertemuan-11` milikmu, buat *file* `urutan_salah.py`, salin kode berikut, lalu jalankan.
 
 ```python
 try:
@@ -349,13 +440,13 @@ Hasilnya:
 Terjadi kesalahan umum
 ```
 
-Tidak ada error, tetapi pesan khusus kita **tidak pernah** muncul. `ZeroDivisionError` adalah turunan `Exception`, jadi penangkap pertama sudah cocok, dan penangkap di bawahnya dilewati. Python tidak memperingatkan apa pun, jadi kamu yang harus teliti. (Java menolak mengompilasi kode seperti ini.)
+Tidak ada *error*, tetapi pesan khusus kita **tidak pernah** muncul. `ZeroDivisionError` adalah turunan `Exception`, jadi penangkap pertama sudah cocok, dan penangkap di bawahnya dilewati. Python menjalankan kode ini tanpa peringatan apa pun, jadi kamu yang harus teliti. (Java menolak mengompilasi kode seperti ini.)
 
 ## 5. `else` dan `finally`
 
-File: [`contoh/contoh05_else_dan_finally.py`](contoh/contoh05_else_dan_finally.py)
+*File*: [`contoh/contoh05_else_dan_finally.py`](contoh/contoh05_else_dan_finally.py)
 
-Proyektor di ruang kelas harus **selalu** dimatikan setelah presentasi, apa pun yang terjadi. Method `tampilkan()` milik kelas `Proyektor` bisa gagal dengan dua cara:
+Proyektor di ruang kelas harus **selalu** dimatikan setelah presentasi, apa pun yang terjadi. *Method* `tampilkan()` milik kelas `Proyektor` bisa gagal dengan dua cara: melempar `RuntimeError` jika lampunya putus, atau `ValueError` jika *file*-nya bukan PDF. Berikut potongan kelas itu:
 
 ```python
     def tampilkan(self, nama_file: str):
@@ -366,7 +457,7 @@ Proyektor di ruang kelas harus **selalu** dimatikan setelah presentasi, apa pun 
         print(f"  Menampilkan {nama_file}")
 ```
 
-Fungsi `presentasi()` memakai bentuk `try` yang lengkap:
+Fungsi `presentasi()` memakai bentuk `try` yang lengkap. Potongan berikutnya berisi fungsi itu dan program utamanya:
 
 ```python
 def presentasi(proyektor: Proyektor, nama_file: str):
@@ -400,7 +491,7 @@ def main():
         print(f"Ditangani di main: {e}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PRESENTASI 1: LANCAR ===
@@ -422,20 +513,20 @@ Ditangani di main: lampu proyektor putus
 
 Penjelasan:
 
-- **[1]** Hanya baris yang **mungkin gagal** yang ditaruh di blok `try`. Blok `try` yang pendek membuat jelas exception datang dari mana.
-- **[2]** `except ValueError as e:` menangani file yang bukan PDF. Pesan dari `raise` dibaca lewat `e`.
-- **[3]** `else` hanya berjalan jika blok `try` selesai **tanpa** exception (presentasi 1). Kode di `else` tidak ikut "dijaga" oleh `except`, sehingga error lain di sana tidak tertangkap secara tidak sengaja.
+- **[1]** Hanya baris yang **mungkin gagal** yang ditaruh di blok `try`. Blok `try` yang pendek membuat jelas *exception* datang dari mana.
+- **[2]** `except ValueError as e:` menangani *file* yang bukan PDF. Pesan dari `raise` dibaca lewat `e`.
+- **[3]** `else` hanya berjalan jika blok `try` selesai **tanpa** *exception* (presentasi 1). Kode di `else` tidak ikut "dijaga" oleh `except` sehingga *error* lain di sana tidak tertangkap secara tidak sengaja.
 - **[4]** `finally` berjalan di **ketiga** presentasi. Proyektor tidak pernah lupa dimatikan.
-- **[5]** dan **[6]** Pada presentasi 3, `RuntimeError` tidak cocok dengan `except ValueError`. Exception merambat ke `main()`, tetapi **sebelum** itu `finally` tetap mematikan proyektor. Perhatikan urutan di output: "dimatikan" muncul sebelum "Ditangani di main".
+- **[5]** dan **[6]** Pada presentasi 3, `RuntimeError` tidak cocok dengan `except ValueError`. *Exception* merambat ke `main()`, tetapi **sebelum** itu `finally` tetap mematikan proyektor. Perhatikan urutan di *output*: "dimatikan" muncul sebelum "Ditangani di main".
 
 > [!NOTE]
-> **Pratinjau Pertemuan 15:** untuk file, Python punya pernyataan `with`, misalnya `with open("data/menu_awal.csv", encoding="utf-8") as berkas:`. Setelah blok `with` selesai, file **pasti** tertutup walaupun terjadi exception di dalamnya, seperti `finally` yang ditulis untukmu.
+> **Pratinjau Pertemuan 15:** untuk *file*, Python punya pernyataan `with`, misalnya `with open("data/menu_awal.csv", encoding="utf-8") as berkas:`. Setelah blok `with` selesai, *file* **pasti** tertutup walaupun terjadi *exception* di dalamnya, seperti `finally` yang ditulis untukmu.
 
 ## 6. `raise`: Melempar dan Melempar Ulang
 
-File: [`contoh/contoh06_raise_dan_lempar_ulang.py`](contoh/contoh06_raise_dan_lempar_ulang.py)
+*File*: [`contoh/contoh06_raise_dan_lempar_ulang.py`](contoh/contoh06_raise_dan_lempar_ulang.py)
 
-Di Pertemuan 04 kita sudah memakai `raise ValueError(...)` untuk menolak data. Contoh ini mengulangnya, lalu menambah satu pola baru: **melempar ulang**. Kelas `AC` menyimpan suhu (awalnya 25) dan konstanta batas `SUHU_MIN = 16` serta `SUHU_MAKS = 30`. Method pengaturnya:
+Di Pertemuan 04 kita sudah memakai `raise ValueError(...)` untuk menolak data. Contoh ini mengulangnya, lalu menambah satu pola baru: **melempar ulang**. Kelas `AC` menyimpan suhu (awalnya 25) dan konstanta batas `SUHU_MIN = 16` serta `SUHU_MAKS = 30`. Berikut potongan *method* pengaturnya:
 
 ```python
     def atur_suhu(self, suhu: int):
@@ -445,7 +536,7 @@ Di Pertemuan 04 kita sudah memakai `raise ValueError(...)` untuk menolak data. C
         self._suhu = suhu  # [3] hanya dijalankan jika lolos pemeriksaan
 ```
 
-Fungsi perantara dan program utamanya:
+Potongan berikutnya berisi fungsi perantara dan program utamanya:
 
 ```python
 def tekan_remote(ac: AC, suhu: int):
@@ -469,7 +560,7 @@ def main():
     print(f"Suhu akhir: {ac.suhu} derajat")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === REMOTE AC (suhu awal 25 derajat) ===
@@ -484,13 +575,13 @@ Suhu akhir: 18 derajat
 
 Penjelasan:
 
-- **[1]**, **[2]**, dan **[3]** Validasi lebih awal: data diperiksa **sebelum** atribut diubah. `raise` membuat objek `ValueError` berisi pesan, lalu melemparnya, sehingga method langsung berhenti dan suhu lama tetap utuh.
+- **[1]**, **[2]**, dan **[3]** Validasi lebih awal: data diperiksa **sebelum** atribut diubah. `ValueError(...)` membuat objek *exception* berisi pesan, lalu `raise` melemparnya sehingga *method* langsung berhenti dan suhu lama tetap utuh.
 - **[4]** `tekan_remote()` ingin mencatat setiap penolakan, tetapi tidak tahu harus menampilkan apa ke pengguna.
-- **[5]** `raise` **tanpa apa pun** di dalam `except` melempar ulang exception yang sedang ditangani, lengkap dengan pesan dan jejak aslinya.
-- **[6]** `main()` menerima exception yang sama, lalu menampilkan pesannya. Perhatikan urutan di output: log dulu, baru "Layar remote".
+- **[5]** `raise` **tanpa apa pun** di dalam `except` melempar ulang *exception* yang sedang ditangani, lengkap dengan pesan dan jejak aslinya.
+- **[6]** `main()` menerima *exception* yang sama, lalu menampilkan pesannya. Perhatikan urutan di *output*: log dulu, baru "Layar remote".
 
 > [!TIP]
-> **Coba sendiri:** ganti baris `raise` di `tekan_remote()` dengan `pass`, lalu jalankan. Apa yang salah dari output-nya?
+> **Coba sendiri:** salin `contoh/contoh06_raise_dan_lempar_ulang.py` ke folder `pertemuan-11` milikmu. Di salinannya, ganti kata `raise` pada baris bertanda `# [5]` di `tekan_remote()` dengan `pass`, simpan, lalu jalankan. Apa yang salah dari *output*-nya?
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -506,15 +597,15 @@ Suhu diatur ke 18 derajat
 Suhu akhir: 18 derajat
 ```
 
-Program **berbohong**: tertulis "Suhu diatur ke 10 derajat", padahal AC menolaknya. Exception sudah "ditelan" oleh `tekan_remote()`, jadi `main()` mengira semuanya berhasil. Inilah bahayanya menangkap exception tanpa meneruskannya.
+Program **berbohong**: tertulis "Suhu diatur ke 10 derajat", padahal AC menolaknya. *Exception* sudah "ditelan" oleh `tekan_remote()`, jadi `main()` mengira semuanya berhasil. Inilah bahayanya menangkap *exception* tanpa meneruskannya.
 
 </details>
 
-## 7. Exception Buatan Sendiri dan Chaining
+## 7. *Exception* Buatan Sendiri dan *Chaining*
 
-File: [`contoh/contoh07_exception_buatan_sendiri.py`](contoh/contoh07_exception_buatan_sendiri.py)
+*File*: [`contoh/contoh07_exception_buatan_sendiri.py`](contoh/contoh07_exception_buatan_sendiri.py)
 
-Exception hanyalah **kelas**, jadi kita bisa membuat jenis baru dengan pewarisan. Contoh ini membuat hierarki kecil untuk rekening tabungan: `RekeningError` sebagai induk, dengan dua anak, `SaldoTidakCukupError` (membawa data saldo dan jumlah yang diminta) dan `TransferGagalError`.
+*Exception* hanyalah **kelas**, jadi kita bisa membuat jenis baru dengan pewarisan. Contoh ini membuat hierarki kecil untuk rekening tabungan: `RekeningError` sebagai induk, dengan dua anak, `SaldoTidakCukupError` (membawa data saldo dan jumlah yang diminta) dan `TransferGagalError`. Berikut potongan *file*-nya, yaitu ketiga kelas *exception* itu:
 
 ```python
 class RekeningError(Exception):  # [1] turunan Exception
@@ -539,7 +630,7 @@ class TransferGagalError(RekeningError):
     """Dilempar saat transfer tidak bisa diselesaikan."""
 ```
 
-Method `tarik()` milik kelas `Rekening` melempar `raise SaldoTidakCukupError(self._saldo, jumlah)` **[5]** jika saldo kurang. Fungsi `transfer()` lalu membungkusnya menjadi `TransferGagalError`:
+*Method* `tarik()` milik kelas `Rekening` menjalankan `raise SaldoTidakCukupError(self._saldo, jumlah)` **[5]** jika saldo kurang. Fungsi `transfer()` lalu membungkusnya menjadi `TransferGagalError` (potongan):
 
 ```python
 def transfer(asal: Rekening, tujuan: Rekening, jumlah: int):
@@ -552,7 +643,7 @@ def transfer(asal: Rekening, tujuan: Rekening, jumlah: int):
     print(f"Transfer Rp{jumlah} dari {asal.pemilik} ke {tujuan.pemilik} berhasil")
 ```
 
-Program utamanya:
+Potongan program utamanya:
 
 ```python
     print("=== TARIK TUNAI ===")
@@ -575,7 +666,7 @@ Program utamanya:
             print(f"  Penyebab: {e.__cause__}")  # [10] exception lama tersimpan
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === TARIK TUNAI ===
@@ -593,17 +684,17 @@ Saldo akhir: Budi Rp250000, Siti Rp150000
 
 Penjelasan:
 
-- **[1]** dan **[2]** Exception buatan sendiri **wajib** mewarisi `Exception`, langsung atau tidak langsung. Badan kelas boleh hanya berisi *docstring*. `SaldoTidakCukupError` **adalah** `RekeningError`, dan juga **adalah** `Exception`.
+- **[1]** dan **[2]** *Exception* buatan sendiri dibuat dengan mewarisi `Exception`, langsung atau tidak langsung (alasannya ada di bagian 8). Badan kelas boleh hanya berisi *docstring*. `SaldoTidakCukupError` **adalah** `RekeningError`, dan juga **adalah** `Exception`.
 - **[3]** dan **[4]** Pesan dikirim ke konstruktor induk dengan `super().__init__(...)`; pesan inilah yang muncul saat `print(e)`. Data tambahan disimpan sebagai atribut, persis seperti objek biasa.
-- **[5]** Yang dilempar adalah **objek** baru dari kelas exception kita.
-- **[6]** `raise ... from e` melempar exception baru dan menyimpan `e` sebagai penyebabnya (*exception chaining*).
+- **[5]** Yang dilempar adalah **objek** baru dari kelas *exception* kita.
+- **[6]** `raise ... from e` melempar *exception* baru dan menyimpan `e` sebagai penyebabnya (*exception chaining*).
 - **[7]** dan **[8]** Penangkap spesifik bisa memakai data tambahan (`e.kekurangan`, `e.saldo`) untuk memberi saran.
 - **[9]** Penangkap induk `RekeningError` menangkap `TransferGagalError` karena relasi *is-a*.
-- **[10]** `e.__cause__` berisi exception lama (`SaldoTidakCukupError`). Penyebab aslinya tidak hilang.
+- **[10]** `e.__cause__` berisi *exception* lama (`SaldoTidakCukupError`). Penyebab aslinya tidak hilang.
 
-### Jika exception bersambung tidak ditangkap
+### Jika *exception* bersambung tidak ditangkap
 
-Tambahkan baris `transfer(siti, budi, 250000)` di akhir `main()`, di luar `try`. *Traceback*-nya memuat **dua** bagian:
+**Percobaan:** salin `contoh/contoh07_exception_buatan_sendiri.py` ke folder `pertemuan-11` milikmu. Di salinannya, tambahkan baris `transfer(siti, budi, 250000)` di akhir `main()`, tepat di bawah baris `print(f"Saldo akhir: ...")` dengan indentasi yang sama (jadi di luar `try` mana pun). Simpan, lalu jalankan. Setelah *output* biasa, program berhenti dengan *traceback* yang memuat **dua** bagian:
 
 ```text
 Traceback (most recent call last):
@@ -630,39 +721,41 @@ Traceback (most recent call last):
 TransferGagalError: Transfer Siti ke Budi gagal
 ```
 
-Bagian atas adalah **penyebab** (saldo kurang), bagian bawah adalah exception yang akhirnya lolos (transfer gagal). Kalimat *The above exception was the direct cause of the following exception* menghubungkan keduanya.
+Bagian atas adalah **penyebab** (saldo kurang), bagian bawah adalah *exception* yang akhirnya lolos (transfer gagal). Kalimat *The above exception was the direct cause of the following exception* ("*exception* di atas adalah penyebab langsung *exception* berikut") menghubungkan keduanya. Di Python 3.10, nama jenisnya ditulis dengan awalan `__main__.`, misalnya `__main__.TransferGagalError`. Artinya sama: kelas itu didefinisikan di *file* yang sedang dijalankan.
 
 > [!NOTE]
-> Jika kamu melempar exception baru di dalam `except` **tanpa** `from e`, Python tetap mencatat exception lama, tetapi dengan kalimat lain: *During handling of the above exception, another exception occurred*. Artinya "terjadi exception lain saat sedang menangani exception pertama", yang biasanya menandakan kecelakaan. Tulis `from e` untuk menegaskan bahwa pembungkusan itu **disengaja**.
+> Jika kamu melempar *exception* baru di dalam `except` **tanpa** `from e`, Python tetap mencatat *exception* lama, tetapi dengan kalimat lain: *During handling of the above exception, another exception occurred*. Artinya "terjadi *exception* lain saat sedang menangani *exception* pertama", yang biasanya menandakan kecelakaan. Tulis `from e` untuk menegaskan bahwa pembungkusan itu **disengaja**.
 
-## 8. Hierarki Exception Python
+## 8. Hierarki *Exception* Python
 
-Semua exception bawaan Python tersusun dalam pohon pewarisan (diagramnya ada di [halaman konsep](../README.md#8-hierarki-exception)). Di puncaknya ada `BaseException`, dengan tiga anak penting: `Exception` (induk semua exception "biasa"), `KeyboardInterrupt` (pengguna menekan Ctrl+C), dan `SystemExit` (program diminta berhenti).
+Semua *exception* bawaan Python tersusun dalam pohon pewarisan (diagramnya ada di [halaman konsep](../README.md#8-hierarki-exception)). Di puncaknya ada `BaseException`, dengan tiga anak penting: `Exception` (induk semua *exception* "biasa"), `KeyboardInterrupt` (pengguna menekan Ctrl+C), dan `SystemExit` (program diminta berhenti).
 
-Kamu bisa memeriksa leluhur sebuah kelas exception dengan atribut `__mro__` (urutan pencarian method, Pertemuan 07). Misalnya `print(ZeroDivisionError.__mro__)` menghasilkan:
+Kamu bisa memeriksa leluhur sebuah kelas *exception* dengan atribut `__mro__` (urutan pencarian *method*, Pertemuan 07).
+
+**Percobaan:** buat *file* `cek_mro.py` di folder `pertemuan-11` milikmu, isi dengan satu baris `print(ZeroDivisionError.__mro__)`, lalu jalankan. Hasilnya:
 
 ```text
 (<class 'ZeroDivisionError'>, <class 'ArithmeticError'>, <class 'Exception'>, <class 'BaseException'>, <class 'object'>)
 ```
 
-Akibatnya:
+Baca dari kiri ke kanan: `ZeroDivisionError` adalah anak `ArithmeticError`, cucu `Exception`, dan seterusnya sampai `object`. Akibatnya:
 
 - `except ArithmeticError:` ikut menangkap `ZeroDivisionError`, dan `except LookupError:` ikut menangkap `IndexError` maupun `KeyError`.
 - `except Exception:` menangkap hampir semua kesalahan, tetapi **tidak** menangkap `KeyboardInterrupt` dan `SystemExit`. Itu memang disengaja: Ctrl+C harus tetap bisa menghentikan program.
 - `except:` **tanpa** nama jenis menangkap **segalanya**, termasuk Ctrl+C. Hindari bentuk ini. Jika benar-benar butuh jaring pengaman, tulis `except Exception:`.
 
 > [!IMPORTANT]
-> Exception buatan sendiri selalu mewarisi `Exception`, **bukan** `BaseException`. Dengan begitu, ia ikut tertangkap oleh `except Exception:` seperti exception biasa lainnya.
+> *Exception* buatan sendiri selalu mewarisi `Exception`, **bukan** `BaseException`. Dengan begitu, ia ikut tertangkap oleh `except Exception:` seperti *exception* biasa lainnya.
 
 ## 9. Studi Kasus KedaiKita
 
-File: [`studi-kasus/main.py`](studi-kasus/main.py) dan file baru [`studi-kasus/pengecualian.py`](studi-kasus/pengecualian.py), ditambah perubahan kecil di `kedai.py`, `menu.py`, `pembayaran.py`, dan `pesanan.py`.
+*File*: [`studi-kasus/main.py`](studi-kasus/main.py) dan *file* baru [`studi-kasus/pengecualian.py`](studi-kasus/pengecualian.py), ditambah perubahan kecil di `kedai.py`, `menu.py`, `pembayaran.py`, dan `pesanan.py`.
 
 Rancangan dan diagramnya sudah dibahas di [halaman konsep](../README.md#12-studi-kasus-kedaikita-kesalahan-yang-jelas-dan-bisa-ditangkap).
 
 **Apa yang berubah dibanding Pertemuan 10?**
 
-- **File baru `pengecualian.py`** berisi `KedaiError` dan tiga turunannya.
+- ***File* baru `pengecualian.py`** berisi `KedaiError` dan tiga turunannya.
 - `kedai.py`: `cari_menu()` melempar `MenuTidakDitemukanError`, tidak lagi mengembalikan `None`.
 - `menu.py`: `kurangi_stok()` melempar `StokTidakCukupError` (sebelumnya `ValueError` biasa).
 - `pembayaran.py`: `proses()` tidak lagi mengembalikan `True`/`False`. Jika gagal, ia melempar `PembayaranGagalError`.
@@ -670,7 +763,7 @@ Rancangan dan diagramnya sudah dibahas di [halaman konsep](../README.md#12-studi
 - `main.py`: skenarionya baru, memakai `try`/`except`/`else`/`finally`. Fungsi `cetak_semua()` dari Pertemuan 10 tidak dipakai lagi.
 - `utilitas.py`, `pelanggan.py`, dan `dapat_dicetak.py` **tidak berubah**.
 
-### Exception khusus KedaiKita
+### *Exception* khusus KedaiKita
 
 Isi `pengecualian.py` (setelah *docstring* modulnya):
 
@@ -713,10 +806,10 @@ class PembayaranGagalError(KedaiError):
 ### Siapa melempar apa
 
 - `kedai.py`: `cari_menu()` kini diakhiri `raise MenuTidakDitemukanError(kode)` setelah perulangan selesai tanpa hasil. Tipe kembaliannya berubah dari `Menu | None` menjadi `Menu`, jadi pemanggil tidak perlu lagi memeriksa `None`.
-- `menu.py`: `kurangi_stok()` menulis `raise StokTidakCukupError(self._nama, jumlah, self._stok)` saat stok kurang. Jumlah yang tidak positif tetap ditolak dengan `ValueError`, karena itu kesalahan input biasa, bukan aturan bisnis kedai.
-- `pembayaran.py`: `proses()` tidak lagi mengembalikan `True`/`False`. `PembayaranTunai` dan `PembayaranQRIS` melempar `PembayaranGagalError` jika uang atau saldonya kurang. `PembayaranKartu` tidak pernah melempar, karena di simulasi ini transaksi kartu selalu disetujui.
+- `menu.py`: `kurangi_stok()` menulis `raise StokTidakCukupError(self._nama, jumlah, self._stok)` saat stok kurang. Jumlah yang tidak positif tetap ditolak dengan `ValueError` karena itu kesalahan *input* biasa, bukan aturan bisnis kedai.
+- `pembayaran.py`: `proses()` tidak lagi mengembalikan `True`/`False`. `PembayaranTunai` dan `PembayaranQRIS` melempar `PembayaranGagalError` jika uang atau saldonya kurang. `PembayaranKartu` tidak pernah melempar karena di simulasi ini transaksi kartu selalu disetujui.
 
-Perubahan paling menarik ada di `bayar()` milik `pesanan.py`. Bagian awalnya menolak pesanan yang sudah LUNAS:
+Perubahan paling menarik ada di `bayar()` milik `pesanan.py`. Berikut potongan bagian awalnya, yang menolak pesanan yang sudah LUNAS:
 
 ```python
     def bayar(self, pembayaran: Pembayaran):
@@ -732,12 +825,12 @@ Bagian tengahnya memanggil `proses()` **tanpa** `try`:
         self._status = "LUNAS"
 ```
 
-- Pesanan yang sudah LUNAS ditolak dengan `KedaiError` (induknya), karena kesalahan ini tidak butuh jenis khusus. `tambah_item()` melakukan pemeriksaan yang sama.
-- `bayar()` sengaja **tidak menangkap** `PembayaranGagalError`. Exception itu merambat ke `main.py`, dan karena baris `self._status = "LUNAS"` ikut dilewati, **status tetap BARU**. Tidak ada lagi `if berhasil:` seperti di Pertemuan 10.
+- Pesanan yang sudah LUNAS ditolak dengan `KedaiError` (induknya) karena kesalahan ini tidak butuh jenis khusus. `tambah_item()` melakukan pemeriksaan yang sama.
+- `bayar()` sengaja **tidak menangkap** `PembayaranGagalError`. *Exception* itu merambat ke `main.py`, dan karena baris `self._status = "LUNAS"` ikut dilewati, **status tetap BARU**. Tidak ada lagi `if berhasil:` seperti di Pertemuan 10.
 
 ### Program utama
 
-Bagian pertama memproses lima permintaan Budi. Setiap jenis kegagalan punya penangkapnya sendiri:
+Bagian pertama `main()` memproses lima permintaan Budi. Setiap jenis kegagalan punya penangkapnya sendiri (potongan `main.py`):
 
 ```python
     print("=== PESANAN BUDI: MENAMBAH ITEM ===")
@@ -765,7 +858,7 @@ Bagian pertama memproses lima permintaan Budi. Setiap jenis kegagalan punya pena
 - `ValueError` menangkap permintaan 0 porsi, yang ditolak oleh `ItemPesanan`.
 - `else` mencetak `[OK]` hanya jika kedua baris di blok `try` berhasil.
 
-Bagian kedua memperlihatkan **rencana cadangan** dan `finally`:
+Di antara bagian pertama dan kedua, pesanan Budi dibayar tunai Rp100.000 di dalam `try` tersendiri. Bagian kedua memperlihatkan **rencana cadangan** dan `finally` (potongan `main.py`):
 
 ```python
     print("=== PESANAN SITI: BAYAR GAGAL, LALU COBA LAGI ===")
@@ -791,11 +884,11 @@ Bagian kedua memperlihatkan **rencana cadangan** dan `finally`:
 - Di dalam blok `except` boleh ada `try` lagi. Pembayaran cadangan juga bisa gagal, jadi ia dijaga sendiri dengan nama variabel `e2`.
 - `finally` mencatat log setelah semuanya selesai, berhasil maupun gagal.
 
-Bagian ketiga (pesanan Rina) cukup memakai **satu** penangkap, `except KedaiError as e:`, untuk semua jenis error kedai: kode M77 yang tidak ada, stok yang kurang, serta membayar ulang dan mengubah pesanan Budi yang sudah LUNAS. Bagian terakhir mencetak ringkasan status dan daftar menu.
+Bagian ketiga (pesanan Rina) cukup memakai **satu** penangkap, `except KedaiError as e:`, untuk semua jenis *error* kedai: kode M77 yang tidak ada, stok yang kurang, serta membayar ulang dan mengubah pesanan Budi yang sudah LUNAS. Bagian terakhir mencetak ringkasan status dan daftar menu.
 
-Jalankan `python main.py` dari dalam folder `studi-kasus` (lihat [Persiapan](#persiapan)).
+Jalankan `main.py` dengan tombol ▷, atau ketik `python main.py` dari dalam folder `studi-kasus` (lihat [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)).
 
-**Output:**
+***Output:***
 
 ```text
 === PESANAN BUDI: MENAMBAH ITEM ===
@@ -844,15 +937,15 @@ P003 (Rina Marlina): BARU, 0 item
 [M05] Pisang Goreng Keju (Makanan) - Rp15.000 | stok 11 | pedas level 0
 ```
 
-Perhatikan pembayaran QRIS Siti: baris `Status : LUNAS` tidak muncul setelah kegagalan pertama, karena `proses()` melempar exception sebelum status diubah. Pesanan Rina tetap kosong (0 item), dan stok Mie Goreng Jawa tetap 10.
+Perhatikan pembayaran QRIS Siti: baris `Status` tidak muncul setelah kegagalan pertama karena `proses()` melempar *exception* sebelum status diubah. Pesanan Rina tetap kosong (0 item), dan stok Mie Goreng Jawa tetap 10.
 
 > [!TIP]
-> **Coba sendiri:** tambahkan baris `kedai.cari_menu("M99")` tepat setelah `kedai = siapkan_kedai()` di `main()`, di luar `try` mana pun. Tebak dulu apa yang terjadi.
+> **Coba sendiri:** salin **seluruh** folder `studi-kasus` ke folder `pertemuan-11` milikmu (hasilnya `pertemuan-11/studi-kasus`). Buka salinan `main.py`, lalu tambahkan baris `kedai.cari_menu("M99")` tepat di bawah `kedai = siapkan_kedai()` dengan indentasi yang sama (di luar `try` mana pun). Simpan, lalu jalankan salinan `main.py` itu. Tebak dulu apa yang terjadi.
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Python tidak memprotes apa pun sebelum program berjalan. Exception baru meledak saat baris itu dijalankan. Bagian akhir *traceback*-nya:
+Python tidak memprotes apa pun sebelum program berjalan. *Exception* baru meledak saat baris itu dijalankan, jadi program langsung berhenti tanpa mencetak *output* lain. Bagian akhir *traceback*-nya:
 
 ```text
   File "main.py", line 36, in main
@@ -863,34 +956,53 @@ Python tidak memprotes apa pun sebelum program berjalan. Exception baru meledak 
 pengecualian.MenuTidakDitemukanError: Menu dengan kode M99 tidak ditemukan
 ```
 
-Nama jenisnya ditulis lengkap dengan nama modulnya (`pengecualian.`), karena kelas itu didefinisikan di file `pengecualian.py`. Bandingkan dengan Pertemuan 10: dulu kesalahan yang sama meledak sebagai `AttributeError` di dalam `tambah_item()`, jauh dari penyebabnya. Sekarang pesannya langsung menyebut masalah yang sebenarnya. Hapus lagi baris tadi setelah mencoba.
+Nama jenisnya ditulis lengkap dengan nama modulnya (`pengecualian.`) karena kelas itu didefinisikan di *file* `pengecualian.py`. Bandingkan dengan Pertemuan 10: dulu kesalahan yang sama meledak sebagai `AttributeError` di dalam `tambah_item()`, jauh dari penyebabnya. Sekarang pesannya langsung menyebut masalah yang sebenarnya.
 
 </details>
 
-## 10. Kesalahan Umum dan Cara Membaca Pesan Error
+## 10. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-Kesalahan yang paling sering, yaitu **menelan exception diam-diam** dengan `except ...: pass`, sudah kamu lihat di "Coba sendiri" bagian 6: program tidak error, tetapi berbohong. Berikut kesalahan lain yang perlu diwaspadai. Sebagian di antaranya juga **tidak** memunculkan pesan error sama sekali.
+Kesalahan yang paling sering, yaitu **menelan *exception* diam-diam** dengan `except ...: pass`, sudah kamu lihat di "Coba sendiri" bagian 6: program tidak *error*, tetapi berbohong. Berikut kesalahan lain yang perlu diwaspadai. Sebagian di antaranya juga **tidak** memunculkan pesan *error* sama sekali.
+
+Setiap kesalahan di bawah ini berupa program utuh yang bisa kamu coba sendiri: buat *file* dengan nama yang disebutkan di folder `pertemuan-11` milikmu, salin kodenya, lalu jalankan.
 
 ### Kesalahan 1: Lupa menulis `raise`
 
+**Percobaan:** *file* `lupa_raise.py`.
+
 ```python
+class AC:
+    def __init__(self):
+        self.suhu = 25
+
     def atur_suhu(self, suhu: int):
         if suhu < 16 or suhu > 30:
             ValueError(f"Suhu {suhu} di luar batas 16-30 derajat")
         self.suhu = suhu
+
+
+ac = AC()
+ac.atur_suhu(10)
+print(f"Suhu AC sekarang: {ac.suhu} derajat")
 ```
 
-Hasilnya, setelah `ac.atur_suhu(10)`:
+Hasilnya, tanpa pesan *error* apa pun:
 
 ```text
 Suhu AC sekarang: 10 derajat
 ```
 
-**Artinya:** baris `ValueError(...)` hanya **membuat** objek exception, lalu membuangnya. Tanpa `raise`, objek itu tidak pernah dilempar, sehingga suhu 10 lolos. **Perbaikan:** `raise ValueError(...)`.
+**Artinya:** baris `ValueError(...)` hanya **membuat** objek *exception*, lalu membuangnya. Tanpa `raise`, objek itu tidak pernah dilempar sehingga suhu 10 lolos. **Perbaikan:** tulis `raise ValueError(...)`.
 
-### Kesalahan 2: Exception buatan sendiri tanpa `super().__init__(pesan)`
+### Kesalahan 2: *Exception* buatan sendiri tanpa `super().__init__(pesan)`
+
+**Percobaan:** *file* `tanpa_super.py`.
 
 ```python
+class KedaiError(Exception):
+    """Induk semua error khusus KedaiKita."""
+
+
 class StokTidakCukupError(KedaiError):
     def __init__(self, nama_menu: str, diminta: int, tersedia: int):
         self.nama_menu = nama_menu
@@ -910,9 +1022,11 @@ Hasilnya:
 [GAGAL] ('Mie Goreng Jawa', 50, 10)
 ```
 
-**Artinya:** karena pesan tidak pernah dikirim ke kelas induk, Python menampilkan argumen mentahnya sebagai pesan. **Perbaikan:** panggil `super().__init__(f"Stok {nama_menu} tidak cukup: ...")` di baris pertama konstruktor.
+**Artinya:** karena pesan tidak pernah dikirim ke kelas induk, Python menampilkan argumen mentahnya (tiga nilai di dalam tanda kurung) sebagai pesan. **Perbaikan:** panggil `super().__init__(f"Stok {nama_menu} tidak cukup: ...")` di baris pertama konstruktor, seperti di `pengecualian.py`.
 
 ### Kesalahan 3: Memakai variabel dari blok `try` yang gagal
+
+**Percobaan:** *file* `variabel_try.py`.
 
 ```python
 def baca_porsi(teks: str) -> int:
@@ -927,6 +1041,8 @@ print(baca_porsi("3"))
 print(baca_porsi("dua"))
 ```
 
+Hasilnya:
+
 ```text
 3
 'dua' bukan angka
@@ -940,28 +1056,25 @@ Traceback (most recent call last):
 UnboundLocalError: cannot access local variable 'porsi' where it is not associated with a value
 ```
 
-**Artinya:** saat `int("dua")` gagal, baris `porsi = ...` tidak pernah selesai, jadi variabel `porsi` tidak pernah diisi. Setelah `except` selesai, `return porsi` mencoba membaca variabel yang kosong. **Perbaikan:** kembalikan nilai cadangan di dalam `except` (misalnya `return 0`), atau lempar ulang exception-nya.
+**Artinya:** "tidak bisa membaca variabel lokal `porsi` karena variabel itu belum diberi nilai". Saat `int("dua")` gagal, baris `porsi = ...` tidak pernah selesai, jadi variabel `porsi` tidak pernah diisi. Setelah `except` selesai, `return porsi` mencoba membaca variabel yang kosong. Di Python 3.10, kalimatnya berbunyi `local variable 'porsi' referenced before assignment`, tetapi jenis *exception*-nya sama. **Perbaikan:** kembalikan nilai cadangan di dalam `except` (misalnya `return 0`), atau lempar ulang *exception*-nya.
 
 > [!NOTE]
-> Yang boleh dilempar hanyalah objek exception. `raise "Stok habis"` ditolak dengan `TypeError: exceptions must derive from BaseException`. Tulis `raise ValueError("Stok habis")`, atau lebih baik lagi exception buatan sendiri.
-
-> [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python. Misalnya, pesan `UnboundLocalError` di Python 3.10 berbeda kalimatnya, tetapi jenis exception-nya tetap sama.
+> Yang boleh dilempar hanyalah objek *exception*. `raise "Stok habis"` ditolak dengan `TypeError: exceptions must derive from BaseException` ("*exception* harus turunan `BaseException`"). Tulis `raise ValueError("Stok habis")`, atau lebih baik lagi *exception* buatan sendiri.
 
 ## 📝 Ringkasan Sintaks
 
 | Konsep | Sintaks Python | Contoh |
 |---|---|---|
 | Menangkap | `try:` ... `except Jenis:` | `except ZeroDivisionError:` |
-| Menyimpan objek exception | `except Jenis as e:` | `print(f"Gagal: {e}")` |
+| Menyimpan objek *exception* | `except Jenis as e:` | `print(f"Gagal: {e}")` |
 | Beberapa jenis, satu penanganan | `except (A, B):` | `except (ValueError, IndexError):` |
-| Jika tidak ada exception | `else:` | `else: print("[OK]")` |
+| Jika tidak ada *exception* | `else:` | `else: print("[OK]")` |
 | Selalu dijalankan | `finally:` | `finally: proyektor.matikan()` |
 | Melempar | `raise Jenis("pesan")` | `raise ValueError("Suhu di luar batas")` |
 | Melempar ulang | `raise` (di dalam `except`) | `raise` |
 | *Exception chaining* + membaca penyebab | `raise Baru(...) from e`, lalu `e.__cause__` | `raise TransferGagalError(pesan) from e` |
-| Exception buatan sendiri | `class NamaError(Induk):` | `class KedaiError(Exception):` |
-| Pesan exception buatan sendiri | `super().__init__(pesan)` | `super().__init__(f"Menu {kode} tidak ditemukan")` |
+| *Exception* buatan sendiri | `class NamaError(Induk):` | `class KedaiError(Exception):` |
+| Pesan *exception* buatan sendiri | `super().__init__(pesan)` | `super().__init__(f"Menu {kode} tidak ditemukan")` |
 | Data tambahan | atribut biasa | `self.tersedia = tersedia` |
 
 ## ➡️ Langkah Berikutnya

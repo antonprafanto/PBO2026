@@ -4,7 +4,7 @@ Pertemuan 14 - Design Pattern Dasar
 
 Variasi 1 (EAGER, disiapkan di awal): cukup buat SATU objek di tingkat modul.
     Sebuah modul hanya dimuat sekali, jadi objek di dalamnya juga hanya
-    dibuat sekali. Inilah cara yang paling sering dipakai programmer Python.
+    dibuat sekali. Inilah cara yang paling sering dipakai pemrogram Python.
 Variasi 2 (LAZY, dibuat saat pertama diminta): override __new__, yaitu method
     yang benar-benar MEMBUAT objek (dipanggil sebelum __init__). Setiap
     pemanggilan Tema() mengembalikan objek yang sama.

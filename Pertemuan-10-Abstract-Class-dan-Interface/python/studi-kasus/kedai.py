@@ -6,7 +6,7 @@ Relasi yang terlihat di sini:
                       menu bisa tetap ada walau tidak terdaftar di kedai)
 - Kedai --> Pesanan : ASOSIASI (kedai mencatat pesanan-pesanan yang dibuat)
 
-Yang baru di Pertemuan 10: Kedai mewarisi DapatDicetak, sehingga
+Yang baru di Pertemuan 10: Kedai mewarisi DapatDicetak sehingga
 tampilkan_menu() diganti nama menjadi cetak().
 """
 

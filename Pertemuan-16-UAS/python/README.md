@@ -1,4 +1,4 @@
-# 🐍 Solusi Praktik Python — Pertemuan 16: UAS
+# 🐍 Solusi Praktik Python Pertemuan 16: UAS
 
 [⬅️ Pembahasan](../pembahasan.md) · [☕ Solusi Java](../java/README.md) · [Presentasi Proyek Akhir ➡️](../README.md#8-presentasi-proyek-akhir)
 
@@ -7,44 +7,117 @@
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
+  - [Cara Menjalankan Solusi](#cara-menjalankan-solusi)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membandingkan Jawabanmu dengan Solusi](#cara-membandingkan-jawabanmu-dengan-solusi)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
 1. [Soal C1: Sistem Pemesanan Tiket Bioskop](#1-soal-c1-sistem-pemesanan-tiket-bioskop)
-2. [Soal C2: Refactor Kasir Laundry](#2-soal-c2-refactor-kasir-laundry)
-3. [Membuktikan Output Tidak Berubah](#3-membuktikan-output-tidak-berubah)
-4. [Kesalahan Umum dan Cara Membaca Pesan Error](#4-kesalahan-umum-dan-cara-membaca-pesan-error)
+2. [Soal C2: *Refactor* Kasir *Laundry*](#2-soal-c2-refactor-kasir-laundry)
+3. [Membuktikan *Output* Tidak Berubah](#3-membuktikan-output-tidak-berubah)
+4. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#4-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
 ```text
 python/
 └── solusi/
-    ├── soal_c1_tiket_bioskop.py   <- Soal C1
+    ├── soal_c1_tiket_bioskop.py   <- solusi Soal C1
     ├── soal_c2_sebelum.py         <- Soal C2: kode awal yang berantakan
     └── soal_c2_sesudah.py         <- Soal C2: hasil refactor
 ```
 
-Cara menjalankan dari terminal:
+Setiap solusi sengaja dibuat **satu *file*** dan hanya memakai pustaka standar agar mudah dijalankan dan dibandingkan. Di proyek sungguhan, kelas-kelasnya sebaiknya dipisah ke beberapa modul, seperti KedaiKita sejak Pertemuan 05. Saat ujian, ikuti aturan pengumpulan dari dosen.
+
+### Cara Menjalankan Solusi
+
+Pilih salah satu cara. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-16-UAS/python`. Di panel **Explorer**, buka folder `solusi`, klik *file* yang ingin dijalankan (misalnya `soal_c1_tiket_bioskop.py`), lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-16-UAS/python/solusi` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd solusi` |
+
+Setelah itu, jalankan *file* yang ingin kamu lihat, satu perintah setiap kali:
 
 ```bash
-cd Pertemuan-16-UAS/python/solusi
 python soal_c1_tiket_bioskop.py
 python soal_c2_sebelum.py
 python soal_c2_sesudah.py
 ```
 
+Baris pertama *output* Soal C1 adalah `=== JADWAL TAYANG BioskopKita ===`. Kedua program Soal C2 diawali garis `====================================` dan *output*-nya sama persis. *Output* lengkapnya ada di bagian 1 dan 2.
+
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `solusi`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
 > [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Semua solusi ditulis untuk Python 3.10 ke atas dan hanya memakai pustaka standar. Setiap solusi sengaja dibuat **satu file** agar mudah dijalankan saat ujian. Di proyek sungguhan, kelas-kelasnya sebaiknya dipisah ke beberapa modul, seperti KedaiKita sejak Pertemuan 05.
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya.
+
+### Tempat Menyimpan Kodemu Sendiri
+
+Jawaban latihan UAS-mu jangan disimpan di folder materi, termasuk di folder `solusi/`. Simpan di folder milikmu sendiri **di luar** folder materi, misalnya `PBO-latihan-saya/uas`, agar pekerjaanmu tidak tertimpa saat materi diperbarui (lihat [aturan emas di Git dan GitHub bagian 5](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri)).
+
+```text
+Documents/
+├── PBO2026/                     <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/            <- milikmu sendiri
+    └── uas/
+        ├── jawaban_c1.py        <- jawabanmu untuk Soal C1
+        ├── jawaban_c2.py        <- jawabanmu untuk Soal C2 (hasil refactor-mu)
+        ├── soal_c2_sebelum.py   <- salinan kode awal Soal C2
+        └── coba/                <- tempat bereksperimen dengan salinan solusi
+```
+
+Ingin bereksperimen dengan kode solusi, misalnya untuk "Coba sendiri" atau kesalahan di bagian 4? Salin dulu *file* solusinya ke folder `uas/coba` lewat File Explorer (Windows) atau Finder (macOS), lalu ubah salinannya. *File* di folder materi tetap utuh.
+
+### Cara Membandingkan Jawabanmu dengan Solusi
+
+Targetnya, *output* programmu **sama persis** dengan *output* solusi. Biarkan komputer yang membandingkan karena mata mudah melewatkan satu spasi.
+
+1. Salin *file* solusi yang ingin dibandingkan, misalnya `soal_c1_tiket_bioskop.py`, ke folder `PBO-latihan-saya/uas`.
+2. Buka terminal **di folder `uas` itu**. Caranya: di VS Code, pilih **File → Open Folder**, buka folder `uas`, lalu pilih **Terminal → New Terminal**.
+3. Simpan *output* kedua program ke *file* teks. Tanda `>` artinya "jangan tampilkan di layar, simpan ke *file* ini":
+
+   ```bash
+   python jawaban_c1.py > hasil_saya.txt
+   python soal_c1_tiket_bioskop.py > hasil_solusi.txt
+   ```
+
+4. Bandingkan kedua *file* dengan perintah yang sesuai dengan terminalmu:
+
+   | Terminal | Perintah | Jika kedua *file* sama |
+   |---|---|---|
+   | Windows: Command Prompt | `fc hasil_saya.txt hasil_solusi.txt` | muncul `FC: no differences encountered` |
+   | Windows: PowerShell (terminal bawaan VS Code) | `fc.exe hasil_saya.txt hasil_solusi.txt` | sama seperti di atas |
+   | macOS/Linux | `diff hasil_saya.txt hasil_solusi.txt` | tidak mencetak apa pun |
+
+Di PowerShell, `fc` tanpa `.exe` adalah singkatan perintah lain, jadi selalu tulis `fc.exe`. VS Code juga bisa membandingkan dua *file* tanpa terminal: klik kanan *file* pertama di panel **Explorer**, pilih **Select for Compare**, lalu klik kanan *file* kedua dan pilih **Compare with Selected**. Untuk Soal C2, cara yang sama dipakai untuk membuktikan bahwa *refactor*-mu tidak mengubah perilaku (lihat [bagian 3](#3-membuktikan-output-tidak-berubah)).
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal bagian 1 dan 2 menunjuk *file* solusinya. Klik untuk melihat isi lengkapnya.
+- Blok kode sesudahnya adalah **potongan** penting dari *file* itu, disalin persis beserta komentarnya. Jangan menjalankan potongannya sendiri. Jalankan *file* lengkapnya dengan cara di atas.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di komentar kode dijelaskan di daftar **Penjelasan** di bawah blok kodenya. Nomornya dimulai lagi dari `[1]` untuk setiap *file*.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan.
 
 ---
 
 ## 1. Soal C1: Sistem Pemesanan Tiket Bioskop
 
-File: [`solusi/soal_c1_tiket_bioskop.py`](solusi/soal_c1_tiket_bioskop.py)
+*File*: [`solusi/soal_c1_tiket_bioskop.py`](solusi/soal_c1_tiket_bioskop.py)
 
 Saran urutan membaca: *exception* → `Tiket` dan kelas anaknya → `Jadwal` → `Bioskop` → program utama. Urutan ini sama dengan urutan saat kamu sebaiknya **menulis** kodenya: dari bagian yang tidak bergantung pada apa pun, menuju bagian yang memakai semuanya.
 
-### 1.1 Exception Buatan Sendiri
+### 1.1 *Exception* Buatan Sendiri
 
 ```python
 class BioskopError(Exception):
@@ -72,9 +145,9 @@ class KursiSudahTerjualError(BioskopError):
 
 Penjelasan:
 
-- `BioskopError` sengaja kosong (hanya *docstring*). Gunanya sebagai **induk bersama**, sehingga semua error bioskop bisa ditangkap sekaligus dengan `except BioskopError`.
+- `BioskopError` sengaja kosong (hanya *docstring*). Gunanya sebagai **induk bersama** sehingga semua *error* bioskop bisa ditangkap sekaligus dengan `except BioskopError`.
 - **[1]** Pesan yang dikirim ke `super().__init__()` adalah teks yang muncul saat *exception* dicetak (`print(e)` atau `f"{e}"`). Jika baris ini dilupakan, hasil cetaknya menjadi aneh (lihat [Kesalahan 2](#kesalahan-2-lupa-memanggil-super__init__-pada-exception-buatan-sendiri)).
-- **[2]** *Exception* adalah objek biasa, jadi boleh menyimpan atribut. Penangkap error bisa membaca `e.sisa_kursi` untuk memberi saran kepada pemesan.
+- **[2]** *Exception* adalah objek biasa, jadi boleh menyimpan atribut. Penangkap *error* bisa membaca `e.sisa_kursi` untuk memberi saran kepada pemesan.
 
 ### 1.2 Kelas Abstrak Tiket dan Tiga Kelas Anaknya
 
@@ -119,12 +192,12 @@ class TiketVIP(Tiket):
 
 Penjelasan:
 
-- `Tiket` mewarisi `ABC`, dan atributnya hanya bisa dibaca lewat *property* tanpa *setter* (`kode_kursi`, `pemesan`, `harga_dasar`). Jadi tidak ada jalan resmi untuk mengubah tiket yang sudah terjual. (Ingat, awalan `_` di Python adalah kesepakatan antarprogrammer, bukan kunci pengaman.)
-- **[3]** `@abstractmethod` menandai method yang **wajib** diisi kelas anak. Python menolak membuat objek dari kelas yang masih punya method abstrak kosong.
+- `Tiket` mewarisi `ABC`, dan atributnya hanya bisa dibaca lewat *property* tanpa *setter* (`kode_kursi`, `pemesan`, `harga_dasar`). Jadi, tidak ada jalan resmi untuk mengubah tiket yang sudah terjual. (Ingat, awalan `_` di Python adalah kesepakatan antarpemrogram, bukan kunci pengaman.)
+- **[3]** `@abstractmethod` menandai *method* yang **wajib** diisi kelas anak. Python menolak membuat objek dari kelas yang masih punya *method* abstrak kosong.
 - **[4]** `__str__` ditulis **sekali** di kelas induk, tetapi memanggil `jenis()` dan `hitung_harga()` milik objek sebenarnya. Inilah polimorfisme dari dalam kelas induk (pola *Template Method* sederhana).
-- Kelas anak tidak menulis `__init__` sama sekali, karena konstruktor induk sudah cukup. Konstanta `TAMBAHAN` menggantikan angka ajaib `25000`.
+- Kelas anak tidak menulis `__init__` sama sekali karena konstruktor induk sudah cukup. Konstanta `TAMBAHAN` menggantikan angka ajaib `25000`.
 
-Objek tiket dibuat oleh sebuah Factory sederhana, supaya rantai `if` jenis tiket hanya ada di **satu** tempat:
+Objek tiket dibuat oleh sebuah *Factory* sederhana supaya rantai `if` jenis tiket hanya ada di **satu** tempat:
 
 ```python
 class TiketFactory:
@@ -185,7 +258,7 @@ Bagian akhir konstruktor `Jadwal` menyiapkan daftar kursi dan dict kursi terjual
 
 Penjelasan:
 
-- `_semua_kursi` adalah **list** karena urutannya penting (A1, A2, ..., C5) untuk menampilkan kursi kosong.
+- `_semua_kursi` adalah ***list*** karena urutannya penting (A1, A2, ..., C5) untuk menampilkan kursi kosong.
 - **[5]** `_terjual` adalah **dict** dengan kode kursi sebagai kunci. Kunci dict selalu unik, jadi satu kursi mustahil tercatat untuk dua tiket.
 - **[6]** `kursi in self._terjual` memeriksa **kunci** dict dengan cepat, tanpa perulangan.
 - `daftar_tiket()` memakai `sorted(self._terjual)`. Mengurutkan dict berarti mengurutkan kuncinya, lalu tiket diambil sesuai urutan kunci itu.
@@ -221,10 +294,10 @@ Penjelasan:
 Penjelasan:
 
 - `pesan()` sangat pendek karena **tidak menangkap** *exception* apa pun. Tugasnya hanya mengatur urutan langkah. Jika satu langkah gagal, *exception*-nya diteruskan ke pemanggil (program utama), yang lebih tahu cara menampilkannya.
-- **[8]** Kunci pengurutan berupa *tuple* `(-pendapatan, judul)`. Python membandingkan *tuple* elemen demi elemen: pendapatan dibalik dengan tanda minus agar yang terbesar di depan, dan jika sama, judul diurutkan A–Z. Tanda minus hanya bisa dipakai untuk angka (lihat [Kesalahan 3](#kesalahan-3-memakai-tanda-minus-untuk-mengurutkan-teks)).
+- **[8]** Kunci pengurutan berupa *tuple* `(-pendapatan, judul)`. Python membandingkan *tuple* elemen demi elemen: pendapatan dibalik dengan tanda minus agar yang terbesar di depan, dan jika sama, judul diurutkan A—Z. Tanda minus hanya bisa dipakai untuk angka (lihat [Kesalahan 3](#kesalahan-3-memakai-tanda-minus-untuk-mengurutkan-teks)).
 - `hasil.get(kunci, 0) + 1` adalah pola menghitung frekuensi dengan dict. `dict(sorted(hasil.items()))` membuat dict baru yang urut berdasarkan kunci.
 
-### 1.5 Program Utama: Menangkap Exception dengan Rapi
+### 1.5 Program Utama: Menangkap *Exception* dengan Rapi
 
 ```python
     print("=== PEMESANAN TIKET ===")
@@ -249,18 +322,18 @@ Penjelasan:
 Penjelasan:
 
 - **[9]** `KursiSudahTerjualError` ditangkap **lebih dulu** karena butuh penanganan khusus (saran sisa kursi). Jika `except BioskopError` ditulis di atasnya, blok ini tidak akan pernah tercapai.
-- **[10]** Dua error bioskop lainnya cukup ditangani sama: cetak pesannya. Inilah manfaat hierarki *exception*.
-- **[11]** Blok `else` hanya jalan jika `try` sukses. Memisahkan "langkah yang mungkin gagal" (di `try`) dari "langkah setelah sukses" (di `else`) mencegah kita ikut menangkap error dari baris yang tidak dimaksud.
+- **[10]** Dua *error* bioskop lainnya cukup ditangani sama: cetak pesannya. Inilah manfaat hierarki *exception*.
+- **[11]** Blok `else` hanya jalan jika `try` sukses. Memisahkan "langkah yang mungkin gagal" (di `try`) dari "langkah setelah sukses" (di `else`) mencegah kita ikut menangkap *error* dari baris yang tidak dimaksud.
 - Program **tidak** menangkap `Exception` secara umum. Kesalahan pemrograman yang tidak terduga tetap terlihat jelas, tidak tertelan diam-diam.
 
-Cara menjalankan:
+Cara menjalankan dari folder utama materi (cara lain ada di [Persiapan](#cara-menjalankan-solusi)):
 
 ```bash
 cd Pertemuan-16-UAS/python/solusi
 python soal_c1_tiket_bioskop.py
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === JADWAL TAYANG BioskopKita ===
@@ -304,24 +377,26 @@ VIP       3 tiket   Rp195.000
 ```
 
 > [!TIP]
-> **Coba sendiri:** tambahkan kelas `TiketKeluarga` (harga dasar dikurangi Rp5.000) lalu tambahkan satu cabang di `TiketFactory`. Pesan satu tiket keluarga untuk `J01` kursi `C1`. Bagian mana saja yang perlu kamu ubah? Berapa total pendapatan baru?
+> **Coba sendiri:** salin `solusi/soal_c1_tiket_bioskop.py` ke folder latihanmu (`PBO-latihan-saya/uas/coba`), lalu buka salinannya. Tambahkan kelas `TiketKeluarga` (jenis `"Keluarga"`, harga dasar dikurangi Rp5.000), satu cabang `"keluarga"` di `TiketFactory`, dan satu permintaan baru di akhir `DAFTAR_PERMINTAAN`: `("J01", "keluarga", "C1", "Fajar Nugroho")`. Simpan, lalu jalankan `python soal_c1_tiket_bioskop.py` dari folder itu. Bagian mana saja yang perlu kamu ubah? Berapa total pendapatan baru?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Hanya dua tempat: kelas baru `TiketKeluarga` dan satu cabang `if pilihan == "keluarga"` di `TiketFactory` (ditambah satu baris permintaan di data). `Jadwal`, `Bioskop`, dan laporan tidak berubah sama sekali. Tiket keluarga di `J01` berharga 30000 - 5000 = Rp25.000, sehingga total pendapatan menjadi 407000 + 25000 = **Rp432.000**.
+Hanya dua tempat di kode: kelas baru `TiketKeluarga` dan satu cabang `if pilihan == "keluarga"` di `TiketFactory`, ditambah satu baris permintaan di data. `Jadwal`, `Bioskop`, dan laporan tidak berubah sama sekali. Tiket keluarga di `J01` berharga 30000 - 5000 = Rp25.000 sehingga total pendapatan menjadi 407000 + 25000 = **Rp432.000**.
+
+Di *output*, kamu akan melihat baris baru `[OK]    J01/C1 Keluarga untuk Fajar Nugroho: Rp25.000`. Laporan per film juga berubah: Rindu di Tepian naik ke urutan kedua (`4 tiket   Rp140.000`), dan rekap per jenis tiket diawali baris `Keluarga  1 tiket    Rp25.000`.
 
 </details>
 
 ---
 
-## 2. Soal C2: Refactor Kasir Laundry
+## 2. Soal C2: *Refactor* Kasir *Laundry*
 
-File: [`solusi/soal_c2_sebelum.py`](solusi/soal_c2_sebelum.py) (kode awal) dan [`solusi/soal_c2_sesudah.py`](solusi/soal_c2_sesudah.py) (hasil refactor)
+*File*: [`solusi/soal_c2_sebelum.py`](solusi/soal_c2_sebelum.py) (kode awal) dan [`solusi/soal_c2_sesudah.py`](solusi/soal_c2_sesudah.py) (hasil *refactor*)
 
-### 2.1 Membaca Kode Sebelum Refactor
+### 2.1 Membaca Kode Sebelum *Refactor*
 
-Potongan inti method `terima_cucian()` di kode awal:
+Potongan inti *method* `terima_cucian()` di kode awal:
 
 ```python
         # hitung promo
@@ -346,9 +421,33 @@ Potongan inti method `terima_cucian()` di kode awal:
         self.riwayat.append((kode, nama, berat, total))
 ```
 
-Perhatikan komentar-komentar seperti `# hitung promo` dan `# kirim WhatsApp`. Setiap komentar yang menandai "babak" di dalam satu method adalah petunjuk bahwa method itu mengerjakan terlalu banyak hal. Daftar lengkap masalahnya ada di [pembahasan](../pembahasan.md#soal-c2-refactor-kasir-laundry-yang-berantakan).
+Perhatikan komentar-komentar seperti `# hitung promo` dan `# kirim WhatsApp`. Setiap komentar yang menandai "babak" di dalam satu *method* adalah petunjuk bahwa *method* itu mengerjakan terlalu banyak hal. Daftar lengkap masalahnya ada di [pembahasan](../pembahasan.md#soal-c2-refactor-kasir-laundry-yang-berantakan).
 
-### 2.2 Strategy untuk Promo
+### 2.2 Katalog Layanan dan *Exception*
+
+```python
+class KatalogLayanan:
+    """Daftar layanan. Layanan baru cukup DIDAFTARKAN, tanpa mengubah kode (OCP)."""
+
+    def __init__(self):
+        # [1] nama layanan -> Layanan. Katalog hanya dipakai untuk MENCARI.
+        self._daftar: dict[str, Layanan] = {}
+
+    def tambah(self, layanan: Layanan):
+        self._daftar[layanan.nama] = layanan
+
+    def cari(self, nama: str) -> Layanan:
+        if nama not in self._daftar:
+            raise LayananTidakTersediaError(nama)  # [2] bukan lagi print + return
+        return self._daftar[nama]
+```
+
+Penjelasan:
+
+- **[1]** Rantai `if layanan == "cuci kering" ...` berubah menjadi **data** di dalam dict. Layanan baru cukup didaftarkan dengan `katalog.tambah(...)`.
+- **[2]** Kode awal mencetak `[DITOLAK] ...` lalu `return` sehingga pemanggil tidak tahu ada kegagalan. Kini katalog melempar *exception*, dan lapisan tampilan yang memutuskan cara menampilkannya.
+
+### 2.3 *Strategy* untuk Promo
 
 ```python
 class Promo(ABC):
@@ -396,30 +495,6 @@ Penjelasan:
 - **[3]** Tipe parameter ditulis sebagai teks `"PesananLaundry"` karena kelas `PesananLaundry` baru didefinisikan **di bawah** `Promo`. Python mengizinkan *type hint* berupa teks untuk kasus seperti ini (*forward reference*).
 - Setiap promo menjadi satu kelas kecil. Rantai `if promo == ...` hilang, dan salah ketik nama promo kini langsung ketahuan sebagai `NameError`, bukan promo yang diam-diam tidak berlaku.
 - **[4]** `PesananLaundry` tidak tahu promo apa yang dipakainya. Ia cukup **meminta** strategi menghitung potongan, sambil memberikan dirinya sendiri (`self`) sebagai data.
-
-### 2.3 Katalog Layanan dan Exception
-
-```python
-class KatalogLayanan:
-    """Daftar layanan. Layanan baru cukup DIDAFTARKAN, tanpa mengubah kode (OCP)."""
-
-    def __init__(self):
-        # [1] nama layanan -> Layanan. Katalog hanya dipakai untuk MENCARI.
-        self._daftar: dict[str, Layanan] = {}
-
-    def tambah(self, layanan: Layanan):
-        self._daftar[layanan.nama] = layanan
-
-    def cari(self, nama: str) -> Layanan:
-        if nama not in self._daftar:
-            raise LayananTidakTersediaError(nama)  # [2] bukan lagi print + return
-        return self._daftar[nama]
-```
-
-Penjelasan:
-
-- **[1]** Rantai `if layanan == "cuci kering" ...` berubah menjadi **data** di dalam dict. Layanan baru cukup didaftarkan dengan `katalog.tambah(...)`.
-- **[2]** Kode awal mencetak `[DITOLAK] ...` lalu `return`, sehingga pemanggil tidak tahu ada kegagalan. Kini katalog melempar *exception*, dan lapisan tampilan yang memutuskan cara menampilkannya.
 
 ### 2.4 Kasir yang Bergantung pada Abstraksi
 
@@ -477,10 +552,10 @@ Penjelasan:
 
 - **[5]** `KasirLaundry` menerima katalog dan pengirim **dari luar** lewat konstruktor (*dependency injection*). Tipe parameternya abstrak (`Pengirim`), bukan `PengirimWhatsApp`.
 - **[6]** Keputusan "pesan dikirim lewat WhatsApp" hanya ada di satu baris ini. Mengganti ke SMS cukup membuat `PengirimSMS(Pengirim)` dan mengubah baris ini; `KasirLaundry` tidak disentuh. Untuk pengujian, kita bahkan bisa menyuntikkan pengirim palsu yang hanya mencatat pesan.
-- Perhatikan komentar `dicek SEBELUM nomor dibuat`. Di kode awal, nomor order baru bertambah **setelah** layanan dinyatakan valid. Detail kecil seperti ini wajib dipertahankan, karena refactor tidak boleh mengubah perilaku.
+- Perhatikan komentar `dicek SEBELUM nomor dibuat`. Di kode awal, nomor order baru bertambah **setelah** layanan dinyatakan valid. Detail kecil seperti ini wajib dipertahankan karena *refactor* tidak boleh mengubah perilaku.
 - Fungsi `terima()` di program utama adalah lapisan tampilan kecil: ia memanggil kasir, menangkap `LayananTidakTersediaError`, mencetak `[DITOLAK] ...`, lalu mencetak baris kosong.
 
-Cara menjalankan:
+Cara menjalankan dari folder utama materi (baris ketiga dan keempat dijalankan satu per satu):
 
 ```bash
 cd Pertemuan-16-UAS/python/solusi
@@ -488,9 +563,9 @@ python soal_c2_sebelum.py
 python soal_c2_sesudah.py
 ```
 
-Kedua program menghasilkan output yang sama persis.
+Kedua program menghasilkan *output* yang sama persis.
 
-**Output:**
+***Output:***
 
 ```text
 ====================================
@@ -561,19 +636,19 @@ Pendapatan   : Rp113.800
 
 ---
 
-## 3. Membuktikan Output Tidak Berubah
+## 3. Membuktikan *Output* Tidak Berubah
 
-Mata manusia mudah melewatkan satu spasi. Komputer tidak. Simpan output kedua versi ke file, lalu bandingkan:
+Mata manusia mudah melewatkan satu spasi. Komputer tidak. Untuk Soal C2, bandingkan *output* kode awal dengan *output* hasil *refactor*-mu memakai langkah di [Persiapan](#cara-membandingkan-jawabanmu-dengan-solusi). Ketik perintah berikut di terminal yang berada di folder `PBO-latihan-saya/uas` (berisi salinan `soal_c2_sebelum.py` dan jawabanmu `jawaban_c2.py`):
 
 ```bash
 python soal_c2_sebelum.py > sebelum.txt
-python soal_c2_sesudah.py > sesudah.txt
+python jawaban_c2.py > sesudah.txt
 diff sebelum.txt sesudah.txt
 ```
 
-Di macOS/Linux, `diff` **tidak mencetak apa pun** jika kedua file identik. Di Windows (Command Prompt), gunakan `fc sebelum.txt sesudah.txt`; jika identik, ia menulis `FC: no differences encountered`. Di PowerShell, tulis `fc.exe`.
+Baris ketiga untuk macOS/Linux. Di Windows, ganti dengan `fc sebelum.txt sesudah.txt` (Command Prompt) atau `fc.exe sebelum.txt sesudah.txt` (PowerShell). Jika kedua *file* identik, `diff` **tidak mencetak apa pun**, sedangkan `fc` menulis `FC: no differences encountered`. Ingin melihat solusi lulus pemeriksaan yang sama? Salin juga `soal_c2_sesudah.py` ke folder itu, lalu ganti `jawaban_c2.py` di baris kedua dengan `soal_c2_sesudah.py`.
 
-Bagaimana jika ada perbedaan? Misalnya, saat refactor kamu tidak sengaja menulis `"Jumlah order: "` (spasi sebelum titik dua hilang) di `LaporanHarian`. Hasil `diff`-nya:
+Bagaimana jika ada perbedaan? Misalnya, saat *refactor* kamu tidak sengaja menulis `"Jumlah order: "` (spasi sebelum titik dua hilang) di `LaporanHarian`. Hasil `diff`-nya:
 
 ```text
 62c62
@@ -582,20 +657,22 @@ Bagaimana jika ada perbedaan? Misalnya, saat refactor kamu tidak sengaja menulis
 > Jumlah order: 4
 ```
 
-Artinya: baris ke-62 berubah (`c` = *change*). Baris berawalan `<` berasal dari file pertama (sebelum), baris berawalan `>` dari file kedua (sesudah). Perbaiki sampai `diff` diam.
+Artinya: baris ke-62 berubah (`c` = *change*). Baris berawalan `<` berasal dari *file* pertama (sebelum), baris berawalan `>` dari *file* kedua (sesudah). Perbaiki sampai `diff` diam. Di Windows, `fc` juga menampilkan baris yang berbeda dari kedua *file*, hanya saja dengan tampilan yang sedikit lain.
 
 > [!TIP]
 > Biasakan menjalankan `diff` **setiap kali** selesai memindahkan satu tanggung jawab ke kelas baru, bukan hanya di akhir. Jika muncul perbedaan, kamu langsung tahu langkah mana penyebabnya.
 
 ---
 
-## 4. Kesalahan Umum dan Cara Membaca Pesan Error
+## 4. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-Pesan error Python dibaca **dari bawah ke atas**: baris terakhir menyebut jenis error dan penyebabnya, baris-baris di atasnya menunjukkan jalur pemanggilan.
+Pesan *error* Python dibaca **dari bawah ke atas**: baris terakhir menyebut jenis *error* dan penyebabnya, baris-baris di atasnya menunjukkan jalur pemanggilan.
 
-### Kesalahan 1: Lupa mengisi method abstrak di kelas anak
+Ingin mencoba sendiri kesalahan-kesalahan di bawah? Jangan mengubah *file* di folder materi. Salin dulu `solusi/soal_c1_tiket_bioskop.py` ke folder `PBO-latihan-saya/uas/coba`, buat kesalahannya di salinan itu, lalu jalankan dari folder tersebut. Di layarmu, nama *file* di pesan *error* tampil lengkap dengan alamat foldernya. Di sini alamatnya dipendekkan menjadi nama *file* saja.
 
-Misalkan method `hitung_harga()` di kelas `TiketVIP` terhapus. Program berjalan sampai ada yang mencoba membuat objek `TiketVIP`:
+### Kesalahan 1: Lupa mengisi *method* abstrak di kelas anak
+
+Misalkan dua baris *method* `hitung_harga()` di kelas `TiketVIP` (baris `def` dan `return`-nya) dihapus. Program berjalan sampai ada yang mencoba membuat objek `TiketVIP`, lalu berhenti dengan pesan berikut:
 
 ```text
 Traceback (most recent call last):
@@ -612,11 +689,11 @@ Traceback (most recent call last):
 TypeError: Can't instantiate abstract class TiketVIP without an implementation for abstract method 'hitung_harga'
 ```
 
-**Artinya:** `TiketVIP` masih punya method abstrak yang belum diisi, sehingga objeknya tidak boleh dibuat. Error muncul saat **membuat objek**, bukan saat kelas ditulis, sehingga tiket reguler sebelumnya sempat berhasil dipesan. Perhatikan juga: `TypeError` tidak tertangkap oleh `except BioskopError` maupun `except ValueError`, jadi program berhenti. Ini bagus, karena *bug* tidak tersembunyi. **Perbaikan:** tulis kembali `hitung_harga()` di `TiketVIP`.
+**Artinya:** `TiketVIP` masih punya *method* abstrak yang belum diisi sehingga objeknya tidak boleh dibuat. *Error* muncul saat **membuat objek**, bukan saat kelas ditulis, sehingga tiket reguler sebelumnya sempat berhasil dipesan. Perhatikan juga: `TypeError` tidak tertangkap oleh `except BioskopError` maupun `except ValueError`, jadi program berhenti. Ini bagus karena *bug* tidak tersembunyi. **Perbaikan:** tulis kembali `hitung_harga()` di `TiketVIP`.
 
-### Kesalahan 2: Lupa memanggil `super().__init__` pada exception buatan sendiri
+### Kesalahan 2: Lupa memanggil `super().__init__` pada *exception* buatan sendiri
 
-Jika baris `super().__init__(f"Kursi ... sudah terjual")` di `KursiSudahTerjualError` dihapus, program tetap berjalan, tetapi hasilnya:
+Jika baris `super().__init__(f"Kursi ... sudah terjual")` di `KursiSudahTerjualError` dihapus, program tetap berjalan, tetapi baris pesan gagalnya menjadi:
 
 ```text
 [GAGAL] ('A1', 'Mahakam Biru', 13)
@@ -626,7 +703,7 @@ Jika baris `super().__init__(f"Kursi ... sudah terjual")` di `KursiSudahTerjualE
 
 ### Kesalahan 3: Memakai tanda minus untuk mengurutkan teks
 
-Tanda minus hanya bekerja pada angka. Jika kamu menulis `key=lambda j: (-j.pendapatan(), -j.judul)` dengan maksud membalik urutan judul juga, bagian akhir pesan error-nya:
+Tanda minus hanya bekerja pada angka. Jika kamu menulis `key=lambda j: (-j.pendapatan(), -j.judul)` dengan maksud membalik urutan judul juga, bagian akhir pesan *error*-nya:
 
 ```text
   File "soal_c1_tiket_bioskop.py", line 259, in <lambda>
@@ -635,29 +712,33 @@ Tanda minus hanya bekerja pada angka. Jika kamu menulis `key=lambda j: (-j.penda
 TypeError: bad operand type for unary -: 'str'
 ```
 
-**Artinya:** operator minus satu operan (*unary*) tidak bisa diterapkan pada `str`. **Perbaikan:** untuk soal ini, judul memang harus A–Z, jadi cukup `j.judul`. Jika kamu benar-benar butuh dua kriteria yang **sama-sama** menurun, pakai `sorted(..., reverse=True)`. Jika arahnya berbeda dan salah satunya teks, urutkan dua kali: kriteria kedua dulu, lalu kriteria pertama (pengurutan Python stabil).
+**Artinya:** operator minus satu operan (*unary*) tidak bisa diterapkan pada `str`. **Perbaikan:** untuk soal ini, judul memang harus A—Z, jadi cukup `j.judul`. Jika kamu benar-benar butuh dua kriteria yang **sama-sama** menurun, pakai `sorted(..., reverse=True)`. Jika arahnya berbeda dan salah satunya teks, urutkan dua kali: kriteria kedua dulu, lalu kriteria pertama (pengurutan Python stabil).
 
 ### Kesalahan 4: Urutan `except` terbalik
 
-Jika `except BioskopError` ditulis **di atas** `except KursiSudahTerjualError`, Python tidak memberi pesan error apa pun. Hasilnya hanya berbeda sedikit:
+Jika `except BioskopError` ditulis **di atas** `except KursiSudahTerjualError`, Python tidak memberi pesan *error* apa pun. Hasilnya hanya berbeda sedikit:
 
 ```text
 [GAGAL] Kursi A1 untuk Mahakam Biru sudah terjual
 [OK]    J02/A3 Pelajar untuk Rina Marlina: Rp32.000
 ```
 
-**Artinya:** baris "Saran: pilih kursi lain ..." hilang. Blok `BioskopError` sudah menangkap error itu lebih dulu, sehingga blok khusus di bawahnya tidak pernah tercapai. *Bug* seperti ini licin karena Python diam saja (berbeda dengan Java yang menolaknya saat kompilasi). **Perbaikan:** tulis `except` yang spesifik lebih dulu.
+**Artinya:** baris "Saran: pilih kursi lain ..." hilang. Blok `BioskopError` sudah menangkap *error* itu lebih dulu sehingga blok khusus di bawahnya tidak pernah tercapai. *Bug* seperti ini licin karena Python diam saja (berbeda dengan Java yang menolaknya saat kompilasi). **Perbaikan:** tulis `except` yang spesifik lebih dulu.
 
 ### Kesalahan 5: Mengakses dict dengan kunci yang tidak ada
+
+Kesalahan ini tidak memakai *file* solusi. Buat *file* baru bernama `coba.py` di folder `PBO-latihan-saya/uas/coba`, isi dengan dua baris berikut, simpan, lalu jalankan dengan `python coba.py` dari folder itu:
 
 ```python
 jadwal = {"J01": "Rindu di Tepian", "J02": "Mahakam Biru"}
 print(jadwal["J05"])
 ```
 
+Pesan *error*-nya:
+
 ```text
 Traceback (most recent call last):
-  File "contoh.py", line 2, in <module>
+  File "coba.py", line 2, in <module>
     print(jadwal["J05"])
           ~~~~~~^^^^^^^
 KeyError: 'J05'
@@ -666,7 +747,7 @@ KeyError: 'J05'
 **Artinya:** kunci `'J05'` tidak ada di dict. `KeyError` bawaan Python ini kurang ramah bagi pengguna. **Perbaikan:** periksa dulu dengan `if kode not in ...`, lalu lempar *exception* yang lebih bermakna, seperti yang dilakukan `cari_jadwal()` dengan `JadwalTidakDitemukanError`. Untuk nilai bawaan, pakai `dict.get(kunci, nilai_bawaan)`.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python. Contohnya, Python 3.10 dan 3.11 menulis `Can't instantiate abstract class TiketVIP with abstract method hitung_harga`, dan versi lama tidak menampilkan penanda `~~~^^^`. Fokuslah pada **jenis error** dan kata-kata kuncinya.
+> Pesan di halaman ini berasal dari Python 3.13. Bunyinya bisa sedikit berbeda antarversi. Contohnya, Python 3.10 dan 3.11 menulis `Can't instantiate abstract class TiketVIP with abstract method hitung_harga`. Penanda `~` dan `^` di bawah baris kode juga berbeda-beda, dan Python 3.10 sama sekali tidak menampilkannya. Fokuslah pada **jenis *error*** dan kata-kata kuncinya.
 
 ## 📝 Ringkasan Sintaks
 
@@ -685,7 +766,7 @@ KeyError: 'J05'
 
 ## ➡️ Langkah Berikutnya
 
-- Bandingkan dengan solusi Java: [☕ Solusi Java](../java/README.md). Output-nya identik.
+- Bandingkan dengan solusi Java: [☕ Solusi Java](../java/README.md). *Output*-nya identik.
 - Siapkan presentasi proyek akhir: [Presentasi Proyek Akhir](../README.md#8-presentasi-proyek-akhir).
 
 ---

@@ -6,7 +6,7 @@
  * tidak punya tipe kembalian. Ia dipanggil OTOMATIS setiap kali objek dibuat
  * dengan new, sehingga setiap objek langsung lahir dengan data lengkap.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/contoh (Java 11 ke atas):
  *     java Contoh02Konstruktor.java
  */
 public class Contoh02Konstruktor {

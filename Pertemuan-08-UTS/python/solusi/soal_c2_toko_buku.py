@@ -13,7 +13,7 @@ Ide penyelesaian:
 - Ongkir dihitung dari total berat (dibulatkan ke atas per kg) dan gratis
   bila subtotal mencapai batas tertentu.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/solusi; macOS/Linux: python3):
     python soal_c2_toko_buku.py
 """
 

@@ -11,7 +11,7 @@
  *     IPK >= 2.76 -> Memuaskan
  *     lainnya     -> Cukup
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/solusi (Java 11 ke atas):
  *     java Latihan03Mahasiswa.java
  */
 public class Latihan03Mahasiswa {

@@ -1,4 +1,4 @@
-# Kuis — Pertemuan 13: Prinsip SOLID
+# Kuis Pertemuan 13: Prinsip SOLID
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 14 ➡️](../Pertemuan-14-Design-Pattern/README.md)
 
@@ -10,10 +10,10 @@
 
 Kelas `LaporanSerbaBisa` menghitung rata-rata nilai **dan** mencetak laporan. Permintaan "batas predikat A naik menjadi 85" dan permintaan "laporan dibuat bergaris" sama-sama memaksa kelas itu diubah. Prinsip apa yang dilanggar?
 
-- A. OCP, karena laporan tidak bisa ditambah kolom baru
-- B. SRP, karena kelas itu punya dua alasan untuk berubah yang datang dari urusan berbeda
-- C. LSP, karena laporan tidak bisa menggantikan kelas induknya
-- D. DIP, karena laporan mencetak langsung ke layar
+- A. OCP karena laporan tidak bisa ditambah kolom baru
+- B. SRP karena kelas itu punya dua alasan untuk berubah yang datang dari urusan berbeda
+- C. LSP karena laporan tidak bisa menggantikan kelas induknya
+- D. DIP karena laporan mencetak langsung ke layar
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -28,9 +28,9 @@ Pembahasan: aturan penilaian dan format cetak adalah dua urusan berbeda dengan s
 
 Sebuah ekspedisi menambah jenis layanan pengiriman baru setiap beberapa bulan. Rancangan mana yang paling sesuai dengan OCP?
 
-- A. Satu method `hitung_ongkir(jenis)` / `hitungOngkir(jenis)` berisi rantai percabangan untuk setiap jenis
-- B. Menyalin method hitung ongkir lama setiap ada layanan baru, lalu mengganti angkanya
-- C. Kontrak `LayananKirim` dengan satu kelas untuk setiap layanan, sehingga layanan baru cukup menjadi kelas baru
+- A. Satu *method* `hitung_ongkir(jenis)` / `hitungOngkir(jenis)` berisi rantai percabangan untuk setiap jenis
+- B. Menyalin *method* hitung ongkir lama setiap ada layanan baru, lalu mengganti angkanya
+- C. Kontrak `LayananKirim` dengan satu kelas untuk setiap layanan sehingga layanan baru cukup menjadi kelas baru
 - D. Menyimpan semua rumus ongkir di satu variabel global agar mudah dicari
 
 <details>
@@ -38,13 +38,13 @@ Sebuah ekspedisi menambah jenis layanan pengiriman baru setiap beberapa bulan. R
 
 **Jawaban: C**
 
-Pembahasan: OCP berarti terbuka untuk ditambah, tertutup untuk diubah. Dengan kontrak dan polimorfisme, layanan baru ditambahkan tanpa membongkar kelas lama. Pilihan A memaksa method lama dibongkar setiap kali, pilihan B melahirkan kode kembar (melanggar DRY), dan pilihan D tidak menyelesaikan masalah sama sekali.
+Pembahasan: OCP berarti terbuka untuk ditambah, tertutup untuk diubah. Dengan kontrak dan polimorfisme, layanan baru ditambahkan tanpa membongkar kelas lama. Pilihan A memaksa *method* lama dibongkar setiap kali, pilihan B melahirkan kode kembar (melanggar DRY), dan pilihan D tidak menyelesaikan masalah sama sekali.
 
 </details>
 
 ### Soal 3
 
-Kontrak `Diskon` berjanji: "potongan tidak pernah negatif". Perhatikan kelas baru berikut.
+Di soal ini, kontrak `Diskon` disederhanakan menjadi satu *method* saja, `hitung_potongan(subtotal)` / `hitungPotongan(subtotal)`, dengan janji: "potongan tidak pernah negatif". Perhatikan kelas baru berikut (potongan kode; definisi `Diskon` tidak ditampilkan).
 
 **Python:**
 
@@ -88,26 +88,26 @@ System.out.println(totalBayar(15000, new VoucherAneh()));
 Apa yang tercetak, dan bagaimana menilai desain ini?
 
 - A. `10000`, dan tidak ada prinsip yang dilanggar
-- B. `15000`, karena potongan negatif otomatis diabaikan
+- B. `15000` karena potongan negatif otomatis diabaikan
 - C. Program berhenti dengan *error*
-- D. `20000`; "diskon" itu malah menaikkan total, sehingga melanggar LSP
+- D. `20000`; "diskon" itu malah menaikkan total sehingga melanggar LSP
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: D**
 
-Pembahasan: 15000 dikurangi -5000 sama dengan 20000. Program berjalan tanpa *error* (C salah), dan tidak ada aturan bahasa yang mengabaikan nilai negatif (B salah). Masalahnya ada pada **perilaku**: kelas anak mengingkari janji kontrak induknya, sehingga pemanggil yang percaya pada `Diskon` terkejut. Itulah pelanggaran LSP, walaupun kodenya lolos kompilasi.
+Pembahasan: 15000 dikurangi -5000 sama dengan 20000. Program berjalan tanpa *error* (C salah), dan tidak ada aturan bahasa yang mengabaikan nilai negatif (B salah). Pilihan A keliru dua kali: hasilnya bukan 10000, dan desainnya bermasalah. Masalahnya ada pada **perilaku**: kelas anak memperlemah jaminan hasil (*postcondition*) kontrak induknya sehingga pemanggil yang percaya pada `Diskon` terkejut. Itulah pelanggaran LSP walaupun kodenya lolos kompilasi.
 
 </details>
 
 ### Soal 4
 
-Kontrak `PerangkatKasir` mewajibkan `cetak_struk()`, `pindai_barcode()`, dan `buka_laci()`. Printer bluetooth yang hanya bisa mencetak terpaksa mengisi dua method lain dengan melempar *error*. Perbaikan yang paling tepat adalah ...
+Kontrak `PerangkatKasir` mewajibkan `cetak_struk()`, `pindai_barcode()`, dan `buka_laci()`. Printer Bluetooth yang hanya bisa mencetak terpaksa mengisi dua *method* lain dengan melempar *error*. Perbaikan yang paling tepat adalah ...
 
 - A. Memecah kontrak menjadi kontrak kecil seperti `PencetakStruk`, `PemindaiBarcode`, dan `LaciUang`
-- B. Mengisi kedua method itu dengan isi kosong agar tidak ada *error*
-- C. Menambahkan lebih banyak method ke `PerangkatKasir` agar lengkap
+- B. Mengisi kedua *method* itu dengan isi kosong agar tidak ada *error*
+- C. Menambahkan lebih banyak *method* ke `PerangkatKasir` agar lengkap
 - D. Menghapus semua kontrak dan memeriksa jenis perangkat dengan percabangan
 
 <details>
@@ -115,13 +115,13 @@ Kontrak `PerangkatKasir` mewajibkan `cetak_struk()`, `pindai_barcode()`, dan `bu
 
 **Jawaban: A**
 
-Pembahasan: ISP meminta *interface* kecil yang fokus, sehingga setiap perangkat hanya berjanji sebanyak kemampuannya. Pilihan B menyembunyikan masalah: pemanggil mengira pemindaian berhasil padahal tidak terjadi apa-apa (tetap melanggar LSP). Pilihan C memperparah kontrak gemuk, dan pilihan D kembali ke rantai percabangan yang melanggar OCP.
+Pembahasan: ISP meminta *interface* kecil yang fokus sehingga setiap perangkat hanya berjanji sebanyak kemampuannya. Pilihan B menyembunyikan masalah: pemanggil mengira pemindaian berhasil padahal tidak terjadi apa-apa (tetap melanggar LSP). Pilihan C memperparah kontrak gemuk, dan pilihan D kembali ke rantai percabangan yang melanggar OCP.
 
 </details>
 
 ### Soal 5
 
-Perhatikan dua versi konstruktor `Kedai` berikut.
+Perhatikan dua versi konstruktor `Kedai` berikut (potongan kode, tidak untuk dijalankan sendiri).
 
 **Python:**
 
@@ -154,17 +154,17 @@ public Kedai(String nama, PenyimpananPesanan penyimpanan) {
 
 Versi mana yang mengikuti DIP?
 
-- A. Versi 1, karena `Kedai` memegang kendali penuh atas penyimpanannya
-- B. Keduanya sama saja, karena hasilnya sama-sama menyimpan pesanan
-- C. Versi 2, karena `Kedai` hanya bergantung pada abstraksi yang disuntikkan dari luar
-- D. Tidak ada, karena DIP melarang konstruktor menerima parameter
+- A. Versi 1 karena `Kedai` memegang kendali penuh atas penyimpanannya
+- B. Keduanya sama saja karena hasilnya sama-sama menyimpan pesanan
+- C. Versi 2 karena `Kedai` hanya bergantung pada abstraksi yang disuntikkan dari luar
+- D. Tidak ada karena DIP melarang konstruktor menerima parameter
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: C**
 
-Pembahasan: versi 2 menerapkan *dependency injection*. `Kedai` hanya mengenal kontrak `PenyimpananPesanan`, sehingga penyimpanan apa pun (memori, terbatas, file) bisa dipasang tanpa mengubah `Kedai`. Versi 1 mengunci `Kedai` pada satu kelas konkret (A salah). Hasil hari ini memang sama (B), tetapi kemudahan diganti dan diuji sangat berbeda. DIP justru sering diwujudkan lewat parameter konstruktor (D salah).
+Pembahasan: versi 2 menerapkan *dependency injection*, dan tipe parameternya adalah kontrak `PenyimpananPesanan`. Tipe abstrak itulah yang membuatnya memenuhi DIP: `Kedai` hanya mengenal kontrak sehingga penyimpanan apa pun (memori, terbatas, *file*) bisa dipasang tanpa mengubah `Kedai`. Versi 1 mengunci `Kedai` pada satu kelas konkret (A salah). Hasil hari ini memang sama (B), tetapi kemudahan diganti dan diuji sangat berbeda. DIP justru sering diwujudkan lewat parameter konstruktor (D salah).
 
 </details>
 
@@ -182,25 +182,25 @@ Pernyataan yang paling tepat tentang *refactoring* adalah ...
 
 **Jawaban: B**
 
-Pembahasan: *refactoring* hanya mengubah susunan kode. Output, hasil hitungan, dan reaksi terhadap kesalahan harus tetap sama. Menambah fitur (A) atau memperbaiki *bug* (D) mengubah perilaku, jadi sebaiknya dikerjakan sebagai langkah terpisah. Menulis ulang dari nol (C) bukan *refactoring* yang bertahap.
+Pembahasan: *refactoring* hanya mengubah susunan kode. *Output*, hasil hitungan, dan reaksi terhadap kesalahan harus tetap sama. Menambah fitur (A) atau memperbaiki *bug* (D) mengubah perilaku, jadi sebaiknya dikerjakan sebagai langkah terpisah. Menulis ulang dari nol (C) bukan *refactoring* yang bertahap.
 
 </details>
 
 ### Soal 7
 
-Setelah *refactoring*, kamu menyimpan output versi lama dan versi baru ke dua file, lalu menjalankan `diff hasil_sebelum.txt hasil_sesudah.txt`. Ternyata **tidak ada apa pun** yang tercetak. Artinya ...
+Setelah *refactoring*, kamu menyimpan *output* versi lama dan versi baru ke dua *file*, lalu menjalankan `diff hasil_sebelum.txt hasil_sesudah.txt`. Ternyata **tidak ada apa pun** yang tercetak. Artinya ...
 
 - A. Perintah `diff` gagal berjalan
-- B. File `hasil_sesudah.txt` pasti kosong
-- C. Kamu tetap harus membandingkan kedua file baris demi baris dengan mata
-- D. Kedua file sama persis, sehingga untuk skenario yang dijalankan perilaku program tidak berubah
+- B. *File* `hasil_sesudah.txt` pasti kosong
+- C. Kamu tetap harus membandingkan kedua *file* baris demi baris dengan mata
+- D. Kedua *file* sama persis sehingga untuk skenario yang dijalankan perilaku program tidak berubah
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: D**
 
-Pembahasan: `diff` hanya mencetak sesuatu jika ada perbedaan. Diam berarti sama (`diff -s` bahkan menuliskannya dengan tegas). Jika hanya salah satu file yang kosong, `diff` justru mencetak banyak perbedaan, jadi B salah. Perhatikan juga kata "untuk skenario yang dijalankan": membandingkan output hanya membuktikan kasus yang dicoba, sehingga semakin banyak kasus, semakin kuat buktinya.
+Pembahasan: `diff` hanya mencetak sesuatu jika ada perbedaan. Diam berarti sama (`diff -s` bahkan menuliskannya dengan tegas). Jika `diff` gagal berjalan, misalnya karena nama *file* salah, ia justru mencetak pesan *error* (A salah). Jika hanya salah satu *file* yang kosong, `diff` mencetak banyak perbedaan (B salah). Tujuan `diff` adalah agar kita **tidak perlu** membandingkan dengan mata (C salah). Perhatikan juga kata "untuk skenario yang dijalankan": membandingkan *output* hanya membuktikan kasus yang dicoba sehingga semakin banyak kasus, semakin kuat buktinya.
 
 </details>
 
@@ -209,16 +209,16 @@ Pembahasan: `diff` hanya mencetak sesuatu jika ada perbedaan. Diam berarti sama 
 Andi menulis skrip 30 baris untuk sekali menghitung rata-rata nilai kuis satu kelas. Ia berencana memecahnya menjadi empat *interface* dan enam kelas "agar SOLID". Saran terbaik untuk Andi adalah ...
 
 - A. Tidak perlu. Program kecil sekali pakai cukup ditulis sederhana (KISS, YAGNI); prinsip diterapkan saat perubahan mulai terasa menyulitkan
-- B. Wajib, karena setiap program tanpa kecuali harus memenuhi kelima prinsip SOLID
-- C. Tambahkan satu *interface* lagi untuk setiap method agar lebih fleksibel
-- D. Tulis ulang dalam Java, karena Python tidak bisa menerapkan SOLID
+- B. Wajib karena setiap program tanpa kecuali harus memenuhi kelima prinsip SOLID
+- C. Tambahkan satu *interface* lagi untuk setiap *method* agar lebih fleksibel
+- D. Tulis ulang dalam Java karena Python tidak bisa menerapkan SOLID
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: A**
 
-Pembahasan: SOLID adalah panduan untuk mengelola perubahan, bukan aturan mati. Memecah program kecil sekali pakai menjadi banyak kelas adalah *over-engineering* yang melanggar KISS dan YAGNI. Pilihan C memperparah masalah, dan pilihan D keliru karena kelima prinsip bisa diterapkan di Python maupun Java.
+Pembahasan: SOLID adalah panduan untuk mengelola perubahan, bukan aturan mati. Memecah program kecil sekali pakai menjadi banyak kelas adalah *over-engineering* yang melanggar KISS dan YAGNI. Pilihan B keliru karena SOLID bukan kewajiban untuk setiap program tanpa kecuali. Pilihan C memperparah masalah, dan pilihan D keliru karena kelima prinsip bisa diterapkan di Python maupun Java.
 
 </details>
 
@@ -236,7 +236,7 @@ Di KedaiKita versi sesudah *refactoring*, pemilik ingin struk menampilkan nomor 
 
 **Jawaban: B**
 
-Pembahasan: menyusun dan mencetak struk adalah satu-satunya urusan `StrukPesanan` (SRP). `Pesanan` hanya mengurus item dan perhitungan, `Diskon` hanya mengurus potongan, dan `Kedai` mengurus menu serta pembuatan pesanan. Inilah manfaat SRP: kamu langsung tahu harus membuka file yang mana.
+Pembahasan: menyusun dan mencetak struk adalah satu-satunya urusan `StrukPesanan` (SRP). `Pesanan` hanya mengurus item dan perhitungan, `Diskon` hanya mengurus potongan, dan `Kedai` mengurus menu serta pembuatan pesanan. Inilah manfaat SRP: kamu langsung tahu harus membuka *file* yang mana.
 
 </details>
 
@@ -247,7 +247,7 @@ Contoh praktik DIP memakai `PengirimTiruan`, pengirim pura-pura yang hanya menca
 - A. Pesan terkirim lebih cepat karena tidak memakai jaringan
 - B. `PengingatJadwal` tidak perlu lagi punya konstruktor
 - C. Program tidak lagi membutuhkan *interface* `Pengirim`
-- D. `PengingatJadwal` bisa diuji tanpa mengirim pesan sungguhan, karena pengirimnya disuntikkan dari luar
+- D. `PengingatJadwal` bisa diuji tanpa mengirim pesan sungguhan karena pengirimnya disuntikkan dari luar
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -264,9 +264,9 @@ Pembahasan: karena `PengingatJadwal` hanya bergantung pada abstraksi `Pengirim`,
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Kamu siap merancang kode yang tahan perubahan | Lanjut ke [Pertemuan 14](../Pertemuan-14-Design-Pattern/README.md) |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian konsep untuk prinsip yang soalnya kamu jawab salah, lalu kerjakan Latihan 1 dan 2 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan keenam contoh di halaman praktik, dan bandingkan bagian MELANGGAR dengan bagian SESUAI |
+| 8—10 | Mantap! Kamu siap merancang kode yang tahan perubahan | Lanjut ke [Pertemuan 14](../Pertemuan-14-Design-Pattern/README.md) |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian konsep untuk prinsip yang soalnya kamu jawab salah, lalu kerjakan Latihan 1 dan 2 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan keenam contoh di halaman praktik, dan bandingkan bagian MELANGGAR dengan bagian SESUAI |
 
 ---
 

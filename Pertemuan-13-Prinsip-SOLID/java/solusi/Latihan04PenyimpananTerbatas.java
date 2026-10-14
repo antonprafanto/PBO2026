@@ -3,7 +3,7 @@
  * Pertemuan 13 - Prinsip SOLID
  *
  * Ide penyelesaian:
- * - PenyimpananTerbatas adalah kelas BARU yang meng-implements interface
+ * - PenyimpananTerbatas adalah kelas BARU yang mengimplementasikan interface
  *   penyimpanan. Ia hanya menyimpan N pesanan TERAKHIR; jika penuh, pesanan
  *   terlama dibuang.
  * - Kelas kedai tidak diubah sedikit pun. Ia tetap menerima "apa saja yang

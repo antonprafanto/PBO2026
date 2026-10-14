@@ -3,8 +3,8 @@
  * Pertemuan 10 - Abstract Class dan Interface
  *
  * - Sejak Java 8, interface boleh punya method BERISI yang diberi kata kunci
- *   default. Kelas yang meng-implements interface otomatis mendapatkannya,
- *   tetapi tetap boleh meng-override-nya.
+ *   default. Kelas yang mengimplementasikan interface itu otomatis
+ *   mendapatkannya, tetapi tetap boleh meng-override-nya.
  * - Field di dalam interface otomatis public static final: sebuah konstanta.
  *
  * Contoh ini khusus Java. Padanannya di Python adalah method biasa (konkret)

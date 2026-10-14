@@ -8,7 +8,7 @@ Ide penyelesaian:
   baterai menjadi 0 dan ponsel mati.
 - isi_daya(persen): baterai bertambah, tetapi tidak boleh lebih dari 100.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/solusi; macOS/Linux: python3):
     python latihan02_ponsel.py
 """
 

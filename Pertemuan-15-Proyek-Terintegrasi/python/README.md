@@ -1,4 +1,4 @@
-# 🐍 Praktik Python — Pertemuan 15: Proyek Terintegrasi
+# 🐍 Praktik Python Pertemuan 15: Proyek Terintegrasi
 
 [⬅️ Konsep](../README.md) · [☕ Praktik Java](../java/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
@@ -7,16 +7,23 @@
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
-1. [Menulis dan Membaca File Teks](#1-menulis-dan-membaca-file-teks)
-2. [File CSV dengan Modul `csv`](#2-file-csv-dengan-modul-csv)
+  - [Cara Menjalankan Contoh](#cara-menjalankan-contoh)
+  - [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
+1. [Menulis dan Membaca *File* Teks](#1-menulis-dan-membaca-file-teks)
+2. [*File* CSV dengan Modul `csv`](#2-file-csv-dengan-modul-csv)
 3. [`with`: Membuka dan Menutup dengan Aman](#3-with-membuka-dan-menutup-dengan-aman)
-4. [Package dan Impor Absolut](#4-package-dan-impor-absolut)
-5. [Unit Test dengan `unittest`](#5-unit-test-dengan-unittest)
-6. [Validasi Input dan Akhir Input](#6-validasi-input-dan-akhir-input)
+4. [*Package* dan Impor Absolut](#4-package-dan-impor-absolut)
+5. [*Unit Test* dengan `unittest`](#5-unit-test-dengan-unittest)
+6. [Validasi *Input* dan Akhir *Input*](#6-validasi-input-dan-akhir-input)
 7. [Studi Kasus KedaiKita](#7-studi-kasus-kedaikita)
-8. [Kesalahan Umum dan Cara Membaca Pesan Error](#8-kesalahan-umum-dan-cara-membaca-pesan-error)
+8. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#8-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
@@ -32,30 +39,87 @@ python/
 └── solusi/                  <- solusi latihan (buka setelah mencoba sendiri!)
 ```
 
-Cara menjalankan contoh:
+### Cara Menjalankan Contoh
+
+Contoh 01 sampai 06, juga setiap *file* di folder `solusi/`, dijalankan sebagai satu *file*. Pilih salah satu cara berikut. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-15-Proyek-Terintegrasi/python`. Di panel **Explorer**, buka folder `contoh`, klik *file* yang ingin dicoba (misalnya `contoh01_baca_tulis_teks.py`), lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-15-Proyek-Terintegrasi/python/contoh` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-15-Proyek-Terintegrasi/python/contoh
 python contoh01_baca_tulis_teks.py
 ```
 
-Cara menjalankan studi kasus (dari folder `studi-kasus`):
+Yang tercetak di terminal sama persis dengan blok ***Output:*** di bagian 1. *File* di folder `solusi` dijalankan dengan cara yang sama; ganti saja `contoh` dengan `solusi`.
 
-```bash
-cd Pertemuan-15-Proyek-Terintegrasi/python/studi-kasus
-python main.py --demo
-python main.py
-python -m unittest discover -s tests -v
-```
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
 
 > [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Semua contoh menulis file ke **folder sementara** yang dihapus otomatis, jadi tidak ada file sampah yang tertinggal. Folder `__pycache__` yang muncul setelah program dijalankan boleh diabaikan; Git sudah diatur untuk mengabaikannya.
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya. Semua contoh menulis *file* ke **folder sementara** yang dihapus otomatis, jadi tidak ada *file* sampah yang tertinggal. Folder `__pycache__` yang muncul setelah program dijalankan boleh diabaikan; Git sudah diatur untuk mengabaikannya.
 
-## 1. Menulis dan Membaca File Teks
+### Cara Menjalankan Studi Kasus
 
-File: [`contoh/contoh01_baca_tulis_teks.py`](contoh/contoh01_baca_tulis_teks.py)
+Studi kasus pertemuan ini adalah **proyek ber-*package***: banyak *file* yang bekerja sama. Ingat tiga hal berikut.
 
-Fungsi bawaan `open()` membuka file dan mengembalikan objek file. Argumen keduanya, **mode**, menentukan apa yang boleh dilakukan.
+1. **Pintu masuknya selalu `main.py`.** *File* di dalam folder `kedaikita/` dan `tests/` tidak dijalankan sendiri.
+2. **Semua perintah diketik dari folder `studi-kasus`.** Cara tercepat: di panel **Explorer** VS Code, klik kanan folder `studi-kasus`, lalu pilih **Open in Integrated Terminal**. Dari folder utama materi, ketik `cd Pertemuan-15-Proyek-Terintegrasi/python/studi-kasus`.
+3. **Pilih perintah sesuai tujuanmu** (di macOS/Linux, ganti `python` dengan `python3`):
+
+| Tujuan | Ketik | Yang terjadi |
+|---|---|---|
+| Mode demo | `python main.py --demo` | berjalan sendiri tanpa perlu mengetik apa pun; hasilnya selalu sama |
+| Mode interaktif | `python main.py` | kamu menjadi kasir; pilih `0` untuk menyimpan dan keluar (panduannya di bagian 7.8) |
+| Menjalankan *unit test* | `python -m unittest discover -s tests -v` | 16 *test* dijalankan; baris terakhir `OK` berarti semua lulus (bagian 7.10) |
+
+**Bagaimana dengan tombol ▷?** Jika yang sedang terbuka adalah `main.py`, tombol ▷ (**Run Python File**) menjalankan **mode interaktif**, dan kamu mengetik jawaban di panel **TERMINAL**. Tombol itu tidak bisa menambahkan `--demo`, jadi mode demo dan *unit test* dijalankan lewat terminal. Jangan menekan ▷ saat yang terbuka adalah *file* di dalam `kedaikita/` atau `tests/`: biasanya muncul `ModuleNotFoundError` (lihat Kesalahan 1 di bagian 8).
+
+**Di mana data disimpan?** Semua *file* data ada di folder `studi-kasus/data/`:
+
+| *File* | Dibuat oleh | Keterangan |
+|---|---|---|
+| `menu_awal.csv` | sudah ada sejak awal | data menu awal; **jangan dihapus** |
+| `menu.csv` | mode interaktif, saat keluar | stok terbaru; dibaca lagi saat aplikasi dibuka |
+| `transaksi.csv` | mode interaktif, setiap pesanan LUNAS | riwayat transaksi |
+| `demo-menu.csv`, `demo-transaksi.csv` | mode demo | ditulis ulang dari awal setiap kali mode demo dijalankan |
+
+**Ingin mulai lagi dari stok awal?** Tutup aplikasinya, lalu hapus `menu.csv` dan `transaksi.csv`, misalnya lewat klik kanan di panel **Explorer** VS Code lalu **Delete**. Lewat terminal di folder `studi-kasus`, ketik `del data\menu.csv` lalu `del data\transaksi.csv` (Windows), atau `rm data/menu.csv data/transaksi.csv` (macOS/Linux). Saat dibuka lagi, aplikasi kembali memuat `menu_awal.csv`. Semua *file* hasil aplikasi itu sudah diatur agar diabaikan Git sehingga tidak mengganggu `git pull`.
+
+### Tempat Menyimpan Kodemu Sendiri
+
+Anggap folder materi sebagai buku pegangan: dibaca dan dijalankan, tetapi tidak dicoret-coret. Simpan kode buatanmu sendiri (hasil mengetik ulang, percobaan "Coba sendiri", dan jawaban latihan) di folder lain **di luar** folder materi, misalnya:
+
+```text
+Documents/
+├── PBO2026/                          <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/                 <- milikmu sendiri
+    └── pertemuan-15/                 <- kode pertemuan ini
+        ├── contoh02_csv.py           <- salinan contoh yang ingin diubah
+        └── studi-kasus/              <- salinan UTUH folder studi-kasus
+```
+
+Jika sebuah "Coba sendiri" memintamu mengubah *file* contoh, salin dulu *file* itu ke folder `pertemuan-15` (lewat File Explorer di Windows atau Finder di macOS), lalu ubah salinannya. Untuk studi kasus, salin **seluruh** folder `studi-kasus`, bukan satu *file* saja, karena `main.py`, `kedaikita/`, `data/`, dan `tests/` saling membutuhkan. Buka folder `pertemuan-15` di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**), atau arahkan terminal ke sana dengan `cd`. Alasannya ada di [Git dan GitHub bagian 5](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri).
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal setiap bagian menunjuk *file* contohnya. Klik untuk melihat isi lengkapnya.
+- Kode yang ditampilkan biasanya **potongan** *file* itu: komentar pembuka, baris `import`, dan dua baris penutup (`if __name__ == "__main__":` lalu `main()`) tidak ditulis ulang. Untuk mencoba, jalankan *file*-nya, jangan hanya menyalin potongannya.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di dalam kode dijelaskan satu per satu di daftar **Penjelasan** di bawah blok kodenya.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan. Blok yang diperkenalkan dengan kata lain (misalnya "Hasilnya kira-kira seperti berikut") bisa sedikit berbeda di komputermu.
+
+## 1. Menulis dan Membaca *File* Teks
+
+*File*: [`contoh/contoh01_baca_tulis_teks.py`](contoh/contoh01_baca_tulis_teks.py)
+
+Fungsi bawaan `open()` membuka *file* dan mengembalikan objek *file*. Argumen keduanya, **mode**, menentukan apa yang boleh dilakukan. Berikut potongan *file*-nya, yaitu fungsi `main()` sampai langkah 4:
 
 ```python
 def main():
@@ -88,9 +152,9 @@ def main():
                 print(f"{nomor}. {nama} piket hari {hari}")
 ```
 
-Langkah 5 dan 6 (lihat file lengkapnya) menimpa isi file dengan mode `"w"` lalu mencoba membuka file yang tidak ada.
+Langkah 5 dan 6 (lihat *file* lengkapnya) menimpa isi *file* dengan mode `"w"` lalu mencoba membuka *file* yang tidak ada.
 
-**Output:**
+***Output:***
 
 ```text
 === 1. MENULIS FILE BARU ===
@@ -121,40 +185,40 @@ Folder sementara sudah dihapus? ya
 Penjelasan:
 
 - **[1]** `tempfile.TemporaryDirectory()` membuat folder sementara, lalu **menghapusnya beserta isinya** begitu blok `with` selesai. Cocok untuk contoh dan *unit test*.
-- **[2]** `Path` dari modul `pathlib` mewakili alamat file. Operator `/` menyambung folder dan nama file dengan pemisah yang benar di Windows maupun macOS/Linux.
-- **[3]** `open(path, "w", encoding="utf-8")` membuka file untuk ditulis. Blok `with` menutupnya otomatis (bagian 3).
-- **[4]** `write()` menulis teks apa adanya, tanpa ganti baris otomatis. Karena itu kita menulis `"\n"` sendiri.
-- **[5]** `read()` mengembalikan **seluruh** isi file sebagai satu `str`.
-- **[6]** Objek file bisa langsung di-*loop*: setiap putaran menghasilkan satu baris **lengkap dengan** `"\n"`-nya.
+- **[2]** `Path` dari modul `pathlib` mewakili alamat *file*. Operator `/` menyambung folder dan nama *file* dengan pemisah yang benar di Windows maupun macOS/Linux.
+- **[3]** `open(path, "w", encoding="utf-8")` membuka *file* untuk ditulis. Blok `with` menutupnya otomatis (bagian 3).
+- **[4]** `write()` menulis teks apa adanya, tanpa ganti baris otomatis. Karena itu, kita menulis `"\n"` sendiri.
+- **[5]** `read()` mengembalikan **seluruh** isi *file* sebagai satu `str`.
+- **[6]** Objek *file* bisa langsung di-*loop*: setiap putaran menghasilkan satu baris **lengkap dengan** `"\n"`-nya.
 - **[7]** `strip()` membuang `"\n"` di ujung baris sebelum dipecah dengan `split(": ")`.
-- **[8]** (langkah 5) `path.read_text(encoding="utf-8")` membuka, membaca semua, lalu menutup file dalam satu langkah.
-- **[9]** (langkah 6) Membaca file yang tidak ada melempar `FileNotFoundError` (turunan `OSError`). Tangkap jika memang bisa ditangani, misalnya dengan memakai data kosong.
+- **[8]** (langkah 5) `path.read_text(encoding="utf-8")` membuka, membaca semua, lalu menutup *file* dalam satu langkah.
+- **[9]** (langkah 6) Membaca *file* yang tidak ada melempar `FileNotFoundError` (turunan `OSError`). Tangkap jika memang bisa ditangani, misalnya dengan memakai data kosong.
 - **[10]** Setelah blok `with tempfile...` selesai, folder sementara sudah hilang.
 
-| Mode | Arti | Jika file belum ada | Jika file sudah ada |
+| Mode | Arti | Jika *file* belum ada | Jika *file* sudah ada |
 |---|---|---|---|
 | `"r"` (bawaan) | membaca | `FileNotFoundError` | dibaca dari awal |
 | `"w"` | menulis | dibuat baru | **isi lama dihapus**, lalu ditulis ulang |
 | `"a"` | menambah (*append*) | dibuat baru | tulisan ditambahkan di akhir |
 
 > [!WARNING]
-> Selalu tulis `encoding="utf-8"`. Tanpa itu, Python memakai *encoding* bawaan sistem operasi. Di banyak komputer Windows, *encoding* bawaannya `cp1252`, sehingga teks UTF-8 `Café` terbaca sebagai `CafÃ©`, atau malah memunculkan `UnicodeDecodeError`.
+> Selalu tulis `encoding="utf-8"`. Tanpa itu, Python 3.14 ke bawah memakai *encoding* bawaan sistem operasi. Di banyak komputer Windows, *encoding* bawaannya `cp1252` sehingga teks UTF-8 `Café` terbaca sebagai `CafÃ©`, atau malah memunculkan `UnicodeDecodeError`. Mulai Python 3.15, bawaannya sudah UTF-8, tetapi tetap tulis `encoding="utf-8"` agar programmu benar di semua versi.
 
 > [!TIP]
-> **Coba sendiri:** ganti mode `"a"` di langkah 2 menjadi `"w"`. Apa yang tercetak di langkah 3?
+> **Coba sendiri:** salin `contoh01_baca_tulis_teks.py` ke folder `pertemuan-15` milikmu (lihat Persiapan). Di salinannya, ubah baris `with open(path, "a", encoding="utf-8") as berkas:` di langkah 2 menjadi `with open(path, "w", encoding="utf-8") as berkas:`. Simpan, jalankan, lalu perhatikan apa yang tercetak di langkah 3.
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Hanya `Rabu: Citra`. Mode `"w"` menghapus isi lama (Senin dan Selasa) sebelum menulis, sehingga langkah 4 pun hanya mencetak `1. Citra piket hari Rabu`.
+Hanya `Rabu: Citra`. Mode `"w"` menghapus isi lama (Senin dan Selasa) sebelum menulis sehingga langkah 4 pun hanya mencetak `1. Citra piket hari Rabu`.
 
 </details>
 
-## 2. File CSV dengan Modul `csv`
+## 2. *File* CSV dengan Modul `csv`
 
-File: [`contoh/contoh02_csv.py`](contoh/contoh02_csv.py)
+*File*: [`contoh/contoh02_csv.py`](contoh/contoh02_csv.py)
 
-Contoh ini menyimpan tiga objek `Mahasiswa(nim, nama, asal, sks, catatan)` ke file CSV, lalu memuatnya kembali. Kolom `asal` sengaja berisi koma (`Samarinda, Kaltim`), dan catatan Bima sengaja kosong. Pemisah kolomnya `PEMISAH = ";"`.
+Contoh ini menyimpan tiga objek `Mahasiswa(nim, nama, asal, sks, catatan)` ke *file* CSV, lalu memuatnya kembali. Kolom `asal` sengaja berisi koma (`Samarinda, Kaltim`), dan catatan Bima sengaja kosong. Pemisah kolomnya `PEMISAH = ";"`. Berikut potongan *file*-nya (dua *method* kelas `Mahasiswa`, lalu fungsi `simpan()` dan `muat()`):
 
 ```python
     def ke_kolom(self) -> list[str]:  # [1] objek -> list teks (satu baris)
@@ -187,7 +251,7 @@ def muat(path: Path) -> list[Mahasiswa]:
     return hasil
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === 1. MENYIMPAN 3 OBJEK KE CSV ===
@@ -213,31 +277,31 @@ Berhasil dimuat: 3 mahasiswa
 
 Penjelasan:
 
-- **[1]** `ke_kolom()` menerjemahkan objek menjadi daftar teks. File hanya menyimpan teks, jadi `sks` diubah dengan `str()`.
+- **[1]** `ke_kolom()` menerjemahkan objek menjadi daftar teks. *File* hanya menyimpan teks, jadi `sks` diubah dengan `str()`.
 - **[2]** `dari_kolom()` adalah kebalikannya. Ia dibuat `@staticmethod` karena tugasnya **membuat** objek baru (ingat "konstruktor alternatif" di Pertemuan 03).
-- **[3]** `csv.writer` mengubah list menjadi satu baris CSV. `delimiter` adalah pemisah kolom, dan `lineterminator="\n"` membuat isi file sama persis di semua sistem operasi.
-- **[4]** `csv.reader` menghasilkan **list teks** untuk setiap baris file.
+- **[3]** `csv.writer` mengubah *list* menjadi satu baris CSV. `delimiter` adalah pemisah kolom, dan `lineterminator="\n"` membuat isi *file* sama persis di semua sistem operasi.
+- **[4]** `csv.reader` menghasilkan ***list* teks** untuk setiap baris *file*.
 - **[5]** `next(pembaca)` mengambil satu baris (judul kolom) tanpa memakainya.
 - **[6]** Langkah 4 menambahkan dua baris rusak: `sks` berisi `dua puluh` (`int()` melempar `ValueError`) dan baris yang kolomnya kurang (pembongkaran `nim, nama, ... = kolom` juga melempar `ValueError`). Program tidak berhenti; baris rusak dilewati dengan pesan bernomor baris.
 
 > [!NOTE]
-> Dokumentasi modul `csv` menganjurkan `newline=""` saat membuka file CSV, agar ganti baris tidak diterjemahkan dua kali (di Windows hal itu memunculkan baris kosong tambahan). Kolom kosong milik Bima tertulis `18;` di file dan terbaca kembali sebagai teks kosong `""`.
+> Dokumentasi modul `csv` menganjurkan `newline=""` saat membuka *file* CSV agar ganti baris tidak diterjemahkan dua kali (di Windows hal itu memunculkan baris kosong tambahan). Kolom kosong milik Bima tertulis `18;` di *file* dan terbaca kembali sebagai teks kosong `""`.
 
 > [!TIP]
-> **Coba sendiri:** ubah `PEMISAH` menjadi `","`, lalu jalankan. Bagaimana asal `Samarinda, Kaltim` disimpan?
+> **Coba sendiri:** salin `contoh02_csv.py` ke folder `pertemuan-15` milikmu. Di salinannya, ubah baris `PEMISAH = ";"` menjadi `PEMISAH = ","`, simpan, lalu jalankan. Lihat langkah 2: bagaimana asal `Samarinda, Kaltim` disimpan?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Baris Ayu menjadi `2409106001,Ayu Lestari,"Samarinda, Kaltim",20,ketua kelas`. Modul `csv` membungkus isi kolom yang mengandung pemisah dengan tanda kutip, lalu membuangnya lagi saat membaca. Namun program lain (misalnya versi Java KedaiKita yang memakai `split`) belum tentu sepintar itu. Karena itu KedaiKita tetap memakai titik koma.
+Baris Ayu menjadi `2409106001,Ayu Lestari,"Samarinda, Kaltim",20,ketua kelas`. Modul `csv` membungkus isi kolom yang mengandung pemisah dengan tanda kutip, lalu membuangnya lagi saat membaca. Namun, program lain (misalnya versi Java KedaiKita yang memakai `split`) belum tentu sepintar itu. Karena itu, KedaiKita tetap memakai titik koma.
 
 </details>
 
 ## 3. `with`: Membuka dan Menutup dengan Aman
 
-File: [`contoh/contoh03_with_aman.py`](contoh/contoh03_with_aman.py)
+*File*: [`contoh/contoh03_with_aman.py`](contoh/contoh03_with_aman.py)
 
-Agar kita bisa **melihat** kapan sumber daya dibuka dan ditutup, contoh ini memakai kelas buatan sendiri yang mencetak pesan di setiap langkah.
+Agar kita bisa **melihat** kapan sumber daya dibuka dan ditutup, contoh ini memakai kelas buatan sendiri yang mencetak pesan di setiap langkah. Berikut kelasnya, disalin utuh dari *file* itu:
 
 ```python
 class SambunganPrinter:
@@ -260,7 +324,7 @@ class SambunganPrinter:
         print(f"  [{self._nama}] mencetak {halaman}")
 ```
 
-Situasi terpenting adalah error di tengah blok:
+Program utamanya mencoba empat situasi. Situasi terpenting adalah *error* di tengah blok (potongan dari fungsi `main()`):
 
 ```python
     try:
@@ -272,7 +336,7 @@ Situasi terpenting adalah error di tengah blok:
         print(f"Error ditangkap: {e}")  # [5] sambungan SUDAH ditutup di sini
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === 1. BLOK SELESAI TANPA ERROR ===
@@ -305,28 +369,28 @@ Hadir: Citra
 Penjelasan:
 
 - **[1]** Objek yang bisa dipakai dengan `with` disebut ***context manager***. `__enter__()` dijalankan saat masuk blok, dan nilai kembaliannya diterima variabel setelah `as`.
-- **[2]** `__exit__()` dijalankan **selalu** saat keluar dari blok, baik normal maupun karena *exception*. Tiga parameternya berisi informasi *exception* (semuanya `None` jika tidak ada error).
-- **[3]** `return False` berarti "sumber daya sudah kubereskan, tetapi error-nya jangan ditelan".
+- **[2]** `__exit__()` dijalankan **selalu** saat keluar dari blok, baik normal maupun karena *exception*. Tiga parameternya berisi informasi *exception* (semuanya `None` jika tidak ada *error*).
+- **[3]** `return False` berarti "sumber daya sudah kubereskan, tetapi *error*-nya jangan ditelan".
 - **[4]** Setelah `cetak("")` melempar `ValueError`, sisa blok **tidak** dijalankan.
-- **[5]** Urutan output membuktikan bahwa sambungan **sudah ditutup** sebelum `except` berjalan. Situasi 3 (`with A as a, B as b:`) menunjukkan bahwa beberapa sumber daya ditutup dengan urutan terbalik.
+- **[5]** Urutan *output* membuktikan bahwa sambungan **sudah ditutup** sebelum `except` berjalan. Situasi 3 (`with A as a, B as b:`) menunjukkan bahwa beberapa sumber daya ditutup dengan urutan terbalik.
 
-Objek file dari `open()` juga *context manager*: `__exit__()`-nya menutup file. Jadi `with open(path, encoding="utf-8") as berkas:` setara dengan `berkas = open(...)` lalu `try: ... finally: berkas.close()`, hanya jauh lebih ringkas dan tidak mungkin lupa menutup.
+Objek *file* dari `open()` juga *context manager*: `__exit__()`-nya menutup *file*. Jadi `with open(path, encoding="utf-8") as berkas:` setara dengan `berkas = open(...)` lalu `try: ... finally: berkas.close()`, hanya jauh lebih ringkas dan tidak mungkin lupa menutup.
 
 > [!TIP]
-> **Coba sendiri:** ubah `return False` di `__exit__()` menjadi `return True`. Apa yang berubah pada langkah 2?
+> **Coba sendiri:** salin `contoh03_with_aman.py` ke folder `pertemuan-15` milikmu. Di salinannya, ubah `return False` di dalam `__exit__()` menjadi `return True`, simpan, lalu jalankan. Apa yang berubah pada situasi 2?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Baris `Error ditangkap: ...` hilang. Jika `__exit__()` mengembalikan `True`, *exception* dianggap sudah ditangani dan **ditelan diam-diam**. Karena itu `__exit__()` pada umumnya mengembalikan `False`: menelan error diam-diam adalah kebiasaan buruk (Pertemuan 11).
+Baris `Error ditangkap: ...` hilang. Jika `__exit__()` mengembalikan `True`, *exception* dianggap sudah ditangani dan **ditelan diam-diam**. Karena itu, `__exit__()` pada umumnya mengembalikan `False`: menelan *error* diam-diam adalah kebiasaan buruk (Pertemuan 11).
 
 </details>
 
-## 4. Package dan Impor Absolut
+## 4. *Package* dan Impor Absolut
 
-File: [`contoh/contoh04_paket_mini.py`](contoh/contoh04_paket_mini.py) dan folder [`contoh/perpustakaan/`](contoh/perpustakaan/__init__.py)
+*File*: [`contoh/contoh04_paket_mini.py`](contoh/contoh04_paket_mini.py) dan folder [`contoh/perpustakaan/`](contoh/perpustakaan/__init__.py)
 
-Kelas-kelas contoh ini tidak ditulis di file yang dijalankan, tetapi di dalam *package* `perpustakaan`:
+Kelas-kelas contoh ini tidak ditulis di *file* yang dijalankan, tetapi di dalam *package* `perpustakaan`:
 
 ```text
 contoh/
@@ -338,7 +402,7 @@ contoh/
     └── katalog.py             <- kelas Katalog
 ```
 
-Modul `perpustakaan/katalog.py` meng-import modul lain di *package* yang sama:
+Modul `perpustakaan/katalog.py` meng-*import* modul lain di *package* yang sama. Berikut potongan awal *file* itu:
 
 ```python
 from perpustakaan.buku import Buku  # impor absolut: diawali nama package
@@ -355,9 +419,9 @@ class Katalog:
         self._daftar[buku.kode] = buku
 ```
 
-Method `cari(kode)` di bawahnya melempar `BukuTidakDitemukanError` jika kodenya tidak terdaftar.
+*Method* `cari(kode)` di bawahnya melempar `BukuTidakDitemukanError` jika kodenya tidak terdaftar.
 
-File yang dijalankan cukup meng-import apa yang dibutuhkan, misalnya `from perpustakaan.katalog import Katalog` **[1]**, lalu memakainya:
+*File* yang dijalankan cukup meng-*import* apa yang dibutuhkan, misalnya `from perpustakaan.katalog import Katalog` **[1]**, lalu memakainya (potongan dari `contoh04_paket_mini.py`):
 
 ```python
     for kode in ["B02", "B02", "B09"]:  # [2] pinjam B02 dua kali, lalu kode asal
@@ -369,7 +433,7 @@ File yang dijalankan cukup meng-import apa yang dibutuhkan, misalnya `from perpu
             print(f"{kode}: gagal, {e}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === KATALOG PERPUSTAKAAN MINI ===
@@ -392,15 +456,15 @@ Penjelasan:
 
 - **[1]** `from package.modul import Kelas` disebut **impor absolut**: alamatnya ditulis lengkap mulai dari nama *package*.
 - **[2]** Peminjaman kedua B02 gagal karena bukunya sedang dipinjam, sedangkan B09 tidak terdaftar.
-- **[3]** Kedua error adalah turunan `PerpustakaanError`, jadi cukup ditangkap sekali. KedaiKita memakai pola yang sama dengan `KedaiError`.
+- **[3]** Kedua *error* adalah turunan `PerpustakaanError`, jadi cukup ditangkap sekali. KedaiKita memakai pola yang sama dengan `KedaiError`.
 
-**Bagaimana Python menemukan `perpustakaan`?** Saat kamu menjalankan `python contoh04_paket_mini.py`, Python menambahkan **folder milik file yang dijalankan** ke daftar tempat pencarian modul (`sys.path`). Folder `perpustakaan/` ada di sana, jadi langsung ditemukan. Itulah sebabnya `main.py` KedaiKita diletakkan **di luar** folder `kedaikita/`, bersebelahan dengannya.
+**Bagaimana Python menemukan `perpustakaan`?** Saat kamu menjalankan `python contoh04_paket_mini.py`, Python menambahkan **folder milik *file* yang dijalankan** ke daftar tempat pencarian modul (`sys.path`). Folder `perpustakaan/` ada di sana, jadi langsung ditemukan. Itulah sebabnya `main.py` KedaiKita diletakkan **di luar** folder `kedaikita/`, bersebelahan dengannya.
 
 > [!NOTE]
-> `__init__.py` menandai folder sebagai *package* biasa (*regular package*). Kodenya dijalankan sekali saat *package* pertama kali di-import; di sini isinya cukup *docstring*. Sejak Python 3.3, folder tanpa `__init__.py` pun masih bisa di-import (*namespace package*), tetapi tetap tuliskan `__init__.py` agar maksudmu jelas. Python juga mengenal impor relatif (`from .buku import Buku`); materi ini memakai impor absolut karena alamatnya lebih jelas.
+> `__init__.py` menandai folder sebagai *package* biasa (*regular package*). Kodenya dijalankan sekali saat *package* pertama kali di-*import*; di sini isinya cukup *docstring*. Sejak Python 3.3, folder tanpa `__init__.py` pun masih bisa di-*import* (*namespace package*), tetapi tetap tuliskan `__init__.py` agar maksudmu jelas. Python juga mengenal impor relatif (`from .buku import Buku`); materi ini memakai impor absolut karena alamatnya lebih jelas.
 
 > [!TIP]
-> **Coba sendiri:** tambahkan `print(Buku.__module__)` di awal `main()`. Apa yang tercetak?
+> **Coba sendiri:** salin `contoh04_paket_mini.py` **beserta** folder `perpustakaan/` ke folder `pertemuan-15` milikmu (tanpa folder itu, `import`-nya gagal). Di salinan `contoh04_paket_mini.py`, tambahkan baris `print(Buku.__module__)` sebagai baris pertama di dalam `main()`, simpan, lalu jalankan. Apa yang tercetak paling atas?
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -409,11 +473,11 @@ Penjelasan:
 
 </details>
 
-## 5. Unit Test dengan `unittest`
+## 5. *Unit Test* dengan `unittest`
 
-File: [`contoh/contoh05_unit_test_mini.py`](contoh/contoh05_unit_test_mini.py)
+*File*: [`contoh/contoh05_unit_test_mini.py`](contoh/contoh05_unit_test_mini.py)
 
-Kelas yang diuji adalah `KeranjangBelanja`: gratis ongkir jika belanja **minimal** Rp100.000, selain itu ongkir Rp10.000. Ada juga `KeranjangBerbug` yang sengaja diberi *bug*: method `ongkir()`-nya memakai `self.subtotal() > BATAS_GRATIS_ONGKIR`, padahal seharusnya `>=`.
+Kelas yang diuji adalah `KeranjangBelanja`: gratis ongkir jika belanja **minimal** Rp100.000, selain itu ongkir Rp10.000. Ada juga `KeranjangBerbug` yang sengaja diberi *bug*: *method* `ongkir()`-nya memakai `self.subtotal() > BATAS_GRATIS_ONGKIR`, padahal seharusnya `>=`. Berikut potongan kelas ujinya:
 
 ```python
 class UjiKeranjang(unittest.TestCase):
@@ -438,7 +502,7 @@ class UjiKeranjang(unittest.TestCase):
         self.assertEqual(self.keranjang.ongkir(), 0)
 ```
 
-Dua test lainnya (`test_subtotal_dua_barang` dan `test_total_termasuk_ongkir`) ditulis dengan pola yang sama. Lalu, untuk menguji versi berbug **tanpa menulis ulang test**, kita memakai pewarisan:
+Dua *test* lainnya (`test_subtotal_dua_barang` dan `test_total_termasuk_ongkir`) ditulis dengan pola yang sama. Lalu, untuk menguji versi berbug **tanpa menulis ulang *test***, kita memakai pewarisan:
 
 ```python
 class UjiKeranjangBerbug(UjiKeranjang):
@@ -448,7 +512,7 @@ class UjiKeranjangBerbug(UjiKeranjang):
         self.keranjang = KeranjangBerbug()
 ```
 
-Biasanya test dijalankan dari terminal (lihat bagian 7). Di contoh ini test dijalankan dari dalam program dengan pencatat hasil buatan sendiri, agar output-nya tidak memuat catatan waktu:
+Biasanya *test* dijalankan dari terminal (lihat bagian 7.10). Di contoh ini, *test* dijalankan dari dalam program dengan pencatat hasil buatan sendiri agar *output*-nya tidak memuat catatan waktu:
 
 ```python
 class HasilRingkas(unittest.TestResult):
@@ -464,9 +528,9 @@ class HasilRingkas(unittest.TestResult):
         print(f"        -> {err[1]}")  # [6] pesan dari assertEqual
 ```
 
-Fungsi `jalankan_uji(kelas_uji)` lalu mengumpulkan test dengan `unittest.defaultTestLoader.loadTestsFromTestCase(kelas_uji)` **[7]**, menjalankannya dengan pencatat di atas, dan mencetak jumlah yang lulus dan gagal.
+Fungsi `jalankan_uji(kelas_uji)` lalu mengumpulkan *test* dengan `unittest.defaultTestLoader.loadTestsFromTestCase(kelas_uji)` **[7]**, menjalankannya dengan pencatat di atas, dan mencetak jumlah yang lulus dan gagal.
 
-**Output:**
+***Output:***
 
 ```text
 === UJI 1: KeranjangBelanja ===
@@ -489,24 +553,24 @@ Hasil: 4 lulus, 1 gagal
 
 Penjelasan:
 
-- **[1]** `setUp()` dijalankan ulang **sebelum setiap** test, sehingga setiap test mendapat keranjang baru yang kosong dan tidak saling memengaruhi.
-- **[2]** `with self.assertRaises(ValueError):` lulus jika kode di dalamnya melempar `ValueError`. Jika tidak ada yang dilempar, test gagal dengan pesan `ValueError not raised`.
+- **[1]** `setUp()` dijalankan ulang **sebelum setiap** *test* sehingga setiap *test* mendapat keranjang baru yang kosong dan tidak saling memengaruhi.
+- **[2]** `with self.assertRaises(ValueError):` lulus jika kode di dalamnya melempar `ValueError`. Jika tidak ada yang dilempar, *test* gagal dengan pesan `ValueError not raised`.
 - **[3]** `assertEqual(a, b)` lulus jika `a == b`. Di materi ini kita menulis **hasil** dulu, lalu **harapan**.
-- **[4]** `UjiKeranjangBerbug` mewarisi kelima test (Pertemuan 07) dan hanya mengganti `setUp()`.
-- **[5]** `shortDescription()` mengambil baris pertama *docstring* test sebagai nama yang mudah dibaca.
-- **[6]** Saat `assertEqual` gagal, pesannya berbentuk `hasil != harapan`: ongkirnya `10000`, padahal seharusnya `0`. (Method `addError()` untuk *exception* tak terduga ditulis dengan pola yang sama.)
-- **[7]** `loadTestsFromTestCase()` mengumpulkan semua method berawalan `test_`, **diurutkan menurut abjad**.
+- **[4]** `UjiKeranjangBerbug` mewarisi kelima *test* (Pertemuan 07) dan hanya mengganti `setUp()`.
+- **[5]** `shortDescription()` mengambil baris pertama *docstring* *test* sebagai nama yang mudah dibaca.
+- **[6]** Saat `assertEqual` gagal, pesannya berbentuk `hasil != harapan`: ongkirnya `10000`, padahal seharusnya `0`. (*Method* `addError()` untuk *exception* tak terduga ditulis dengan pola yang sama.)
+- **[7]** `loadTestsFromTestCase()` mengumpulkan semua *method* berawalan `test_`, **diurutkan menurut abjad**.
 
-Hanya test **batas** (tepat Rp100.000) yang menangkap *bug* `>` versus `>=`. Test dengan Rp99.000 atau Rp150.000 tidak akan pernah menemukannya. Selain `assertEqual` dan `assertRaises`, yang sering dipakai adalah `assertNotEqual(a, b)`, `assertTrue(x)`, `assertFalse(x)`, dan `assertIn(a, b)` (lulus jika `a` ada di dalam `b`).
+Hanya *test* **batas** (tepat Rp100.000) yang menangkap *bug* `>` versus `>=`. *Test* dengan Rp99.000 atau Rp150.000 tidak akan pernah menemukannya. Selain `assertEqual` dan `assertRaises`, yang sering dipakai adalah `assertNotEqual(a, b)`, `assertTrue(x)`, `assertFalse(x)`, dan `assertIn(a, b)` (lulus jika `a` ada di dalam `b`).
 
 > [!TIP]
-> **Coba sendiri:** perbaiki *bug* di `KeranjangBerbug` (ganti `>` menjadi `>=`), lalu jalankan lagi. Hasil UJI 2 seharusnya menjadi `5 lulus, 0 gagal`.
+> **Coba sendiri:** salin `contoh05_unit_test_mini.py` ke folder `pertemuan-15` milikmu. Di salinannya, perbaiki *bug* di `KeranjangBerbug`: ubah `if self.subtotal() > BATAS_GRATIS_ONGKIR:` menjadi `if self.subtotal() >= BATAS_GRATIS_ONGKIR:`, simpan, lalu jalankan. Hasil UJI 2 seharusnya menjadi `Hasil: 5 lulus, 0 gagal`.
 
-## 6. Validasi Input dan Akhir Input
+## 6. Validasi *Input* dan Akhir *Input*
 
-File: [`contoh/contoh06_validasi_input.py`](contoh/contoh06_validasi_input.py)
+*File*: [`contoh/contoh06_validasi_input.py`](contoh/contoh06_validasi_input.py)
 
-Program yang menunggu ketikan sulit dijadikan contoh yang hasilnya selalu sama. Karena itu `input()` di contoh ini **digantikan** objek `MasukanPalsu` yang mengambil jawaban dari daftar yang sudah disiapkan, lalu menampilkannya seolah-olah diketik pengguna.
+Program yang menunggu ketikan sulit dijadikan contoh yang hasilnya selalu sama. Karena itu, `input()` di contoh ini **digantikan** objek `MasukanPalsu` yang mengambil jawaban dari daftar yang sudah disiapkan, lalu menampilkannya seolah-olah diketik pengguna. Berikut potongan *file*-nya:
 
 ```python
 class MasukanPalsu:
@@ -547,7 +611,7 @@ def tanya_angka(masukan: MasukanPalsu, pertanyaan: str, minimum: int,
 
 Fungsi `tanya_pilihan()` bekerja dengan cara yang sama untuk pilihan huruf `U`/`M`, setelah jawaban diubah ke huruf besar **[5]**. Program utamanya menjalankan dua skenario: `MasukanPalsu(["", "dua", "9", "2", "x", "m"])` untuk pengguna yang salah ketik beberapa kali, dan `MasukanPalsu(["abc"])` yang jawabannya habis di tengah jalan, dibungkus `try ... except EOFError:` **[6]**.
 
-**Output:**
+***Output:***
 
 ```text
 === SKENARIO 1: PENGGUNA SALAH KETIK BEBERAPA KALI ===
@@ -572,19 +636,19 @@ Input berakhir. Pendaftaran dibatalkan.
 
 Penjelasan:
 
-- **[1]** Saat jawaban habis, `MasukanPalsu` melempar `EOFError`, persis seperti `input()` asli ketika input berakhir.
+- **[1]** Saat jawaban habis, `MasukanPalsu` melempar `EOFError`, persis seperti `input()` asli ketika *input* berakhir.
 - **[2]** `while True` baru berhenti lewat `return` saat jawabannya valid. Setiap jawaban salah dibalas pesan yang **menjelaskan masalahnya**, lalu pertanyaan diulang.
 - **[3]** `int()` melempar `ValueError` untuk teks seperti `dua`. Kita menggantinya dengan pesan ramah.
 - **[4]** Angka yang bentuknya benar tetap diperiksa batasnya: `9` ditolak karena maksimal 5 tiket.
 - **[5]** Jawaban `m` diterima sebagai `M`. Pengguna tidak perlu "dihukum" karena huruf kecil.
-- **[6]** Akhir input bukan kesalahan pengguna. Program menutup urusannya dengan tertib, bukan menampilkan *traceback*.
+- **[6]** Akhir *input* bukan kesalahan pengguna. Program menutup urusannya dengan tertib, bukan menampilkan *traceback*.
 
 > [!NOTE]
-> Di program interaktif sungguhan, akhir input terjadi saat pengguna menekan `Ctrl+D` (macOS/Linux) atau `Ctrl+Z` lalu Enter (Windows), atau saat masukan diambil dari file (`python main.py < masukan.txt`) dan isinya sudah habis dibaca.
+> Di program interaktif sungguhan, akhir *input* terjadi saat pengguna menekan Ctrl+D (macOS/Linux) atau Ctrl+Z lalu Enter (Windows), atau saat masukan diambil dari *file* dan isinya sudah habis dibaca. Contohnya `python main.py < masukan.txt` di Command Prompt, macOS, atau Linux. PowerShell tidak mengenal tanda `<` ini; di sana, pakai `Get-Content masukan.txt | python main.py`.
 
 ## 7. Studi Kasus KedaiKita
 
-Rancangan dan arsitekturnya sudah dibahas di [halaman konsep](../README.md#9-studi-kasus-kedaikita-apa-yang-kita-bangun-hari-ini). Sekarang kita bedah kodenya.
+Rancangan dan arsitekturnya sudah dibahas di [halaman konsep](../README.md#9-studi-kasus-kedaikita-apa-yang-kita-bangun-hari-ini). Sekarang kita bedah kodenya. Semua perintah di bagian ini diketik dari folder `studi-kasus` (lihat [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)).
 
 ### 7.1 Apa yang Berubah dibanding Pertemuan 14
 
@@ -596,7 +660,9 @@ Rancangan dan arsitekturnya sudah dibahas di [halaman konsep](../README.md#9-stu
 
 ### 7.2 `main.py`: Pintu Masuk
 
-File: [`studi-kasus/main.py`](studi-kasus/main.py)
+*File*: [`studi-kasus/main.py`](studi-kasus/main.py)
+
+Berikut potongan *file*-nya (tanpa komentar pembuka dan baris `import`):
 
 ```python
 # Folder data dicari relatif terhadap lokasi file ini, sehingga program tetap
@@ -617,15 +683,15 @@ def main():
         sys.exit(1)
 ```
 
-- `__file__` berisi alamat file `main.py` itu sendiri. `resolve()` menjadikannya alamat lengkap, `parent` mengambil foldernya, lalu `/ "data"` menunjuk folder data di sebelahnya. Jadi `python studi-kasus/main.py --demo` yang diketik dari folder lain pun tetap menemukan datanya.
-- `sys.argv` adalah list argumen dari terminal: `python main.py --demo` menghasilkan `["main.py", "--demo"]`.
-- `except (KedaiError, OSError)` adalah jaring pengaman terakhir. File rusak (`FormatDataError`) atau masalah disk (`OSError`) ditampilkan dengan sopan, lalu program keluar dengan kode 1 (tanda gagal).
+- `__file__` berisi alamat *file* `main.py` itu sendiri. `resolve()` menjadikannya alamat lengkap, `parent` mengambil foldernya, lalu `/ "data"` menunjuk folder data di sebelahnya. Jadi `python studi-kasus/main.py --demo` yang diketik dari folder lain pun tetap menemukan datanya.
+- `sys.argv` adalah *list* argumen dari terminal: `python main.py --demo` menghasilkan `["main.py", "--demo"]`.
+- `except (KedaiError, OSError)` adalah jaring pengaman terakhir. *File* rusak (`FormatDataError`) atau masalah disk (`OSError`) ditampilkan dengan sopan, lalu program keluar dengan kode 1 (tanda gagal).
 
 ### 7.3 `RepositoriMenuCSV`: Memuat dan Menyimpan Menu
 
-File: [`studi-kasus/kedaikita/repositori.py`](studi-kasus/kedaikita/repositori.py)
+*File*: [`studi-kasus/kedaikita/repositori.py`](studi-kasus/kedaikita/repositori.py)
 
-Method `muat()` membuka file dengan `with open(..., encoding="utf-8", newline="")`, melewati baris judul dengan `next(pembaca, None)` (nilai bawaan `None` mencegah error jika file benar-benar kosong), lalu menyerahkan setiap baris ke `_buat_menu()` beserta nomor barisnya. Kode yang sudah pernah muncul dicatat di sebuah **set** (Pertemuan 12); kode ganda ditolak dengan `FormatDataError("Baris 3: kode M01 sudah dipakai")`. Inti validasinya ada di `_buat_menu()`:
+*Method* `muat()` membuka *file* dengan `with open(..., encoding="utf-8", newline="")`, melewati baris judul dengan `next(pembaca, None)` (nilai bawaan `None` mencegah *error* jika *file* benar-benar kosong), lalu menyerahkan setiap baris ke `_buat_menu()` beserta nomor barisnya. Kode yang sudah pernah muncul dicatat di sebuah `set` (Pertemuan 12); kode ganda ditolak dengan `FormatDataError("Baris 3: kode M01 sudah dipakai")`. Inti validasinya ada di `_buat_menu()` (potongan):
 
 ```python
     @staticmethod
@@ -658,9 +724,13 @@ Method `muat()` membuka file dengan `with open(..., encoding="utf-8", newline=""
 - Semua kegagalan diterjemahkan menjadi `FormatDataError` bernomor baris. `from None` menyembunyikan *exception* asalnya (`ValueError`) agar pesan untuk pengguna tetap bersih (*exception chaining*, Pertemuan 11).
 - Aturan harga dan level pedas **tidak** ditulis ulang di sini. Konstruktor `Makanan`/`Minuman` yang menolaknya; repositori hanya menambahkan nomor baris.
 
-Kebalikannya, `simpan()` menulis ulang seluruh file dengan `csv.writer`, dan `_ke_kolom()` memakai `isinstance()` untuk mengisi kolom `ekstra`: level pedas untuk `Makanan`, `dingin`/`panas` untuk `Minuman`.
+Kebalikannya, `simpan()` menulis ulang seluruh *file* dengan `csv.writer`, dan `_ke_kolom()` memakai `isinstance()` untuk mengisi kolom `ekstra`: level pedas untuk `Makanan`, `dingin`/`panas` untuk `Minuman`.
 
-### 7.4 `PencatatTransaksiCSV`: Observer yang Menulis File
+### 7.4 `PencatatTransaksiCSV`: *Observer* yang Menulis *File*
+
+*File*: [`studi-kasus/kedaikita/repositori.py`](studi-kasus/kedaikita/repositori.py) (kelas kedua di *file* itu)
+
+Berikut potongannya, tanpa *method* `baca_semua()`:
 
 ```python
 class PencatatTransaksiCSV(PengamatPesanan):
@@ -687,13 +757,15 @@ class PencatatTransaksiCSV(PengamatPesanan):
             penulis.writerow(baris)
 ```
 
-- Kelas ini mewarisi `PengamatPesanan`, *interface* Observer dari Pertemuan 14, dan mengisi method kontraknya, `perbarui()`.
-- Konstruktor menulis baris judul jika file belum ada, atau jika diminta mulai baru (`mulai_baru=True`, dipakai mode demo).
-- `perbarui()` membuka file dengan mode `"a"`: setiap pesanan LUNAS **ditambahkan** di akhir tanpa menghapus riwayat lama. Method `baca_semua()` membaca riwayat itu kembali.
+- Kelas ini mewarisi `PengamatPesanan`, *interface* *Observer* dari Pertemuan 14, dan mengisi *method* kontraknya, `perbarui()`.
+- Konstruktor menulis baris judul jika *file* belum ada, atau jika diminta mulai baru (`mulai_baru=True`, dipakai mode demo).
+- `perbarui()` membuka *file* dengan mode `"a"`: setiap pesanan LUNAS **ditambahkan** di akhir tanpa menghapus riwayat lama. *Method* `baca_semua()` membaca riwayat itu kembali.
 
 ### 7.5 `LayananKasir`: Otak Alur Kerja
 
-File: [`studi-kasus/kedaikita/layanan.py`](studi-kasus/kedaikita/layanan.py)
+*File*: [`studi-kasus/kedaikita/layanan.py`](studi-kasus/kedaikita/layanan.py)
+
+Berikut tiga *method* intinya (potongan):
 
 ```python
     def buat_pesanan(self, pelanggan: Pelanggan) -> Pesanan:
@@ -714,15 +786,15 @@ File: [`studi-kasus/kedaikita/layanan.py`](studi-kasus/kedaikita/layanan.py)
         pesanan.bayar(pembayaran)
 ```
 
-- Tidak ada satu pun `input()` di sini. Semua method menerima data yang **sudah jadi**, sehingga bisa dipakai tampilan apa pun dan mudah diuji.
-- Daftar pengamat **disuntikkan** lewat konstruktor (DIP, Pertemuan 13), lalu dipasang ke setiap pesanan baru. Method `pelanggan(nama, no_hp)` memakai dict no HP → `Pelanggan` agar pelanggan lama tidak didaftarkan dua kali.
+- Tidak ada satu pun `input()` di sini. Semua *method* menerima data yang **sudah jadi** sehingga bisa dipakai tampilan apa pun dan mudah diuji.
+- Daftar pengamat **disuntikkan** lewat konstruktor (DIP, Pertemuan 13), lalu dipasang ke setiap pesanan baru. *Method* `pelanggan(nama, no_hp)` memakai `dict` (no HP → `Pelanggan`) agar pelanggan lama tidak didaftarkan dua kali.
 - `bayar()` menerima pilihan berupa teks (`"tunai"`, `"qris"`, `"kartu"`) dan menyerahkan pembuatan objeknya ke `PembayaranFactory`.
 
 ### 7.6 `AplikasiKasir`: Mode Demo dan Mode Interaktif
 
-File: [`studi-kasus/kedaikita/aplikasi.py`](studi-kasus/kedaikita/aplikasi.py)
+*File*: [`studi-kasus/kedaikita/aplikasi.py`](studi-kasus/kedaikita/aplikasi.py)
 
-Kedua mode memakai persiapan yang sama, yaitu method `_siapkan()`: membuat `Kedai`, mengisinya dengan menu hasil `RepositoriMenuCSV(file_menu).muat()`, lalu membuat `LayananKasir(kedai, [pencatat])`. Di sinilah semua lapisan dirakit.
+Kedua mode memakai persiapan yang sama, yaitu *method* `_siapkan()`: membuat `Kedai`, mengisinya dengan menu hasil `RepositoriMenuCSV(file_menu).muat()`, lalu membuat `LayananKasir(kedai, [pencatat])`. Di sinilah semua lapisan dirakit.
 
 Mode interaktif (`jalankan()`) memuat `data/menu.csv` jika sudah ada (hasil sesi sebelumnya), atau `data/menu_awal.csv` jika belum. Perulangan menu utamanya dibungkus `try ... except EOFError`, dan bagian akhirnya selalu menyimpan stok:
 
@@ -734,7 +806,7 @@ Mode interaktif (`jalankan()`) memuat `data/menu.csv` jika sudah ada (hasil sesi
         print(f"Stok terbaru disimpan ke data/{file_menu.name}. Sampai jumpa!")
 ```
 
-Semua pertanyaan memakai dua method bantu. `_tanya_angka()` adalah versi sungguhan dari `tanya_angka()` di contoh 06:
+Semua pertanyaan memakai dua *method* bantu di akhir *file* yang sama. `_tanya_angka()` adalah versi sungguhan dari `tanya_angka()` di contoh 06:
 
 ```python
     @staticmethod
@@ -754,13 +826,15 @@ Alur pesanan (`_alur_pesanan`), pilihan diskon (`_pilih_diskon`), dan pembayaran
 
 ### 7.7 Menjalankan Mode Demo
 
+Dari folder `studi-kasus`, ketik (macOS/Linux: `python3 main.py --demo`):
+
 ```bash
 python main.py --demo
 ```
 
-Output diawali `Memuat menu dari data/menu_awal.csv: 6 menu` dan daftar keenam menu, lalu transaksi 1 dan 2 dengan proses pembayaran dan struk lengkap seperti di Pertemuan 14. Berikut cuplikan bagian selanjutnya: input keliru, laporan, dan riwayat yang dibaca dari file.
+*Output* diawali `Memuat menu dari data/menu_awal.csv: 6 menu` dan daftar keenam menu, lalu transaksi 1 dan 2 dengan proses pembayaran dan struk lengkap seperti di Pertemuan 14. Berikut cuplikan bagian selanjutnya: *input* keliru, laporan, dan riwayat yang dibaca dari *file*.
 
-**Output:**
+***Output:***
 
 ```text
 --- Transaksi 3: input keliru ditangani dengan rapi ---
@@ -796,11 +870,24 @@ P002 | Siti Aminah | 082198765432 | 3 | 30580
 P003 | Rina Marlina | 085312345678 | 2 | 26400
 ```
 
-Tiga baris riwayat itu ditulis oleh `PencatatTransaksiCSV` setiap kali pesanan menjadi LUNAS, lalu dibaca kembali dari file. Output diakhiri isi `demo-menu.csv` dengan stok terbaru (lihat [halaman konsep](../README.md#9-studi-kasus-kedaikita-apa-yang-kita-bangun-hari-ini)). Jalankan sendiri untuk melihat output lengkapnya.
+Tiga baris riwayat itu ditulis oleh `PencatatTransaksiCSV` setiap kali pesanan menjadi LUNAS, lalu dibaca kembali dari *file*. *Output* diakhiri isi `demo-menu.csv` dengan stok terbaru (lihat [halaman konsep](../README.md#9-studi-kasus-kedaikita-apa-yang-kita-bangun-hari-ini)). Jalankan sendiri untuk melihat *output* lengkapnya.
 
-### 7.8 Contoh Sesi Interaktif
+### 7.8 Memakai Mode Interaktif
 
-Jalankan `python main.py`, dan kamu menjadi kasirnya. Berikut **ilustrasi** satu sesi. Teks setelah tanda titik dua pada baris pertanyaan adalah **ketikan kasir**; `<Enter>` berarti kasir langsung menekan Enter. Menu utama dan struk disingkat agar ringkas.
+Dari folder `studi-kasus`, jalankan `python main.py` (macOS/Linux: `python3 main.py`), atau buka `main.py` di VS Code lalu klik ▷. Kini kamu menjadi kasirnya. Setiap pertanyaan diakhiri titik dua: ketik jawabanmu di terminal, lalu tekan Enter.
+
+| Pertanyaan | Yang kamu ketik |
+|---|---|
+| `Pilihan:` (menu utama) | `1` lihat menu, `2` buat pesanan, `3` laporan sesi ini, `4` riwayat dari *file*, `0` simpan dan keluar |
+| `Nama pelanggan:` dan `No. HP:` | nama dan nomor HP pelanggan |
+| `Kode menu:` | kode seperti `M01` (huruf kecil boleh). Jika semua item sudah dimasukkan, **langsung tekan Enter** tanpa mengetik apa pun. |
+| `Jumlah:` | angka bulat, misalnya `2` |
+| `Pilihan diskon:` | `1` tanpa diskon, `2` member (baru berlaku jika pelanggan sudah punya minimal 10 poin), `3` *happy hour* (20% untuk minuman) |
+| `Pilihan pembayaran:` | `1` tunai (lalu uang diterima), `2` QRIS (lalu saldo *e-wallet*), `3` kartu kredit (lalu nama bank; biaya layanan 2%) |
+
+Pertanyaan pembayaran diulang sampai pesanan LUNAS. Jika uangnya kurang, pilih lagi lalu masukkan nominal yang cukup, atau pilih `3` karena pembayaran kartu kredit di simulasi ini selalu disetujui.
+
+Berikut **ilustrasi** satu sesi. Teks setelah tanda titik dua pada baris pertanyaan adalah **ketikan kasir**; `<Enter>` berarti kasir langsung menekan Enter. Menu utama dan struk disingkat agar ringkas.
 
 ```text
 Memuat menu dari data/menu_awal.csv: 6 menu
@@ -854,14 +941,18 @@ Stok terbaru disimpan ke data/menu.csv. Sampai jumpa!
 
 Setelah sesi ini, folder `data/` berisi `menu.csv` (stok kopi tinggal 18, pisang goreng 11) dan `transaksi.csv` (satu baris P001). Jalankan `python main.py` lagi, dan baris pertamanya menjadi `Memuat menu dari data/menu.csv: 6 menu`. Stok berlanjut dari sesi sebelumnya!
 
-Jika input berakhir di tengah sesi (misalnya kamu menekan `Ctrl+D` saat menu utama muncul), aplikasi mencetak `Input berakhir.`, tetap menyimpan stok ke `data/menu.csv`, lalu pamit.
+**Cara keluar yang benar:**
+
+- Pilih `0` di menu utama. Stok disimpan ke `data/menu.csv`, lalu aplikasi pamit.
+- Jika *input* berakhir di tengah sesi (kamu menekan Ctrl+D di macOS/Linux, atau Ctrl+Z lalu Enter di Windows), aplikasi mencetak `Input berakhir.`, tetap menyimpan stok ke `data/menu.csv`, lalu pamit.
+- **Jangan** keluar dengan Ctrl+C. Program berhenti paksa dengan *traceback* `KeyboardInterrupt` sebelum sempat menyimpan stok, padahal pesanan yang sudah LUNAS tetap tercatat di `transaksi.csv`.
 
 > [!WARNING]
-> Buat satu pesanan lagi di sesi kedua, lalu lihat riwayatnya (pilihan 4). Nomornya kembali **P001**, karena penghitung nomor pesanan mulai dari nol setiap kali aplikasi dibuka. Memperbaikinya adalah [Latihan 3](../latihan.md).
+> Buat satu pesanan lagi di sesi kedua, lalu lihat riwayatnya (pilihan 4). Nomornya kembali **P001** karena penghitung nomor pesanan mulai dari nol setiap kali aplikasi dibuka. Memperbaikinya adalah [Latihan 3](../latihan.md).
 
-### 7.9 Saat File Data Rusak
+### 7.9 Saat *File* Data Rusak
 
-Salin folder `studi-kasus` ke tempat lain (agar data aslinya aman), lalu buat file `data/menu.csv` yang sengaja dirusak, misalnya harga Es Teh Manis ditulis `8rb`:
+Percobaan ini dikerjakan di **salinan**. Salin seluruh folder `studi-kasus` ke folder `pertemuan-15` milikmu (lihat Persiapan). Di salinan itu, buat *file* baru `data/menu.csv` (di VS Code: klik kanan folder `data`, pilih **New File**) berisi tiga baris berikut. Harga Es Teh Manis sengaja ditulis `8rb`:
 
 ```text
 jenis;kode;nama;harga;stok;ekstra
@@ -869,17 +960,19 @@ Minuman;M01;Kopi Susu Gula Aren;18000;20;dingin
 Minuman;M02;Es Teh Manis;8rb;30;dingin
 ```
 
-Jalankan `python main.py`. Hasilnya:
+Simpan, lalu jalankan `python main.py` dari folder `studi-kasus` salinan itu. Hasilnya:
 
 ```text
 Terjadi kesalahan: Baris 3: harga, stok, dan level pedas harus berupa angka
 ```
 
-Aplikasi berhenti dengan sopan dan menunjuk baris yang rusak, tanpa *traceback* panjang yang membingungkan kasir. Pesan untuk kerusakan lain (kolom kurang, jenis tidak dikenal, kode ganda, harga 0) ada di [tabel halaman konsep](../README.md#46-jangan-percaya-isi-file).
+Aplikasi berhenti dengan sopan dan menunjuk baris yang rusak, tanpa *traceback* panjang yang membingungkan kasir. Pesan untuk kerusakan lain (kolom kurang, jenis tidak dikenal, kode ganda, harga 0) ada di [tabel halaman konsep](../README.md#46-jangan-percaya-isi-file). Setelah selesai, hapus `data/menu.csv` di salinan itu agar aplikasi kembali memuat `menu_awal.csv`.
 
-### 7.10 Unit Test KedaiKita
+### 7.10 *Unit Test* KedaiKita
 
-File: [`studi-kasus/tests/test_kedaikita.py`](studi-kasus/tests/test_kedaikita.py)
+*File*: [`studi-kasus/tests/test_kedaikita.py`](studi-kasus/tests/test_kedaikita.py)
+
+Berikut potongan kelas `TestPesanan`:
 
 ```python
 class TestPesanan(unittest.TestCase):
@@ -899,21 +992,21 @@ class TestPesanan(unittest.TestCase):
         self.assertEqual(self.pesanan.hitung_total(), 67100)
 ```
 
-Test untuk `RepositoriMenuCSV` memakai `tempfile.TemporaryDirectory()`, sehingga tidak pernah menyentuh folder `data/` milik aplikasi. Contohnya, `test_file_rusak_ditolak` menulis file berisi harga `mahal`, lalu memeriksa bahwa `muat()` melempar `FormatDataError`.
+*Test* untuk `RepositoriMenuCSV` memakai `tempfile.TemporaryDirectory()` sehingga tidak pernah menyentuh folder `data/` milik aplikasi. Contohnya, `test_file_rusak_ditolak` menulis *file* berisi harga `mahal`, lalu memeriksa bahwa `muat()` melempar `FormatDataError`.
 
-Jalankan semua test dari folder `studi-kasus`:
+Jalankan semua *test* dari folder `studi-kasus` (macOS/Linux: `python3`):
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-Hasilnya kira-kira seperti berikut. Catatan waktunya pasti berbeda, dan format nama test sedikit berbeda antarversi Python:
+Hasilnya kira-kira seperti berikut. Catatan waktunya pasti berbeda, dan format nama *test* sedikit berbeda antarversi Python (Python 3.10 hanya menulis `(test_kedaikita.TestMenu)`):
 
 ```text
 test_harga_harus_positif (test_kedaikita.TestMenu.test_harga_harus_positif) ... ok
 test_level_pedas_maksimal_lima (test_kedaikita.TestMenu.test_level_pedas_maksimal_lima) ... ok
 test_stok_tidak_berubah_jika_gagal (test_kedaikita.TestMenu.test_stok_tidak_berubah_jika_gagal) ... ok
-(13 baris lain untuk test Pesanan, PembayaranFactory, dan RepositoriMenuCSV)
+(13 baris lain untuk test PembayaranFactory, Pesanan, dan RepositoriMenuCSV)
 
 ----------------------------------------------------------------------
 Ran 16 tests in 0.003s
@@ -921,28 +1014,75 @@ Ran 16 tests in 0.003s
 OK
 ```
 
-- `discover` mencari file berpola `test*.py` di folder yang disebut `-s` (*start directory*), lalu menjalankan setiap method berawalan `test_`.
-- `-v` (*verbose*) menampilkan satu baris per test. Tanpa `-v`, setiap test yang lulus hanya ditandai satu titik.
-- `OK` berarti semua lulus. Jika ada yang gagal, tertulis `FAILED (failures=1)` lengkap dengan nama test dan pesan *assertion*-nya.
-- Test `test_bayar_gagal_status_tetap_baru` memakai `contextlib.redirect_stdout()` untuk "membisukan" `print()` milik `bayar()`, agar hasil pengujian tetap bersih.
+- `discover` mencari *file* berpola `test*.py` di folder yang disebut `-s` (*start directory*), lalu menjalankan setiap *method* berawalan `test_`.
+- `-v` (*verbose*) menampilkan satu baris per *test*, diurutkan menurut nama kelas lalu nama *method*.
+- Kata di ujung setiap baris adalah hasil *test* itu. Tanpa `-v`, hasilnya ditandai satu karakter saja.
+
+| Hasil (`-v`) | Tanpa `-v` | Artinya |
+|---|---|---|
+| `ok` | `.` | lulus: semua *assertion* terpenuhi |
+| `FAIL` | `F` | gagal: sebuah *assertion* tidak terpenuhi, jadi hasil kodenya berbeda dari harapan |
+| `ERROR` | `E` | *test* berhenti karena *exception* lain yang tidak diduga, misalnya salah ketik nama *method* sehingga muncul `AttributeError`; pemeriksaannya belum sempat dilakukan |
+
+- Baris terakhir merangkum semuanya. `OK` berarti semua lulus. Jika tidak, tertulis misalnya `FAILED (failures=2)` atau `FAILED (errors=1)`, dan di atasnya ada laporan untuk setiap *test* yang bermasalah: nama *test*, baris kodenya, dan pesan *error*-nya. Contohnya ada di jawaban "Coba sendiri" di bawah.
+- *Test* `test_bayar_gagal_status_tetap_baru` memakai `contextlib.redirect_stdout()` untuk "membisukan" `print()` milik `bayar()` agar hasil pengujian tetap bersih.
 
 > [!TIP]
-> **Coba sendiri:** di `kedaikita/pengaturan.py`, ubah pajak dari `10` menjadi `11`, lalu jalankan test lagi. Test mana yang gagal, dan mengapa? Jangan lupa kembalikan nilainya.
+> **Coba sendiri:** kerjakan di salinan folder `studi-kasus` di folder `pertemuan-15` milikmu. Buka `kedaikita/pengaturan.py` di salinan itu, ubah baris `self._pajak_persen = 10` menjadi `self._pajak_persen = 11`, simpan, lalu jalankan *test* dari folder salinan itu. *Test* mana yang gagal, dan mengapa?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-`test_total_sudah_termasuk_pajak_10_persen` gagal dengan pesan `67710 != 67100`, dan `test_struk_memuat_total` gagal karena teks `Rp67.100` tidak ada di struk. Empat belas test lain tetap lulus karena tidak bergantung pada pajak. Inilah gunanya test: dampak sebuah perubahan langsung ketahuan.
+`test_total_sudah_termasuk_pajak_10_persen` gagal dengan pesan `67710 != 67100`, dan `test_struk_memuat_total` gagal karena teks `Rp67.100` tidak ada di struk. Empat belas *test* lain tetap lulus karena tidak bergantung pada pajak. Inilah gunanya *test*: dampak sebuah perubahan langsung ketahuan. Cuplikan hasilnya (dipendekkan):
+
+```text
+test_struk_memuat_total (test_kedaikita.TestPesanan.test_struk_memuat_total) ... FAIL
+test_subtotal (test_kedaikita.TestPesanan.test_subtotal) ... ok
+test_total_sudah_termasuk_pajak_10_persen (test_kedaikita.TestPesanan.test_total_sudah_termasuk_pajak_10_persen) ... FAIL
+...
+======================================================================
+FAIL: test_total_sudah_termasuk_pajak_10_persen (test_kedaikita.TestPesanan.test_total_sudah_termasuk_pajak_10_persen)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_kedaikita.py", line 58, in test_total_sudah_termasuk_pajak_10_persen
+    self.assertEqual(self.pesanan.hitung_total(), 67100)
+AssertionError: 67710 != 67100
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.005s
+
+FAILED (failures=2)
+```
+
+Baca dari bawah: `failures=2` berarti dua *test* gagal. Laporan `FAIL:` menunjuk baris 58 di *file test*, dan pesan `67710 != 67100` berarti hasil kodenya 67710, padahal *test* mengharapkan 67100.
 
 </details>
 
-## 8. Kesalahan Umum dan Cara Membaca Pesan Error
+### 7.11 Batasan yang Perlu Kamu Ketahui
 
-### Kesalahan 1: Menjalankan modul di dalam package secara langsung
+KedaiKita sengaja dibuat sederhana. Batasan berikut nyata dan bisa kamu temui saat mencobanya. Tuliskan batasan seperti ini dengan jujur di README proyek akhirmu juga.
+
+| Batasan | Akibatnya | Lihat |
+|---|---|---|
+| Nomor pesanan mulai dari P001 lagi setiap kali aplikasi dibuka | `transaksi.csv` bisa berisi nomor ganda | [Latihan 3](../latihan.md) |
+| Total pesanan selalu dihitung ulang dari harga menu dan poin pelanggan **saat ini** | struk yang dicetak ulang, laporan, dan bahkan `transaksi.csv` bisa berbeda dari jumlah yang benar-benar dibayar (contoh di bawah) | catatan desain di solusi [Latihan 5](../latihan.md) |
+| *File* CSV yang tidak tersimpan sebagai UTF-8 | aplikasi berhenti dengan *traceback* `UnicodeDecodeError` | Kesalahan 3 di bagian 8 |
+| Isi kolom tidak boleh memuat titik koma atau tanda petik ganda | *file* tidak terbaca dengan benar oleh versi Java | [halaman konsep bagian 4.4](../README.md#44-mengapa-titik-koma-bukan-koma) |
+| *Input* berakhir saat pesanan belum dibayar | stok item yang sudah dimasukkan tetap berkurang dan ikut tersimpan, padahal pesanannya tidak tercatat | bagian 7.8 |
+
+Contoh batasan kedua: pelanggan baru memesan 4 Nasi Goreng Kampung dengan diskon Member. Saat membayar, poinnya masih 0 sehingga diskon belum berlaku, dan ia membayar Rp110.000. Setelah lunas, ia mendapat 11 poin. Struk yang dicetak sesudah pembayaran, laporan sesi, dan `transaksi.csv` lalu menghitung ulang dengan poin baru itu sehingga mencatat Rp99.000. Perbaikannya adalah menyimpan total **saat pembayaran terjadi**, persis seperti struk kertas yang tidak berubah lagi setelah dicetak.
+
+## 8. Kesalahan Umum dan Cara Membaca Pesan *Error*
+
+### Kesalahan 1: Menjalankan modul di dalam *package* secara langsung
+
+Dari folder `studi-kasus`, perintah berikut **salah**:
 
 ```bash
 python kedaikita/aplikasi.py
 ```
+
+Pesan *error*-nya:
 
 ```text
 Traceback (most recent call last):
@@ -952,36 +1092,41 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'kedaikita'
 ```
 
-**Artinya:** saat `aplikasi.py` dijalankan langsung, Python mencari modul di folder milik `aplikasi.py` (di dalam `kedaikita/`), dan di sana tidak ada *package* bernama `kedaikita`. **Perbaikan:** jalankan pintu masuknya, `python main.py`, dari folder `studi-kasus`.
+**Artinya:** saat `aplikasi.py` dijalankan langsung, Python mencari modul di folder milik `aplikasi.py` (di dalam `kedaikita/`), dan di sana tidak ada *package* bernama `kedaikita`. Pesan yang sama muncul jika kamu menekan ▷ saat yang terbuka adalah `aplikasi.py` atau `tests/test_kedaikita.py`. **Perbaikan:** jalankan pintu masuknya, `python main.py`, dari folder `studi-kasus`. Untuk *test*, pakai perintah di bagian 7.10.
 
-### Kesalahan 2: Test tidak ditemukan
+### Kesalahan 2: *Test* tidak ditemukan atau gagal di-*import*
 
 Perintah `python -m unittest` (tanpa `discover -s tests`) di folder `studi-kasus` hanya melaporkan `Ran 0 tests in 0.000s` lalu `NO TESTS RAN`.
 
-**Artinya:** tanpa `discover -s tests`, `unittest` hanya mencari di folder aktif dan subfolder yang berupa *package* biasa. Folder `tests/` tidak punya `__init__.py`, sehingga dilewati. **Perbaikan:** `python -m unittest discover -s tests -v`. Pastikan nama file test diawali `test` dan nama method-nya diawali `test_`.
+**Artinya:** tanpa `discover -s tests`, `unittest` hanya mencari di folder aktif dan subfolder yang berupa *package* biasa. Folder `tests/` tidak punya `__init__.py` sehingga dilewati. **Perbaikan:** `python -m unittest discover -s tests -v`. Pastikan nama *file test* diawali `test` dan nama *method*-nya diawali `test_`.
 
-### Kesalahan 3: File CSV tidak tersimpan sebagai UTF-8
+Kasus serupa: perintah yang benar diketik dari folder yang salah, misalnya dari folder `python` dengan `-s studi-kasus/tests`. Hasilnya satu baris `ERROR` berisi `ImportError: Failed to import test module: test_kedaikita` dan `ModuleNotFoundError: No module named 'kedaikita'`, lalu `FAILED (errors=1)`. Penyebabnya sama dengan Kesalahan 1. **Perbaikan:** masuk dulu ke folder `studi-kasus`, lalu ketik perintahnya persis seperti di bagian 7.10.
 
-File `menu.csv` diedit lalu disimpan Excel dengan pilihan "CSV (Comma delimited)", dan ada huruf `é` pada `Café Latte`:
+### Kesalahan 3: *File* CSV tidak tersimpan sebagai UTF-8
+
+*File* `menu.csv` diedit lalu disimpan Excel dengan pilihan **CSV (Comma delimited)**, dan ada huruf `é` pada `Café Latte`. Saat aplikasi dibuka, muncul pesan berikut:
 
 ```text
 Traceback (most recent call last):
   ...
   File "repositori.py", line 45, in muat
     if next(pembaca, None) is None:
-UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 49: invalid continuation byte
+  File "<frozen codecs>", line 325, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 99: invalid continuation byte
 ```
 
-**Artinya:** byte `0xe9` adalah huruf `é` dalam *encoding* Windows-1252, dan byte itu tidak sah dalam UTF-8. **Perbaikan:** simpan sebagai **CSV UTF-8** (Excel: *Save As* → "CSV UTF-8"), atau hindari huruf beraksen. Tantangan: tangkap `UnicodeDecodeError` di `muat()` lalu ubah menjadi `FormatDataError` agar pesannya ramah.
+**Artinya:** *byte* `0xe9` adalah huruf `é` dalam *encoding* Windows-1252 (bawaan Excel untuk pilihan itu), dan *byte* itu tidak sah dalam UTF-8. Angka `position 99` adalah letak *byte* itu di dalam *file*, jadi di komputermu angkanya bisa lain. *Exception* ini tidak ditangkap `main.py` karena `UnicodeDecodeError` bukan `KedaiError` maupun `OSError`. Inilah salah satu batasan KedaiKita (bagian 7.11). **Perbaikan:** simpan ulang lewat **File → Save As**, lalu pilih jenis **CSV UTF-8 (Comma delimited)**, atau hindari huruf beraksen. Pilihan itu menambahkan penanda kecil (BOM) di awal *file*, tetapi KedaiKita tetap bisa membacanya karena baris pertama (judul kolom) dilewati. Tantangan: tangkap `UnicodeDecodeError` di `muat()` lalu ubah menjadi `FormatDataError` agar pesannya ramah.
 
-### Kesalahan 4: `input()` tanpa penanganan akhir input
+### Kesalahan 4: `input()` tanpa penanganan akhir *input*
+
+Coba sendiri di folder `pertemuan-15` milikmu: buat *file* baru bernama `eof.py`, salin dua baris berikut ke dalamnya, lalu jalankan `python eof.py`.
 
 ```python
 nama = input("Nama pelanggan: ")
 print("Halo", nama)
 ```
 
-Jika input habis (pengguna menekan `Ctrl+D`, atau dijalankan dengan `python eof.py < /dev/null`):
+Saat ditanya nama, jangan mengetik nama. Tekan Ctrl+D (macOS/Linux) atau Ctrl+Z lalu Enter (Windows) untuk mengakhiri *input*. Pesan *error*-nya:
 
 ```text
 Nama pelanggan: Traceback (most recent call last):
@@ -992,22 +1137,22 @@ EOFError: EOF when reading a line
 
 **Artinya:** `input()` tidak punya lagi yang bisa dibaca. **Perbaikan:** bungkus perulangan utama dengan `try ... except EOFError:` lalu tutup aplikasi dengan rapi, seperti `AplikasiKasir.jalankan()`.
 
-### Kesalahan 5: Path relatif yang bergantung pada folder aktif
+### Kesalahan 5: *Path* relatif yang bergantung pada folder aktif
 
 Kode `open("data/menu_awal.csv", encoding="utf-8")` yang dijalankan dari folder tanpa subfolder `data/` gagal dengan `FileNotFoundError: [Errno 2] No such file or directory: 'data/menu_awal.csv'`.
 
-**Artinya:** path relatif dihitung dari **folder aktif terminal**, bukan dari folder file `.py`-nya. **Perbaikan:** jalankan dari folder yang benar, atau susun path dari lokasi file seperti di `main.py`: `Path(__file__).resolve().parent / "data"`.
+**Artinya:** *path* relatif dihitung dari **folder aktif terminal**, bukan dari folder *file* `.py`-nya. **Perbaikan:** jalankan dari folder yang benar, atau susun *path* dari lokasi *file* seperti di `main.py`: `Path(__file__).resolve().parent / "data"`.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python. Python 3.11 ke atas, misalnya, menambahkan tanda `~~~^^^` di bawah bagian kode yang bermasalah. Path lengkap pada *traceback* di atas sudah dipendekkan menjadi nama file saja.
+> Bunyi pesan *error* bisa sedikit berbeda antarversi Python. Python 3.11 ke atas, misalnya, menambahkan tanda `~~~^^^` di bawah bagian kode yang bermasalah. Alamat lengkap (*path*) pada *traceback* di atas sudah dipendekkan menjadi nama *file* saja.
 
 ## 📝 Ringkasan Sintaks
 
 | Konsep | Sintaks Python | Contoh |
 |---|---|---|
-| Menyusun path | `Path(folder) / "nama"` | `Path(__file__).resolve().parent / "data"` |
-| Menulis / menambah file | `open(p, "w")` / `open(p, "a")` + `encoding="utf-8"` | `berkas.write("Senin: Ayu\n")` |
-| Membaca file | `berkas.read()`, `for baris in berkas:` | `p.read_text(encoding="utf-8")` |
+| Menyusun *path* | `Path(folder) / "nama"` | `Path(__file__).resolve().parent / "data"` |
+| Menulis / menambah *file* | `open(p, "w")` / `open(p, "a")` + `encoding="utf-8"` | `berkas.write("Senin: Ayu\n")` |
+| Membaca *file* | `berkas.read()`, `for baris in berkas:` | `p.read_text(encoding="utf-8")` |
 | Menulis CSV | `csv.writer(f, delimiter=";", lineterminator="\n")` | `penulis.writerow(["M01", "Kopi"])` |
 | Membaca CSV | `csv.reader(f, delimiter=";")` | `next(pembaca)` untuk melewati judul |
 | Menutup otomatis | `with ... as nama:` | `with open(p, encoding="utf-8") as f:` |
@@ -1015,10 +1160,10 @@ Kode `open("data/menu_awal.csv", encoding="utf-8")` yang dijalankan dari folder 
 | Folder sementara | `tempfile.TemporaryDirectory()` | `with tempfile.TemporaryDirectory() as folder:` |
 | *Package* dan impor | folder + `__init__.py` | `from kedaikita.menu import Menu` |
 | Argumen terminal | `sys.argv` | `if "--demo" in sys.argv:` |
-| Akhir input | `except EOFError:` | membungkus perulangan menu utama |
-| Kelas test | `class UjiX(unittest.TestCase):` | `def setUp(self):`, `def test_...(self):` |
+| Akhir *input* | `except EOFError:` | membungkus perulangan menu utama |
+| Kelas *test* | `class UjiX(unittest.TestCase):` | `def setUp(self):`, `def test_...(self):` |
 | *Assertion* | `self.assertEqual(hasil, harapan)` | `with self.assertRaises(ValueError):` |
-| Menjalankan test | `python -m unittest discover -s tests -v` | dari folder `studi-kasus` |
+| Menjalankan *test* | `python -m unittest discover -s tests -v` | dari folder `studi-kasus` |
 
 ## ➡️ Langkah Berikutnya
 

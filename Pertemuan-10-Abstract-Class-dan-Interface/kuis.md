@@ -1,4 +1,4 @@
-# Kuis — Pertemuan 10: Abstract Class dan Interface
+# Kuis Pertemuan 10: *Abstract Class* dan *Interface*
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 11 ➡️](../Pertemuan-11-Exception-Handling/README.md)
 
@@ -12,7 +12,7 @@ Saat menyetir mobil, kamu cukup memakai setir, pedal gas, dan rem tanpa perlu ta
 
 - A. Pewarisan: mobil mewarisi kemampuan dari kendaraan
 - B. Abstraksi: yang penting ditonjolkan, detail yang rumit disembunyikan
-- C. *Overloading*: satu nama method untuk banyak parameter
+- C. *Overloading*: satu nama *method* untuk banyak parameter
 - D. Instansiasi: membuat objek dari kelas
 
 <details>
@@ -28,17 +28,17 @@ Pembahasan: abstraksi berarti menonjolkan hal penting bagi pemakai (setir, gas, 
 
 Pernyataan yang **benar** tentang kelas abstrak adalah ...
 
-- A. Semua method di dalam kelas abstrak wajib abstrak
+- A. Semua *method* di dalam kelas abstrak wajib abstrak
 - B. Kelas abstrak tidak boleh punya atribut maupun konstruktor
 - C. Kelas abstrak hanya boleh punya satu kelas anak
-- D. Kelas abstrak boleh punya atribut, konstruktor, dan method konkret, tetapi objeknya tidak bisa dibuat secara langsung
+- D. Kelas abstrak boleh punya atribut, konstruktor, dan *method* konkret, tetapi objeknya tidak bisa dibuat secara langsung
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: D**
 
-Pembahasan: kelas abstrak tetap boleh berisi atribut, konstruktor, dan method yang sudah berisi. Contohnya `Kendaraan` (punya `plat`, konstruktor, dan `isi_bensin()`) serta `Pembayaran` di KedaiKita (punya method konkret `deskripsi()`). Yang dilarang hanyalah membuat objeknya secara langsung. Pilihan A dan B adalah miskonsepsi yang sering muncul. Pilihan C salah karena kelas abstrak boleh punya kelas anak sebanyak apa pun.
+Pembahasan: kelas abstrak tetap boleh berisi atribut, konstruktor, dan *method* yang sudah berisi. Contohnya, `Kendaraan` (punya `plat`, konstruktor, dan `isi_bensin()`) serta `Pembayaran` di KedaiKita (punya *method* konkret `deskripsi()`). Yang dilarang hanyalah membuat objeknya secara langsung. Pilihan A dan B adalah miskonsepsi yang sering muncul. Pilihan C salah karena kelas abstrak boleh punya kelas anak sebanyak apa pun.
 
 </details>
 
@@ -49,6 +49,9 @@ Perhatikan kode berikut.
 **Python:**
 
 ```python
+from abc import ABC, abstractmethod
+
+
 class Hewan(ABC):
     @abstractmethod
     def bersuara(self) -> str: ...
@@ -82,7 +85,7 @@ System.out.println("Selesai");
 Apa yang terjadi saat program dijalankan?
 
 - A. Python mencetak `Mulai` lalu berhenti dengan `TypeError`, sedangkan Java gagal dikompilasi sehingga tidak mencetak apa pun
-- B. Keduanya mencetak `Mulai` dan `Selesai`, karena `bersuara()` tidak pernah dipanggil
+- B. Keduanya mencetak `Mulai` dan `Selesai` karena `bersuara()` tidak pernah dipanggil
 - C. Keduanya gagal sebelum mencetak apa pun
 - D. Python mencetak `Mulai` dan `Selesai`, sedangkan Java gagal dikompilasi
 
@@ -91,17 +94,17 @@ Apa yang terjadi saat program dijalankan?
 
 **Jawaban: A**
 
-Pembahasan: `Kucing` belum mengisi method abstrak `bersuara()`, sehingga `Kucing` masih abstrak. Python baru memeriksanya saat objek dibuat, jadi `Mulai` sempat tercetak sebelum `TypeError: Can't instantiate abstract class Kucing ...` muncul. Java memeriksanya saat kompilasi (*Kucing is not abstract and does not override abstract method bersuara()*), sehingga tidak ada satu baris pun yang dijalankan. Pilihan B dan D keliru: walaupun `bersuara()` tidak pernah dipanggil, satu method abstrak yang belum diisi sudah cukup membuat `Kucing` abstrak, sehingga objeknya tidak boleh dibuat.
+Pembahasan: `Kucing` belum mengisi *method* abstrak `bersuara()` sehingga `Kucing` masih abstrak. Python baru memeriksanya saat objek dibuat, jadi `Mulai` sempat tercetak sebelum `TypeError: Can't instantiate abstract class Kucing ...` muncul. Java memeriksanya saat kompilasi (*Kucing is not abstract and does not override abstract method bersuara()*) sehingga tidak ada satu baris pun yang dijalankan. Pilihan B dan D keliru: walaupun `bersuara()` tidak pernah dipanggil, satu *method* abstrak yang belum diisi sudah cukup membuat `Kucing` abstrak sehingga objeknya tidak boleh dibuat. Pilihan C keliru karena Python tidak memeriksa apa pun sebelum program berjalan, jadi `Mulai` tetap sempat tercetak.
 
 </details>
 
 ### Soal 4
 
-Method konkret di kelas abstrak yang menetapkan **urutan langkah** sebuah proses, lalu memanggil method abstrak untuk langkah-langkah yang berbeda di setiap kelas anak, disebut ...
+*Method* konkret di kelas abstrak yang menetapkan **urutan langkah** sebuah proses, lalu memanggil *method* abstrak untuk langkah-langkah yang berbeda di setiap kelas anak, disebut ...
 
 - A. Konstruktor
 - B. *Default method*
-- C. Template method
+- C. *Template method*
 - D. *Getter*
 
 <details>
@@ -109,7 +112,7 @@ Method konkret di kelas abstrak yang menetapkan **urutan langkah** sebuah proses
 
 **Jawaban: C**
 
-Pembahasan: template method, misalnya `tampilkan()` pada `Laporan` atau `deskripsi()` pada `Pembayaran`, menetapkan kerangka yang sama untuk semua kelas anak. *Default method* (B) adalah method berisi di dalam interface Java. Memang bisa memanggil method abstrak juga, tetapi istilah untuk pola "kerangka tetap di kelas abstrak" adalah template method. Konstruktor (A) dan *getter* (D) tidak berhubungan dengan urutan langkah.
+Pembahasan: *template method*, misalnya `tampilkan()` pada `Laporan` atau `deskripsi()` pada `Pembayaran`, menetapkan kerangka yang sama untuk semua kelas anak. *Default method* (B) adalah *method* berisi di dalam *interface* Java. Memang bisa memanggil *method* abstrak juga, tetapi istilah untuk pola "kerangka tetap di kelas abstrak" adalah *template method*. Konstruktor (A) dan *getter* (D) tidak berhubungan dengan urutan langkah.
 
 </details>
 
@@ -127,25 +130,25 @@ Situasi manakah yang **paling tepat** diselesaikan dengan *interface*?
 
 **Jawaban: B**
 
-Pembahasan: interface cocok untuk hubungan "bisa" (*can-do*) antara kelas-kelas yang tidak bersaudara, persis seperti `DapatDicetak` di KedaiKita. Pilihan A adalah hubungan "adalah" dengan data bersama, sehingga lebih cocok memakai kelas induk (atau kelas abstrak). Pilihan C adalah konsep kelas dan objek biasa. Pilihan D adalah enkapsulasi.
+Pembahasan: *interface* cocok untuk hubungan "bisa" (*can-do*) antara kelas-kelas yang tidak bersaudara, persis seperti `DapatDicetak` di KedaiKita. Pilihan A adalah hubungan "adalah" dengan data bersama sehingga lebih cocok memakai kelas induk (atau kelas abstrak). Pilihan C adalah konsep kelas dan objek biasa. Pilihan D adalah enkapsulasi.
 
 </details>
 
 ### Soal 6
 
-`Bebek` mewarisi kelas abstrak `Hewan` dan memenuhi interface `BisaTerbang`. `Pesawat` hanya memenuhi interface `BisaTerbang`. Pernyataan yang **benar** adalah ...
+`Bebek` mewarisi kelas abstrak `Hewan` dan memenuhi *interface* `BisaTerbang`. `Pesawat` hanya memenuhi *interface* `BisaTerbang`. Pernyataan yang **benar** adalah ...
 
-- A. `Pesawat` termasuk `Hewan`, karena sama-sama bisa terbang seperti `Bebek`
+- A. `Pesawat` termasuk `Hewan` karena sama-sama bisa terbang seperti `Bebek`
 - B. `Bebek` dan `Pesawat` tidak boleh dimasukkan ke dalam satu daftar yang sama
 - C. `Bebek` termasuk `BisaTerbang`, sedangkan `Pesawat` tidak termasuk `Hewan`
-- D. `Bebek` tidak lagi termasuk `Hewan`, karena sudah memenuhi sebuah interface
+- D. `Bebek` tidak lagi termasuk `Hewan` karena sudah memenuhi sebuah *interface*
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: C**
 
-Pembahasan: `Bebek` lolos pemeriksaan `isinstance(bebek, BisaTerbang)` / `bebek instanceof BisaTerbang`, karena ia memenuhi kontrak itu. Sebaliknya, `Pesawat` tidak termasuk `Hewan`, karena ia tidak mewarisi `Hewan`. Pilihan A adalah jebakan "semua yang bisa terbang pasti hewan": interface menyatukan kemampuan, bukan silsilah. Keduanya justru boleh masuk ke satu daftar bertipe `BisaTerbang` (B salah), dan `Bebek` tetap seekor `Hewan` walaupun memenuhi interface (D salah).
+Pembahasan: `Bebek` lolos pemeriksaan `isinstance(bebek, BisaTerbang)` / `bebek instanceof BisaTerbang` karena ia memenuhi kontrak itu. Sebaliknya, `Pesawat` tidak termasuk `Hewan` karena ia tidak mewarisi `Hewan`. Pilihan A adalah jebakan "semua yang bisa terbang pasti hewan": *interface* menyatukan kemampuan, bukan silsilah. Keduanya justru boleh masuk ke satu daftar bertipe `BisaTerbang` (B salah), dan `Bebek` tetap seekor `Hewan` walaupun memenuhi *interface* (D salah).
 
 </details>
 
@@ -156,6 +159,9 @@ Perhatikan kode berikut.
 **Python:**
 
 ```python
+from abc import ABC, abstractmethod
+
+
 class Laporan(ABC):
     def tampilkan(self):
         print(f"[{self.judul()}] {self.penutup()}")
@@ -201,10 +207,10 @@ class LaporanKas extends Laporan {
 new LaporanKas().tampilkan();
 ```
 
-Apa output-nya?
+Apa *output*-nya?
 
-- A. Error, karena `LaporanKas` tidak meng-*override* `penutup()`
-- B. Error, karena `tampilkan()` ditulis di kelas abstrak
+- A. *Error* karena `LaporanKas` tidak meng-*override* `penutup()`
+- B. *Error* karena `tampilkan()` ditulis di kelas abstrak
 - C. `[KAS]` saja, tanpa penutup
 - D. `[KAS] selesai`
 
@@ -213,7 +219,7 @@ Apa output-nya?
 
 **Jawaban: D**
 
-Pembahasan: `tampilkan()` adalah template method milik kelas abstrak, dan objek yang menjalankannya adalah `LaporanKas`. `judul()` terpanggil dari `LaporanKas` (`KAS`). `penutup()` adalah *hook* yang sudah punya isi bawaan, jadi kelas anak **boleh** tidak meng-*override*-nya. Yang wajib diisi hanyalah method abstrak, sehingga A salah. Method konkret di kelas abstrak boleh dipakai objek kelas anak, sehingga B juga salah.
+Pembahasan: `tampilkan()` adalah *template method* milik kelas abstrak, dan objek yang menjalankannya adalah `LaporanKas`. `judul()` terpanggil dari `LaporanKas` (`KAS`). `penutup()` adalah *hook* yang sudah punya isi bawaan, jadi kelas anak **boleh** tidak meng-*override*-nya. Yang wajib diisi hanyalah *method* abstrak sehingga A salah. *Method* konkret di kelas abstrak boleh dipakai objek kelas anak sehingga B juga salah. C salah karena `penutup()` tetap dipanggil dan mengembalikan isi bawaannya, `selesai`.
 
 </details>
 
@@ -221,17 +227,17 @@ Pembahasan: `tampilkan()` adalah template method milik kelas abstrak, dan objek 
 
 Di Java, sebuah kelas boleh ...
 
-- A. meng-*extends* paling banyak satu kelas, tetapi meng-*implements* banyak interface
-- B. meng-*extends* banyak kelas dan banyak interface
-- C. meng-*implements* paling banyak satu interface
-- D. memilih salah satu saja: meng-*extends* kelas atau meng-*implements* interface, tidak boleh keduanya
+- A. mewarisi (`extends`) paling banyak satu kelas, tetapi mengimplementasikan (`implements`) banyak *interface*
+- B. mewarisi (`extends`) banyak kelas sekaligus, termasuk *interface*
+- C. mengimplementasikan (`implements`) paling banyak satu *interface*
+- D. memilih salah satu saja: `extends` sebuah kelas atau `implements` *interface*, tidak boleh keduanya
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: A**
 
-Pembahasan: Java hanya mengizinkan satu kelas induk (Pertemuan 07), tetapi interface boleh banyak, misalnya `class Bebek extends Hewan implements BisaTerbang, BisaBerenang`. Contoh itu sekaligus menunjukkan bahwa D salah: `extends` dan `implements` boleh dipakai bersamaan. Kata kunci untuk interface adalah `implements`, bukan `extends`, sehingga B juga salah.
+Pembahasan: Java hanya mengizinkan satu kelas induk (Pertemuan 07), tetapi *interface* boleh banyak, misalnya `class Bebek extends Hewan implements BisaTerbang, BisaBerenang`. Contoh itu sekaligus menunjukkan bahwa C dan D salah: jumlah *interface* tidak dibatasi satu, dan `extends` serta `implements` boleh dipakai bersamaan. B salah karena Java tidak mengizinkan banyak kelas induk, dan kata kunci untuk *interface* adalah `implements`, bukan `extends`.
 
 </details>
 
@@ -249,17 +255,17 @@ Pada diagram kelas UML, relasi yang digambar dengan **garis putus-putus** dan **
 
 **Jawaban: C**
 
-Pembahasan: realisasi menunjukkan bahwa sebuah kelas memenuhi (mengimplementasikan) interface, misalnya `Kedai ..|> DapatDicetak` di Mermaid. Pewarisan (A) juga memakai segitiga kosong, tetapi garisnya **lurus**. Komposisi (B) memakai belah ketupat penuh, dan asosiasi (D) memakai garis lurus biasa.
+Pembahasan: realisasi menunjukkan bahwa sebuah kelas memenuhi (mengimplementasikan) *interface*, misalnya `Kedai ..|> DapatDicetak` di Mermaid. Pewarisan (A) juga memakai segitiga kosong, tetapi garisnya **lurus**. Komposisi (B) memakai belah ketupat penuh, dan asosiasi (D) memakai garis lurus biasa.
 
 </details>
 
 ### Soal 10
 
-Di KedaiKita Pertemuan 10, method `cetak_struk()` milik `Pesanan` diganti nama menjadi `cetak()`. Apa alasan utamanya?
+Di KedaiKita Pertemuan 10, *method* `cetak_struk()` milik `Pesanan` (Java: `cetakStruk()`) diganti nama menjadi `cetak()`. Apa alasan utamanya?
 
 - A. Agar struk tercetak lebih cepat
-- B. Kontrak `DapatDicetak` mewajibkan method bernama `cetak()`. Dengan nama yang seragam, `cetak_semua()` bisa mencetak kedai maupun pesanan lewat satu panggilan yang sama
-- C. Karena nama method di Python dan Java tidak boleh mengandung kata "struk"
+- B. Kontrak `DapatDicetak` mewajibkan *method* bernama `cetak()`. Dengan nama yang seragam, `cetak_semua()` bisa mencetak kedai maupun pesanan lewat satu panggilan yang sama
+- C. Karena nama *method* di Python dan Java tidak boleh mengandung kata "struk"
 - D. Karena `Pesanan` kini menjadi kelas abstrak
 
 <details>
@@ -267,7 +273,7 @@ Di KedaiKita Pertemuan 10, method `cetak_struk()` milik `Pesanan` diganti nama m
 
 **Jawaban: B**
 
-Pembahasan: `Pesanan` menyatakan diri memenuhi `DapatDicetak`, dan kontrak itu menuntut method bernama persis `cetak()`. Tanpa penggantian nama, kontraknya tidak terpenuhi: Python menolak membuat objek `Pesanan` dan Java menolak mengompilasinya. Nama yang seragam itulah yang membuat `cetak_semua()` bisa memanggil `dokumen.cetak()` tanpa peduli jenis dokumennya. `Pesanan` tetap kelas konkret (D salah), dan penggantian nama tidak memengaruhi kecepatan (A).
+Pembahasan: `Pesanan` menyatakan diri memenuhi `DapatDicetak`, dan kontrak itu menuntut *method* bernama persis `cetak()`. Tanpa penggantian nama, kontraknya tidak terpenuhi: Python menolak membuat objek `Pesanan` dan Java menolak mengompilasinya. Nama yang seragam itulah yang membuat `cetak_semua()` bisa memanggil `dokumen.cetak()` tanpa peduli jenis dokumennya. `Pesanan` tetap kelas konkret (D salah), penggantian nama tidak memengaruhi kecepatan (A salah), dan tidak ada aturan yang melarang kata "struk" di nama *method* (C salah).
 
 </details>
 
@@ -277,9 +283,9 @@ Pembahasan: `Pesanan` menyatakan diri memenuhi `DapatDicetak`, dan kontrak itu m
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Kamu sudah bisa membedakan kelas abstrak dan interface | Lanjut ke [Pertemuan 11](../Pertemuan-11-Exception-Handling/README.md) |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian [Kelas Abstrak atau Interface?](README.md#9-kelas-abstrak-atau-interface) dan kerjakan Latihan 4 dan 5 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, lalu jalankan contoh 01 sampai 06 di halaman praktik sambil mencoba bagian "Coba sendiri" |
+| 8—10 | Mantap! Kamu sudah bisa membedakan kelas abstrak dan *interface* | Lanjut ke [Pertemuan 11](../Pertemuan-11-Exception-Handling/README.md) |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian [Kelas Abstrak atau *Interface*?](README.md#9-kelas-abstrak-atau-interface) dan kerjakan Latihan 4 dan 5 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, lalu jalankan contoh 01 sampai 06 di halaman praktik sambil mencoba bagian "Coba sendiri" |
 
 ---
 

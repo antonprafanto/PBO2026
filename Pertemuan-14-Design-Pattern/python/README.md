@@ -1,4 +1,4 @@
-# 🐍 Praktik Python — Pertemuan 14: Design Pattern Dasar
+# 🐍 Praktik Python Pertemuan 14: *Design Pattern* Dasar
 
 [⬅️ Konsep](../README.md) · [☕ Praktik Java](../java/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
@@ -7,17 +7,24 @@
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
-1. [Singleton dengan `get_instance()`](#1-singleton-dengan-get_instance)
-2. [Variasi Singleton ala Python: Modul dan `__new__`](#2-variasi-singleton-ala-python-modul-dan-__new__)
-3. [Sisi Gelap Singleton: State Global](#3-sisi-gelap-singleton-state-global)
-4. [Simple Factory: Membuat Objek dari Teks](#4-simple-factory-membuat-objek-dari-teks)
-5. [Factory Method: Subclass yang Memilih](#5-factory-method-subclass-yang-memilih)
-6. [Strategy: Menukar Cara Menghitung](#6-strategy-menukar-cara-menghitung)
-7. [Observer: Berlangganan Kabar](#7-observer-berlangganan-kabar)
+  - [Cara Menjalankan Contoh](#cara-menjalankan-contoh)
+  - [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
+1. [*Singleton* dengan `get_instance()`](#1-singleton-dengan-get_instance)
+2. [Variasi *Singleton* ala Python: Modul dan `__new__`](#2-variasi-singleton-ala-python-modul-dan-__new__)
+3. [Sisi Gelap *Singleton*: *State* Global](#3-sisi-gelap-singleton-state-global)
+4. [*Simple Factory*: Membuat Objek dari Teks](#4-simple-factory-membuat-objek-dari-teks)
+5. [*Factory Method*: *Subclass* yang Memilih](#5-factory-method-subclass-yang-memilih)
+6. [*Strategy*: Menukar Cara Menghitung](#6-strategy-menukar-cara-menghitung)
+7. [*Observer*: Berlangganan Kabar](#7-observer-berlangganan-kabar)
 8. [Studi Kasus KedaiKita](#8-studi-kasus-kedaikita)
-9. [Kesalahan Umum dan Cara Membaca Pesan Error](#9-kesalahan-umum-dan-cara-membaca-pesan-error)
+9. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#9-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
@@ -28,28 +35,83 @@ python/
 └── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
 ```
 
-Cara menjalankan sebuah contoh:
+Semua contoh memakai materi yang sudah kamu kenal: atribut kelas, `@classmethod`, dan `@staticmethod` (Pertemuan 03), atribut bergaris bawah dan `@property` (Pertemuan 04), kelas abstrak `ABC` (Pertemuan 10), serta *list* dan *dict* (Pertemuan 12). Yang baru hanyalah **cara menyusunnya**.
+
+### Cara Menjalankan Contoh
+
+Setiap *file* di folder `contoh/` dan `solusi/` adalah program satu *file*. Pilih salah satu cara berikut. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-14-Design-Pattern/python`. Di panel **Explorer**, buka folder `contoh`, klik *file* yang ingin dicoba (misalnya `contoh01_singleton_konfigurasi.py`), lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-14-Design-Pattern/python/contoh` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-14-Design-Pattern/python/contoh
 python contoh01_singleton_konfigurasi.py
 ```
 
-Studi kasus terdiri atas banyak file yang saling meng-*import*, jadi jalankan `main.py` dari **dalam** folder `studi-kasus`:
+Yang tercetak di terminal sama persis dengan blok ***Output:*** di bagian 1. Untuk contoh lain, ganti nama *file*-nya, misalnya `python contoh02_variasi_singleton.py`. *File* di folder `solusi` dijalankan dengan cara yang sama; ganti saja `contoh` dengan `solusi`.
+
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+### Cara Menjalankan Studi Kasus
+
+Studi kasus terdiri atas 18 *file* yang saling memakai lewat `import`. Yang dijalankan selalu `main.py`. *File* lain, seperti `pengaturan.py` atau `pesanan.py`, hanya berisi kelas sehingga tidak menampilkan apa-apa jika dijalankan sendiri.
+
+- **Cara 1:** di jendela VS Code yang sama (folder `python` pertemuan ini), buka `studi-kasus/main.py`, lalu klik tombol ▷.
+- **Cara 2:** masuk dulu ke folder `studi-kasus`, lalu jalankan `main.py`.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi | `cd Pertemuan-14-Design-Pattern/python/studi-kasus` |
+| folder `python` pertemuan ini | `cd studi-kasus` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-14-Design-Pattern/python/studi-kasus
 python main.py
 ```
 
+Hasilnya berupa empat bagian, satu bagian per pola, lalu diakhiri sebuah struk. *Output* setiap bagian dibahas di [bagian 8](#8-studi-kasus-kedaikita).
+
 > [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Semua kode di sini memerlukan Python 3.10 atau yang lebih baru. Panduan instalasi ada di [00-Persiapan](../../00-Persiapan/README.md).
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya.
 
-## 1. Singleton dengan `get_instance()`
+### Tempat Menyimpan Kodemu Sendiri
 
-File: [`contoh/contoh01_singleton_konfigurasi.py`](contoh/contoh01_singleton_konfigurasi.py)
+Folder materi ibarat buku pegangan: dibaca dan dijalankan, tetapi tidak dicoret-coret. Semua percobaan di halaman ini ("Coba sendiri" dan Kesalahan Umum) kamu kerjakan di folder milikmu sendiri **di luar** folder materi, sesuai [aturan emas di halaman Git dan GitHub](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri):
 
-Kita mulai dari Singleton paling klasik: kelas `Konfigurasi` yang menyimpan bahasa dan tema aplikasi.
+```text
+Documents/
+├── PBO2026/                                  <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/
+    └── pertemuan-14/                         <- kodemu untuk pertemuan ini
+        ├── contoh01_singleton_konfigurasi.py <- salinan untuk dicoba
+        └── studi-kasus/                      <- salinan SELURUH folder studi-kasus
+```
+
+Salin dulu *file* contoh yang ingin kamu ubah ke folder `pertemuan-14` (lewat File Explorer di Windows atau Finder di macOS). Untuk studi kasus, salin **seluruh folder** `studi-kasus` karena `main.py` membutuhkan 17 *file* lainnya. Lalu buka folder `pertemuan-14` di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**). Terminal VS Code di jendela itu langsung berada di folder `pertemuan-14`, jadi salinanmu bisa dijalankan dengan ▷ atau dengan `python nama_file.py`.
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal setiap bagian menunjuk *file* contohnya. Klik untuk melihat isi lengkapnya.
+- Blok kode sesudahnya adalah **potongan** penting dari *file* itu, disalin persis. Bagian yang dilewati diceritakan dengan kalimat di antara potongan. Untuk mencoba, jalankan *file* lengkapnya; jangan hanya mengetik ulang potongannya.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di komentar kode dijelaskan satu per satu di daftar **Penjelasan** di bawah blok kodenya.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* lengkapnya dijalankan. Di bagian 8, setiap blok ***Output:*** hanya memuat bagian *output* `main.py` yang sedang dibahas.
+- Kode di "Coba sendiri" dan di bagian Kesalahan Umum adalah percobaan. Kerjakan di folder milikmu, bukan di folder materi.
+
+## 1. *Singleton* dengan `get_instance()`
+
+*File*: [`contoh/contoh01_singleton_konfigurasi.py`](contoh/contoh01_singleton_konfigurasi.py)
+
+Kita mulai dari *Singleton* paling klasik: kelas `Konfigurasi` yang menyimpan bahasa dan tema aplikasi. Berikut potongan *file*-nya, bagian kelasnya:
 
 ```python
 class Konfigurasi:
@@ -71,7 +133,7 @@ class Konfigurasi:
         return cls._instance
 ```
 
-Di bawahnya ada method `ambil(kunci)` dan `ubah(kunci, nilai)` untuk membaca dan mengubah `_data`. Fungsi-fungsi "halaman" dan program utamanya:
+Di bawahnya ada *method* `ambil(kunci)` dan `ubah(kunci, nilai)` untuk membaca dan mengubah `_data`. Potongan berikutnya berisi fungsi-fungsi "halaman" dan awal `main()`:
 
 ```python
 def halaman_beranda():
@@ -97,7 +159,7 @@ def main():
 
 `halaman_profil()` ditulis sama seperti `halaman_beranda()`. Sisa `main()` memanggil Beranda dan Profil, lalu Pengaturan, lalu Beranda dan Profil sekali lagi.
 
-**Output:**
+***Output:***
 
 ```text
 === MEMINTA KONFIGURASI DUA KALI ===
@@ -120,30 +182,36 @@ Penjelasan:
 
 - **[1]** `_instance` adalah **atribut kelas** (Pertemuan 03): hanya ada satu untuk seluruh kelas, bukan satu per objek. Awalnya `None`, artinya objek belum pernah dibuat.
 - **[2]** Penjaga. Jika objek resmi sudah ada, pembuatan objek baru lewat `Konfigurasi()` ditolak dengan `RuntimeError`.
-- **[3]** `@classmethod` (Pertemuan 03) membuat method ini milik kelas. Kita memanggilnya lewat nama kelas, `Konfigurasi.get_instance()`, tanpa perlu punya objek lebih dulu. Parameter `cls` berisi kelas `Konfigurasi` itu sendiri. Tipe kembaliannya ditulis sebagai teks `"Konfigurasi"` karena kelasnya belum selesai didefinisikan saat baris itu dibaca.
-- **[4]** Inilah sifat ***lazy***: objek baru dibuat saat **pertama kali** diminta. Pesan `(objek Konfigurasi dibuat)` hanya muncul sekali, walaupun `get_instance()` dipanggil berkali-kali.
+- **[3]** `@classmethod` (Pertemuan 03) membuat *method* ini milik kelas. Kita memanggilnya lewat nama kelas, `Konfigurasi.get_instance()`, tanpa perlu punya objek lebih dulu. Parameter `cls` berisi kelas `Konfigurasi` itu sendiri. Tipe kembaliannya ditulis sebagai teks `"Konfigurasi"` karena kelasnya belum selesai didefinisikan saat baris itu dibaca.
+- **[4]** Inilah sifat ***lazy***: objek baru dibuat saat **pertama kali** diminta. Pesan `(objek Konfigurasi dibuat)` hanya muncul sekali walaupun `get_instance()` dipanggil berkali-kali.
 - **[5]** Setiap halaman mengambil objek sendiri lewat `get_instance()`, tanpa perlu menerimanya sebagai parameter. Praktis, tetapi ingat sisi gelapnya di bagian 3.
 - **[6]** Halaman Pengaturan mengubah tema. Karena objeknya satu, perubahan itu langsung terlihat di Beranda dan Profil.
 - **[7]** `is` memeriksa apakah dua variabel menunjuk ke **objek yang sama** (Pertemuan 02). Hasilnya `ya`.
 
 > [!WARNING]
-> Penjaga di `__init__` hanya bekerja **setelah** objek resmi ada. Jika seseorang memanggil `Konfigurasi()` sebelum `get_instance()` pernah dipanggil, objek "liar" tetap tercipta (buktinya ada di Kesalahan 1). Python memang tidak punya konstruktor *private* sungguhan, sama seperti tidak punya atribut *private* sungguhan (Pertemuan 04). Kesepakatannya: **selalu** ambil objek lewat `get_instance()`.
+> Penjaga di `__init__` punya celah: ia hanya bekerja **setelah** objek resmi ada. Jika seseorang memanggil `Konfigurasi()` sebelum `get_instance()` pernah dipanggil, objek "liar" tetap tercipta tanpa *error*, dan `get_instance()` nanti membuat objek kedua (dibahas lagi di Kesalahan 1). Python memang tidak punya konstruktor privat sungguhan, sama seperti tidak punya atribut privat sungguhan (Pertemuan 04). Kesepakatannya: **selalu** ambil objek lewat `get_instance()`.
 
 > [!TIP]
-> **Coba sendiri:** di `main()`, ganti baris `b = Konfigurasi.get_instance()` menjadi `b = Konfigurasi()`. Tebak dulu apa yang terjadi, lalu jalankan.
+> **Coba sendiri:** salin `contoh01_singleton_konfigurasi.py` ke folder `pertemuan-14` milikmu, lalu buka salinannya. Di `main()`, ganti baris `b = Konfigurasi.get_instance()` menjadi `b = Konfigurasi()`. Simpan, tebak dulu apa yang akan terjadi, lalu jalankan.
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Program berhenti dengan `RuntimeError: Konfigurasi adalah Singleton. Gunakan Konfigurasi.get_instance()`. Saat baris itu dijalankan, `_instance` sudah berisi objek dari permintaan pertama, sehingga penjaga di `__init__` menolaknya.
+Program sempat mencetak empat baris pertama (sampai `Permintaan kedua:`), lalu berhenti dengan *traceback* yang baris terakhirnya:
+
+```text
+RuntimeError: Konfigurasi adalah Singleton. Gunakan Konfigurasi.get_instance()
+```
+
+Saat baris `b = Konfigurasi()` dijalankan, `_instance` sudah berisi objek dari permintaan pertama sehingga penjaga di `__init__` menolaknya. Kembalikan barisnya menjadi `b = Konfigurasi.get_instance()` agar program berjalan normal lagi.
 
 </details>
 
-## 2. Variasi Singleton ala Python: Modul dan `__new__`
+## 2. Variasi *Singleton* ala Python: Modul dan `__new__`
 
-File: [`contoh/contoh02_variasi_singleton.py`](contoh/contoh02_variasi_singleton.py)
+*File*: [`contoh/contoh02_variasi_singleton.py`](contoh/contoh02_variasi_singleton.py)
 
-Cara `get_instance()` di atas lazim di banyak bahasa. Python punya dua cara lain yang sering kamu temui di kode orang lain. `PencatatLog` di contoh ini adalah kelas biasa dengan method `catat(sumber, pesan)` dan `jumlah()`. Keistimewaannya ada pada cara objeknya dibuat:
+Cara `get_instance()` di atas lazim di banyak bahasa. Python punya dua cara lain yang sering kamu temui di kode orang lain. `PencatatLog` di contoh ini adalah kelas biasa dengan *method* `catat(sumber, pesan)` dan `jumlah()`. Keistimewaannya ada pada cara objeknya dibuat. Berikut potongan *file*-nya, tepat di bawah kelas `PencatatLog`:
 
 ```python
 # [1] Variasi 1: objek tingkat modul, dibuat SEKALI saat file ini dimuat
@@ -194,7 +262,7 @@ def main():
     print(f"Warna dibaca lewat t2: {t2.warna}")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === VARIASI 1: OBJEK DISIAPKAN DI AWAL (EAGER) ===
@@ -213,27 +281,27 @@ Warna dibaca lewat t2: gelap
 
 Penjelasan:
 
-- **[1]** Variasi 1, **objek tingkat modul**. Sebuah modul (file `.py`) hanya dijalankan sekali walaupun di-*import* berkali-kali; Python menyimpan modul yang sudah dimuat dan memakainya lagi. Jadi objek `pencatat` hanya dibuat sekali, **di awal** (*eager*). Di proyek sungguhan, objek ini biasanya ditaruh di file sendiri, misalnya `log.py`, lalu dipakai dengan `from log import pencatat`.
-- **[2]** Variasi 2, **`__new__`**. Ingat catatan di Pertemuan 02: objek sudah dibuat sesaat sebelum `__init__` berjalan. Yang membuatnya adalah method `__new__`, lalu `__init__` mengisinya. Di sini kita meng-*override* `__new__`. `super().__new__(cls)` memanggil versi asli milik kelas induk (`object`) untuk benar-benar membuat objek.
+- **[1]** Variasi 1, **objek tingkat modul**. Sebuah modul (*file* `.py`) hanya dijalankan sekali walaupun di-*import* berkali-kali; Python menyimpan modul yang sudah dimuat dan memakainya lagi. Jadi objek `pencatat` hanya dibuat sekali, **di awal** (*eager*). Di proyek sungguhan, objek ini biasanya ditaruh di *file* sendiri, misalnya `log.py`, lalu dipakai dengan `from log import pencatat`.
+- **[2]** Variasi 2, **`__new__`**. Ingat catatan di Pertemuan 02: objek sudah dibuat sesaat sebelum `__init__` berjalan. Yang membuatnya adalah *method* `__new__`, lalu `__init__` mengisinya. Di sini kita meng-*override* `__new__`. `super().__new__(cls)` memanggil versi asli milik kelas induk (`object`) untuk benar-benar membuat objek.
 - **[3]** Pada pemanggilan berikutnya, `__new__` tidak membuat apa-apa, hanya mengembalikan objek yang tersimpan.
-- **[4]** Jebakan penting! Setiap kali kamu menulis `Tema()`, Python tetap memanggil `__init__` pada objek yang dikembalikan `__new__`. Tanpa penjaga `_sudah_diisi`, `__init__` akan mengisi ulang `self._warna = "terang"`. Akibatnya, setelah `t1.warna = "gelap"`, baris `t2 = Tema()` diam-diam mengembalikan warnanya menjadi `terang`. Tidak ada error sama sekali, jadi *bug* ini sulit dilacak.
+- **[4]** Jebakan penting! Setiap kali kamu menulis `Tema()`, Python tetap memanggil `__init__` pada objek yang dikembalikan `__new__`. Tanpa penjaga `_sudah_diisi`, `__init__` akan mengisi ulang `self._warna = "terang"`. Akibatnya, jika `Tema()` dipanggil lagi setelah `t1.warna = "gelap"`, warnanya diam-diam kembali menjadi `terang`. Tidak ada *error* sama sekali, jadi *bug* ini sulit dilacak.
 - **[5]** Fungsi mana pun cukup memakai nama `pencatat`, tanpa `get_instance()` sama sekali. `modul_laporan()` ditulis serupa `modul_kasir()`.
 - **[6]** Bagi pemanggil, `Tema()` terlihat seperti membuat objek baru, padahal tidak. Ini kelebihan sekaligus kekurangannya: praktis, tetapi bisa mengejutkan pembaca kode.
 
 | Variasi | Kapan objek dibuat | Mencegah objek kedua? | Catatan |
 |---|---|---|---|
-| `get_instance()` (contoh 01) | saat pertama diminta | ya, lewat penjaga di `__init__` | paling mirip versi Java |
-| Objek tingkat modul | saat modul dimuat | tidak, hanya kesepakatan | paling sederhana dan paling "Pythonic" |
+| `get_instance()` (contoh 01) | saat pertama diminta | sebagian: penjaga di `__init__` baru bekerja setelah objek resmi ada | paling mirip versi Java |
+| Objek tingkat modul | saat modul dimuat | tidak, hanya kesepakatan | paling sederhana dan paling *Pythonic* (sesuai gaya khas Python) |
 | `__new__` | saat pertama diminta | ya, `Tema()` selalu objek yang sama | waspadai `__init__` yang terpanggil ulang |
 
 > [!NOTE]
-> Output contoh ini sengaja dibuat **sama persis** dengan versi Java. Bedanya hanya di mekanismenya: Java memakai *field* `static final` (eager) dan `synchronized` (lazy yang aman untuk banyak *thread*). Perbandingannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
+> *Output* contoh ini sengaja dibuat **sama persis** dengan versi Java. Bedanya hanya di mekanismenya: Java memakai *field* `static final` (*eager*) dan `synchronized` (*lazy* yang aman untuk banyak *thread*). Perbandingannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
 
-## 3. Sisi Gelap Singleton: State Global
+## 3. Sisi Gelap *Singleton*: *State* Global
 
-File: [`contoh/contoh03_bahaya_state_global.py`](contoh/contoh03_bahaya_state_global.py)
+*File*: [`contoh/contoh03_bahaya_state_global.py`](contoh/contoh03_bahaya_state_global.py)
 
-Di halaman konsep disebutkan bahwa Singleton sulit diuji. Contoh ini membuktikannya. `PengaturanPajak` adalah Singleton yang ditulis persis seperti contoh 01, dengan *property* `persen` (awalnya 10). Lalu ada dua "uji" kecil. `uji_harga_normal()` memeriksa bahwa Rp10000 ditambah pajak menjadi Rp11000. Uji kedua dan solusinya:
+Di halaman konsep disebutkan bahwa *Singleton* sulit diuji. Contoh ini membuktikannya. `PengaturanPajak` adalah *Singleton* yang ditulis persis seperti contoh 01, dengan *property* `persen` (awalnya 10). Lalu ada dua "uji" kecil, yaitu fungsi yang memeriksa hasil hitungan dan mengembalikan `LULUS` atau `GAGAL`. `uji_harga_normal()` memeriksa bahwa Rp10.000 ditambah pajak 10% menjadi Rp11.000. Berikut potongan *file*-nya: fungsi `harga_akhir()`, uji kedua, dan kelas solusinya.
 
 ```python
 def harga_akhir(harga: int) -> int:
@@ -282,7 +350,7 @@ def main():
     print(f"Diulang  : Rp10000 -> Rp{normal.harga_akhir(10000)} (tetap benar)")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PUTARAN 1: DUA UJI DIJALANKAN ===
@@ -301,20 +369,20 @@ Diulang  : Rp10000 -> Rp11000 (tetap benar)
 
 Penjelasan:
 
-- **[1]** Dari luar, `harga_akhir(harga)` terlihat hanya butuh `harga`. Padahal diam-diam ia juga bergantung pada Singleton. Inilah **ketergantungan tersembunyi**.
+- **[1]** Dari luar, `harga_akhir(harga)` terlihat hanya butuh `harga`. Padahal diam-diam ia juga bergantung pada *Singleton*. Inilah **ketergantungan tersembunyi**.
 - **[2]** Uji kedua mengubah pajak menjadi 0 dan lupa mengembalikannya. Karena objeknya satu untuk seluruh program, perubahan itu **menetap**.
-- **[3]** Solusinya adalah DIP dari Pertemuan 13: kebutuhan dikirim lewat konstruktor, sehingga terlihat jelas dan mudah diganti.
-- **[4]** Uji yang **sama persis**, yang tadi LULUS, kini GAGAL. Hasil uji bergantung pada urutan dan sejarah. Bayangkan mencari penyebabnya di program berisi ratusan uji!
+- **[3]** Solusinya adalah *dependency injection* dari Pertemuan 13: kebutuhan dikirim lewat konstruktor sehingga terlihat jelas dan mudah diganti.
+- **[4]** Uji yang **sama persis**, yang tadi LULUS, kini GAGAL. Hasil uji bergantung pada urutan dan riwayat pemanggilan sebelumnya. Bayangkan mencari penyebabnya di program berisi ratusan uji!
 - **[5]** Setiap `KalkulatorHarga` membawa nilainya sendiri. Membuat objek berpajak 0% tidak mengganggu objek berpajak 10%.
 
 > [!TIP]
-> Singleton dan *dependency injection* bisa berdampingan. Di bagian paling luar program (misalnya `main()`), ambil nilainya dari Singleton lalu **kirimkan**: `KalkulatorHarga(PengaturanPajak.get_instance().persen)`. Kelas-kelas di dalam tetap mudah diuji karena tidak meraih Singleton sendiri.
+> *Singleton* dan *dependency injection* bisa berdampingan. Di bagian paling luar program (misalnya `main()`), ambil nilainya dari *Singleton* lalu **kirimkan**: `KalkulatorHarga(PengaturanPajak.get_instance().persen)`. Kelas-kelas di dalam tetap mudah diuji karena tidak meraih *Singleton* sendiri.
 
-## 4. Simple Factory: Membuat Objek dari Teks
+## 4. *Simple Factory*: Membuat Objek dari Teks
 
-File: [`contoh/contoh04_simple_factory.py`](contoh/contoh04_simple_factory.py)
+*File*: [`contoh/contoh04_simple_factory.py`](contoh/contoh04_simple_factory.py)
 
-Aplikasi ojek online menerima pilihan kendaraan berupa teks. Kelas abstrak `Kendaraan` punya method abstrak `nama()`, `kapasitas()`, dan `tarif_per_km()`, serta method biasa `hitung_ongkos(jarak_km)`. Tiga kelas anaknya mengisi method abstrak itu: `Motor` (1 penumpang, Rp2500/km), `Mobil` (4 penumpang, Rp4000/km), dan `MobilBesar` (6 penumpang, Rp5500/km). Bagian utamanya adalah factory dan pemakainya:
+Aplikasi ojek *online* menerima pilihan kendaraan berupa teks. Kelas abstrak `Kendaraan` punya *method* abstrak `nama()`, `kapasitas()`, dan `tarif_per_km()`, serta *method* biasa `hitung_ongkos(jarak_km)`. Tiga kelas anaknya mengisi *method* abstrak itu: `Motor` (1 penumpang, Rp2.500/km), `Mobil` (4 penumpang, Rp4.000/km), dan `MobilBesar` (6 penumpang, Rp5.500/km). Berikut potongan *file*-nya, bagian *factory* dan pemakainya:
 
 ```python
 class KendaraanFactory:
@@ -343,7 +411,7 @@ def main():
 
 Setelah itu, `main()` mencoba `KendaraanFactory.buat("helikopter")` di dalam `try` dan menangkapnya dengan `except ValueError as e:  # [5]`.
 
-**Output:**
+***Output:***
 
 ```text
 === PESANAN DARI APLIKASI (JARAK 8 KM) ===
@@ -357,20 +425,46 @@ Ditolak: Jenis kendaraan tidak dikenal: helikopter
 
 Penjelasan:
 
-- **[1]** `@staticmethod` (Pertemuan 03): method milik kelas yang tidak butuh `self` maupun `cls`. Petunjuk tipenya `-> Kendaraan`, yaitu kelas **abstrak**. Pemanggil hanya dijanjikan "sebuah kendaraan", bukan kelas tertentu.
+- **[1]** `@staticmethod` (Pertemuan 03): *method* milik kelas yang tidak butuh `self` maupun `cls`. Petunjuk tipenya `-> Kendaraan`, yaitu kelas **abstrak**. Pemanggil hanya dijanjikan "sebuah kendaraan", bukan kelas tertentu.
 - **[2]** `.lower()` membuat pilihan tidak peka huruf besar/kecil. Pengguna boleh mengetik `MOBIL BESAR`.
 - **[3]** Pilihan yang tidak dikenal ditolak di **satu tempat** dengan `ValueError` (Pertemuan 11).
-- **[4]** Pemanggil tidak pernah menulis `Motor()` atau `Mobil()`. Ia cukup mengirim teks, lalu memakai objek hasilnya lewat method milik `Kendaraan`. Ini polimorfisme (Pertemuan 09) yang bekerja sama dengan factory.
-- **[5]** Kesalahan input ditangkap dengan `try`/`except` seperti biasa.
+- **[4]** Pemanggil tidak pernah menulis `Motor()` atau `Mobil()`. Ia cukup mengirim teks, lalu memakai objek hasilnya lewat *method* milik `Kendaraan`. Ini polimorfisme (Pertemuan 09) yang bekerja sama dengan *factory*.
+- **[5]** Kesalahan *input* ditangkap dengan `try`/`except` seperti biasa.
 
 > [!TIP]
-> **Coba sendiri:** tambahkan kelas `Bajaj` (kapasitas 2, tarif Rp3000/km) dan daftarkan di factory dengan pilihan `"bajaj"`. Perhatikan: berapa tempat di program yang perlu diubah? Hanya kelas baru itu dan **satu** cabang `if` di factory. Bagian `main()` tidak berubah sama sekali.
+> **Coba sendiri:** salin `contoh04_simple_factory.py` ke folder `pertemuan-14` milikmu, lalu buka salinannya.
+>
+> 1. Tambahkan kelas `Bajaj(Kendaraan)` di atas `KendaraanFactory`. Tiru kelas `Motor`: `nama()` mengembalikan `"Bajaj"`, `kapasitas()` mengembalikan 2, dan `tarif_per_km()` mengembalikan 3000.
+> 2. Di `KendaraanFactory.buat()`, tepat sebelum baris `raise`, tambahkan cabang baru yang mengembalikan `Bajaj()` jika `pilihan == "bajaj"`.
+> 3. Agar hasilnya terlihat, tambahkan teks `"bajaj"` ke daftar pilihan di perulangan `for` dalam `main()`.
+>
+> Simpan, lalu jalankan. Perhatikan: logika pembuatan objek hanya berubah di **satu** tempat, yaitu *factory*.
 
-## 5. Factory Method: Subclass yang Memilih
+<details>
+<summary>Lihat kode dan hasil yang diharapkan</summary>
 
-File: [`contoh/contoh05_factory_method.py`](contoh/contoh05_factory_method.py)
+Cabang baru di *factory*:
 
-Sekarang versi GoF. Tidak ada lagi `if`: setiap kelas anak memutuskan sendiri produk yang dibuatnya.
+```python
+        if pilihan == "bajaj":
+            return Bajaj()
+```
+
+Bagian pertama *output* kini punya satu baris tambahan:
+
+```text
+bajaj        -> Bajaj        maks 2 penumpang, Rp24000
+```
+
+Ongkosnya 8 km × Rp3.000 = Rp24.000. Kode pemakai di `main()` tetap memanggil `KendaraanFactory.buat(pilihan)` tanpa pernah menyebut nama kelas `Bajaj`.
+
+</details>
+
+## 5. *Factory Method*: *Subclass* yang Memilih
+
+*File*: [`contoh/contoh05_factory_method.py`](contoh/contoh05_factory_method.py)
+
+Sekarang versi GoF. Tidak ada lagi `if`: setiap kelas anak memutuskan sendiri produk yang dibuatnya. Berikut potongan *file*-nya. Di *file* aslinya, kelas `Truk` dan `KapalSungai` berada di antara `Angkutan` dan `Ekspedisi`; keduanya dilewati di sini.
 
 ```python
 class Angkutan(ABC):
@@ -418,7 +512,7 @@ def main():
     sungai.kirim_paket("Tenggarong")
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === FACTORY METHOD: SUBCLASS MEMILIH ANGKUTANNYA ===
@@ -432,19 +526,38 @@ def main():
 
 Penjelasan:
 
-- **[1]** `buat_angkutan()` adalah *factory method*: method abstrak yang tugasnya **membuat** produk. Kelas induk tidak tahu produknya apa.
+- **[1]** `buat_angkutan()` adalah *factory method*: *method* abstrak yang tugasnya **membuat** produk. Kelas induk tidak tahu produknya apa.
 - **[2]** `kirim_paket()` adalah langkah kerja tetap: kemas, buat angkutan, antar, tiba. Ia memanggil `buat_angkutan()` dan memakai hasilnya sebagai `Angkutan`. Pola "kerangka di induk, langkah tertentu di anak" ini juga punya nama sendiri: *Template Method*.
-- **[3]** Kelas anak meng-*override* factory method dan memilih produknya. Inilah bedanya dengan Simple Factory: keputusan diambil lewat *overriding*, bukan lewat `if`.
-- **[4]** Variabel diberi petunjuk tipe `Ekspedisi`. Method yang dipanggil sama, tetapi angkutan yang dipakai berbeda.
+- **[3]** Kelas anak meng-*override* *factory method* dan memilih produknya. Inilah bedanya dengan *Simple Factory*: keputusan diambil lewat *overriding*, bukan lewat `if`.
+- **[4]** Variabel diberi petunjuk tipe `Ekspedisi`. *Method* yang dipanggil sama, tetapi angkutan yang dipakai berbeda.
 
 > [!TIP]
-> **Coba sendiri:** buat `EkspedisiUdara` dengan produk `Pesawat`. Kamu hanya **menambah** dua kelas. Tidak ada satu baris pun kode lama yang diubah. Bandingkan dengan Simple Factory, yang harus ditambah cabang `if`.
+> **Coba sendiri:** salin `contoh05_factory_method.py` ke folder `pertemuan-14` milikmu, lalu buka salinannya.
+>
+> 1. Di atas `main()`, tambahkan kelas `Pesawat(Angkutan)` yang `antar()`-nya mengembalikan `f"Pesawat terbang menuju {tujuan}"`.
+> 2. Tambahkan kelas `EkspedisiUdara(Ekspedisi)`: `nama()` mengembalikan `"Ekspedisi Udara"`, dan `buat_angkutan()` mengembalikan `Pesawat()`.
+> 3. Di akhir `main()`, tambahkan `udara: Ekspedisi = EkspedisiUdara()` lalu `udara.kirim_paket("Berau")`.
+>
+> Simpan, lalu jalankan. Kamu hanya **menambah** kelas baru; tidak ada satu baris pun kode lama yang diubah. Bandingkan dengan *Simple Factory*, yang harus ditambah cabang `if`.
 
-## 6. Strategy: Menukar Cara Menghitung
+<details>
+<summary>Lihat hasil yang diharapkan</summary>
 
-File: [`contoh/contoh06_strategy_ongkir.py`](contoh/contoh06_strategy_ongkir.py)
+Di bawah *output* lama muncul tiga baris baru:
 
-Kelas abstrak `StrategiOngkir` punya dua method abstrak: `nama()` dan `hitung(berat_kg)`. Tiga strategi mengisinya dengan rumus berbeda:
+```text
+[Ekspedisi Udara] Paket ke Berau dikemas
+  Pesawat terbang menuju Berau
+  Paket tiba di Berau
+```
+
+</details>
+
+## 6. *Strategy*: Menukar Cara Menghitung
+
+*File*: [`contoh/contoh06_strategy_ongkir.py`](contoh/contoh06_strategy_ongkir.py)
+
+Kelas abstrak `StrategiOngkir` punya dua *method* abstrak: `nama()` dan `hitung(berat_kg)`. Tiga strategi mengisinya dengan rumus berbeda:
 
 | Strategi | `nama()` | Rumus `hitung(berat_kg)` |
 |---|---|---|
@@ -452,7 +565,7 @@ Kelas abstrak `StrategiOngkir` punya dua method abstrak: `nama()` dan `hitung(be
 | `OngkirKilat` | Kilat (besok tiba) | `15000 * berat_kg + 5000` |
 | `OngkirHemat` | Hemat (5 hari) | `5000 * max(berat_kg, 3)` (minimal dihitung 3 kg) |
 
-Yang memakai strategi adalah `Pengiriman` (*context*):
+Yang memakai strategi adalah `Pengiriman` (*context*). Berikut potongan *file*-nya: kelas `Pengiriman` dan `main()`. Kelas `OngkirAmbilSendiri` yang berada di antara keduanya dibahas di penjelasan [5].
 
 ```python
 class Pengiriman:
@@ -485,7 +598,7 @@ def main():
     print(paket.ringkasan())
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PAKET 2 KG DARI SAMARINDA KE BONTANG ===
@@ -503,13 +616,29 @@ Penjelasan:
 - **[2]** `atur_strategi()` menukar strategi kapan saja, bahkan setelah objek `Pengiriman` dibuat.
 - **[3]** `Pengiriman` tidak menghitung apa pun sendiri. Ia **mendelegasikan** pekerjaan ke strategi, lalu memakai hasilnya.
 - **[4]** Satu objek `paket` yang sama dihitung dengan tiga strategi bergantian. Tidak ada `if` sama sekali.
-- **[5]** `OngkirAmbilSendiri` (nama "Ambil di gerai", ongkir selalu 0) sengaja ditulis **setelah** `Pengiriman` di file, seolah-olah ditambahkan belakangan. `Pengiriman` tidak diubah sedikit pun: OCP terpenuhi.
+- **[5]** `OngkirAmbilSendiri` (nama "Ambil di gerai", ongkir selalu 0) sengaja ditulis **setelah** `Pengiriman` di *file*, seolah-olah ditambahkan belakangan. `Pengiriman` tidak diubah sedikit pun: OCP terpenuhi.
 
-## 7. Observer: Berlangganan Kabar
+> [!TIP]
+> **Coba sendiri:** salin `contoh06_strategy_ongkir.py` ke folder `pertemuan-14` milikmu, lalu buka salinannya. Di atas `main()`, tambahkan kelas `OngkirSameDay(StrategiOngkir)` dengan `nama()` yang mengembalikan `"Same Day (hari ini)"` dan `hitung()` yang mengembalikan `25000 * berat_kg`. Lalu tambahkan `OngkirSameDay()` ke daftar strategi di perulangan `for` dalam `main()`. Simpan, lalu jalankan.
 
-File: [`contoh/contoh07_observer_kanal_video.py`](contoh/contoh07_observer_kanal_video.py)
+<details>
+<summary>Lihat hasil yang diharapkan</summary>
 
-Kelas abstrak `PengamatKanal` hanya punya satu method abstrak: `perbarui(nama_kanal, judul)`. Ada dua pengamat konkret: `Penonton` mencetak notifikasi ke "HP"-nya, sedangkan `PencatatStatistik` menghitung jumlah video. Subject-nya adalah `KanalVideo`:
+Bagian pertama *output* kini punya baris keempat:
+
+```text
+Same Day (hari ini)  Rp50000
+```
+
+Berat 2 kg × Rp25.000 = Rp50.000. Kelas `Pengiriman` lagi-lagi tidak perlu diubah.
+
+</details>
+
+## 7. *Observer*: Berlangganan Kabar
+
+*File*: [`contoh/contoh07_observer_kanal_video.py`](contoh/contoh07_observer_kanal_video.py)
+
+Kelas abstrak `PengamatKanal` hanya punya satu *method* abstrak: `perbarui(nama_kanal, judul)`. Ada dua pengamat konkret: `Penonton` mencetak notifikasi ke "HP"-nya, sedangkan `PencatatStatistik` menghitung jumlah video. *Subject*-nya adalah `KanalVideo`. Berikut potongan *file*-nya, bagian kelas `KanalVideo`:
 
 ```python
 class KanalVideo:
@@ -536,7 +665,7 @@ class KanalVideo:
 
 Di `main()`, kanal "Belajar PBO" mendapat tiga pengamat: penonton Ayu, penonton Bima, dan sebuah `PencatatStatistik`. Setelah video pertama diunggah, Bima berhenti berlangganan dengan `kanal.berhenti_langganan(bima)  # [5]`, lalu video kedua diunggah.
 
-**Output:**
+***Output:***
 
 ```text
 === VIDEO PERTAMA (3 PENGAMAT) ===
@@ -553,24 +682,24 @@ Belajar PBO mengunggah: Design Pattern Dasar
 
 Penjelasan:
 
-- **[1]** Subject menyimpan pengamat dalam list bertipe abstraksi `PengamatKanal`, bukan `Penonton`.
+- **[1]** *Subject* menyimpan pengamat dalam *list* bertipe abstraksi `PengamatKanal`, bukan `Penonton`.
 - **[2]** `langganan()` dan `berhenti_langganan()` adalah pintu untuk mendaftar dan keluar.
 - **[3]** Setiap kejadian (video baru) langsung diikuti pemberian kabar.
-- **[4]** `KanalVideo` memanggil `perbarui()` milik setiap pengamat tanpa tahu apakah itu penonton atau pencatat statistik. Data kejadian dikirim sebagai argumen: inilah gaya **push**.
+- **[4]** `KanalVideo` memanggil `perbarui()` milik setiap pengamat tanpa tahu apakah itu penonton atau pencatat statistik. Data kejadian dikirim sebagai argumen: inilah gaya ***push***.
 - **[5]** Setelah Bima berhenti berlangganan, ia tidak lagi menerima kabar video kedua.
 
 > [!WARNING]
-> `list.remove()` melempar `ValueError` jika objek yang dihapus tidak ada di list. Jika program bisa saja memanggil `berhenti_langganan()` untuk pengamat yang belum terdaftar, periksa dulu dengan `if pengamat in self._daftar_pengamat:`.
+> `list.remove()` melempar `ValueError` jika objek yang dihapus tidak ada di *list*. Jika program bisa saja memanggil `berhenti_langganan()` untuk pengamat yang belum terdaftar, periksa dulu dengan `if pengamat in self._daftar_pengamat:`.
 
 ## 8. Studi Kasus KedaiKita
 
-File baru: [`studi-kasus/pengaturan.py`](studi-kasus/pengaturan.py), [`studi-kasus/pengamat.py`](studi-kasus/pengamat.py), [`studi-kasus/notifikasi.py`](studi-kasus/notifikasi.py). File yang berubah: [`pembayaran.py`](studi-kasus/pembayaran.py), [`diskon.py`](studi-kasus/diskon.py), [`pesanan.py`](studi-kasus/pesanan.py), [`struk.py`](studi-kasus/struk.py), [`laporan.py`](studi-kasus/laporan.py), dan [`main.py`](studi-kasus/main.py).
+*File* baru: [`studi-kasus/pengaturan.py`](studi-kasus/pengaturan.py), [`studi-kasus/pengamat.py`](studi-kasus/pengamat.py), [`studi-kasus/notifikasi.py`](studi-kasus/notifikasi.py). *File* yang berubah: [`pembayaran.py`](studi-kasus/pembayaran.py), [`diskon.py`](studi-kasus/diskon.py), [`pesanan.py`](studi-kasus/pesanan.py), [`struk.py`](studi-kasus/struk.py), [`laporan.py`](studi-kasus/laporan.py), dan [`main.py`](studi-kasus/main.py).
 
 Rancangan dan diagramnya sudah dibahas di [halaman konsep](../README.md#9-studi-kasus-kedaikita-apa-yang-kita-bangun-hari-ini).
 
 **Apa yang berubah dibanding Pertemuan 13?**
 
-- **Baru** `pengaturan.py`: Singleton `PengaturanKedai` (nama kedai, alamat, pajak 10%).
+- **Baru** `pengaturan.py`: *Singleton* `PengaturanKedai` (nama kedai, alamat, pajak 10%).
 - **Baru** `pengamat.py` (kontrak `PengamatPesanan`) dan `notifikasi.py` (`LayarDapur`, `NotifikasiPelanggan`).
 - `pembayaran.py`: ditambah kelas `PembayaranFactory`.
 - `diskon.py`: ditambah strategi `DiskonHappyHour`.
@@ -578,16 +707,22 @@ Rancangan dan diagramnya sudah dibahas di [halaman konsep](../README.md#9-studi-
 - `struk.py`: kepala struk memakai nama dan alamat dari `PengaturanKedai`, dan ada baris pajak.
 - `laporan.py`: hanya teks label menjadi "(sebelum diskon & pajak)".
 - `main.py` ditulis ulang: empat bagian, satu bagian per pola.
-- File lain (`menu.py`, `pelanggan.py`, `item_pesanan.py`, `kedai.py`, `penyimpanan.py`, `pengecualian.py`, `pasangan.py`, `dapat_dicetak.py`, `utilitas.py`) **tidak berubah**.
+- *File* lain (`menu.py`, `pelanggan.py`, `item_pesanan.py`, `kedai.py`, `penyimpanan.py`, `pengecualian.py`, `pasangan.py`, `dapat_dicetak.py`, `utilitas.py`) **tidak berubah**.
 
-Jalankan dari dalam folder `studi-kasus`:
+Cara menjalankannya ada di [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus). Singkatnya, dari folder utama materi:
 
 ```bash
 cd Pertemuan-14-Design-Pattern/python/studi-kasus
 python main.py
 ```
 
-### 8.1 Singleton: `pengaturan.py`
+*Output*-nya panjang, jadi kita bahas per bagian. Setiap blok ***Output:*** di bawah adalah sepotong dari *output* `main.py` itu.
+
+### 8.1 *Singleton*: `pengaturan.py`
+
+*File*: [`studi-kasus/pengaturan.py`](studi-kasus/pengaturan.py)
+
+Berikut potongan *file*-nya, tanpa komentar pembuka:
 
 ```python
 class PengaturanKedai:
@@ -611,11 +746,11 @@ class PengaturanKedai:
         return cls._instance
 ```
 
-Di bawahnya ada *property* `nama_kedai`, `alamat`, dan `pajak_persen`. Hanya `pajak_persen` yang punya *setter*, dengan validasi 0 sampai 100. Struktur Singleton-nya sama persis dengan contoh 01. Pajak 10% di sini adalah nilai simulasi untuk latihan.
+Di bawahnya ada *property* `nama_kedai`, `alamat`, dan `pajak_persen`. Hanya `pajak_persen` yang punya *setter*, dengan validasi 0 sampai 100. Struktur *Singleton*-nya sama persis dengan contoh 01. Pajak 10% di sini adalah nilai simulasi untuk latihan.
 
 Bagian pertama `main()` meminta pengaturan dua kali (`pengaturan_a` dan `pengaturan_b`), membandingkannya dengan `is`, lalu mencetak isinya:
 
-**Output:**
+***Output:***
 
 ```text
 === 1. SINGLETON: PENGATURAN KEDAI ===
@@ -625,7 +760,11 @@ Alamat : Jl. Pramuka No. 10, Samarinda
 Pajak  : 10%
 ```
 
-### 8.2 Factory: `PembayaranFactory` di `pembayaran.py`
+### 8.2 *Factory*: `PembayaranFactory` di `pembayaran.py`
+
+*File*: [`studi-kasus/pembayaran.py`](studi-kasus/pembayaran.py)
+
+Kelas `PembayaranFactory` berada di bagian paling bawah *file* itu:
 
 ```python
 class PembayaranFactory:
@@ -644,13 +783,13 @@ class PembayaranFactory:
         raise ValueError(f"Metode pembayaran tidak dikenal: {jenis}")
 ```
 
-- Factory ditaruh di file yang sama dengan kelas-kelas `Pembayaran`, karena ia perlu mengenal ketiganya.
+- *Factory* ditaruh di *file* yang sama dengan kelas-kelas `Pembayaran` karena ia perlu mengenal ketiganya.
 - `nominal` dan `bank` punya nilai bawaan (`0` dan `""`), jadi pemanggil boleh hanya mengisi yang relevan.
-- Kode di luar file ini tidak perlu meng-*import* `PembayaranTunai`, `PembayaranQRIS`, atau `PembayaranKartu`. Cukup `PembayaranFactory`.
+- Kode di luar *file* ini tidak perlu meng-*import* `PembayaranTunai`, `PembayaranQRIS`, atau `PembayaranKartu`. Cukup `PembayaranFactory`.
 
 Bagian kedua `main()` memanggil `PembayaranFactory.buat(pilihan, 100000, "BNI")` untuk pilihan `"tunai"`, `"QRIS"`, dan `"kartu"`, lalu mencoba `"bitcoin"` di dalam `try`/`except ValueError`:
 
-**Output:**
+***Output:***
 
 ```text
 === 2. FACTORY: MEMBUAT PEMBAYARAN DARI PILIHAN ===
@@ -662,9 +801,11 @@ Ditolak: Metode pembayaran tidak dikenal: bitcoin
 
 Pilihan `'QRIS'` ditulis kapital, tetapi tetap dikenali berkat `.lower()`. Biaya layanan kartu Rp2.000 adalah 2% dari Rp100.000 (aturan sejak Pertemuan 09).
 
-### 8.3 Strategy: `DiskonHappyHour` di `diskon.py`
+### 8.3 *Strategy*: `DiskonHappyHour` di `diskon.py`
 
-Strategi baru ini hanya menambah satu kelas. `Diskon`, `TanpaDiskon`, `DiskonPersen`, dan `DiskonMember` tidak berubah.
+*File*: [`studi-kasus/diskon.py`](studi-kasus/diskon.py) dan [`studi-kasus/pesanan.py`](studi-kasus/pesanan.py)
+
+Strategi baru ini hanya menambah satu kelas di bagian paling bawah `diskon.py`. `Diskon`, `TanpaDiskon`, `DiskonPersen`, dan `DiskonMember` tidak berubah.
 
 ```python
 class DiskonHappyHour(Diskon):
@@ -684,7 +825,7 @@ class DiskonHappyHour(Diskon):
         return "Happy Hour (minuman)"
 ```
 
-Total pesanan kini memuat pajak. Di `pesanan.py`:
+Total pesanan kini memuat pajak. Berikut potongan dari kelas `Pesanan` di `pesanan.py` (menjorok karena berada di dalam kelas):
 
 ```python
     def hitung_pajak(self) -> int:
@@ -698,7 +839,7 @@ Total pesanan kini memuat pajak. Di `pesanan.py`:
 
 Bagian ketiga `main()` memasang `TanpaDiskon()`, `DiskonPersen(15)`, dan `DiskonHappyHour()` secara bergantian pada pesanan Rina lewat `pesanan_rina.atur_diskon(strategi)`, lalu mencetak potongan dan totalnya:
 
-**Output:**
+***Output:***
 
 ```text
 === 3. STRATEGY: MENUKAR ATURAN DISKON ===
@@ -708,13 +849,15 @@ Promo 15%              potongan  Rp8.850, total Rp55.165
 Happy Hour (minuman)   potongan  Rp7.200, total Rp56.980
 ```
 
-- `atur_diskon()` adalah cara menukar strategi, persis seperti `atur_strategi()` di contoh 06. Method ini sudah ada sejak Pertemuan 13. Hari ini kita sekadar mengenali namanya: **Strategy**.
-- Happy Hour hanya memotong minuman: 20% dari Rp36.000 (2 kopi) = Rp7.200. Mie goreng tidak ikut dipotong.
-- Pajak dibaca dari Singleton, lalu dihitung dari subtotal setelah diskon. Contoh Promo 15%: (59.000 − 8.850) × 10% = Rp5.015, sehingga total Rp55.165.
+- `atur_diskon()` adalah cara menukar strategi, persis seperti `atur_strategi()` di contoh 06. *Method* ini sudah ada sejak Pertemuan 13. Hari ini kita sekadar mengenali namanya: ***Strategy***.
+- *Happy Hour* hanya memotong minuman: 20% dari Rp36.000 (2 kopi) = Rp7.200. Mie goreng tidak ikut dipotong.
+- Persentase pajak (10%) dibaca dari *Singleton* `PengaturanKedai`, lalu pajaknya dihitung dari subtotal setelah diskon. Contoh untuk Promo 15%: pajak = (Rp59.000 − Rp8.850) × 10% = Rp5.015 sehingga total = Rp59.000 − Rp8.850 + Rp5.015 = Rp55.165.
 
-### 8.4 Observer: `pengamat.py`, `notifikasi.py`, dan `pesanan.py`
+### 8.4 *Observer*: `pengamat.py`, `notifikasi.py`, dan `pesanan.py`
 
-Kontrak pengamatnya ada di `pengamat.py`:
+*File*: [`studi-kasus/pengamat.py`](studi-kasus/pengamat.py), [`studi-kasus/notifikasi.py`](studi-kasus/notifikasi.py), dan [`studi-kasus/pesanan.py`](studi-kasus/pesanan.py)
+
+Kontrak pengamatnya ada di `pengamat.py` (potongan, tanpa komentar pembuka dan baris `import`):
 
 ```python
 class PengamatPesanan(ABC):
@@ -729,17 +872,19 @@ class PengamatPesanan(ABC):
         """
 ```
 
-Mengapa parameter `pesanan` **tidak** diberi petunjuk tipe `Pesanan`? Karena untuk menulis `pesanan: Pesanan`, file ini harus meng-*import* `pesanan.py`. Padahal `pesanan.py` sendiri sudah meng-*import* `pengamat.py`. Dua file yang saling meng-*import* disebut **impor melingkar** (*circular import*), dan Python gagal memuatnya (lihat Kesalahan 3). Masalah serupa pernah kita temui di Pertemuan 13, saat `ItemPesanan` dipindah ke file sendiri.
+Mengapa parameter `pesanan` **tidak** diberi petunjuk tipe `Pesanan`? Karena untuk menulis `pesanan: Pesanan`, *file* ini harus meng-*import* `pesanan.py`. Padahal `pesanan.py` sendiri sudah meng-*import* `pengamat.py`. Dua *file* yang saling meng-*import* disebut **impor melingkar** (*circular import*), dan dalam kasus ini Python gagal memuatnya (lihat Kesalahan 3). Masalah serupa pernah kita temui di Pertemuan 13, saat `ItemPesanan` dipindah ke *file* sendiri.
+
+Arah `import` di antara ketiga *file* itu (panah dibaca "meng-*import*"):
 
 ```text
-pesanan.py  --import-->  pengamat.py      (aman)
-pengamat.py --import-->  pesanan.py       (jika ditambahkan: melingkar, GAGAL)
+pesanan.py    --import-->  pengamat.py                  (aman)
+pengamat.py   --import-->  pesanan.py                   (jika ditambahkan: melingkar, GAGAL)
 notifikasi.py --import-->  pengamat.py dan pesanan.py   (aman, tidak ada yang balik)
 ```
 
 Ada teknik lanjutan untuk tetap menulis petunjuk tipe tanpa impor melingkar (`typing.TYPE_CHECKING`), tetapi itu di luar cakupan kita. Menghilangkan petunjuk tipe di satu parameter adalah pilihan paling sederhana.
 
-Dua pengamat konkretnya ada di `notifikasi.py`. File ini **boleh** meng-*import* `pesanan.py`, karena `pesanan.py` tidak meng-*import* balik `notifikasi.py`.
+Dua pengamat konkretnya ada di `notifikasi.py`. *File* ini **boleh** meng-*import* `pesanan.py` karena `pesanan.py` tidak meng-*import* balik `notifikasi.py`. Berikut isi `notifikasi.py` tanpa komentar pembuka dan baris `import`:
 
 ```python
 class LayarDapur(PengamatPesanan):
@@ -762,7 +907,7 @@ class NotifikasiPelanggan(PengamatPesanan):
               f"status pesanan {pesanan.nomor}: {pesanan.status}")
 ```
 
-Subject-nya adalah `Pesanan`. Di konstruktornya ada `self._daftar_pengamat: list[PengamatPesanan] = []`, lalu:
+*Subject*-nya adalah `Pesanan`. Di konstruktornya ada `self._daftar_pengamat: list[PengamatPesanan] = []`. Berikut potongan kelas `Pesanan` yang mengurus pengamat:
 
 ```python
     # ----- pola Observer -----
@@ -778,13 +923,13 @@ Subject-nya adalah `Pesanan`. Di konstruktornya ada `self._daftar_pengamat: list
             pengamat.perbarui(self)
 ```
 
-- `STATUS_VALID` adalah tuple berisi `"BARU"`, `"LUNAS"`, `"DIPROSES"`, `"SIAP"`, dan `"SELESAI"`. Status lain ditolak.
-- `pengamat.perbarui(self)` mengirim **objek pesanan itu sendiri**. Inilah gaya **pull**: `LayarDapur` menarik nomor dan item, `NotifikasiPelanggan` menarik data pelanggan.
-- Di `bayar()`, baris `self._status = "LUNAS"` versi Pertemuan 13 kini diganti `self.ubah_status("LUNAS")` di akhir method, sehingga pengamat ikut tahu saat pesanan dibayar.
+- `STATUS_VALID` adalah *tuple* berisi `"BARU"`, `"LUNAS"`, `"DIPROSES"`, `"SIAP"`, dan `"SELESAI"`. Status lain ditolak.
+- `pengamat.perbarui(self)` mengirim **objek pesanan itu sendiri**. Inilah gaya ***pull***: `LayarDapur` menarik nomor dan item, `NotifikasiPelanggan` menarik data pelanggan.
+- Di `bayar()`, baris `self._status = "LUNAS"` versi Pertemuan 13 kini diganti `self.ubah_status("LUNAS")` di akhir *method* sehingga pengamat ikut tahu saat pesanan dibayar.
 
 Bagian keempat `main()` membuat pesanan Budi (2 Kopi Susu Gula Aren, 1 Nasi Goreng Kampung), mendaftarkan `LayarDapur()` dan `NotifikasiPelanggan()` lewat `tambah_pengamat()`, membayar dengan `PembayaranFactory.buat("tunai", 100000, "")`, lalu memanggil `ubah_status()` untuk `DIPROSES`, `SIAP`, dan `SELESAI`:
 
-**Output:**
+***Output:***
 
 ```text
 === 4. OBSERVER: NOTIFIKASI STATUS PESANAN ===
@@ -807,11 +952,13 @@ Status diubah menjadi SELESAI:
 ```
 
 - Empat perubahan status × dua pengamat = delapan kabar. `Pesanan` tidak pernah menyebut nama `LayarDapur` atau `NotifikasiPelanggan`.
-- Pembayaran pun memakai factory: `PembayaranFactory.buat("tunai", 100000, "")`.
+- Pembayaran pun memakai *factory*: `PembayaranFactory.buat("tunai", 100000, "")`.
 
 ### 8.5 Struk Baru: `struk.py`
 
-Di awal `buat_teks()`, struk mengambil `pengaturan = PengaturanKedai.get_instance()`, lalu memakai `pengaturan.nama_kedai` dan `pengaturan.alamat` sebagai kepala struk. Di bagian akhir ada baris pajak:
+*File*: [`studi-kasus/struk.py`](studi-kasus/struk.py)
+
+Di awal `buat_teks()`, struk mengambil `pengaturan = PengaturanKedai.get_instance()`, lalu memakai `pengaturan.nama_kedai` dan `pengaturan.alamat` sebagai kepala struk. Di bagian akhir ada baris pajak (potongan dari `buat_teks()`):
 
 ```python
         pajak = f"Pajak {pengaturan.pajak_persen}%"
@@ -821,7 +968,7 @@ Di awal `buat_teks()`, struk mengambil `pengaturan = PengaturanKedai.get_instanc
 
 Label `Pajak 10%` dan hitungan pajaknya sama-sama berasal dari `PengaturanKedai`. Jika pajak diubah lewat *setter*, label dan angkanya pasti berubah bersamaan.
 
-**Output:**
+***Output:***
 
 ```text
 ========================================
@@ -842,18 +989,29 @@ TOTAL                           Rp67.100
 ```
 
 > [!TIP]
-> **Coba sendiri:** di awal `main()`, tambahkan `PengaturanKedai.get_instance().pajak_persen = 11`. Jalankan lagi. Berapa total pesanan Budi sekarang, dan apa tulisan di struk?
+> **Coba sendiri:** salin **seluruh folder** `studi-kasus` ke folder `pertemuan-14` milikmu, lalu buka `main.py` di salinan itu. Tepat di bawah baris `def main():`, tambahkan baris baru `PengaturanKedai.get_instance().pajak_persen = 11`, menjorok 4 spasi seperti baris-baris di bawahnya. Simpan, lalu jalankan `python main.py` dari folder salinan itu. Berapa total pesanan Budi sekarang, dan apa tulisan di struk?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Pajak menjadi 11% × Rp61.000 = Rp6.710, sehingga total menjadi **Rp67.710**, dan struk menampilkan `Pajak 11%`. Total di bagian Strategy juga ikut berubah. Satu baris mengubah seluruh program: inilah kekuatan sekaligus bahaya state global.
+Pajak menjadi 11% × Rp61.000 = Rp6.710 sehingga total pesanan Budi menjadi **Rp67.710**, dan struk menampilkan baris berikut:
+
+```text
+Pajak 11%                        Rp6.710
+TOTAL                           Rp67.710
+```
+
+Bagian lain juga ikut berubah: bagian *Singleton* mencetak `Pajak  : 11%`, total di bagian *Strategy* menjadi Rp65.490, Rp55.666, dan Rp57.498, dan kembalian Budi menjadi Rp32.290. Satu baris mengubah seluruh program: inilah kekuatan sekaligus bahaya *state* global.
 
 </details>
 
-## 9. Kesalahan Umum dan Cara Membaca Pesan Error
+## 9. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-### Kesalahan 1: Membuat objek Singleton secara langsung
+Ketiga kesalahan berikut memakai kelas-kelas studi kasus, jadi cobalah di **salinan** folder `studi-kasus` milikmu (lihat [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)). Jalankan dari terminal yang berada di folder salinan itu. Jika sudah selesai, hapus *file* coba-cobanya atau salin ulang folder `studi-kasus` dari materi.
+
+### Kesalahan 1: Membuat objek *Singleton* secara langsung
+
+Buat *file* baru bernama `coba1.py` di salinan folder `studi-kasus` (sejajar dengan `pengaturan.py`), isi dengan kode berikut, lalu jalankan `python coba1.py`:
 
 ```python
 from pengaturan import PengaturanKedai
@@ -861,6 +1019,8 @@ from pengaturan import PengaturanKedai
 pengaturan = PengaturanKedai.get_instance()
 pengaturan_lain = PengaturanKedai()
 ```
+
+Pesan *error*-nya (Python 3.13):
 
 ```text
 Traceback (most recent call last):
@@ -872,11 +1032,13 @@ Traceback (most recent call last):
 RuntimeError: PengaturanKedai adalah Singleton. Gunakan PengaturanKedai.get_instance()
 ```
 
-**Artinya:** penjaga di `__init__` menolak objek kedua. Baca traceback dari bawah: jenis error-nya `RuntimeError`, dan pesannya sudah memberi tahu solusinya. **Perbaikan:** `PengaturanKedai.get_instance()`.
+**Artinya:** penjaga di `__init__` menolak objek kedua. Baca *traceback* dari bawah: jenis *error*-nya `RuntimeError`, dan pesannya sudah memberi tahu solusinya. **Perbaikan:** ganti `PengaturanKedai()` dengan `PengaturanKedai.get_instance()`.
 
-Hati-hati dengan urutan sebaliknya. Jika `liar = PengaturanKedai()` dijalankan **sebelum** `get_instance()` pertama, tidak ada error sama sekali, tetapi `liar is PengaturanKedai.get_instance()` bernilai `False`. Dua objek tercipta! Karena itu, jangan pernah memanggil konstruktor Singleton secara langsung.
+Hati-hati dengan urutan sebaliknya. Jika `liar = PengaturanKedai()` dijalankan **sebelum** `get_instance()` pertama, tidak ada *error* sama sekali, tetapi `liar is PengaturanKedai.get_instance()` bernilai `False`. Dua objek tercipta! Karena itu, jangan pernah memanggil konstruktor *Singleton* secara langsung.
 
 ### Kesalahan 2: Pengamat lupa menulis `perbarui()`
+
+Buat *file* baru bernama `coba2.py` di salinan folder `studi-kasus`, isi dengan kode berikut, lalu jalankan `python coba2.py`:
 
 ```python
 from pengamat import PengamatPesanan
@@ -890,18 +1052,20 @@ class LayarAntrean(PengamatPesanan):
 layar = LayarAntrean()
 ```
 
+Pesan *error*-nya (Python 3.13):
+
 ```text
 Traceback (most recent call last):
-  File "coba3.py", line 9, in <module>
+  File "coba2.py", line 9, in <module>
     layar = LayarAntrean()
 TypeError: Can't instantiate abstract class LayarAntrean without an implementation for abstract method 'perbarui'
 ```
 
-**Artinya:** `PengamatPesanan` mewajibkan method `perbarui()` (Pertemuan 10). Kelas `LayarAntrean` menamai method-nya `tampilkan`, sehingga ia masih abstrak dan tidak bisa dibuat objeknya. Untung Python menolaknya sekarang, karena `Pesanan` pasti memanggil `perbarui()`, bukan `tampilkan()`. **Perbaikan:** ganti nama method menjadi `perbarui`. Di Python 3.10 dan 3.11, bunyinya sedikit berbeda: `Can't instantiate abstract class LayarAntrean with abstract method perbarui`.
+**Artinya:** `PengamatPesanan` mewajibkan *method* `perbarui()` (Pertemuan 10). Kelas `LayarAntrean` menamai *method*-nya `tampilkan` sehingga ia masih abstrak dan tidak bisa dibuat objeknya. Untung Python sudah menolaknya saat objek dibuat. Jika tidak, masalahnya baru ketahuan belakangan karena `Pesanan` pasti memanggil `perbarui()`, bukan `tampilkan()`. **Perbaikan:** ganti nama *method* menjadi `perbarui`. Di Python 3.10 dan 3.11, bunyinya sedikit berbeda: `Can't instantiate abstract class LayarAntrean with abstract method perbarui`.
 
 ### Kesalahan 3: Impor melingkar
 
-Misalkan kamu "merapikan" `pengamat.py` dengan menambah `from pesanan import Pesanan` dan menulis `def perbarui(self, pesanan: Pesanan):`. Saat `main.py` dijalankan (Python 3.10 sampai 3.12):
+Misalkan kamu ingin "merapikan" `pengamat.py` dengan memberi petunjuk tipe. Di salinan folder `studi-kasus`, buka `pengamat.py`, tambahkan baris `from pesanan import Pesanan` tepat di bawah baris `from abc import ABC, abstractmethod`, lalu ubah `def perbarui(self, pesanan):` menjadi `def perbarui(self, pesanan: Pesanan):`. Simpan, lalu jalankan `python main.py`. Di Python 3.10 sampai 3.12, hasilnya:
 
 ```text
 Traceback (most recent call last):
@@ -920,26 +1084,32 @@ ImportError: cannot import name 'Pesanan' from partially initialized module 'pes
 
 **Artinya:** baca rantainya dari atas. `pesanan.py` mulai dimuat, di tengah jalan ia meng-*import* `pengamat.py`, lalu `pengamat.py` meminta `Pesanan` dari `pesanan.py` yang **belum selesai** dimuat (*partially initialized*). Kelas `Pesanan` belum ada, maka gagal. **Perbaikan:** hapus impor itu dan biarkan parameter `pesanan` tanpa petunjuk tipe, seperti aslinya.
 
-Python 3.13 menampilkan pesan yang berbeda, dan sayangnya kurang membantu: `ImportError: cannot import name 'Pesanan' from 'pesanan' (consider renaming 'pesanan.py' if it has the same name as a library you intended to import)`. Jika kamu melihat pesan ini padahal tidak ada pustaka bernama `pesanan`, curigai impor melingkar.
+Mulai Python 3.13 (termasuk 3.14 dan 3.15), baris terakhirnya berbeda, dan sayangnya kurang membantu:
+
+```text
+ImportError: cannot import name 'Pesanan' from 'pesanan' (consider renaming 'pesanan.py' if it has the same name as a library you intended to import)
+```
+
+Pesan itu menyarankan mengganti nama *file*. Jika kamu melihatnya padahal tidak ada pustaka bernama `pesanan`, curigai impor melingkar dan periksa rantai `import` di atasnya.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python, seperti terlihat di Kesalahan 2 dan 3. Fokuslah pada **jenis error** (`RuntimeError`, `TypeError`, `ImportError`) dan kata-kata kunci di dalamnya.
+> Bunyi pesan *error* bisa sedikit berbeda antarversi Python, seperti terlihat di Kesalahan 2 dan 3. Di Python 3.11 dan 3.12, *traceback* juga bisa memuat baris berisi tanda `^^^^` yang menunjuk bagian kode penyebab *error*. Fokuslah pada **jenis *error*** (`RuntimeError`, `TypeError`, `ImportError`) dan kata-kata kunci di dalamnya.
 
 ## 📝 Ringkasan Sintaks
 
 | Konsep | Sintaks Python | Contoh |
 |---|---|---|
-| Singleton: tempat objek | atribut kelas | `_instance = None` |
-| Singleton: pintu masuk | `@classmethod` | `def get_instance(cls): ...` |
-| Singleton: penjaga | `raise` di `__init__` | `if Kelas._instance is not None: raise RuntimeError(...)` |
-| Singleton ala modul | objek tingkat modul | `pencatat = PencatatLog()` |
-| Singleton lewat `__new__` | override `__new__` | `cls._instance = super().__new__(cls)` |
-| Simple Factory | `@staticmethod` + `if` | `KendaraanFactory.buat("motor")` |
-| Factory Method | method abstrak pembuat produk | `def buat_angkutan(self) -> Angkutan:` |
-| Strategy: kontrak | kelas `ABC` | `class StrategiOngkir(ABC):` |
-| Strategy: tukar | simpan di atribut | `paket.atur_strategi(OngkirKilat())` |
-| Observer: daftar pengamat | list | `self._daftar_pengamat.append(pengamat)` |
-| Observer: beri kabar | perulangan memanggil method | `for p in self._daftar_pengamat: p.perbarui(self)` |
+| *Singleton*: tempat objek | atribut kelas | `_instance = None` |
+| *Singleton*: pintu masuk | `@classmethod` | `def get_instance(cls): ...` |
+| *Singleton*: penjaga | `raise` di `__init__` | `if Kelas._instance is not None: raise RuntimeError(...)` |
+| *Singleton* ala modul | objek tingkat modul | `pencatat = PencatatLog()` |
+| *Singleton* lewat `__new__` | *override* `__new__` | `cls._instance = super().__new__(cls)` |
+| *Simple Factory* | `@staticmethod` + `if` | `KendaraanFactory.buat("motor")` |
+| *Factory Method* | *method* abstrak pembuat produk | `def buat_angkutan(self) -> Angkutan:` |
+| *Strategy*: kontrak | kelas `ABC` | `class StrategiOngkir(ABC):` |
+| *Strategy*: tukar | simpan di atribut | `paket.atur_strategi(OngkirKilat())` |
+| *Observer*: daftar pengamat | *list* | `self._daftar_pengamat.append(pengamat)` |
+| *Observer*: beri kabar | perulangan memanggil *method* | `for p in self._daftar_pengamat: p.perbarui(self)` |
 
 ## ➡️ Langkah Berikutnya
 

@@ -6,7 +6,7 @@
  * - atur(jam, menit) MEMERIKSA dulu, baru mengubah field. Jika jam atau
  *   menit di luar batas, lempar IllegalArgumentException berisi pesan yang
  *   jelas. Karena pemeriksaan dilakukan sebelum perubahan, waktu lama utuh.
- * - Di main(), tampilan jam dicetak di blok finally, sehingga SELALU muncul,
+ * - Di main(), tampilan jam dicetak di blok finally sehingga SELALU muncul,
  *   baik pengaturan berhasil maupun ditolak.
  *
  * Cara menjalankan (Java 11 ke atas):

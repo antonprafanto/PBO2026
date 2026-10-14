@@ -127,7 +127,7 @@ class KamarDeluxe extends Kamar {
 
 /** Tingkat 3: deluxe + antar-jemput bandara + diskon menginap lama. */
 class KamarSuite extends KamarDeluxe {
-    private static final int ANTAR_JEMPUT = 150000; // sekali jalan
+    private static final int ANTAR_JEMPUT = 150000; // dibayar sekali, bukan per malam
     private static final int DISKON_PERSEN = 10;
     private static final int MALAM_MINIMAL_DISKON = 3;
 

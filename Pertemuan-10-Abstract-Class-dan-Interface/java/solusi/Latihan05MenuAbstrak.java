@@ -3,7 +3,7 @@
  * Pertemuan 10 - Abstract Class dan Interface
  *
  * Ide penyelesaian:
- * - Versi ringkas Menu (kode, nama, harga) dijadikan kelas abstrak, karena
+ * - Versi ringkas Menu (kode, nama, harga) dijadikan kelas abstrak karena
  *   di KedaiKita tidak ada "menu umum": setiap menu pasti Makanan atau Minuman.
  * - kategori() dan keterangan() menjadi method abstrak. Kategori tidak lagi
  *   dikirim lewat konstruktor, tetapi "dijawab" oleh setiap kelas anak.

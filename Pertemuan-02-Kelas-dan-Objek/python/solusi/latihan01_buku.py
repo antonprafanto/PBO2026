@@ -8,7 +8,7 @@ Ide penyelesaian:
 3. Method tampilkan_info() mencetak data; method umur(tahun_sekarang)
    MENGEMBALIKAN selisih tahun.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/solusi; macOS/Linux: python3):
     python latihan01_buku.py
 """
 

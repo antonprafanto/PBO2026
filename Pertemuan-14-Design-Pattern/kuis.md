@@ -1,4 +1,4 @@
-# Kuis — Pertemuan 14: Design Pattern Dasar
+# Kuis Pertemuan 14: *Design Pattern* Dasar
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 15 ➡️](../Pertemuan-15-Proyek-Terintegrasi/README.md)
 
@@ -26,10 +26,10 @@ Pembahasan: pola adalah gambaran susunan kelas dan objek, bukan kode jadi (A sal
 
 ### Soal 2
 
-Buku *Design Patterns* karya Gang of Four (1994) memuat ...
+Buku *Design Patterns* karya *Gang of Four* (1994) memuat ...
 
 - A. 23 pola yang dibagi menjadi 3 kategori: *creational*, *structural*, dan *behavioral*
-- B. 4 pola, yaitu Singleton, Factory, Strategy, dan Observer, sesuai jumlah penulisnya
+- B. 4 pola, yaitu *Singleton*, *Factory*, *Strategy*, dan *Observer*, sesuai jumlah penulisnya
 - C. 16 pola yang dibagi menurut bahasa pemrogramannya
 - D. 5 prinsip SOLID beserta contoh kodenya
 
@@ -38,13 +38,13 @@ Buku *Design Patterns* karya Gang of Four (1994) memuat ...
 
 **Jawaban: A**
 
-Pembahasan: buku GoF berisi 23 pola dalam tiga kategori: pembuatan objek (*creational*), struktur (*structural*), dan perilaku (*behavioral*). Julukan "Gang of Four" berasal dari jumlah penulisnya, bukan jumlah pola (B salah). Pola-polanya tidak terikat bahasa tertentu (C salah), dan SOLID adalah prinsip yang berbeda dari design pattern (D salah).
+Pembahasan: buku GoF berisi 23 pola dalam tiga kategori: pembuatan objek (*creational*), struktur (*structural*), dan perilaku (*behavioral*). Julukan "*Gang of Four*" berasal dari jumlah penulisnya, bukan jumlah pola (B salah). Pola-polanya tidak terikat bahasa tertentu (C salah), dan SOLID adalah prinsip yang berbeda dari *design pattern* (D salah).
 
 </details>
 
 ### Soal 3
 
-Perhatikan kode berikut. `PengaturanKedai` adalah Singleton dari studi kasus, dengan pajak awal 10.
+Perhatikan kode berikut. `PengaturanKedai` adalah *Singleton* dari studi kasus, dengan pajak awal 10.
 
 **Python:**
 
@@ -67,7 +67,7 @@ System.out.println(b.getPajakPersen());
 Apa yang tercetak?
 
 - A. `10`
-- B. Error, karena permintaan kedua ditolak oleh Singleton
+- B. *Error* karena permintaan kedua ditolak oleh *Singleton*
 - C. `11`
 - D. `0`
 
@@ -76,17 +76,17 @@ Apa yang tercetak?
 
 **Jawaban: C**
 
-Pembahasan: `a` dan `b` menunjuk ke **objek yang sama**, jadi perubahan lewat `a` terbaca lewat `b`. Pilihan A adalah miskonsepsi "setiap variabel punya objek sendiri". Pilihan B salah karena `get_instance()`/`getInstance()` boleh dipanggil berkali-kali; yang ditolak adalah pembuatan objek **langsung** lewat konstruktor.
+Pembahasan: `a` dan `b` menunjuk ke **objek yang sama**, jadi perubahan lewat `a` terbaca lewat `b`. Pilihan A adalah miskonsepsi "setiap variabel punya objek sendiri". Pilihan B salah karena `get_instance()`/`getInstance()` boleh dipanggil berkali-kali; yang ditolak adalah pembuatan objek **langsung** lewat konstruktor. Pilihan D tidak berdasar karena tidak ada baris yang mengubah pajak menjadi 0.
 
 </details>
 
 ### Soal 4
 
-Apa kekurangan utama pola Singleton?
+Apa kekurangan utama pola *Singleton*?
 
 - A. Program menjadi lambat karena objeknya dibuat ulang setiap kali diminta
-- B. Objek Singleton tidak boleh punya method
-- C. Singleton tidak bisa ditulis di Python
+- B. Objek *Singleton* tidak boleh punya *method*
+- C. *Singleton* tidak bisa ditulis di Python
 - D. Isinya menjadi *state* global: perubahan dari satu bagian program diam-diam memengaruhi bagian lain, dan pengujian bisa saling mengganggu
 
 <details>
@@ -94,7 +94,7 @@ Apa kekurangan utama pola Singleton?
 
 **Jawaban: D**
 
-Pembahasan: di contoh 03, uji yang tadinya LULUS menjadi GAGAL hanya karena uji lain mengubah pengaturan dan lupa mengembalikannya. Pilihan A terbalik: objek Singleton justru hanya dibuat **sekali**. Pilihan B dan C jelas salah; `PengaturanKedai` punya banyak method dan ditulis di kedua bahasa.
+Pembahasan: di contoh 03, uji yang tadinya LULUS menjadi GAGAL hanya karena uji lain mengubah pengaturan dan lupa mengembalikannya. Pilihan A terbalik: objek *Singleton* justru hanya dibuat **sekali**. Pilihan B dan C jelas salah; `PengaturanKedai` punya banyak *method* dan ditulis di kedua bahasa.
 
 </details>
 
@@ -105,14 +105,14 @@ Apa manfaat utama `PembayaranFactory` di KedaiKita?
 - A. Pembayaran diproses lebih cepat
 - B. Kode pemanggil cukup mengirim teks pilihan, lalu menerima objek bertipe `Pembayaran` tanpa perlu mengenal kelas konkretnya
 - C. Kelas `PembayaranTunai`, `PembayaranQRIS`, dan `PembayaranKartu` tidak diperlukan lagi
-- D. Factory menjamin hanya ada satu objek pembayaran di seluruh program
+- D. *Factory* menjamin hanya ada satu objek pembayaran di seluruh program
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: B**
 
-Pembahasan: factory memusatkan keputusan "kelas mana yang dibuat" di satu tempat, termasuk validasi pilihan yang tidak dikenal. Kelas-kelas konkret tetap dibutuhkan, karena factory-lah yang membuatnya (C salah). Menjamin satu objek adalah tugas Singleton, bukan Factory (D salah). Kecepatan tidak berubah (A salah).
+Pembahasan: *factory* memusatkan keputusan "kelas mana yang dibuat" di satu tempat, termasuk validasi pilihan yang tidak dikenal. Kelas-kelas konkret tetap dibutuhkan karena *factory*-lah yang membuatnya (C salah). Menjamin satu objek adalah tugas *Singleton*, bukan *Factory* (D salah). Kecepatan tidak berubah (A salah).
 
 </details>
 
@@ -121,8 +121,8 @@ Pembahasan: factory memusatkan keputusan "kelas mana yang dibuat" di satu tempat
 Apa perbedaan *Simple Factory* dan *Factory Method* versi GoF?
 
 - A. *Simple Factory* termasuk 23 pola GoF, sedangkan *Factory Method* tidak
-- B. *Factory Method* selalu berupa method *static* berisi `if`/`elif`
-- C. Pada *Factory Method*, kelas anak meng-*override* method pembuat produk, sehingga pemilihan produk terjadi lewat *overriding*, bukan lewat `if`
+- B. *Factory Method* selalu berupa *method* *static* berisi `if`/`elif`
+- C. Pada *Factory Method*, kelas anak meng-*override* *method* pembuat produk sehingga pemilihan produk terjadi lewat *overriding*, bukan lewat `if`
 - D. Keduanya sama persis, hanya namanya yang berbeda
 
 <details>
@@ -130,7 +130,7 @@ Apa perbedaan *Simple Factory* dan *Factory Method* versi GoF?
 
 **Jawaban: C**
 
-Pembahasan: di contoh 05, `EkspedisiDarat` dan `EkspedisiSungai` masing-masing meng-*override* `buat_angkutan()`/`buatAngkutan()`. Pilihan A terbalik: *Factory Method* ada di buku GoF, *Simple Factory* adalah idiom populer. Pilihan B justru menggambarkan *Simple Factory*.
+Pembahasan: di contoh 05, `EkspedisiDarat` dan `EkspedisiSungai` masing-masing meng-*override* `buat_angkutan()`/`buatAngkutan()`. Pilihan A terbalik: *Factory Method* ada di buku GoF, sedangkan *Simple Factory* adalah idiom populer. Pilihan B justru menggambarkan *Simple Factory*. Pilihan D salah karena keduanya berbeda cara memilih produk, cara menambah produk baru, dan statusnya di buku GoF.
 
 </details>
 
@@ -168,7 +168,7 @@ Apa yang tercetak?
 
 **Jawaban: A**
 
-Pembahasan: subtotal = 2 × 8.000 + 25.000 = 41.000. Happy Hour hanya memotong minuman: 20% × 16.000 = 3.200. Pajak dihitung **setelah** diskon: (41.000 − 3.200) × 10% = 3.780. Total = 41.000 − 3.200 + 3.780 = **41.580**. Pilihan B lupa pajak, C mengabaikan diskon dan pajak, sedangkan D menambah pajak tanpa diskon.
+Pembahasan: subtotal = 2 × 8.000 + 25.000 = 41.000. *Happy Hour* hanya memotong minuman: 20% × 16.000 = 3.200. Pajak dihitung **setelah** diskon: (41.000 − 3.200) × 10% = 3.780. Total = 41.000 − 3.200 + 3.780 = **41.580**. Pilihan B lupa pajak, C mengabaikan diskon dan pajak, sedangkan D menambah pajak tanpa diskon.
 
 </details>
 
@@ -186,25 +186,25 @@ Mengapa menambah `DiskonHappyHour` sama sekali tidak mengubah kelas `Pesanan`?
 
 **Jawaban: D**
 
-Pembahasan: inilah pola Strategy yang sekaligus mewujudkan OCP. `Pesanan` (*context*) menyimpan satu objek `Diskon` dan memanggil `hitung_potongan()`/`hitungPotongan()` miliknya. `DiskonHappyHour` mewarisi/mengimplementasikan `Diskon`, bukan `Pesanan` (A salah). Pilihan C adalah kondisi **sebelum** refactor di Pertemuan 13.
+Pembahasan: inilah pola *Strategy* yang sekaligus mewujudkan OCP. `Pesanan` (*context*) menyimpan satu objek `Diskon` dan memanggil `hitung_potongan()`/`hitungPotongan()` miliknya. `DiskonHappyHour` mewarisi/mengimplementasikan `Diskon`, bukan `Pesanan` (A salah). Tidak ada bahasa yang otomatis membaca kelas diskon di folder; strategi harus dipasang sendiri lewat `atur_diskon()`/`aturDiskon()` (B salah). Pilihan C adalah kondisi **sebelum** *refactoring* di Pertemuan 13.
 
 </details>
 
 ### Soal 9
 
-Di KedaiKita, `Pesanan` memanggil `pengamat.perbarui(self)` / `pengamat.perbarui(this)`. Gaya Observer apa ini, dan mengapa?
+Di KedaiKita, `Pesanan` memanggil `pengamat.perbarui(self)` / `pengamat.perbarui(this)`. Gaya *Observer* apa ini, dan mengapa?
 
-- A. *Push*, karena pesanan "mendorong" kabar ke semua pengamat
-- B. *Push*, karena status pesanan dikirim sebagai teks
-- C. *Pull*, karena subject mengirim dirinya sendiri, lalu setiap pengamat mengambil data yang ia butuhkan
-- D. *Pull*, karena setiap pengamat memeriksa status pesanan berulang-ulang setiap detik
+- A. *Push* karena pesanan "mendorong" kabar ke semua pengamat
+- B. *Push* karena status pesanan dikirim sebagai teks
+- C. *Pull* karena *subject* mengirim dirinya sendiri, lalu setiap pengamat mengambil data yang ia butuhkan
+- D. *Pull* karena setiap pengamat memeriksa status pesanan berulang-ulang setiap detik
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: C**
 
-Pembahasan: `LayarDapur` menarik nomor dan daftar item, sedangkan `NotifikasiPelanggan` menarik nama dan nomor HP pelanggan, dari objek pesanan yang sama. Pada gaya *push* (contoh 07), yang dikirim adalah data kejadiannya, misalnya judul video. Pilihan D menggambarkan *polling*, bukan Observer: pada Observer, pengamat justru **menunggu dikabari**.
+Pembahasan: `LayarDapur` menarik nomor dan daftar item, sedangkan `NotifikasiPelanggan` menarik nama dan nomor HP pelanggan, dari objek pesanan yang sama. Pada gaya *push* (contoh 07), yang dikirim adalah data kejadiannya, misalnya judul video. Pilihan A keliru karena kedua gaya sama-sama "mendorong" kabar; pembedanya adalah **apa** yang dikirim. Pilihan B keliru karena yang dikirim objek pesanan, bukan teks status. Pilihan D menggambarkan *polling* (memeriksa berulang-ulang), bukan *Observer*: pada *Observer*, pengamat justru **menunggu dikabari**.
 
 </details>
 
@@ -232,7 +232,7 @@ pesanan.ubahStatus("DIPROSES");
 pesanan.ubahStatus("SIAP");
 ```
 
-Berapa kali method `perbarui()` dipanggil secara total?
+Berapa kali *method* `perbarui()` dipanggil secara total?
 
 - A. 2
 - B. 6
@@ -244,7 +244,7 @@ Berapa kali method `perbarui()` dipanggil secara total?
 
 **Jawaban: B**
 
-Pembahasan: daftar pengamat berisi **tiga** objek (dua di antaranya sama-sama `LayarDapur`, tetapi tetap dua objek berbeda). Setiap `ubah_status()`/`ubahStatus()` memanggil `perbarui()` milik ketiganya, jadi 3 × 2 = 6. Pilihan A hanya menghitung jumlah perubahan status, sedangkan D lupa bahwa `LayarDapur` didaftarkan dua kali.
+Pembahasan: daftar pengamat berisi **tiga** objek (dua di antaranya sama-sama `LayarDapur`, tetapi tetap dua objek berbeda). Setiap `ubah_status()`/`ubahStatus()` memanggil `perbarui()` milik ketiganya, jadi 3 × 2 = 6. Pilihan A hanya menghitung jumlah perubahan status, pilihan C hanya menghitung jumlah pengamat, sedangkan D lupa bahwa `LayarDapur` didaftarkan dua kali.
 
 </details>
 
@@ -254,9 +254,9 @@ Pembahasan: daftar pengamat berisi **tiga** objek (dua di antaranya sama-sama `L
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Keempat pola sudah kamu kuasai | Lanjut ke [Pertemuan 15](../Pertemuan-15-Proyek-Terintegrasi/README.md), tempat semua materi dirangkai menjadi satu proyek |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian konsep untuk pola yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 4 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan ketujuh contoh di halaman praktik, dan cocokkan setiap output dengan penjelasannya |
+| 8—10 | Mantap! Keempat pola sudah kamu kuasai | Lanjut ke [Pertemuan 15](../Pertemuan-15-Proyek-Terintegrasi/README.md), tempat semua materi dirangkai menjadi satu proyek |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian konsep untuk pola yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 4 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan ketujuh contoh di halaman praktik, dan cocokkan setiap *output* dengan penjelasannya |
 
 ---
 

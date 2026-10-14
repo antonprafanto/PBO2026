@@ -1,4 +1,4 @@
-# Latihan Soal UAS — Pemrograman Berorientasi Objek
+# Latihan Soal UAS: Pemrograman Berorientasi Objek
 
 [⬅️ Informasi UAS](README.md) · [🏠 Beranda](../README.md) · [Pembahasan ➡️](pembahasan.md)
 
@@ -7,9 +7,9 @@
 
 **Cara memakai halaman ini sebagai simulasi ujian:**
 
-1. Siapkan kertas atau berkas jawaban dan sebuah timer.
+1. Siapkan kertas atau berkas jawaban dan sebuah pengatur waktu (*timer*).
 2. Kerjakan Bagian A dan B **tanpa** membuka catatan dan tanpa menjalankan kode.
-3. Kerjakan Bagian C di komputer, dengan bahasa jalurmu (Python **atau** Java).
+3. Kerjakan Bagian C di komputer, dengan bahasa jalurmu (Python **atau** Java). Simpan jawabanmu di folder milikmu sendiri **di luar** folder materi, misalnya `PBO-latihan-saya/uas`. Cara menyiapkannya ada di bagian Persiapan halaman solusi ([Python](python/README.md#tempat-menyimpan-kodemu-sendiri) atau [Java](java/README.md#tempat-menyimpan-kodemu-sendiri)). Bagian itu hanya berisi cara menyiapkan folder, belum berisi jawaban.
 4. Setelah semua selesai, baru cocokkan di [Pembahasan](pembahasan.md).
 
 | Bagian | Bentuk | Jumlah | Saran waktu | Skor latihan |
@@ -111,7 +111,7 @@ Pernyataan yang **benar** tentang *overloading* dan *overriding* adalah ...
 - A. *Overriding* terjadi di dalam satu kelas yang sama, sedangkan *overloading* selalu membutuhkan pewarisan
 - B. Python mendukung *overloading*: dua `def hitung(...)` dengan jumlah parameter berbeda di satu kelas akan dipilih sesuai jumlah argumen
 - C. Di Java, versi *overload* dipilih saat kompilasi berdasarkan daftar parameter, sedangkan versi *override* dipilih saat program berjalan berdasarkan objek sebenarnya
-- D. Method yang di-*override* di kelas anak boleh mempersempit hak aksesnya, misalnya dari `public` menjadi `private`
+- D. *Method* yang di-*override* di kelas anak boleh mempersempit hak aksesnya, misalnya dari `public` menjadi `private`
 
 ### Soal A3
 
@@ -188,19 +188,19 @@ System.out.println(b.info());              // (3)
 
 Apa yang terjadi?
 
-- A. Keduanya mencetak `Persegi: 16`, lalu error di baris (3) saat `luas()` milik `Bentuk` dipanggil
-- B. Python mencetak `Persegi: 16` lalu berhenti dengan `TypeError` di baris (2); Java ditolak *compiler* karena baris (2), sehingga tidak ada yang tercetak
+- A. Keduanya mencetak `Persegi: 16`, lalu *error* di baris (3) saat `luas()` milik `Bentuk` dipanggil
+- B. Python mencetak `Persegi: 16` lalu berhenti dengan `TypeError` di baris (2); Java ditolak *compiler* karena baris (2) sehingga tidak ada yang tercetak
 - C. Keduanya mencetak `Persegi: 16` dan `Umum: 0`
-- D. Keduanya error di baris (1), karena kelas abstrak `Bentuk` tidak boleh punya konstruktor
+- D. Keduanya *error* di baris (1) karena kelas abstrak `Bentuk` tidak boleh punya konstruktor
 
 ### Soal A4
 
-Aplikasi akademik punya kelas `Mahasiswa`, `Dosen`, dan `Ruangan`. Di versi Java, `Mahasiswa` dan `Dosen` **sudah** mewarisi kelas `Orang`. Kini ketiga kelas itu harus bisa diekspor ke CSV dengan method `ke_csv()` / `keCsv()`, dan kelak kelas lain (misalnya `MataKuliah`) juga perlu kemampuan yang sama. Rancangan yang paling tepat adalah ...
+Aplikasi akademik punya kelas `Mahasiswa`, `Dosen`, dan `Ruangan`. Di versi Java, `Mahasiswa` dan `Dosen` **sudah** mewarisi kelas `Orang`. Kini ketiga kelas itu harus bisa diekspor ke CSV dengan *method* `ke_csv()` / `keCsv()`, dan kelak kelas lain (misalnya `MataKuliah`) juga perlu kemampuan yang sama. Rancangan yang paling tepat adalah ...
 
-- A. Kelas abstrak `DataKampus` berisi method abstrak `ke_csv()`, lalu ketiga kelas mewarisinya
+- A. Kelas abstrak `DataKampus` berisi *method* abstrak `ke_csv()`, lalu ketiga kelas mewarisinya
 - B. Kelas biasa `Ekspor` yang memeriksa jenis objek dengan rantai `isinstance(...)` / `instanceof`
 - C. Menjadikan `Ruangan` kelas anak `Dosen` agar ikut mewarisi `ke_csv()`
-- D. *Interface* `BisaDiekspor` yang diimplementasikan ketiga kelas (di Python: ABC yang hanya berisi method abstrak, atau `typing.Protocol`)
+- D. *Interface* `BisaDiekspor` yang diimplementasikan ketiga kelas (di Python: ABC yang hanya berisi *method* abstrak, atau `typing.Protocol`)
 
 ### Soal A5
 
@@ -251,7 +251,7 @@ System.out.println();
 System.out.println(x + " " + y);
 ```
 
-Output program adalah ...
+*Output* program adalah ...
 
 - A. `AB` lalu `-1 2`
 - B. `ACBC` lalu `-1 2`
@@ -262,8 +262,8 @@ Output program adalah ...
 
 `StokTidakCukupError` (Java: `StokTidakCukupException`) adalah kelas anak dari `KedaiError` (Java: `KedaiException`). Mengapa blok `except`/`catch` untuk kelas anak itu harus ditulis **sebelum** blok untuk induknya?
 
-- A. Blok diperiksa dari atas, dan hanya blok **pertama** yang cocok yang dijalankan; jika blok induk ditulis lebih dulu, blok anak tidak akan pernah tercapai (di Java bahkan menjadi error kompilasi)
-- B. Agar program berjalan lebih cepat, karena *exception* kelas anak lebih ringan
+- A. Blok diperiksa dari atas, dan hanya blok **pertama** yang cocok yang dijalankan; jika blok induk ditulis lebih dulu, blok anak tidak akan pernah tercapai (di Java bahkan menjadi *error* kompilasi)
+- B. Agar program berjalan lebih cepat karena *exception* kelas anak lebih ringan
 - C. Karena *exception* kelas anak tidak bisa ditangkap oleh blok milik induknya
 - D. Karena Python dan Java mewajibkan blok `except`/`catch` diurutkan menurut abjad nama kelasnya
 
@@ -274,7 +274,7 @@ Pernyataan yang **benar** tentang *checked exception* di Java adalah ...
 - A. Semua turunan `RuntimeException`, misalnya `IllegalArgumentException`, termasuk *checked exception*
 - B. *Checked exception* hanya bisa terjadi saat kompilasi, tidak pernah saat program berjalan
 - C. Python juga punya *checked exception*, ditandai kata kunci `throws` setelah `def`
-- D. *Compiler* Java mewajibkan *checked exception* ditangkap dengan `try-catch` atau dideklarasikan dengan `throws` pada method
+- D. *Compiler* Java mewajibkan *checked exception* ditangkap dengan `try-catch` atau dideklarasikan dengan `throws` pada *method*
 
 ### Soal A8
 
@@ -310,7 +310,7 @@ for (Peserta p : daftar) {
 System.out.println(String.join(", ", nama));
 ```
 
-Output program adalah ...
+*Output* program adalah ...
 
 - A. `Ayu, Dimas, Citra, Bima`
 - B. `Bima, Citra, Dimas, Ayu`
@@ -377,34 +377,34 @@ rak.add(new Buku("B01", "Laskar Pelangi (cetak ulang)"));
 System.out.println(rak.size());
 ```
 
-Output program adalah ...
+*Output* program adalah ...
 
 - A. `2`
 - B. `3`
 - C. `1`
-- D. Error, karena set tidak boleh berisi objek dari kelas buatan sendiri
+- D. *Error* karena set tidak boleh berisi objek dari kelas buatan sendiri
 
 ### Soal A10
 
 Kamu menyimpan stok barang dengan kunci berupa kode barang. Laporan stok harus **selalu** tercetak sesuai urutan barang dimasukkan. Di Java, implementasi `Map` yang tepat adalah ...
 
-- A. `HashMap`, karena urutan kuncinya selalu sama dengan urutan dimasukkan
+- A. `HashMap` karena urutan kuncinya selalu sama dengan urutan dimasukkan
 - B. `LinkedHashMap`
-- C. `TreeMap`, karena ia mengingat urutan saat data dimasukkan
-- D. `HashSet`, karena kode barang tidak pernah ganda
+- C. `TreeMap` karena ia mengingat urutan saat data dimasukkan
+- D. `HashSet` karena kode barang tidak pernah ganda
 
 ### Soal A11
 
-Kelas `LaporanNilai` menghitung rata-rata nilai, menyusun tabel teks, mengirim email ke dosen wali, dan menyimpan hasilnya ke file. Prinsip SOLID yang **paling jelas** dilanggar adalah ...
+Kelas `LaporanNilai` menghitung rata-rata nilai, menyusun tabel teks, mengirim *email* ke dosen wali, dan menyimpan hasilnya ke *file*. Prinsip SOLID yang **paling jelas** dilanggar adalah ...
 
-- A. LSP, karena kelas itu tidak punya kelas anak
-- B. ISP, karena kelas itu tidak mengimplementasikan *interface*
-- C. SRP, karena kelas itu punya banyak alasan untuk berubah
-- D. DIP, karena setiap kelas wajib mengimplementasikan minimal satu *interface*
+- A. LSP karena kelas itu tidak punya kelas anak
+- B. ISP karena kelas itu tidak mengimplementasikan *interface*
+- C. SRP karena kelas itu punya banyak alasan untuk berubah
+- D. DIP karena setiap kelas wajib mengimplementasikan minimal satu *interface*
 
 ### Soal A12
 
-Kelas `Burung` punya method `terbang()`. Kelas `Penguin` mewarisi `Burung` lalu meng-*override* `terbang()` agar melempar *exception* "Penguin tidak bisa terbang". Akibatnya, kode lama yang memanggil `terbang()` untuk setiap objek di daftar burung tiba-tiba gagal. Prinsip yang dilanggar dan perbaikan yang tepat adalah ...
+Kelas `Burung` punya *method* `terbang()`. Kelas `Penguin` mewarisi `Burung` lalu meng-*override* `terbang()` agar melempar *exception* "Penguin tidak bisa terbang". Akibatnya, kode lama yang memanggil `terbang()` untuk setiap objek di daftar burung tiba-tiba gagal. Prinsip yang dilanggar dan perbaikan yang tepat adalah ...
 
 - A. SRP; pindahkan `terbang()` ke sebuah kelas utilitas terpisah
 - B. DIP; suntikkan objek `Penguin` lewat konstruktor
@@ -494,7 +494,7 @@ kanal.unggah("Video 3");
 System.out.println(ayu.notifikasi + " " + bima.notifikasi);
 ```
 
-Output program adalah ...
+*Output* program adalah ...
 
 - A. `3 3`
 - B. `3 2`
@@ -503,21 +503,21 @@ Output program adalah ...
 
 ### Soal A14
 
-Aplikasi ojek online menghitung tarif dengan beberapa aturan: tarif normal, tarif jam sibuk, dan tarif promo. Aturan yang dipakai dipilih saat aplikasi berjalan, dan aturan baru sering ditambahkan tanpa boleh mengubah kelas `Perjalanan`. Pola yang paling cocok adalah ...
+Aplikasi ojek *online* menghitung tarif dengan beberapa aturan: tarif normal, tarif jam sibuk, dan tarif promo. Aturan yang dipakai dipilih saat aplikasi berjalan, dan aturan baru sering ditambahkan tanpa boleh mengubah kelas `Perjalanan`. Pola yang paling cocok adalah ...
 
-- A. Strategy
-- B. Singleton
-- C. Observer
-- D. Factory
+- A. *Strategy*
+- B. *Singleton*
+- C. *Observer*
+- D. *Factory*
 
 ### Soal A15
 
-Aplikasi kasir dibangun berlapis: tampilan (CLI), layanan, model, dan penyimpanan (file CSV). Di mana aturan "harga menu harus lebih dari 0" **paling tepat** ditegakkan?
+Aplikasi kasir dibangun berlapis: tampilan (CLI), layanan, model, dan penyimpanan (*file* CSV). Di mana aturan "harga menu harus lebih dari 0" **paling tepat** ditegakkan?
 
-- A. Di lapisan tampilan, karena di sanalah kasir mengetik harga
-- B. Di lapisan model (kelas `Menu`, lewat konstruktor dan *setter*/*property*), agar aturan berlaku dari mana pun objek dibuat atau diubah
-- C. Di lapisan penyimpanan, karena data akhirnya ditulis ke file CSV
-- D. Cukup di *unit test*, karena test akan menangkap harga yang salah
+- A. Di lapisan tampilan karena di sanalah kasir mengetik harga
+- B. Di lapisan model (kelas `Menu`, lewat konstruktor dan *setter*/*property*) agar aturan berlaku dari mana pun objek dibuat atau diubah
+- C. Di lapisan penyimpanan karena data akhirnya ditulis ke *file* CSV
+- D. Cukup di *unit test* karena *test* akan menangkap harga yang salah
 
 ---
 
@@ -527,21 +527,21 @@ Jawab dengan kalimatmu sendiri. Jawaban yang baik memuat **definisi, contoh, dan
 
 ### Soal B1: Empat Pilar PBO di KedaiKita
 
-1. Jelaskan keempat pilar PBO (enkapsulasi, pewarisan, polimorfisme, abstraksi) dengan kalimatmu sendiri. Untuk setiap pilar, tunjukkan satu contoh nyata dari KedaiKita (versi P09–P15) atau dari proyek akhirmu. **(4 poin)**
+1. Jelaskan keempat pilar PBO (enkapsulasi, pewarisan, polimorfisme, abstraksi) dengan kalimatmu sendiri. Untuk setiap pilar, tunjukkan satu contoh nyata dari KedaiKita (versi P09—P15) atau dari proyek akhirmu. **(4 poin)**
 2. Seorang teman menulis `class Pesanan(ItemPesanan)` (Java: `class Pesanan extends ItemPesanan`) dengan alasan "supaya `Pesanan` langsung punya menu dan jumlah". Jelaskan mengapa desain ini keliru dan apa yang seharusnya dipakai. **(2 poin)**
 
-### Soal B2: Kelas Abstrak atau Interface?
+### Soal B2: Kelas Abstrak atau *Interface*?
 
-1. Bandingkan kelas abstrak dan *interface* dalam sebuah tabel, minimal empat aspek. Contoh aspek: bisa dibuat objeknya atau tidak, boleh menyimpan atribut atau tidak, boleh berisi method lengkap atau tidak, berapa yang boleh diwarisi/diimplementasikan satu kelas, dan kapan dipakai. **(3 poin)**
+1. Bandingkan kelas abstrak dan *interface* dalam sebuah tabel, minimal empat aspek. Contoh aspek: bisa dibuat objeknya atau tidak, boleh menyimpan atribut atau tidak, boleh berisi *method* lengkap atau tidak, berapa yang boleh diwarisi/diimplementasikan satu kelas, dan kapan dipakai. **(3 poin)**
 2. Tentukan pilihanmu beserta alasannya untuk dua kasus berikut. **(2 poin)**
-   - Aplikasi rental: semua kendaraan punya nomor polisi, tarif per hari, dan method `info()` yang sama persis, tetapi cara menghitung denda keterlambatan berbeda untuk mobil, motor, dan sepeda.
+   - Aplikasi rental: semua kendaraan punya nomor polisi, tarif per hari, dan *method* `info()` yang sama persis, tetapi cara menghitung denda keterlambatan berbeda untuk mobil, motor, dan sepeda.
    - Kelas `Struk`, `LaporanBulanan`, dan `KartuAnggota` tidak berkerabat, tetapi semuanya harus bisa dicetak ke PDF.
 3. Khusus Python: apa bedanya membuat kontrak dengan ABC dan dengan `typing.Protocol`? **(1 poin)**
 
-### Soal B3: Checked dan Unchecked Exception
+### Soal B3: *Checked* dan *Unchecked Exception*
 
 1. Jelaskan perbedaan *checked* dan *unchecked exception* di Java, beserta satu contoh kelas bawaan untuk masing-masing. **(2 poin)**
-2. Mengapa Python tidak punya konsep ini? Apa yang perlu dilakukan programmer Python sebagai gantinya? **(1 poin)**
+2. Mengapa Python tidak punya konsep ini? Apa yang perlu dilakukan pemrogram Python sebagai gantinya? **(1 poin)**
 3. Di KedaiKita versi Java, `KedaiException` dibuat *checked* (turunan `Exception`). Sebutkan satu keuntungan dan satu konsekuensinya bagi kode yang memanggil `cariMenu()`. **(2 poin)**
 4. Kapan kamu justru memilih *unchecked exception*? Beri satu contoh. **(1 poin)**
 
@@ -632,7 +632,7 @@ class PengelolaNilai {
 
 Baris `import` pada versi Java tidak ditampilkan agar ringkas.
 
-1. Identifikasi **minimal tiga** pelanggaran prinsip SOLID. Untuk setiap pelanggaran, sebutkan prinsipnya, buktinya di kode (nama method atau baris), dan akibatnya jika kebutuhan berubah. **(3 poin)**
+1. Identifikasi **minimal tiga** pelanggaran prinsip SOLID. Untuk setiap pelanggaran, sebutkan prinsipnya, buktinya di kode (nama *method* atau baris), dan akibatnya jika kebutuhan berubah. **(3 poin)**
 2. Usulkan rancangan perbaikan: daftar kelas/*interface* beserta tanggung jawabnya. Boleh berupa diagram kelas sederhana. **(2 poin)**
 3. Sebutkan satu hal yang menurutmu **tidak perlu** dipecah atau diabstraksikan sekarang, beserta alasannya. **(1 poin)**
 
@@ -641,12 +641,12 @@ Baris `import` pada versi Java tidak ditampilkan agar ringkas.
 
 - Hitung ada berapa "alasan untuk berubah" yang ditanggung kelas ini: aturan nilai, format laporan, tempat penyimpanan, cara pengiriman.
 - Apa yang harus diedit jika muncul format laporan baru, misalnya HTML?
-- Bisakah kelas ini diuji tanpa benar-benar menulis file atau menghubungi server email?
+- Bisakah kelas ini diuji tanpa benar-benar menulis *file* atau menghubungi server *email*?
 - Apa yang terjadi jika `cetak_laporan("html")` dipanggil?
 
 </details>
 
-### Soal B5: Memilih Design Pattern untuk Bank Sampah
+### Soal B5: Memilih *Design Pattern* untuk Bank Sampah
 
 Himpunan mahasiswa membuat aplikasi bank sampah (fiktif). Ada empat kebutuhan:
 
@@ -655,13 +655,13 @@ Himpunan mahasiswa membuat aplikasi bank sampah (fiktif). Ada empat kebutuhan:
 3. Seluruh bagian aplikasi harus membaca **satu** pengaturan yang sama: nama bank sampah dan daftar harga per kg.
 4. Petugas mengetik jenis sampah sebagai teks (`"plastik"`, `"kertas"`, `"logam"`), lalu aplikasi membuat objek `Sampah` yang sesuai.
 
-Untuk **setiap** kebutuhan, tuliskan: (a) pola yang paling cocok, (b) alasannya dalam 1–2 kalimat, (c) kelas atau *interface* utamanya, dan (d) satu kekurangan atau risiko pola tersebut. **(1,5 poin per kebutuhan)**
+Untuk **setiap** kebutuhan, tuliskan: (a) pola yang paling cocok, (b) alasannya dalam 1—2 kalimat, (c) kelas atau *interface* utamanya, dan (d) satu kekurangan atau risiko pola tersebut. **(1,5 poin per kebutuhan)**
 
 ---
 
 ## Bagian C: Soal Praktik
 
-Kerjakan di komputer dengan bahasa jalurmu. Buat **satu file** untuk setiap soal. Pembahasan desain ada di [Pembahasan Bagian C](pembahasan.md#bagian-c-soal-praktik).
+Kerjakan di komputer dengan bahasa jalurmu. Buat **satu *file*** untuk setiap soal dan simpan di folder latihanmu, misalnya `PBO-latihan-saya/uas`. Untuk jalur Java, pakai satu subfolder per soal (`uas/c1` dan `uas/c2`) agar nama kelas kedua jawaban tidak bentrok. Pembahasan desain ada di [Pembahasan Bagian C](pembahasan.md#bagian-c-soal-praktik).
 
 ### Soal C1: Sistem Pemesanan Tiket Bioskop
 
@@ -673,27 +673,27 @@ Kerjakan di komputer dengan bahasa jalurmu. Buat **satu file** untuk setiap soal
 
 **Kebutuhan:**
 
-1. **Kelas abstrak `Tiket`** dengan atribut kode kursi, nama pemesan, dan harga dasar yang hanya bisa dibaca dari luar (Python: *property* tanpa *setter*; Java: field `private final` + *getter*). Method abstraknya `jenis()` dan `hitung_harga()` / `hitungHarga()`. Method konkret `__str__` / `toString()` memakai kedua method abstrak itu.
+1. **Kelas abstrak `Tiket`** dengan atribut kode kursi, nama pemesan, dan harga dasar yang hanya bisa dibaca dari luar (Python: *property* tanpa *setter*; Java: *field* `private final` + *getter*). *Method* abstraknya `jenis()` dan `hitung_harga()` / `hitungHarga()`. *Method* konkret `__str__` / `toString()` memakai kedua *method* abstrak itu.
 2. **Tiga kelas anak** dengan aturan harga berikut (semua bilangan bulat):
 
    | Jenis | Aturan harga |
    |---|---|
    | Reguler | sama dengan harga dasar jadwal |
-   | VIP | harga dasar + Rp25.000 (kursi sofa dan popcorn) |
+   | VIP | harga dasar + Rp25.000 (kursi sofa dan *popcorn*) |
    | Pelajar | harga dasar dikurangi 20% |
 
-3. **Kelas `Jadwal`** menyimpan kode jadwal, judul film, jam, nomor studio, harga dasar (harus lebih dari 0), dan kursi terjual dalam dict/Map (kode kursi → `Tiket`). Sediakan method untuk menambah tiket, daftar kursi kosong, daftar tiket terjual (urut kode kursi), jumlah tiket terjual, dan pendapatan. Pendapatan dihitung **tanpa** memeriksa jenis tiket.
+3. **Kelas `Jadwal`** menyimpan kode jadwal, judul film, jam, nomor studio, harga dasar (harus lebih dari 0), dan kursi terjual dalam dict/Map (kode kursi → `Tiket`). Sediakan *method* untuk menambah tiket, daftar kursi kosong, daftar tiket terjual (urut kode kursi), jumlah tiket terjual, dan pendapatan. Pendapatan dihitung **tanpa** memeriksa jenis tiket.
 4. **Kelas `Bioskop`** menyimpan jadwal dalam dict/Map (kode jadwal → `Jadwal`) dan menyediakan:
    - `cari_jadwal(kode)` / `cariJadwal(kode)`;
    - `pesan(kode_jadwal, jenis, kode_kursi, pemesan)` dengan urutan pemeriksaan: **jadwal → jenis tiket → kursi**;
-   - laporan per film, urut **pendapatan terbesar**; jika pendapatannya sama, urut **judul A–Z**;
+   - laporan per film, urut **pendapatan terbesar**; jika pendapatannya sama, urut **judul A—Z**;
    - rekap jumlah tiket dan pendapatan per jenis tiket, urut nama jenis.
 5. ***Exception* buatan sendiri**, semuanya turunan `BioskopError` (Python) atau `BioskopException` (Java, *checked*):
 
    | *Exception* | Kapan dilempar | Contoh pesan |
    |---|---|---|
    | `JadwalTidakDitemukanError` / `...Exception` | Kode jadwal tidak terdaftar | `Jadwal J05 tidak ditemukan` |
-   | `KursiTidakAdaError` / `...Exception` | Kode kursi di luar `A1`–`C5` | `Kursi D1 tidak ada di Studio 1` |
+   | `KursiTidakAdaError` / `...Exception` | Kode kursi di luar `A1`—`C5` | `Kursi D1 tidak ada di Studio 1` |
    | `KursiSudahTerjualError` / `...Exception` | Kursi sudah dipesan; membawa data **sisa kursi kosong** | `Kursi A1 untuk Mahakam Biru sudah terjual` |
 
    Jenis tiket yang tidak dikenal ditolak dengan `ValueError` / `IllegalArgumentException` berpesan `Jenis tiket 'premium' tidak dikenal`. Penulisan jenis tidak membedakan huruf besar dan kecil (`"VIP"` sama dengan `"vip"`).
@@ -725,7 +725,7 @@ Kerjakan di komputer dengan bahasa jalurmu. Buat **satu file** untuk setiap soal
 | 12 | J03 | pelajar | C4 | Citra Dewi |
 | 13 | J02 | reguler | B1 | Eko Prasetyo |
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === JADWAL TAYANG BioskopKita ===
@@ -768,16 +768,16 @@ Reguler   4 tiket   Rp140.000
 VIP       3 tiket   Rp195.000
 ```
 
-Spasi dan perataan kolom boleh sedikit berbeda, tetapi **angka, urutan baris, dan pesan error** harus sama.
+Spasi dan perataan kolom boleh sedikit berbeda, tetapi **angka, urutan baris, dan pesan *error*** harus sama.
 
 <details>
 <summary>💡 Petunjuk</summary>
 
 - Mulailah dari hierarki `Tiket`, lalu uji ketiga kelas anaknya dengan harga dasar 40000 (hasilnya 40000, 65000, 32000).
-- Untuk membuat objek tiket dari teks jenis, buat satu tempat khusus (misalnya kelas `TiketFactory` dengan method `buat(...)`), supaya rantai `if` jenis tiket tidak tersebar ke mana-mana.
+- Untuk membuat objek tiket dari teks jenis, buat satu tempat khusus (misalnya kelas `TiketFactory` dengan *method* `buat(...)`) supaya rantai `if` jenis tiket tidak tersebar ke mana-mana.
 - Daftar 15 kursi bisa dibuat dengan dua perulangan bersarang: baris `"ABC"` dan nomor 1 sampai 5.
 - Pengurutan dua kriteria: Python `key=lambda j: (-j.pendapatan(), j.judul)`; Java `Comparator.comparing(Jadwal::pendapatan).reversed().thenComparing(Jadwal::getJudul)`.
-- Perhatikan laporan per film: pendapatan Detektif Kampus dan Rindu di Tepian **sama** (Rp115.000), jadi kriteria kedua (judul A–Z) yang menentukan urutannya.
+- Perhatikan laporan per film: pendapatan Detektif Kampus dan Rindu di Tepian **sama** (Rp115.000), jadi kriteria kedua (judul A—Z) yang menentukan urutannya.
 - Urutan `except`/`catch`: tangkap `KursiSudahTerjual...` lebih dulu (perlu data sisa kursi), baru induknya.
 
 </details>
@@ -791,17 +791,17 @@ Spasi dan perataan kolom boleh sedikit berbeda, tetapi **angka, urutan baris, da
 | *Exception* buatan sendiri (hierarki, pesan, data tambahan) dan penanganannya (urutan spesifik → umum, program tidak berhenti) | 20% |
 | Koleksi: dict/Map untuk jadwal dan kursi, daftar kursi kosong, pengurutan dua kriteria, rekap per jenis | 20% |
 | Enkapsulasi dan validasi (atribut tidak diubah dari luar, harga dasar harus positif) | 10% |
-| Output sesuai contoh; kode rapi (nama jelas, komentar secukupnya) | 15% |
+| *Output* sesuai contoh; kode rapi (nama jelas, komentar secukupnya) | 15% |
 
 **Solusi:** [🐍 Python](python/solusi/soal_c1_tiket_bioskop.py) · [☕ Java](java/solusi/SoalC1TiketBioskop.java)
 
-### Soal C2: Refactor Kasir Laundry yang Berantakan
+### Soal C2: *Refactor* Kasir *Laundry* yang Berantakan
 
 **Bobot:** 20 poin · **Saran waktu:** 60 menit
 
-**Kompetensi yang diuji:** mengenali *code smell*, menerapkan SOLID, memakai *design pattern*, dan membuktikan bahwa refactoring tidak mengubah perilaku.
+**Kompetensi yang diuji:** mengenali *code smell*, menerapkan SOLID, memakai *design pattern*, dan membuktikan bahwa *refactoring* tidak mengubah perilaku.
 
-**Cerita:** Laundry Bersih Kilat (fiktif), langganan anak kos di sekitar kampus, memakai program kasir yang ditulis terburu-buru. Programnya benar, tetapi setiap kali pemilik ingin menambah promo atau mengganti WhatsApp dengan SMS, programmer harus membongkar kelas yang sama. Berikut kode awalnya. Pilih versi jalurmu.
+**Cerita:** Laundry Bersih Kilat (fiktif), langganan anak kos di sekitar kampus, memakai program kasir yang ditulis terburu-buru. Programnya benar, tetapi setiap kali pemilik ingin menambah promo atau mengganti WhatsApp dengan SMS, pemrogram harus membongkar kelas yang sama. Berikut kode awalnya. Pilih versi jalurmu.
 
 <details>
 <summary>🐍 Kode awal versi Python</summary>
@@ -1016,9 +1016,9 @@ class LaundrySerbaBisa {
 
 </details>
 
-Kode awal ini juga tersedia sebagai file siap jalan: [`python/solusi/soal_c2_sebelum.py`](python/solusi/soal_c2_sebelum.py) dan [`java/solusi/SoalC2Sebelum.java`](java/solusi/SoalC2Sebelum.java). Jangan buka file `..._sesudah` sebelum mencoba sendiri.
+Kode awal ini juga tersedia sebagai *file* siap jalan: [`python/solusi/soal_c2_sebelum.py`](python/solusi/soal_c2_sebelum.py) dan [`java/solusi/SoalC2Sebelum.java`](java/solusi/SoalC2Sebelum.java). Salin *file* versi jalurmu ke folder latihanmu, lalu kerjakan *refactor* di folder itu, bukan di folder materi. Jangan buka *file* `..._sesudah` sebelum mencoba sendiri.
 
-**Output kode awal (harus tetap sama setelah refactor):**
+***Output* kode awal (harus tetap sama setelah *refactor*):**
 
 ```text
 ====================================
@@ -1089,19 +1089,19 @@ Pendapatan   : Rp113.800
 
 **Tugas:**
 
-1. Tulis daftar **minimal empat** masalah desain pada kode awal beserta prinsip yang dilanggar, sebagai komentar di bagian atas file jawabanmu.
-2. Refactor kode menjadi beberapa kelas yang menerapkan **minimal tiga** prinsip SOLID dan **minimal satu** *design pattern*. Tulis nama prinsip/pola di komentar kelas yang bersangkutan.
-3. Output program hasil refactor harus **sama persis** dengan output di atas. Buktikan dengan perintah `diff` (macOS/Linux) atau `fc` (Windows), lalu sertakan hasilnya.
-4. Pertanyaan lanjutan (jawab di komentar, tanpa mengubah output): apa saja yang perlu **ditambah** dan apa yang perlu **diubah** jika (a) ada promo baru "Pelajar 15%", dan (b) ada layanan baru "cuci bed cover" seharga Rp12.000 per kg?
+1. Tulis daftar **minimal empat** masalah desain pada kode awal beserta prinsip yang dilanggar, sebagai komentar di bagian atas *file* jawabanmu.
+2. *Refactor* kode menjadi beberapa kelas yang menerapkan **minimal tiga** prinsip SOLID dan **minimal satu** *design pattern*. Tulis nama prinsip/pola di komentar kelas yang bersangkutan.
+3. *Output* program hasil *refactor* harus **sama persis** dengan *output* di atas. Buktikan dengan perintah `diff` (macOS/Linux) atau `fc` (Windows), lalu sertakan hasilnya. Langkah-langkahnya ada di bagian Persiapan halaman solusi ([Python](python/README.md#cara-membandingkan-jawabanmu-dengan-solusi) atau [Java](java/README.md#cara-membandingkan-jawabanmu-dengan-solusi)), yang juga belum berisi jawaban.
+4. Pertanyaan lanjutan (jawab di komentar, tanpa mengubah *output*): apa saja yang perlu **ditambah** dan apa yang perlu **diubah** jika (a) ada promo baru "Pelajar 15%", dan (b) ada layanan baru "cuci bed cover" seharga Rp12.000 per kg?
 
 <details>
 <summary>💡 Petunjuk</summary>
 
 - Tandai setiap komentar di kode awal (`# cari tarif`, `# hitung promo`, `# cetak nota`, ...). Setiap komentar seperti itu adalah calon kelas tersendiri.
-- Rantai `if promo == ...` adalah kandidat kuat pola Strategy: setiap promo menjadi satu kelas yang menghitung potongannya sendiri.
+- Rantai `if promo == ...` adalah kandidat kuat pola *Strategy*: setiap promo menjadi satu kelas yang menghitung potongannya sendiri.
 - Tarif layanan bisa disimpan sebagai **data** (dict/Map nama layanan → tarif), bukan sebagai rantai `if`.
 - Agar pengiriman WhatsApp mudah diganti SMS, buat abstraksi pengirim dan berikan objeknya lewat konstruktor kasir.
-- Perhatikan detail kecil yang memengaruhi output: nomor order hanya bertambah jika layanan valid, dan baris promo hanya dicetak jika potongannya lebih dari 0.
+- Perhatikan detail kecil yang memengaruhi *output*: nomor order hanya bertambah jika layanan valid, dan baris promo hanya dicetak jika potongannya lebih dari 0.
 
 </details>
 
@@ -1109,7 +1109,7 @@ Pendapatan   : Rp113.800
 
 | Aspek | Bobot |
 |---|---|
-| Output tetap sama persis, dibuktikan dengan `diff`/`fc` | 25% |
+| *Output* tetap sama persis, dibuktikan dengan `diff`/`fc` | 25% |
 | SRP: perhitungan, nota, pengiriman pesan, dan laporan dipisah ke kelas yang tepat | 20% |
 | OCP dan *design pattern*: promo (dan layanan) bisa ditambah tanpa mengubah kelas lain; pola dipakai dengan benar | 25% |
 | DIP/ISP: kasir bergantung pada abstraksi kecil yang disuntikkan lewat konstruktor | 15% |

@@ -5,9 +5,11 @@ Pertemuan 10 - Abstract Class dan Interface
 Ide penyelesaian:
 - Perangkat adalah kelas abstrak. Konstruktor (merek, daya_watt) dan
   method konkret info() cukup ditulis SEKALI di sini.
-- jenis() dan fungsi_utama() dibuat abstrak, karena jawabannya berbeda untuk
+- jenis() dan fungsi_utama() dibuat abstrak karena jawabannya berbeda untuk
   setiap perangkat. info() memanggil keduanya (template method kecil).
 - total_daya() menerima list Perangkat jenis apa pun.
+- Percobaan di soal (membuat objek Perangkat langsung) ditulis sebagai komentar
+  di main() agar output-nya tetap sama dengan contoh di soal.
 
 Cara menjalankan:
     python latihan01_perangkat.py
@@ -78,6 +80,10 @@ def total_daya(daftar: list[Perangkat]) -> int:
 
 
 def main():
+    # Percobaan di soal, sengaja dijadikan komentar. Jika baris ini aktif,
+    # Python menolak: TypeError: Can't instantiate abstract class Perangkat ...
+    # umum = Perangkat("Polytron", 20)
+
     daftar: list[Perangkat] = [
         Laptop("Lenovo", 65),
         Ponsel("Samsung", 18),

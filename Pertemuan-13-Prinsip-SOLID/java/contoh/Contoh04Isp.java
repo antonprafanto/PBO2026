@@ -7,8 +7,8 @@
  * palsu yang melempar exception.
  *
  * Versi SESUAI ISP: kontrak dipecah menjadi PencetakStruk, PemindaiBarcode,
- * dan LaciUang. Setiap perangkat hanya meng-implements interface yang
- * benar-benar sesuai kemampuannya. KasirLengkap meng-implements ketiganya.
+ * dan LaciUang. Setiap perangkat hanya mengimplementasikan interface yang
+ * benar-benar sesuai kemampuannya. KasirLengkap mengimplementasikan ketiganya.
  *
  * Cara menjalankan (Java 11 ke atas):
  *     java Contoh04Isp.java
@@ -47,7 +47,7 @@ public class Contoh04Isp {
 }
 
 // ------------------------------------------------------------ MELANGGAR ISP
-/** Kontrak GEMUK: siapa pun yang meng-implements-nya wajib bisa tiga hal. */
+/** Kontrak GEMUK: siapa pun yang mengimplementasikannya wajib bisa tiga hal. */
 interface PerangkatKasir {
     void cetakStruk(String teks);
 

@@ -96,7 +96,8 @@ class PegawaiKontrak extends Pegawai {
     private int jamLembur;
 
     public PegawaiKontrak(String nip, String nama, int gajiPokok, int jamLembur) {
-        super(nip, nama, gajiPokok); // WAJIB paling awal, validasi ditulis sesudahnya
+        // Java 17 mewajibkan super(...) paling awal, jadi validasi ditulis sesudahnya.
+        super(nip, nama, gajiPokok);
         if (jamLembur < 0) {
             throw new IllegalArgumentException("Jam lembur tidak boleh negatif");
         }

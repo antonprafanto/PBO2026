@@ -1,4 +1,4 @@
-# 🐍 Praktik Python — Pertemuan 09: Polimorfisme
+# 🐍 Praktik Python Pertemuan 09: Polimorfisme
 
 [⬅️ Konsep](../README.md) · [☕ Praktik Java](../java/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
@@ -7,17 +7,24 @@
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
+  - [Cara Menjalankan Contoh](#cara-menjalankan-contoh)
+  - [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
 1. [Satu Perintah, Banyak Bentuk](#1-satu-perintah-banyak-bentuk)
 2. [Koleksi Polimorfik dan Jenis Baru](#2-koleksi-polimorfik-dan-jenis-baru)
 3. [Memeriksa Jenis Objek dengan `isinstance()`](#3-memeriksa-jenis-objek-dengan-isinstance)
-4. [Polimorfisme dari Dalam Kelas](#4-polimorfisme-dari-dalam-kelas)
-5. [Duck Typing: Tanpa Pewarisan pun Bisa](#5-duck-typing-tanpa-pewarisan-pun-bisa)
-6. [Python Tidak Punya Overloading](#6-python-tidak-punya-overloading)
-7. [Pengganti Overloading: Nilai Bawaan, Argumen Kata Kunci, dan `*args`](#7-pengganti-overloading-nilai-bawaan-argumen-kata-kunci-dan-args)
+4. [Polimorfisme dari dalam Kelas](#4-polimorfisme-dari-dalam-kelas)
+5. [*Duck Typing*: Tanpa Pewarisan pun Bisa](#5-duck-typing-tanpa-pewarisan-pun-bisa)
+6. [Python Tidak Punya *Overloading*](#6-python-tidak-punya-overloading)
+7. [Pengganti *Overloading*: Nilai Bawaan, Argumen Kata Kunci, dan `*args`](#7-pengganti-overloading-nilai-bawaan-argumen-kata-kunci-dan-args)
 8. [Studi Kasus KedaiKita](#8-studi-kasus-kedaikita)
-9. [Kesalahan Umum dan Cara Membaca Pesan Error](#9-kesalahan-umum-dan-cara-membaca-pesan-error)
+9. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#9-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** Python 3.10 atau lebih baru, VS Code dengan ekstensi Python, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Python pertemuan ini:
 
@@ -28,30 +35,79 @@ python/
 └── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
 ```
 
-Cara menjalankan sebuah contoh dari terminal:
+### Cara Menjalankan Contoh
+
+Pilih salah satu cara. Hasilnya sama.
+
+**Cara 1: tombol ▷ di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-09-Polimorfisme/python`. Di panel **Explorer**, buka folder `contoh`, klik *file* yang ingin dicoba (misalnya `contoh01_satu_perintah_banyak_bentuk.py`), lalu klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-09-Polimorfisme/python/contoh` |
+| folder `python` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-09-Polimorfisme/python/contoh
 python contoh01_satu_perintah_banyak_bentuk.py
 ```
 
-Studi kasus terdiri atas beberapa file, jadi jalankan `main.py` **dari dalam** folder `studi-kasus`:
+Yang tercetak di terminal sama persis dengan blok ***Output:*** di [bagian 1](#1-satu-perintah-banyak-bentuk). Untuk contoh lain, ganti nama *file*-nya, misalnya `python contoh02_koleksi_polimorfik.py`. *File* di folder `solusi` dijalankan dengan cara yang sama; ganti saja `contoh` dengan `solusi`.
+
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+### Cara Menjalankan Studi Kasus
+
+Studi kasus terdiri atas tujuh *file* yang saling memakai lewat `import`. Yang dijalankan selalu `main.py`. *File* lain, seperti `pembayaran.py` atau `pesanan.py`, hanya berisi kelas sehingga jika dijalankan sendiri tidak menampilkan apa-apa.
+
+- **Cara 1:** di VS Code, buka `studi-kasus/main.py`, lalu klik tombol ▷.
+- **Cara 2:** masuk dulu ke folder `studi-kasus`, lalu jalankan `main.py`.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi | `cd Pertemuan-09-Polimorfisme/python/studi-kasus` |
+| folder `python` pertemuan ini | `cd studi-kasus` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-09-Polimorfisme/python/studi-kasus
 python main.py
 ```
 
-> [!NOTE]
-> Di macOS/Linux, gunakan `python3` sebagai ganti `python`. Di VS Code, kamu juga bisa membuka file lalu menekan tombol ▶ (*Run Python File*). Panduan instalasi ada di [00-Persiapan](../../00-Persiapan/README.md).
+Baris pertama yang muncul adalah `=== MENU KedaiKita ===`. *Output* lengkapnya ada di [bagian 8](#8-studi-kasus-kedaikita).
 
-Seperti sejak Pertemuan 05, kode memakai *type hint* (`nama: str`, `-> int`) dan atribut bergaris bawah (`self._nama`). Ingat, *type hint* hanyalah **keterangan** untuk pembaca dan editor. Python tidak memeriksanya saat program berjalan. Fakta kecil ini ternyata penting di bagian 5.
+> [!NOTE]
+> Di macOS/Linux, ketik `python3` sebagai ganti `python`. Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya.
+
+### Tempat Menyimpan Kodemu Sendiri
+
+Anggap folder materi sebagai buku pegangan: dibaca dan dijalankan, tetapi tidak dicoret-coret. Semua percobaan di halaman ini ("Coba sendiri" dan percobaan pesan *error*) dikerjakan di folder milikmu sendiri **di luar** folder materi. Alasannya ada di aturan emas [Git dan GitHub bagian 5](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri).
+
+```text
+Documents/
+├── PBO2026/                  <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/
+    └── pertemuan-09/         <- salinan contoh, coba.py, dan jawaban latihanmu
+```
+
+Polanya selalu sama: salin *file* contoh ke folder `pertemuan-09` (lewat File Explorer di Windows atau Finder di macOS), buka salinannya, ubah, simpan, jalankan, lalu bandingkan hasilnya dengan yang diharapkan. Buka folder `pertemuan-09` di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**). Terminal di jendela itu (**Terminal → New Terminal**) langsung berada di folder `pertemuan-09`, jadi kamu cukup mengetik `python nama_file.py`.
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal setiap bagian menunjuk *file* contohnya. Klik untuk melihat isi lengkapnya.
+- Blok kode sesudahnya biasanya **potongan** *file* itu, disalin persis. Bagian yang dilewati diceritakan di teks, misalnya "`Anjing` dan `Bebek` ditulis dengan pola yang sama". Untuk mencoba, jalankan *file* lengkapnya, jangan mengetik ulang potongannya.
+- Tanda `# [1]`, `# [2]`, dan seterusnya di komentar kode dijelaskan di daftar **Penjelasan** di bawah blok kodenya.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* materi itu dijalankan. Blok berlabel **Hasilnya:** adalah hasil percobaan yang kamu buat sendiri di folder `pertemuan-09`.
+- Seperti sejak Pertemuan 05, kode memakai petunjuk tipe (*type hint*), misalnya `nama: str` dan `-> int`, serta atribut bergaris bawah (`self._nama`). Ingat, petunjuk tipe hanyalah **keterangan** untuk pembaca dan editor. Python tidak memeriksanya saat program berjalan. Fakta kecil ini ternyata penting di bagian 5.
 
 ## 1. Satu Perintah, Banyak Bentuk
 
-File: [`contoh/contoh01_satu_perintah_banyak_bentuk.py`](contoh/contoh01_satu_perintah_banyak_bentuk.py)
+*File*: [`contoh/contoh01_satu_perintah_banyak_bentuk.py`](contoh/contoh01_satu_perintah_banyak_bentuk.py)
 
-Kita mulai dari contoh klasik: hewan-hewan yang bersuara.
+Kita mulai dari contoh klasik: hewan-hewan yang bersuara. Berikut potongan *file*-nya, dimulai dari kelas induk dan satu kelas anak:
 
 ```python
 class Hewan:
@@ -99,7 +155,7 @@ def main():
         suruh_bersuara(satwa)
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === SATU VARIABEL, BERGANTI OBJEK ===
@@ -117,10 +173,10 @@ Penjelasan:
 
 - **[1]** `Hewan` menyediakan versi **umum** dari `bersuara()`. Versi ini dipakai oleh kelas anak yang tidak menulis versinya sendiri.
 - **[2]** `Kucing`, `Anjing`, dan `Bebek` meng-*override* `bersuara()`: nama sama, parameter sama, isi berbeda.
-- **[3]** Parameter `hewan` diberi *type hint* `Hewan`. Artinya, fungsi ini siap menerima **hewan jenis apa pun**, termasuk semua kelas anak `Hewan`.
+- **[3]** Parameter `hewan` diberi petunjuk tipe `Hewan`. Artinya, fungsi ini siap menerima **hewan jenis apa pun**, termasuk semua kelas anak `Hewan`.
 - **[4]** Inilah inti polimorfisme. Fungsi `suruh_bersuara` tidak tahu dan tidak peduli jenis hewannya. Ia cukup memanggil `hewan.bersuara()`, dan Python yang memilih versi milik objek sebenarnya.
 - **[5]** Variabel `hewan` mula-mula menunjuk objek `Kucing`, lalu objek `Anjing`. Baris `print(hewan.bersuara())` ditulis persis sama, tetapi hasilnya berbeda.
-- **[6]** List `kebun` berisi empat objek dari empat kelas berbeda. `Ikan` tidak meng-*override*, jadi Python naik ke kelas induk dan memakai `(diam saja)`.
+- **[6]** *List* `kebun` berisi empat objek dari empat kelas berbeda. `Ikan` tidak meng-*override*, jadi Python naik ke kelas induk dan memakai `(diam saja)`.
 
 Cara Python memilih versi `bersuara()` untuk setiap objek:
 
@@ -130,20 +186,28 @@ satwa.bersuara()  ->  objeknya Ikan    ->  Ikan punya bersuara()?    tidak  ->  
 ```
 
 > [!TIP]
-> **Coba sendiri:** tambahkan kelas `Sapi(Hewan)` yang bersuara `"Mooo!"`, lalu masukkan `Sapi("Belang")` ke list `kebun`. Apakah fungsi `suruh_bersuara` perlu diubah?
+> **Coba sendiri:** salin `contoh/contoh01_satu_perintah_banyak_bentuk.py` ke folder `pertemuan-09` milikmu, lalu buka salinannya. Di bawah kelas `Ikan`, tambahkan kelas `Sapi(Hewan)` yang *method* `bersuara()`-nya mengembalikan `"Mooo!"`. Lalu tambahkan `Sapi("Belang")` di akhir *list* `kebun`. Simpan, jalankan, dan perhatikan: apakah fungsi `suruh_bersuara` perlu diubah?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-Tidak perlu. Muncul baris baru `Belang si Sapi: Mooo!` tanpa menyentuh `suruh_bersuara` sedikit pun. Inilah keuntungan utama polimorfisme yang dibahas di bagian berikutnya.
+Tidak perlu. Di akhir *output* muncul baris baru `Belang si Sapi: Mooo!` tanpa menyentuh `suruh_bersuara` sedikit pun. Kelas tambahannya cukup seperti ini:
+
+```python
+class Sapi(Hewan):
+    def bersuara(self) -> str:
+        return "Mooo!"
+```
+
+Inilah keuntungan utama polimorfisme yang dibahas di bagian berikutnya.
 
 </details>
 
 ## 2. Koleksi Polimorfik dan Jenis Baru
 
-File: [`contoh/contoh02_koleksi_polimorfik.py`](contoh/contoh02_koleksi_polimorfik.py)
+*File*: [`contoh/contoh02_koleksi_polimorfik.py`](contoh/contoh02_koleksi_polimorfik.py)
 
-Sekarang kita buktikan bahwa jenis baru bisa ditambahkan tanpa mengubah kode pemanggil. Berikut kelas induknya:
+Sekarang kita buktikan bahwa jenis baru bisa ditambahkan tanpa mengubah kode pemanggil. Berikut potongan *file*-nya, dimulai dari kelas induk:
 
 ```python
 class BangunDatar:
@@ -156,7 +220,7 @@ class BangunDatar:
         return 0  # [1] bangun datar "umum" tidak punya rumus luas
 ```
 
-Kelas anak `Persegi`, `PersegiPanjang`, dan `Segitiga` masing-masing meng-*override* `nama()` dan `luas()`. Misalnya, `luas()` milik `Segitiga` mengembalikan `self._alas * self._tinggi // 2`. Lalu kelas baru, fungsi laporan, dan program utama:
+Kelas anak `Persegi`, `PersegiPanjang`, dan `Segitiga` masing-masing meng-*override* `nama()` dan `luas()`. Misalnya, `luas()` milik `Segitiga` mengembalikan `self._alas * self._tinggi // 2`. Potongan berikutnya adalah bagian akhir *file*: kelas baru, fungsi laporan, dan program utama.
 
 ```python
 # ----- Jenis BARU yang ditambahkan belakangan -----
@@ -194,7 +258,7 @@ def main():
     cetak_laporan(daftar)
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === LAPORAN AWAL: TIGA JENIS ===
@@ -214,28 +278,28 @@ Total luas: 216 cm2
 
 Penjelasan:
 
-- **[1]** Versi induk mengembalikan 0, karena bangun datar "umum" tidak punya rumus luas.
+- **[1]** Versi induk mengembalikan 0 karena bangun datar "umum" tidak punya rumus luas.
 - **[2]** Menambah jenis baru cukup dengan **menulis kelas baru**. Tidak ada kode lama yang diubah.
-- **[3]** *Type hint* `list[BangunDatar]` berarti "list berisi bangun datar jenis apa pun". Perhatikan bahwa isi fungsi ini tidak menyebut `Persegi`, `Segitiga`, atau `Trapesium` sama sekali.
+- **[3]** Petunjuk tipe `list[BangunDatar]` berarti "*list* berisi bangun datar jenis apa pun". Perhatikan bahwa isi fungsi ini tidak menyebut `Persegi`, `Segitiga`, atau `Trapesium` sama sekali.
 - **[4]** Setiap putaran memanggil `luas()` dan `nama()` milik objek yang sedang diproses.
-- **[5]** Satu list menampung tiga jenis objek. Inilah **koleksi polimorfik**.
-- **[6]** `Trapesium` ikut dihitung dengan benar, walaupun `cetak_laporan` ditulis sebelum kelas itu ada. Rumus `luas()` disimpan rapi di kelasnya masing-masing.
+- **[5]** Satu *list* menampung tiga jenis objek. Inilah **koleksi polimorfik**.
+- **[6]** `Trapesium` ikut dihitung dengan benar walaupun `cetak_laporan` ditulis sebelum kelas itu ada. Rumus `luas()` disimpan rapi di kelasnya masing-masing.
 
 > [!NOTE]
-> Baris `Bangun datar ... luas 0` terasa janggal. Objek `BangunDatar()` memang tidak seharusnya bisa dibuat, karena "bangun datar umum" tidak punya bentuk. Di Pertemuan 10, kita membuat kelas seperti ini menjadi **kelas abstrak**, sehingga Python menolak pembuatan objeknya.
+> Baris `Bangun datar ... luas 0` terasa janggal. Objek `BangunDatar()` memang tidak seharusnya bisa dibuat karena "bangun datar umum" tidak punya bentuk. Di Pertemuan 10, kita membuat kelas seperti ini menjadi **kelas abstrak** sehingga Python menolak pembuatan objeknya.
 
 ## 3. Memeriksa Jenis Objek dengan `isinstance()`
 
-File: [`contoh/contoh03_cek_jenis_objek.py`](contoh/contoh03_cek_jenis_objek.py)
+*File*: [`contoh/contoh03_cek_jenis_objek.py`](contoh/contoh03_cek_jenis_objek.py)
 
-Kadang sebuah kelas anak punya method **khusus** yang tidak dimiliki saudaranya. Di contoh ini, hanya `Mahasiswa` yang punya `isi_krs()`, dan hanya `Dosen` yang punya `input_nilai()`. Keduanya sama-sama meng-*override* `peran()` dan `menu_utama()` milik `Pengguna`. Berikut method khusus di kelas `Mahasiswa`:
+Kadang sebuah kelas anak punya *method* **khusus** yang tidak dimiliki saudaranya. Di contoh ini, hanya `Mahasiswa` yang punya `isi_krs()`, dan hanya `Dosen` yang punya `input_nilai()`. Keduanya sama-sama meng-*override* `peran()` dan `menu_utama()` milik `Pengguna`. Berikut potongan *file*-nya, yaitu *method* khusus di kelas `Mahasiswa`:
 
 ```python
     def isi_krs(self, sks: int) -> str:  # [1] method KHUSUS mahasiswa
         return f"{self._nama} ({self._nim}) mengisi KRS {sks} SKS"
 ```
 
-Kelas `Dosen` serupa, dengan method khusus `input_nilai(mata_kuliah, nilai)`. Program utamanya:
+Kelas `Dosen` serupa, dengan *method* khusus `input_nilai(mata_kuliah, nilai)`. Program utamanya:
 
 ```python
 def main():
@@ -260,7 +324,7 @@ def main():
 
 Bagian terakhir `main` memeriksa objek Ayu dengan `isinstance(ayu, Mahasiswa)`, `isinstance(ayu, Pengguna)` (ditandai `# [5]`), dan `isinstance(ayu, Dosen)`.
 
-**Output:**
+***Output:***
 
 ```text
 === SEMUA PENGGUNA LOGIN ===
@@ -270,7 +334,7 @@ Bima Saputra [Mahasiswa] menu: Profil, KRS, KHS
 
 === FITUR KHUSUS: CEK JENIS DULU ===
 Ayu Lestari (2409106001) mengisi KRS 21 SKS
-Rahmat Hidayat menginput nilai PBO: A
+Rahmat Hidayat memasukkan nilai PBO: A
 Bima Saputra (2409106002) mengisi KRS 21 SKS
 
 === CEK JENIS IKUT MENGENAL INDUK ===
@@ -281,25 +345,25 @@ Ayu termasuk Dosen?     tidak
 
 Penjelasan:
 
-- **[1]** `isi_krs()` hanya ada di `Mahasiswa`. Objek `Dosen` tidak punya method ini.
+- **[1]** `isi_krs()` hanya ada di `Mahasiswa`. Objek `Dosen` tidak punya *method* ini.
 - **[2]** `peran()` dan `menu_utama()` dimiliki **semua** pengguna, jadi aman dipanggil tanpa pemeriksaan apa pun. Hasilnya polimorfik.
-- **[3]** Sebelum memanggil method khusus, kita memastikan jenis objeknya dengan `isinstance(objek, Kelas)`.
+- **[3]** Sebelum memanggil *method* khusus, kita memastikan jenis objeknya dengan `isinstance(objek, Kelas)`.
 - **[4]** Di dalam cabang itu, kita yakin `pengguna` adalah mahasiswa, jadi `isi_krs()` aman dipanggil. Python tidak butuh langkah tambahan seperti *casting* di Java.
-- **[5]** `isinstance` juga menjawab "ya" untuk kelas induk, karena setiap mahasiswa **adalah** pengguna.
+- **[5]** `isinstance` juga menjawab "ya" untuk kelas induk karena setiap mahasiswa **adalah** pengguna.
 
 Tanpa pemeriksaan di **[3]**, memanggil `isi_krs()` pada objek `Dosen` akan menghentikan program dengan `AttributeError`. Pesan lengkapnya ada di [Kesalahan 1](#kesalahan-1-memanggil-method-khusus-tanpa-memeriksa-jenis).
 
 > [!TIP]
-> `isinstance` bisa memeriksa beberapa kelas sekaligus dengan tuple: `isinstance(pengguna, (Mahasiswa, Dosen))`. Bedakan juga dengan `type(ayu) is Pengguna`, yang hanya menjawab "ya" jika kelasnya **persis** `Pengguna` (hasilnya `False` untuk Ayu). Untuk polimorfisme, `isinstance` hampir selalu pilihan yang tepat.
+> `isinstance` bisa memeriksa beberapa kelas sekaligus dengan *tuple*: `isinstance(pengguna, (Mahasiswa, Dosen))`. Bedakan juga dengan `type(ayu) is Pengguna`. Pemeriksaan itu hanya menjawab "ya" jika kelasnya **persis** `Pengguna`, jadi hasilnya `False` untuk Ayu. Untuk polimorfisme, `isinstance` hampir selalu pilihan yang tepat.
 
 > [!WARNING]
-> Gunakan `isinstance` hanya untuk method yang benar-benar **khusus**. Untuk perilaku yang dimiliki semua jenis, misalnya teks peran, cukup *override* lalu panggil langsung seperti di **[2]**. Kode yang penuh `if isinstance(...) elif isinstance(...)` adalah tanda rancangan belum memanfaatkan polimorfisme.
+> Gunakan `isinstance` hanya untuk *method* yang benar-benar **khusus**. Untuk perilaku yang dimiliki semua jenis, misalnya teks peran, cukup *override* lalu panggil langsung seperti di **[2]**. Kode yang penuh `if isinstance(...) elif isinstance(...)` adalah tanda rancangan belum memanfaatkan polimorfisme.
 
-## 4. Polimorfisme dari Dalam Kelas
+## 4. Polimorfisme dari dalam Kelas
 
-File: [`contoh/contoh04_polimorfisme_dari_dalam_kelas.py`](contoh/contoh04_polimorfisme_dari_dalam_kelas.py)
+*File*: [`contoh/contoh04_polimorfisme_dari_dalam_kelas.py`](contoh/contoh04_polimorfisme_dari_dalam_kelas.py)
 
-Method `tulis()` hanya ditulis sekali, di kelas induk. Namun hasilnya berbeda untuk setiap jenis kartu.
+*Method* `tulis()` hanya ditulis sekali, di kelas induk. Namun, hasilnya berbeda untuk setiap jenis kartu. Berikut potongan *file*-nya, dimulai dari kelas induk:
 
 ```python
 class KartuUcapan:
@@ -334,9 +398,9 @@ class KartuWisuda(KartuUcapan):
         return "Perjuanganmu terbayar lunas. " + super().isi()  # [5]
 ```
 
-Program utamanya membuat tiga kartu (umum, ulang tahun, dan wisuda) di dalam list, lalu memanggil `kartu.tulis()` untuk masing-masing.
+Program utamanya membuat tiga kartu (umum, ulang tahun, dan wisuda) di dalam *list*, lalu memanggil `kartu.tulis()` untuk masing-masing.
 
-**Output:**
+***Output:***
 
 ```text
 === Kartu 1: KartuUcapan ===
@@ -373,17 +437,17 @@ Penjelasan:
 Jejak eksekusi untuk kartu ketiga:
 
 ```text
-kartu.tulis()                      -> tulis() milik KartuUcapan (KartuWisuda tidak punya tulis)
+kartu.tulis()                      -> tulis() milik KartuUcapan (KartuWisuda tidak menulis versinya sendiri)
   self.salam()                     -> self adalah KartuWisuda -> "Selamat, Dimas, S.Kom.!"
   self.isi()                       -> self adalah KartuWisuda -> isi() milik KartuWisuda
     super().isi()                  -> isi() milik KartuUcapan -> "Semoga harimu menyenangkan."
 ```
 
-## 5. Duck Typing: Tanpa Pewarisan pun Bisa
+## 5. *Duck Typing*: Tanpa Pewarisan pun Bisa
 
-File: [`contoh/contoh05_duck_typing.py`](contoh/contoh05_duck_typing.py)
+*File*: [`contoh/contoh05_duck_typing.py`](contoh/contoh05_duck_typing.py)
 
-Di Python, polimorfisme bahkan tidak membutuhkan pewarisan.
+Di Python, polimorfisme bahkan tidak membutuhkan pewarisan. Berikut isi lengkap *file*-nya, hanya tanpa komentar pembuka:
 
 ```python
 class AyamJago:  # [1] tidak mewarisi kelas apa pun (selain object)
@@ -422,9 +486,13 @@ def main():
     print()
     print("=== PAGI DI SEKOLAH ===")
     bangunkan_semua([BelSekolah(), AlarmPonsel("06.45")])
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === PAGI DI ASRAMA ===
@@ -439,12 +507,12 @@ AlarmPonsel : Kriiing! Sudah pukul 06.45
 
 Penjelasan:
 
-- **[1]** `AyamJago`, `AlarmPonsel`, `Kentongan`, dan `BelSekolah` tidak punya induk bersama. Induk mereka hanya kelas akar `object`, yang tidak punya `bunyikan()`.
+- **[1]** `AyamJago`, `AlarmPonsel`, `Kentongan`, dan `BelSekolah` tidak punya induk bersama. Induk mereka hanya kelas akar `object`, dan `object` tidak punya `bunyikan()`.
 - **[2]** Kelas baru pun cukup punya `bunyikan()` untuk ikut diproses.
-- **[3]** *Type hint* parameter hanya `list`. Tidak ada kelas induk yang bisa disebut, dan Python tidak membutuhkannya.
-- **[4]** Saat `benda.bunyikan()` dijalankan, Python hanya mencari method bernama `bunyikan` di objek itu. Python tidak bertanya "kamu kelas apa?", melainkan "kamu bisa `bunyikan()` atau tidak?".
+- **[3]** Petunjuk tipe parameternya hanya `list`. Tidak ada kelas induk yang bisa disebut, dan Python tidak membutuhkannya.
+- **[4]** Saat `benda.bunyikan()` dijalankan, Python hanya mencari *method* bernama `bunyikan` di objek itu. Python tidak bertanya "kamu kelas apa?", melainkan "kamu bisa `bunyikan()` atau tidak?".
 
-Kelemahannya: kesalahan baru ketahuan saat program **berjalan**. Jika ada objek yang tidak punya `bunyikan()`, misalnya objek `Batu`, beginilah yang terjadi:
+Kelemahannya: kesalahan baru ketahuan saat program **berjalan**. Apa yang terjadi jika ada objek yang tidak punya `bunyikan()`, misalnya objek `Batu`? Buktikan sendiri: buat *file* baru bernama `coba.py` di folder `pertemuan-09` milikmu, salin kode berikut, simpan, lalu jalankan dengan `python coba.py`.
 
 ```python
 class AyamJago:
@@ -465,20 +533,20 @@ Hasilnya:
 ```text
 Kukuruyuuuk!
 Traceback (most recent call last):
-  File "contoh.py", line 11, in <module>
+  File "coba.py", line 11, in <module>
     print(benda.bunyikan())
           ^^^^^^^^^^^^^^
 AttributeError: 'Batu' object has no attribute 'bunyikan'
 ```
 
-Objek pertama berhasil berbunyi, lalu program berhenti di objek kedua. Pesan `'Batu' object has no attribute 'bunyikan'` berarti objek `Batu` tidak punya method `bunyikan`.
+Objek pertama berhasil berbunyi, lalu program berhenti di objek kedua. Pesan `'Batu' object has no attribute 'bunyikan'` berarti "objek `Batu` tidak punya atribut atau *method* bernama `bunyikan`". Baris `File "coba.py", line 11` menunjukkan letaknya: baris 11, yaitu baris `print(benda.bunyikan())`. Di layarmu, nama *file* tampil lengkap dengan alamat foldernya. Di sini alamatnya dipendekkan.
 
 > [!NOTE]
-> Jalur Java punya contoh 05 dengan output yang sama persis, tetapi semua kelasnya **wajib** mewarisi kelas induk bersama. Java tidak mengenal *duck typing*: *compiler* harus yakin setiap objek punya `bunyikan()` sebelum program dijalankan. Perbandingannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
+> Jalur Java punya contoh 05 dengan *output* yang sama persis, tetapi semua kelasnya **wajib** mewarisi kelas induk bersama. Java tidak mengenal *duck typing*: *compiler* harus yakin setiap objek punya `bunyikan()` sebelum program dijalankan. Perbandingannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
 
-## 6. Python Tidak Punya Overloading
+## 6. Python Tidak Punya *Overloading*
 
-Di Java, satu kelas boleh punya beberapa method bernama sama dengan daftar parameter berbeda. Teknik ini disebut ***overloading***. Bagaimana jika kita mencobanya di Python?
+Di Java, satu kelas boleh punya beberapa *method* bernama sama dengan daftar parameter berbeda. Teknik ini disebut ***overloading***. Bagaimana jika kita mencobanya di Python? Ganti seluruh isi `coba.py` di folder `pertemuan-09` milikmu dengan kode berikut, simpan, lalu jalankan lagi dengan `python coba.py`.
 
 ```python
 class Penyapa:
@@ -499,7 +567,7 @@ Hasilnya:
 ```text
 Halo, Budi!
 Traceback (most recent call last):
-  File "contoh.py", line 11, in <module>
+  File "coba.py", line 11, in <module>
     print(p.sapa())
           ~~~~~~^^
 TypeError: Penyapa.sapa() missing 1 required positional argument: 'nama'
@@ -507,23 +575,23 @@ TypeError: Penyapa.sapa() missing 1 required positional argument: 'nama'
 
 Penjelasannya:
 
-- Saat kelas dibaca, Python menjalankan isi kelas dari atas ke bawah. `def sapa(self)` membuat method bernama `sapa`.
-- `def sapa(self, nama)` membuat method **baru** dengan nama yang sama. Nama `sapa` kini menunjuk method kedua, dan method pertama **hilang**.
-- Tidak ada pesan error saat kelas ditulis. Pemanggilan `p.sapa("Budi")` bahkan berhasil, karena cocok dengan method kedua.
-- Error baru muncul saat `p.sapa()` dipanggil tanpa argumen. Versi tanpa parameter itu sudah tidak ada.
+- Saat kelas dibaca, Python menjalankan isi kelas dari atas ke bawah. `def sapa(self)` membuat *method* bernama `sapa`.
+- `def sapa(self, nama)` membuat *method* **baru** dengan nama yang sama. Nama `sapa` kini menunjuk *method* kedua, dan *method* pertama **hilang**.
+- Tidak ada pesan *error* saat kelas ditulis. Pemanggilan `p.sapa("Budi")` bahkan berhasil karena cocok dengan *method* kedua.
+- *Error* baru muncul saat `p.sapa()` dipanggil tanpa argumen. Versi tanpa parameter itu sudah tidak ada. Pesan `missing 1 required positional argument: 'nama'` artinya "kurang satu argumen wajib, yaitu `nama`".
 
 Ibaratnya menyimpan kontak "Ibu" dua kali di ponsel yang tidak mengizinkan nama kembar. Nomor kedua menimpa nomor pertama tanpa bertanya.
 
 > [!IMPORTANT]
-> Di Python, satu nama method dalam satu kelas hanya punya **satu** isi. `def` kedua dengan nama sama selalu **menimpa** `def` pertama, diam-diam. Beberapa editor memberi garis peringatan, tetapi Python sendiri tidak.
+> Di Python, satu nama *method* dalam satu kelas hanya punya **satu** isi. `def` kedua dengan nama sama selalu **menimpa** `def` pertama, diam-diam. Beberapa editor memberi garis peringatan, tetapi Python sendiri tidak.
 
-Lalu bagaimana membuat satu method yang bisa dipanggil dengan banyak cara? Jawabannya di bagian berikut.
+Lalu bagaimana membuat satu *method* yang bisa dipanggil dengan banyak cara? Jawabannya di bagian berikut.
 
-## 7. Pengganti Overloading: Nilai Bawaan, Argumen Kata Kunci, dan `*args`
+## 7. Pengganti *Overloading*: Nilai Bawaan, Argumen Kata Kunci, dan `*args`
 
-File: [`contoh/contoh06_pengganti_overloading.py`](contoh/contoh06_pengganti_overloading.py)
+*File*: [`contoh/contoh06_pengganti_overloading.py`](contoh/contoh06_pengganti_overloading.py)
 
-Contoh ini adalah perpustakaan sederhana. Kelas `Buku` menyimpan judul, penulis, dan tahun. Bagian pentingnya ada di kelas `Perpustakaan`:
+Contoh ini adalah perpustakaan sederhana. Kelas `Buku` menyimpan judul, penulis, dan tahun. Bagian pentingnya ada di kelas `Perpustakaan`. Berikut potongan *file*-nya:
 
 ```python
 class Perpustakaan:
@@ -576,7 +644,7 @@ def main():
     tampilkan("Judul memuat 'Kancil'", pusat.cari("Kancil"))
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === KONSTRUKTOR DENGAN NILAI BAWAAN ===
@@ -597,13 +665,13 @@ Judul memuat 'Kancil'       : (tidak ada)
 
 Penjelasan:
 
-- **[1]** **Nilai bawaan** (*default*): jika `nama` tidak diisi, Python memakai `"Perpustakaan Kampus"`. Di Java, hal yang sama dikerjakan dengan dua konstruktor (overloading). Teknik ini sudah kamu kenal sejak Pertemuan 03.
-- **[2]** Tanda bintang pada `*daftar_buku` membuat method menerima argumen **berapa pun jumlahnya**. Semua argumen dikumpulkan menjadi sebuah *tuple*. Nama umumnya `*args`, tetapi boleh diberi nama yang lebih jelas.
-- **[3]** Satu method `cari` dengan **dua** nilai bawaan menggantikan tiga versi overloading di Java: cari judul, cari tahun, dan cari keduanya.
+- **[1]** **Nilai bawaan** (*default*): jika `nama` tidak diisi, Python memakai `"Perpustakaan Kampus"`. Di Java, hal yang sama dikerjakan dengan dua konstruktor (*overloading*). Teknik ini sudah kamu kenal sejak Pertemuan 03.
+- **[2]** Tanda bintang pada `*daftar_buku` membuat *method* menerima argumen **berapa pun jumlahnya**. Semua argumen dikumpulkan menjadi sebuah *tuple*. Nama umumnya `*args`, tetapi boleh diberi nama yang lebih jelas.
+- **[3]** Satu *method* `cari` dengan **dua** nilai bawaan menggantikan tiga versi *overloading* di Java: cari judul, cari tahun, dan cari keduanya.
 - **[4]** `Perpustakaan()` tanpa argumen memakai nama bawaan.
-- **[5]** `tambah_buku` dipanggil dengan satu buku, lalu tiga buku, lalu tanpa buku sama sekali. Method-nya tetap satu.
+- **[5]** `tambah_buku` dipanggil dengan satu buku, lalu tiga buku, lalu tanpa buku sama sekali. *Method*-nya tetap satu.
 - **[6]** `cari("Pe")` hanya mengisi `kata_kunci`. `tahun` memakai nilai bawaan 0 (bebas).
-- **[7]** **Argumen kata kunci** (*keyword argument*): `tahun=1980` mengisi parameter `tahun` secara langsung dan melewati `kata_kunci`, yang tetap memakai nilai bawaan `""`.
+- **[7]** **Argumen kata kunci** (*keyword argument*): `tahun=1980` mengisi parameter `tahun` secara langsung, lewat namanya. Parameter `kata_kunci` dilewati sehingga tetap memakai nilai bawaan `""`.
 - **[8]** Kedua parameter diisi berurutan seperti biasa.
 
 | Cara memanggil | Isi parameter |
@@ -613,25 +681,25 @@ Penjelasan:
 | `cari("a", 2006)` | `kata_kunci="a"`, `tahun=2006` |
 
 > [!WARNING]
-> Jangan memakai list atau dict sebagai nilai bawaan, misalnya `def tambah(self, daftar=[])`. Nilai bawaan dibuat **sekali** saat `def` dibaca, sehingga list yang sama ikut terbawa ke setiap pemanggilan. Pakai `None` sebagai nilai bawaan, lalu buat list baru di dalam method.
+> Jangan memakai *list* atau `dict` sebagai nilai bawaan, misalnya `def tambah(self, daftar=[])`. Nilai bawaan dibuat **sekali** saat `def` dibaca sehingga *list* yang sama ikut terbawa ke setiap pemanggilan. Pakai `None` sebagai nilai bawaan (`daftar=None`), lalu buat *list* baru di dalam *method* jika `daftar` masih `None`.
 
 > [!NOTE]
-> Jalur Java punya satu contoh tambahan, yaitu contoh 07, tentang aturan "*overload* dipilih saat kompilasi, *override* dipilih saat berjalan". Contoh itu **khusus Java**, karena Python tidak punya overloading. Ringkasannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
+> Jalur Java punya satu contoh tambahan, yaitu contoh 07, tentang aturan "*overload* dipilih saat kompilasi, *override* dipilih saat berjalan". Contoh itu **khusus Java** karena Python tidak punya *overloading*. Ringkasannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
 
 ## 8. Studi Kasus KedaiKita
 
-File: [`studi-kasus/pembayaran.py`](studi-kasus/pembayaran.py), [`studi-kasus/pesanan.py`](studi-kasus/pesanan.py), dan [`studi-kasus/main.py`](studi-kasus/main.py)
+*File*: [`studi-kasus/pembayaran.py`](studi-kasus/pembayaran.py), [`studi-kasus/pesanan.py`](studi-kasus/pesanan.py), dan [`studi-kasus/main.py`](studi-kasus/main.py)
 
 Rancangan dan diagramnya sudah dibahas di [halaman konsep](../README.md#10-studi-kasus-kedaikita-banyak-cara-bayar).
 
 **Apa yang berubah dibanding Pertemuan 07?**
 
-- **File baru `pembayaran.py`** berisi kelas induk `Pembayaran` dan tiga kelas anak: `PembayaranTunai`, `PembayaranQRIS`, dan `PembayaranKartu`.
-- **`pesanan.py`**: `Pesanan` punya atribut `_status` (`"BARU"` lalu `"LUNAS"`), *property* `status`, method baru `bayar(pembayaran)`, dan `tambah_item(menu, jumlah=1)` kini punya nilai bawaan. Struk ikut menampilkan status.
-- **`main.py`**: menambah bagian "SATU PANGGILAN, BANYAK BENTUK", pembayaran Budi dan Siti, serta "MEMERIKSA JENIS PEMBAYARAN".
+- ***File* baru `pembayaran.py`** berisi kelas induk `Pembayaran` dan tiga kelas anak: `PembayaranTunai`, `PembayaranQRIS`, dan `PembayaranKartu`.
+- **`pesanan.py`**: `Pesanan` punya atribut `_status` (`"BARU"` lalu `"LUNAS"`), *property* `status`, *method* baru `bayar(pembayaran)`, dan `tambah_item(menu, jumlah=1)` kini punya nilai bawaan. Struk ikut menampilkan status.
+- **`main.py`**: skenarionya diganti agar fokus ke pembayaran. Kini ada bagian "SATU PANGGILAN, BANYAK BENTUK", pembayaran Budi dan Siti, serta "MEMERIKSA JENIS PEMBAYARAN". Bagian cek pewarisan dan menu tambahan dari Pertemuan 07 tidak dipakai lagi.
 - `menu.py`, `kedai.py`, `pelanggan.py`, dan `utilitas.py` **tidak berubah**.
 
-Berikut isi `pembayaran.py` (tanpa *docstring* modul di baris paling atas):
+Berikut potongan `pembayaran.py`, yaitu kelas induk dan kelas tunai (*docstring* modul di baris paling atas tidak ditampilkan):
 
 ```python
 from utilitas import format_rupiah
@@ -678,7 +746,7 @@ class PembayaranTunai(Pembayaran):
         return True
 ```
 
-`PembayaranQRIS` ditulis dengan pola yang sama seperti tunai, tetapi menyimpan `_saldo` e-wallet dan memotongnya di `proses()`. Kelas anak terakhir:
+`PembayaranQRIS` ditulis dengan pola yang sama seperti tunai, tetapi menyimpan `_saldo` *e-wallet* dan memotongnya di `proses()`. Kelas anak terakhir:
 
 ```python
 class PembayaranKartu(Pembayaran):
@@ -701,12 +769,12 @@ class PembayaranKartu(Pembayaran):
         return True
 ```
 
-- **`Pembayaran`** menetapkan tiga method yang dimiliki **semua** jenis pembayaran. `hitung_biaya_layanan` bawaannya 0, jadi hanya kelas yang punya biaya tambahan yang perlu meng-*override*-nya.
-- **Setiap kelas anak meng-*override* yang perlu saja.** Tunai dan QRIS tidak menulis `hitung_biaya_layanan`, sehingga biayanya 0 (warisan induk). Kartu kredit meng-*override* ketiganya.
+- **`Pembayaran`** menetapkan tiga *method* yang dimiliki **semua** jenis pembayaran. `hitung_biaya_layanan` bawaannya 0, jadi hanya kelas yang punya biaya tambahan yang perlu meng-*override*-nya.
+- **Setiap kelas anak meng-*override* yang perlu saja.** Tunai dan QRIS tidak menulis `hitung_biaya_layanan` sehingga biayanya 0 (warisan induk). Kartu kredit meng-*override* ketiganya.
 - **Setiap kelas menyimpan datanya sendiri:** tunai menyimpan uang yang diterima dan kembalian, QRIS menyimpan saldo, kartu menyimpan nama bank. Data khusus ini hanya dipakai oleh `proses()` milik kelas itu sendiri.
 - **Kelas `Pembayaran` "umum" terasa janggal.** Tidak ada pelanggan yang membayar dengan "Pembayaran umum". Di Pertemuan 10, kelas ini dijadikan kelas abstrak.
 
-Di `pesanan.py`, inilah dua method yang berubah atau baru:
+Di `pesanan.py`, inilah potongan dua *method* yang berubah atau baru:
 
 ```python
     def tambah_item(self, menu: Menu, jumlah: int = 1):
@@ -738,11 +806,11 @@ Di `pesanan.py`, inilah dua method yang berubah atau baru:
         return berhasil
 ```
 
-- **`jumlah: int = 1`** membuat `tambah_item(menu)` berarti satu porsi. Java memakai overloading untuk hal yang sama, yaitu method `tambahItem(Menu)` tambahan.
-- **`bayar()` tidak punya satu pun `if isinstance(...)`.** Tiga baris bertanda `# polimorfisme` memanggil method milik objek pembayaran yang sebenarnya.
+- **`jumlah: int = 1`** membuat `tambah_item(menu)` berarti satu porsi. Java memakai *overloading* untuk hal yang sama, yaitu *method* `tambahItem(Menu)` tambahan.
+- **`bayar()` tidak punya satu pun `if isinstance(...)`.** Tiga baris bertanda `# polimorfisme` memanggil *method* milik objek pembayaran yang sebenarnya.
 - **Poin dihitung dari total pesanan** (sebelum biaya layanan): 1 poin per Rp10.000.
 
-Di `main.py`, bagian "SATU PANGGILAN, BANYAK BENTUK" memproses list `daftar_metode` berisi tiga jenis pembayaran dengan satu perulangan. Berikut pembayaran Siti dan pemeriksaan jenis pembayaran:
+Di `main.py`, bagian "SATU PANGGILAN, BANYAK BENTUK" memproses *list* `daftar_metode` berisi tiga jenis pembayaran dengan satu perulangan. Berikut potongan bagian pembayaran Siti dan pemeriksaan jenis pembayaran:
 
 ```python
     pesanan_siti = kedai.buat_pesanan(siti)
@@ -768,13 +836,18 @@ Di `main.py`, bagian "SATU PANGGILAN, BANYAK BENTUK" memproses list `daftar_meto
 - **`bayar()` mengembalikan `True`/`False`.** Jika QRIS gagal, program mencoba metode lain. Pesanan yang sama dibayar dengan objek pembayaran berbeda, tanpa mengubah `bayar()`.
 - **`isinstance` dipakai hanya untuk fitur khusus.** *Property* `kembalian` hanya dimiliki `PembayaranTunai`, jadi jenisnya diperiksa dulu.
 
-Jalankan `python main.py` dari dalam folder `studi-kasus` (lihat [Persiapan](#persiapan)).
+Jalankan `python main.py` dari dalam folder `studi-kasus` (lihat [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)). Daftar menu di awal *output* sama persis dengan Pertemuan 07.
 
-Daftar menu di awal output sama persis dengan Pertemuan 07. Sesudahnya:
-
-**Output:**
+***Output:***
 
 ```text
+=== MENU KedaiKita ===
+[M01] Kopi Susu Gula Aren (Minuman) - Rp18.000 | stok 20 | dingin
+[M02] Es Teh Manis (Minuman) - Rp8.000 | stok 30 | dingin
+[M03] Nasi Goreng Kampung (Makanan) - Rp25.000 | stok 15 | pedas level 2
+[M04] Mie Goreng Jawa (Makanan) - Rp23.000 | stok 10 | pedas level 1
+[M05] Pisang Goreng Keju (Makanan) - Rp15.000 | stok 12 | pedas level 0
+
 === SATU PANGGILAN, BANYAK BENTUK ===
 Tunai                biaya layanan untuk Rp100.000: Rp0
 QRIS                 biaya layanan untuk Rp100.000: Rp0
@@ -834,52 +907,83 @@ Budi Santoso (081234567890) - 6 poin
 Siti Aminah (082198765432) - 3 poin
 ```
 
-Perhatikan pembayaran Siti. Method `bayar()` yang **sama** dipanggil dua kali pada pesanan yang **sama**. Yang berbeda hanya objek pembayarannya, dan itulah yang menentukan seluruh perilakunya: ada atau tidaknya baris biaya layanan, cara memproses, dan berhasil atau tidaknya pembayaran.
+Perhatikan pembayaran Siti. *Method* `bayar()` yang **sama** dipanggil dua kali pada pesanan yang **sama**. Yang berbeda hanya objek pembayarannya, dan itulah yang menentukan seluruh perilakunya: ada atau tidaknya baris biaya layanan, cara memproses, dan berhasil atau tidaknya pembayaran.
 
 > [!TIP]
-> **Coba sendiri:**
-> 1. Ubah saldo QRIS Siti dari `20000` menjadi `50000`. Apa yang tercetak pada pembayaran Siti?
-> 2. Di bagian "SATU PANGGILAN, BANYAK BENTUK", tambahkan `Pembayaran()` ke `daftar_metode`. Baris apa yang muncul, dan mengapa terasa janggal?
+> **Coba sendiri:** salin **seluruh folder** `studi-kasus` ke folder `pertemuan-09` milikmu. Seluruh folder perlu disalin karena `main.py` memakai *file-file* lain di folder itu lewat `import`. Lalu, di salinan `main.py`:
+> 1. Ubah `PembayaranQRIS(20000)` di bagian pesanan Siti menjadi `PembayaranQRIS(50000)`. Simpan, lalu jalankan salinan `main.py` itu: klik ▷, atau ketik `python main.py` di terminal yang berada di salinan folder `studi-kasus` (klik kanan folder itu di **Explorer**, lalu pilih **Open in Integrated Terminal**). Apa yang tercetak pada pembayaran Siti?
+> 2. Di bagian "SATU PANGGILAN, BANYAK BENTUK", tambahkan `Pembayaran()` di akhir *list* `daftar_metode`. Tambahkan juga `Pembayaran` ke baris `from pembayaran import ...` di bagian atas *file*. Simpan dan jalankan lagi. Baris apa yang muncul, dan mengapa terasa janggal?
 
 <details>
 <summary>Lihat jawaban</summary>
 
-1. Pembayaran QRIS langsung berhasil. Tercetak `Saldo e-wallet terpotong Rp31.000, sisa Rp19.000` lalu `Status       : LUNAS (+3 poin)`, sehingga percobaan kartu kredit tidak dijalankan.
+1. Pembayaran QRIS langsung berhasil. Tercetak `Saldo e-wallet terpotong Rp31.000, sisa Rp19.000`, lalu `Status       : LUNAS (+3 poin)`. Percobaan kartu kredit tidak dijalankan karena `bayar()` sudah mengembalikan `True`.
 
-2. Muncul baris `Pembayaran umum      biaya layanan untuk Rp100.000: Rp0`. Janggal, karena "pembayaran umum" bukan metode bayar sungguhan. Objek seperti ini seharusnya tidak bisa dibuat. Pertemuan 10 akan memperbaikinya dengan kelas abstrak.
+2. Muncul baris `Pembayaran umum      biaya layanan untuk Rp100.000: Rp0`. Janggal karena "pembayaran umum" bukan metode bayar sungguhan. Objek seperti ini seharusnya tidak bisa dibuat. Pertemuan 10 akan memperbaikinya dengan kelas abstrak. Jika kamu lupa menambahkan `Pembayaran` ke baris `import`, program berhenti dengan `NameError: name 'Pembayaran' is not defined`, artinya nama `Pembayaran` belum dikenal di `main.py`.
 
 </details>
 
-## 9. Kesalahan Umum dan Cara Membaca Pesan Error
+## 9. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-Ingat, pesan error Python dibaca **dari bawah ke atas**. Baris paling bawah menyebut jenis error dan penyebabnya. Baris di atasnya menunjukkan lokasinya. Dua kesalahan lain sudah dibahas di bagian sebelumnya: objek tanpa method yang dibutuhkan *duck typing* ([bagian 5](#5-duck-typing-tanpa-pewarisan-pun-bisa)) dan `def` kedua yang menimpa `def` pertama ([bagian 6](#6-python-tidak-punya-overloading)).
+Ingat, pesan *error* Python dibaca **dari bawah ke atas**. Baris paling bawah menyebut jenis *error* dan penyebabnya. Baris di atasnya menunjukkan lokasinya. Dua kesalahan lain sudah dibahas di bagian sebelumnya: objek tanpa *method* yang dibutuhkan *duck typing* ([bagian 5](#5-duck-typing-tanpa-pewarisan-pun-bisa)) dan `def` kedua yang menimpa `def` pertama ([bagian 6](#6-python-tidak-punya-overloading)).
 
-### Kesalahan 1: Memanggil method khusus tanpa memeriksa jenis
+**Cara mencobanya sendiri.** Kode di Kesalahan 1—3 adalah isi lengkap *file* `coba.py`. Ganti seluruh isi `coba.py` di folder `pertemuan-09` milikmu dengan kode yang ingin dicoba, simpan, lalu jalankan dengan `python coba.py`. Kesalahan 4 memakai salinan *file* contoh 01. Di layarmu, nama *file* di pesan *error* tampil lengkap dengan alamat foldernya. Di sini alamatnya dipendekkan menjadi nama *file* saja.
 
-Misalkan kelas `Mahasiswa` punya `isi_krs()`, sedangkan `Dosen` tidak, seperti di contoh 03:
+### Kesalahan 1: Memanggil *method* khusus tanpa memeriksa jenis
+
+Kelas di bawah ini versi ringkas contoh 03: `Mahasiswa` punya `isi_krs()`, sedangkan `Dosen` tidak.
 
 ```python
+class Pengguna:
+    def __init__(self, nama):
+        self._nama = nama
+
+
+class Mahasiswa(Pengguna):
+    def isi_krs(self, sks):
+        return f"{self._nama} mengisi KRS {sks} SKS"
+
+
+class Dosen(Pengguna):
+    pass
+
+
 daftar = [Mahasiswa("Ayu"), Dosen("Rahmat")]
 for pengguna in daftar:
     print(pengguna.isi_krs(21))
 ```
 
+Hasilnya:
+
 ```text
 Ayu mengisi KRS 21 SKS
 Traceback (most recent call last):
-  File "contoh.py", line 17, in <module>
+  File "coba.py", line 17, in <module>
     print(pengguna.isi_krs(21))
           ^^^^^^^^^^^^^^^^
 AttributeError: 'Dosen' object has no attribute 'isi_krs'
 ```
 
-**Artinya:** putaran pertama berhasil, tetapi objek kedua adalah `Dosen`, yang tidak punya `isi_krs`. **Perbaikan:** periksa dulu dengan `if isinstance(pengguna, Mahasiswa):` seperti di [bagian 3](#3-memeriksa-jenis-objek-dengan-isinstance), atau jika perilakunya dibutuhkan semua jenis, jadikan method di kelas induk lalu *override*.
+**Artinya:** putaran pertama berhasil, tetapi objek kedua adalah `Dosen`, dan `Dosen` tidak punya `isi_krs`. Program berhenti di baris 17. **Perbaikan:** periksa dulu dengan `if isinstance(pengguna, Mahasiswa):` seperti di [bagian 3](#3-memeriksa-jenis-objek-dengan-isinstance). Jika perilakunya ternyata dibutuhkan semua jenis, jadikan *method* di kelas induk, lalu *override* di setiap kelas anak.
 
 ### Kesalahan 2: Parameter versi anak berbeda dengan versi induk
 
-Kelas `BangunDatar` dan `Persegi` ditulis seperti contoh 02 (`luas()` tanpa parameter). Lalu `Segitiga` menambahkan parameter:
+`BangunDatar` dan `Persegi` ditulis seperti contoh 02, dengan `luas()` tanpa parameter. Lalu `Segitiga` menambahkan parameter `satuan`:
 
 ```python
+class BangunDatar:
+    def luas(self):
+        return 0
+
+
+class Persegi(BangunDatar):
+    def __init__(self, sisi):
+        self._sisi = sisi
+
+    def luas(self):
+        return self._sisi * self._sisi
+
+
 class Segitiga(BangunDatar):
     def __init__(self, alas, tinggi):
         self._alas = alas
@@ -893,10 +997,12 @@ for bangun in [Persegi(10), Segitiga(8, 6)]:
     print(bangun.luas())
 ```
 
+Hasilnya:
+
 ```text
 100
 Traceback (most recent call last):
-  File "contoh.py", line 24, in <module>
+  File "coba.py", line 24, in <module>
     print(bangun.luas())
           ~~~~~~~~~~~^^
 TypeError: Segitiga.luas() missing 1 required positional argument: 'satuan'
@@ -921,7 +1027,7 @@ for hewan in [Hewan(), Kucing()]:
     print(f"Suaranya: {hewan.bersuara()}")
 ```
 
-Tidak ada pesan error, tetapi hasilnya aneh:
+Tidak ada pesan *error*, tetapi hasilnya aneh. Hasilnya:
 
 ```text
 Suaranya: (diam saja)
@@ -929,27 +1035,41 @@ Meong!
 Suaranya: None
 ```
 
-**Artinya:** `Kucing.bersuara()` mencetak `Meong!` lalu selesai tanpa `return`, sehingga nilai kembaliannya `None`. Pemanggil mengharapkan teks, seperti yang dijanjikan versi induk. **Perbaikan:** versi anak harus mengembalikan jenis nilai yang sama dengan versi induk: `return "Meong!"`.
+**Artinya:** `Kucing.bersuara()` mencetak `Meong!` lalu selesai tanpa `return` sehingga nilai kembaliannya `None`. Itulah sebabnya `Meong!` muncul **sebelum** teks `Suaranya:`: Python menjalankan `hewan.bersuara()` dulu untuk mengisi kurung kurawal, baru mencetak barisnya. Pemanggil mengharapkan teks, seperti yang dijanjikan versi induk. **Perbaikan:** versi anak harus mengembalikan jenis nilai yang sama dengan versi induk: `return "Meong!"`.
 
-### Kesalahan 4: Salah ketik nama method saat override
+### Kesalahan 4: Salah ketik nama *method* saat *override*
 
-Jika `Kucing` menulis `def bersuar(self)` (kurang satu huruf), Python menganggapnya method **baru**. Tidak ada error sama sekali, tetapi kucing akan "diam saja", karena `bersuara()` milik induk yang dipakai. Kesalahan ini sudah dibahas di Pertemuan 07, dan dampaknya makin terasa pada polimorfisme: satu jenis objek diam-diam berperilaku seperti induknya. **Perbaikan:** periksa ejaan dengan teliti, dan uji setiap kelas anak.
+Mulailah dari salinan baru `contoh/contoh01_satu_perintah_banyak_bentuk.py` di folder `pertemuan-09` milikmu (tanpa kelas `Sapi` dari "Coba sendiri" di bagian 1). Di kelas `Kucing`, ubah `def bersuara(self) -> str:` menjadi `def bersuar(self) -> str:` (kurang satu huruf), simpan, lalu jalankan. Hasilnya:
+
+```text
+=== SATU VARIABEL, BERGANTI OBJEK ===
+(diam saja)
+Guk guk!
+
+=== SATU PERINTAH UNTUK SEMUA HEWAN ===
+Oyen si Kucing: (diam saja)
+Bruno si Anjing: Guk guk!
+Kuning si Bebek: Kwek kwek!
+Koki si Ikan: (diam saja)
+```
+
+**Artinya:** Python menganggap `bersuar` sebagai *method* **baru**, bukan *override*. Tidak ada *error* sama sekali, tetapi kucing kini "diam saja" karena `bersuara()` milik induk yang dipakai. Kesalahan ini sudah dibahas di Pertemuan 07, dan dampaknya makin terasa pada polimorfisme: satu jenis objek diam-diam berperilaku seperti induknya. **Perbaikan:** periksa ejaan dengan teliti, lalu uji setiap kelas anak dan cocokkan hasilnya dengan yang kamu harapkan.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi Python. Misalnya, baris bertanda `^^^^` atau `~~~^^` hanya muncul di Python 3.11 ke atas. Fokuslah pada **jenis error** (`AttributeError`, `TypeError`) dan kata kuncinya, seperti `has no attribute` dan `missing 1 required positional argument`.
+> Contoh pesan di atas berasal dari Python 3.13. Bunyi pesan *error* bisa sedikit berbeda antarversi Python. Misalnya, baris bertanda `^^^^` atau `~~~^^` hanya muncul di Python 3.11 ke atas. Untuk beberapa baris, Python 3.11 dan 3.12 menulis `^^^^` di tempat Python 3.13 menulis `~~~^^`. Fokuslah pada **jenis *error*** (`AttributeError`, `TypeError`) dan kata kuncinya, seperti `has no attribute` dan `missing 1 required positional argument`.
 
 ## 📝 Ringkasan Sintaks
 
 | Konsep | Sintaks Python | Contoh |
 |---|---|---|
-| Override (dasar polimorfisme) | `def` dengan nama dan parameter sama di kelas anak | `def bersuara(self) -> str:` |
+| *Override* (dasar polimorfisme) | `def` dengan nama dan parameter sama di kelas anak | `def bersuara(self) -> str:` |
 | Pemanggilan polimorfik | `objek.method()` | `hewan.bersuara()` |
-| Parameter bertipe induk | *type hint* kelas induk | `def suruh_bersuara(hewan: Hewan):` |
-| Koleksi polimorfik | list berisi objek berbagai kelas anak | `[Persegi(10), Segitiga(8, 6)]` |
+| Parameter bertipe induk | petunjuk tipe kelas induk | `def suruh_bersuara(hewan: Hewan):` |
+| Koleksi polimorfik | *list* berisi objek berbagai kelas anak | `[Persegi(10), Segitiga(8, 6)]` |
 | Memeriksa jenis objek | `isinstance(objek, Kelas)` | `isinstance(pengguna, Mahasiswa)` |
 | Memeriksa beberapa jenis | `isinstance(objek, (A, B))` | `isinstance(p, (Mahasiswa, Dosen))` |
-| Polimorfisme dari dalam kelas | `self.method()` di method induk | `print(self.isi())` |
-| *Duck typing* | panggil method tanpa memeriksa kelas | `benda.bunyikan()` |
+| Polimorfisme dari dalam kelas | `self.method()` di *method* induk | `print(self.isi())` |
+| *Duck typing* | panggil *method* tanpa memeriksa kelas | `benda.bunyikan()` |
 | Nilai bawaan | `param=nilai` | `def cari(self, kata_kunci="", tahun=0):` |
 | Argumen kata kunci | `nama_param=nilai` saat memanggil | `pusat.cari(tahun=1980)` |
 | Jumlah argumen bebas | `*nama` | `def tambah_buku(self, *daftar_buku):` |

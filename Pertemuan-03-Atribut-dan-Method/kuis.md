@@ -1,8 +1,8 @@
-# Kuis — Pertemuan 03: Atribut dan Method Lebih Dalam
+# Kuis Pertemuan 03: Atribut dan *Method* Lebih Dalam
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 04 ➡️](../Pertemuan-04-Enkapsulasi/README.md)
 
-**Petunjuk:** ada 10 soal pilihan ganda. Kerjakan dulu semuanya **tanpa** membuka jawaban, catat pilihanmu, baru cocokkan. Target: minimal 8 benar.
+**Petunjuk:** ada 10 soal pilihan ganda. Kerjakan dulu semuanya **tanpa** membuka jawaban, catat pilihanmu, baru cocokkan. Target: minimal 8 benar. Soal yang berisi kode ditampilkan dalam versi Python dan Java dengan arti yang sama; cukup baca versi bahasa pilihanmu.
 
 ---
 
@@ -20,7 +20,7 @@ Kelas `Mahasiswa` punya beberapa data. Manakah yang paling tepat dijadikan **atr
 
 **Jawaban: C**
 
-Pembahasan: jumlah seluruh mahasiswa menggambarkan **semua** objek sekaligus, bukan milik satu mahasiswa tertentu. Karena itu cocok menjadi atribut kelas (Java: `static`). NIM, nama, dan IPK berbeda untuk setiap mahasiswa, jadi tetap menjadi atribut objek. Jika NIM dijadikan atribut kelas, semua mahasiswa akan berbagi satu NIM yang sama.
+Pembahasan: jumlah seluruh mahasiswa menggambarkan **semua** objek sekaligus, bukan milik satu mahasiswa tertentu. Karena itu, cocok menjadi atribut kelas (Java: `static`). NIM, nama, dan IPK berbeda untuk setiap mahasiswa, jadi tetap menjadi atribut objek. Jika NIM dijadikan atribut kelas, semua mahasiswa akan berbagi satu NIM yang sama.
 
 </details>
 
@@ -70,20 +70,20 @@ Apa yang tercetak?
 - A. `3`
 - B. `1`
 - C. `0`
-- D. Error, karena atribut kelas tidak boleh diubah di dalam konstruktor
+- D. *Error* karena atribut kelas tidak boleh diubah di dalam konstruktor
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: A**
 
-Pembahasan: `terjual` adalah atribut kelas yang hanya ada satu. Setiap kali objek dibuat, konstruktor menambahnya **lewat nama kelas**, jadi setelah tiga objek nilainya 3. Pilihan B keliru karena menganggap setiap objek punya penghitung sendiri. Konstruktor boleh mengubah atribut kelas, sehingga D juga salah.
+Pembahasan: `terjual` adalah atribut kelas yang hanya ada satu. Setiap kali objek dibuat, konstruktor menambahnya **lewat nama kelas**, jadi setelah tiga objek nilainya 3. Pilihan B keliru karena menganggap setiap objek punya penghitung sendiri. Pilihan C (`0`) baru mungkin terjadi di Python jika penghitungnya ditulis `self.terjual += 1`, yaitu jebakan di contoh 02; di sini penghitungnya ditulis lewat nama kelas. Konstruktor boleh mengubah atribut kelas sehingga D juga salah.
 
 </details>
 
 ### Soal 3
 
-Sebuah kelas punya atribut kelas `total = 0`. Di dalam method objek, ada yang menulis `self.total += 1` (Python) atau `this.total += 1` (Java). Pernyataan yang **benar** adalah ...
+Sebuah kelas punya atribut kelas `total = 0`. Di dalam *method* objek, ada yang menulis `self.total += 1` (Python) atau `this.total += 1` (Java). Pernyataan yang **benar** adalah ...
 
 - A. Di kedua bahasa, nilai bersama milik kelas bertambah dan tidak ada yang aneh
 - B. Di kedua bahasa, objek itu mendapat atribut `total` baru miliknya sendiri
@@ -95,7 +95,7 @@ Sebuah kelas punya atribut kelas `total = 0`. Di dalam method objek, ada yang me
 
 **Jawaban: D**
 
-Pembahasan: di Python, mengisi atribut lewat objek selalu menyimpannya di objek itu, sehingga lahir atribut "bayangan" dan atribut kelas tetap 0. Di Java, field `static` hanya ada satu, jadi `this.total` tetap berarti `NamaKelas.total`; hasilnya benar, tetapi tulisannya membuat pembaca mengira itu milik objek. Pilihan C adalah kebalikan dari yang sebenarnya terjadi. Pelajarannya sama untuk kedua bahasa: ubah atribut kelas lewat nama kelas.
+Pembahasan: di Python, mengisi atribut lewat objek selalu menyimpannya di objek itu sehingga lahir atribut "bayangan" dan atribut kelas tetap 0. Di Java, *field* `static` hanya ada satu, jadi `this.total` tetap berarti `NamaKelas.total`; hasilnya benar, tetapi tulisannya membuat pembaca mengira itu milik objek. Pilihan A hanya benar untuk Java, sedangkan B hanya benar untuk Python. Pilihan C adalah kebalikan dari yang sebenarnya terjadi. Pelajarannya sama untuk kedua bahasa: ubah atribut kelas lewat nama kelas.
 
 </details>
 
@@ -108,8 +108,8 @@ Perhatikan dua pemanggilan berikut (nama Java ditulis dalam kurung):
 
 Pernyataan yang **benar** adalah ...
 
-- A. Keduanya method objek, jadi harus ada objek `Tanggal` lebih dulu
-- B. Keduanya method milik kelas; yang pertama mengembalikan boolean, yang kedua membuat dan mengembalikan objek `Tanggal` baru
+- A. Keduanya *method* objek, jadi harus ada objek `Tanggal` lebih dulu
+- B. Keduanya *method* milik kelas; yang pertama mengembalikan *boolean*, yang kedua membuat dan mengembalikan objek `Tanggal` baru
 - C. Yang pertama adalah atribut kelas, sedangkan yang kedua adalah konstruktor biasa
 - D. Keduanya mengubah atribut milik semua objek `Tanggal` yang sudah ada
 
@@ -118,13 +118,13 @@ Pernyataan yang **benar** adalah ...
 
 **Jawaban: B**
 
-Pembahasan: keduanya dipanggil lewat **nama kelas** tanpa objek, jadi keduanya method milik kelas (Python: `@staticmethod` dan `@classmethod`; Java: method `static`). `kabisat` menjawab ya/tidak, sedangkan `dari_teks` adalah **konstruktor alternatif** yang membuat objek dari teks. Pilihan A salah karena method milik kelas justru tidak membutuhkan objek. Keduanya juga tidak mengubah objek mana pun (D).
+Pembahasan: keduanya dipanggil lewat **nama kelas** tanpa objek, jadi keduanya *method* milik kelas (Python: `@staticmethod` dan `@classmethod`; Java: *method* `static`). `kabisat` menjawab ya/tidak, sedangkan `dari_teks` adalah **konstruktor alternatif** yang membuat objek dari teks. Pilihan A salah karena *method* milik kelas justru tidak membutuhkan objek. Pilihan C salah karena keduanya dipanggil dengan tanda kurung seperti *method*, bukan dibaca seperti atribut, dan konstruktor biasa dipanggil dengan `Tanggal(...)` atau `new Tanggal(...)`. Keduanya juga tidak mengubah objek mana pun (D).
 
 </details>
 
 ### Soal 5
 
-Kelas `Durasi` punya method `tambah(lain)` yang **mengembalikan objek `Durasi` baru**. Setelah baris `total = kuliah.tambah(praktikum)` dijalankan, pernyataan yang benar adalah ...
+Kelas `Durasi` punya *method* `tambah(lain)` yang **mengembalikan objek `Durasi` baru**. Setelah baris `total = kuliah.tambah(praktikum)` dijalankan, pernyataan yang benar adalah ...
 
 - A. `total` menunjuk objek baru, sedangkan `kuliah` dan `praktikum` tidak berubah
 - B. `kuliah` berubah menjadi hasil penjumlahan, lalu `total` menunjuk objek yang sama dengan `kuliah`
@@ -136,7 +136,7 @@ Kelas `Durasi` punya method `tambah(lain)` yang **mengembalikan objek `Durasi` b
 
 **Jawaban: A**
 
-Pembahasan: method yang mengembalikan objek baru bekerja seperti `2 + 3`: hasilnya baru, angka asalnya tetap. `tambah()` membuat objek `Durasi` baru dan mengembalikannya, jadi `kuliah` dan `praktikum` tidak tersentuh. Pilihan B menggambarkan gaya method lain, yaitu method yang mengubah objeknya sendiri. Hasil `tambah()` bertipe `Durasi`, bukan angka (D).
+Pembahasan: *method* yang mengembalikan objek baru bekerja seperti `2 + 3`: hasilnya baru, angka asalnya tetap. `tambah()` membuat objek `Durasi` baru dan mengembalikannya, jadi `kuliah` dan `praktikum` tidak tersentuh. Pilihan B menggambarkan gaya *method* lain, yaitu *method* yang mengubah objeknya sendiri. Tidak ada objek yang terhapus hanya karena dipakai sebagai argumen (C). Hasil `tambah()` bertipe `Durasi`, bukan angka (D).
 
 </details>
 
@@ -181,7 +181,7 @@ System.out.println(mie.stok);
 
 Apa yang tercetak?
 
-- A. Error, karena argumen `stok` tidak dikirim
+- A. *Error* karena argumen `stok` tidak dikirim
 - B. `None` (Python) atau `null` (Java)
 - C. `0`
 - D. `23000`
@@ -191,31 +191,31 @@ Apa yang tercetak?
 
 **Jawaban: C**
 
-Pembahasan: di Python, parameter `stok` punya nilai bawaan 0, jadi boleh tidak dikirim. Di Java, empat argumen memilih konstruktor kedua, yang meneruskan ke konstruktor lengkap lewat `this(..., 0)`. Hasilnya sama: stok 0. Tidak ada error (A), dan nilai 23000 adalah harga, bukan stok (D).
+Pembahasan: di Python, parameter `stok` punya nilai bawaan 0, jadi boleh tidak dikirim. Di Java, empat argumen memilih konstruktor kedua, yang meneruskan ke konstruktor lengkap lewat `this(..., 0)`. Hasilnya sama: stok 0. Tidak ada *error* (A). Stok juga tidak kosong (B) karena sudah diisi angka 0; di Java, atribut bertipe `int` bahkan tidak bisa berisi `null`. Nilai 23000 adalah harga, bukan stok (D).
 
 </details>
 
 ### Soal 7
 
-Apa tugas method `__str__` (Python) atau `toString()` (Java)?
+Apa tugas *method* `__str__` (Python) atau `toString()` (Java)?
 
 - A. Mencetak semua atribut objek ke layar setiap kali objek dibuat
-- B. Mengubah objek menjadi teks secara permanen, sehingga atributnya hilang
+- B. Mengubah objek menjadi teks secara permanen sehingga atributnya hilang
 - C. Membandingkan isi dua objek
-- D. Mengembalikan teks yang mewakili objek; method ini dipanggil otomatis saat objek dicetak
+- D. Mengembalikan teks yang mewakili objek; *method* ini dipanggil otomatis saat objek dicetak
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: D**
 
-Pembahasan: `print(objek)` atau `System.out.println(objek)` otomatis memanggil method ini untuk mendapatkan teksnya. Method ini harus **mengembalikan** teks dengan `return`, bukan mencetak sendiri (A). Objeknya tetap utuh setelah method dipanggil (B). Membandingkan isi objek adalah urusan `__eq__`/`equals()`, yang dibahas di Pertemuan 12 (C).
+Pembahasan: `print(objek)` atau `System.out.println(objek)` otomatis memanggil *method* ini untuk mendapatkan teksnya. *Method* ini harus **mengembalikan** teks dengan `return`, bukan mencetak sendiri (A). Objeknya tetap utuh setelah *method* dipanggil (B). Membandingkan isi objek adalah urusan `__eq__`/`equals()`, yang dibahas di Pertemuan 12 (C).
 
 </details>
 
 ### Soal 8
 
-Kelas `Ponsel` punya atribut `baterai` dan method `pakai(persen)` yang mengurangi baterai sebanyak `persen`. Perhatikan kode berikut.
+Kelas `Ponsel` punya atribut `baterai` dan *method* `pakai(persen)` yang mengurangi baterai sebanyak `persen`. Perhatikan kode berikut.
 
 **Python:**
 
@@ -247,7 +247,7 @@ Apa yang tercetak?
 
 **Jawaban: B**
 
-Pembahasan: `b = a` tidak membuat ponsel baru; `a` dan `b` menunjuk **objek yang sama** (aliasing). Memakai 30% lewat `b` berarti mengurangi baterai objek itu, sehingga dilihat lewat `a` pun hasilnya 50. Pilihan A adalah miskonsepsi "`b = a` membuat salinan".
+Pembahasan: `b = a` tidak membuat ponsel baru; `a` dan `b` menunjuk **objek yang sama** (*aliasing*). Memakai 30% lewat `b` berarti mengurangi baterai objek itu sehingga dilihat lewat `a` pun hasilnya 50. Pilihan A adalah miskonsepsi "`b = a` membuat salinan". Pilihan C (`30`) adalah banyaknya baterai yang dipakai, bukan sisanya, dan D (`110`) muncul jika `pakai()` dikira menambah baterai.
 
 </details>
 
@@ -296,7 +296,7 @@ Apa yang tercetak?
 
 **Jawaban: C**
 
-Pembahasan: objek `d` dikirim sebagai referensi, jadi perubahan `dompet.saldo` mengubah objek yang sama milik pemanggil: saldonya menjadi 25000. Angka `x` dikirim sebagai **salinan nilai**, sehingga perubahan `angka` di dalam fungsi tidak memengaruhi `x`, yang tetap 10000. Pilihan B adalah jebakan bagi yang mengira angka juga ikut berubah.
+Pembahasan: objek `d` dikirim sebagai referensi, jadi perubahan `dompet.saldo` mengubah objek yang sama milik pemanggil: saldonya menjadi 25000. Untuk angka, baris `angka = angka + 5000` hanya mengubah variabel `angka` milik fungsi (di Java, `angka` memang salinan nilai `x`; di Python, `angka` diarahkan ke angka baru). Jadi, `x` milik pemanggil tetap 10000. Pilihan B adalah jebakan bagi yang mengira angka juga ikut berubah. Pilihan A keliru karena objek yang dikirim memang ikut berubah, dan D adalah kebalikan dari yang sebenarnya terjadi.
 
 </details>
 
@@ -305,16 +305,16 @@ Pembahasan: objek `d` dikirim sebagai referensi, jadi perubahan `dompet.saldo` m
 Pernyataan yang **benar** tentang membandingkan teks dan memeriksa variabel kosong adalah ...
 
 - A. Isi teks dibandingkan dengan `==` di Python dan `.equals()` di Java; variabel kosong diperiksa dengan `x is None` (Python) atau `x == null` (Java)
-- B. Isi teks dibandingkan dengan `is` di Python dan `==` di Java
-- C. `None`/`null` adalah objek kosong, jadi method-nya tetap bisa dipanggil tanpa error
-- D. Di Java, `==` pada dua `String` selalu membandingkan isinya
+- B. Isi teks dibandingkan dengan `is` di Python dan `==` di Java; variabel kosong diperiksa dengan `x == None` (Python) atau `x.equals(null)` (Java)
+- C. `None`/`null` adalah objek kosong yang tetap punya *method* sehingga memanggil *method* lewat variabel kosong tidak menimbulkan *error*
+- D. Di Java, `==` pada dua `String` selalu membandingkan isinya, sama seperti `==` di Python, jadi `.equals()` tidak diperlukan
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: A**
 
-Pembahasan: operator `==` punya arti berbeda. Di Python, `==` menanyakan isi; di Java, `==` pada objek menanyakan apakah objeknya sama, sehingga teks harus dibandingkan dengan `.equals()` (B dan D salah). `is` di Python dipakai untuk pertanyaan "objek yang sama?" dan untuk memeriksa `None`. `None`/`null` berarti tidak ada objek, sehingga memanggil method lewatnya menimbulkan error (C salah).
+Pembahasan: operator `==` punya arti berbeda. Di Python, `==` menanyakan isi; di Java, `==` pada objek menanyakan apakah objeknya sama sehingga teks harus dibandingkan dengan `.equals()` (B dan D salah). `is` di Python dipakai untuk pertanyaan "objek yang sama?" dan untuk memeriksa `None`. Pada pilihan B, `x.equals(null)` malah menimbulkan *error* jika `x` berisi `null` karena tidak ada objek yang bisa menjalankan `equals()`. `None`/`null` berarti tidak ada objek sehingga memanggil *method* lewatnya menimbulkan *error* (C salah).
 
 </details>
 
@@ -324,9 +324,9 @@ Pembahasan: operator `==` punya arti berbeda. Di Python, `==` menanyakan isi; di
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Atribut dan method sudah kamu kuasai | Lanjut ke [Pertemuan 04](../Pertemuan-04-Enkapsulasi/README.md) |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 4 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan contoh 01, 02, 06, dan 07 di halaman praktik, lalu coba semua "Coba sendiri" |
+| 8—10 | Mantap! Atribut dan *method* sudah kamu kuasai | Lanjut ke [Pertemuan 04](../Pertemuan-04-Enkapsulasi/README.md) |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 4 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, jalankan contoh 01, 02, 06, dan 07 di halaman praktik, lalu coba semua "Coba sendiri" |
 
 ---
 

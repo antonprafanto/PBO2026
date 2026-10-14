@@ -46,7 +46,7 @@ class Segitiga(BangunDatar):
         self.alas = alas
         self.tinggi = tinggi
 
-    # [2] Programmer LUPA menulis method luas() di sini!
+    # [2] Pemrogram LUPA menulis method luas() di sini!
 
 
 def main():

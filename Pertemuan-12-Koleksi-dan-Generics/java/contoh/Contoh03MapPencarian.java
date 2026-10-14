@@ -22,7 +22,7 @@ public class Contoh03MapPencarian {
         for (Mahasiswa mhs : daftar) {
             langkah++;
             if (mhs.getNim().equals(nim)) {
-                System.out.println("  (list memeriksa " + langkah + " data sampai ketemu)");
+                System.out.println("  (list memeriksa " + langkah + " data sampai ditemukan)");
                 return mhs;
             }
         }

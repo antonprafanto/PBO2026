@@ -58,7 +58,7 @@ class Dosen(Pengguna):
         return "Profil, Input Nilai, Jadwal Mengajar"
 
     def input_nilai(self, mata_kuliah: str, nilai: str) -> str:  # khusus dosen
-        return f"{self._nama} menginput nilai {mata_kuliah}: {nilai}"
+        return f"{self._nama} memasukkan nilai {mata_kuliah}: {nilai}"
 
 
 def ya_tidak(nilai: bool) -> str:

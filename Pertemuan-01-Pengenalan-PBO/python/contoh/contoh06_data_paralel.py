@@ -7,7 +7,7 @@ Indeks yang sama = mahasiswa yang sama. Agar data tidak tertukar, setiap
 fungsi yang memindahkan data wajib memindahkan SEMUA list bersama-sama.
 
 Ceritanya: fungsi urutkan_berdasarkan_nilai() ditulis ketika datanya baru
-nama dan nilai. Belakangan list nim ditambahkan, tetapi fungsi itu lupa
+nama dan nilai. Belakangan, list nim ditambahkan, tetapi fungsi itu lupa
 diperbarui. Perhatikan apa yang terjadi pada NIM setelah pengurutan!
 
 Cara menjalankan:

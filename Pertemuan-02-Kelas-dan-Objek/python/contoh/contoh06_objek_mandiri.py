@@ -5,7 +5,7 @@ Pertemuan 02 - Kelas dan Objek
 Dua rekening dibuat dari kelas yang sama. Transaksi pada satu rekening
 tidak memengaruhi rekening lain, karena setiap objek punya atribut sendiri.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/contoh; macOS/Linux: python3):
     python contoh06_objek_mandiri.py
 """
 

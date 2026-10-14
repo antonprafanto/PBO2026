@@ -9,7 +9,7 @@
  * - huruf() memakai nilaiAkhir() (method memanggil method lain milik objek yang sama).
  * - lulus(batas) mengembalikan boolean.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/solusi (Java 11 ke atas):
  *     java Latihan04NilaiKuliah.java
  */
 public class Latihan04NilaiKuliah {

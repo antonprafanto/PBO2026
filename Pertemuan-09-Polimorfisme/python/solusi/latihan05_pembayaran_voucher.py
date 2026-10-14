@@ -13,8 +13,9 @@ Ide penyelesaian:
 
 Supaya file ini bisa dijalankan sendiri, Pelanggan, Pembayaran,
 PembayaranTunai, dan Pesanan disalin dalam versi RINGKAS (Pesanan langsung
-diberi total, tanpa ItemPesanan). Di proyek KedaiKita-mu, cukup tambahkan
-kelas PembayaranVoucher ke pembayaran.py, lalu pakai di main.py.
+diberi total, tanpa ItemPesanan). Di salinan studi kasus milikmu (di folder
+latihanmu, bukan di folder materi), cukup tambahkan kelas PembayaranVoucher
+ke pembayaran.py, lalu pakai di main.py.
 
 Cara menjalankan:
     python latihan05_pembayaran_voucher.py

@@ -3,7 +3,7 @@
  *
  * Java punya kata kunci khusus interface untuk membuat "kontrak". Method di
  * dalam interface yang ditulis tanpa isi (hanya kepalanya) otomatis public
- * dan abstract. Kelas apa pun yang meng-implements DapatDicetak WAJIB
+ * dan abstract. Kelas apa pun yang mengimplementasikan DapatDicetak WAJIB
  * menyediakan method cetak().
  */
 

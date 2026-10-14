@@ -1,22 +1,43 @@
-# Latihan — Pertemuan 09: Polimorfisme
+# Latihan Pertemuan 09: Polimorfisme
 
 [⬅️ Konsep](README.md) · [🏠 Beranda](../README.md) · [Kuis ➡️](kuis.md)
 
 **Cara mengerjakan:**
 
-1. Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
-2. Buat file baru untuk setiap latihan, lalu jalankan dan bandingkan output-mu dengan **contoh output** di soal.
-3. Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri.
-4. Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
-5. Uji kecil untuk setiap solusimu: apakah program utama memanggil method yang **sama** pada objek berbeda jenis, tanpa deretan `if` berdasarkan jenis? Jika ya, kamu sudah memakai polimorfisme.
+1. **Pilih bahasa.** Kerjakan dengan bahasa pilihanmu (Python **atau** Java). Kalau sempat, coba juga di bahasa satunya.
+2. **Siapkan folder jawabanmu.** Simpan jawaban di folder milikmu sendiri **di luar** folder materi, yaitu `Documents/PBO-latihan-saya/pertemuan-09` (folder yang sama dengan tempat "Coba sendiri" di halaman praktik). Jangan menyimpannya di dalam folder `PBO2026`: perubahanmu bisa bentrok saat materi diperbarui, dan di jalur Java nama kelasmu bisa bentrok dengan kelas di folder `solusi`.
+
+   ```text
+   Documents/
+   ├── PBO2026/                            <- materi (jangan diubah)
+   └── PBO-latihan-saya/
+       └── pertemuan-09/                   <- jawabanmu di sini
+           ├── latihan01_notifikasi.py     (jalur Python)
+           └── Latihan01Notifikasi.java    (jalur Java)
+   ```
+
+3. **Buat satu *file* untuk setiap latihan.** Beri nama yang sama dengan *file* solusinya agar mudah dibandingkan, misalnya `latihan01_notifikasi.py` atau `Latihan01Notifikasi.java`.
+   - Python: tulis kelas, fungsi `main()`, dan dua baris penutup `if __name__ == "__main__":` lalu `main()`, seperti di contoh.
+   - Java: nama *file* harus sama dengan nama kelas `public` yang berisi `main`, dan kelas itu ditulis paling atas. Kelas lain (misalnya `Notifikasi`) ditulis di bawahnya **tanpa** `public`.
+4. **Jalankan *file*-mu.**
+   - Lewat VS Code: buka folder `pertemuan-09` (**File → Open Folder**), buka *file*-nya, lalu klik ▷ (**Run Python File**) untuk Python, atau **Run** di atas baris `public static void main` untuk Java.
+   - Lewat terminal: terminal VS Code di jendela itu sudah berada di folder `pertemuan-09`. Dari terminal lain, masuk dulu dengan `cd Documents\PBO-latihan-saya\pertemuan-09` (Windows) atau `cd ~/Documents/PBO-latihan-saya/pertemuan-09` (macOS/Linux). Setelah itu, ketik `python latihan01_notifikasi.py` (macOS/Linux: `python3 latihan01_notifikasi.py`) atau `java Latihan01Notifikasi.java`.
+5. **Bandingkan hasilnya.** Cocokkan *output*-mu dengan **contoh *output*** di soal, baris demi baris. Spasi, huruf besar-kecil, dan tanda baca sebaiknya sama persis.
+6. **Baru lihat solusi.** Buka petunjuk hanya jika benar-benar buntu. Buka solusi **setelah** kamu mencoba sendiri: klik tautan **Solusi** di bawah setiap latihan untuk membaca kodenya, atau jalankan *file* solusinya. Dari folder utama materi, ketik `cd Pertemuan-09-Polimorfisme/python/solusi` lalu `python latihan01_notifikasi.py` (Python), atau `cd Pertemuan-09-Polimorfisme/java/solusi` lalu `java Latihan01Notifikasi.java` (Java). *Output* setiap solusi sama persis dengan contoh *output* di soalnya.
+7. **Uji polimorfismemu.** Apakah program utama memanggil *method* yang **sama** pada objek berbeda jenis, tanpa deretan `if` berdasarkan jenis? Jika ya, kamu sudah memakai polimorfisme.
+
+Tingkat kesulitan: ⭐ Dasar · ⭐⭐ Menengah · ⭐⭐⭐ Tantangan.
+
+> [!TIP]
+> Tidak apa-apa jika kodemu berbeda dengan solusi. Yang penting *output*-nya benar dan kamu paham **mengapa** kodemu bekerja.
 
 ---
 
-## Latihan 1 — Notifikasi Kampus (⭐ Dasar)
+## Latihan 1: Notifikasi Kampus (⭐ Dasar)
 
-**Tujuan:** meng-*override* method dan memproses objek berbeda jenis dalam satu list.
+**Tujuan:** meng-*override* *method* dan memproses objek berbeda jenis dalam satu *list*.
 
-**Soal:** Buat kelas induk `Notifikasi` dengan atribut `tujuan`, method `kirim(pesan)` yang **mengembalikan** teks `[UMUM] Kepada <tujuan>: <pesan>`, dan method `biaya()` yang mengembalikan 0. Lalu buat tiga kelas anak:
+**Soal:** Buat kelas induk `Notifikasi` dengan atribut `tujuan`, *method* `kirim(pesan)` yang **mengembalikan** teks `[UMUM] Kepada <tujuan>: <pesan>`, dan *method* `biaya()` yang mengembalikan 0. Lalu buat tiga kelas anak:
 
 | Kelas | `kirim(pesan)` mengembalikan | `biaya()` |
 |---|---|---|
@@ -24,9 +45,9 @@
 | `NotifSMS` | `[SMS] Kepada <tujuan>: <pesan>`. Pesan lebih dari 20 karakter dipotong menjadi 20 karakter pertama + `...` | 150 |
 | `NotifWhatsApp` | `[WA] Kepada <tujuan>: *PENGUMUMAN* <pesan>` | warisan induk (0) |
 
-Simpan tiga notifikasi dalam satu list: email `ayu@kampus.ac.id`, SMS `081234567890`, dan WA `082198765432`. Kirim dua pesan, `Kuliah PBO pindah ke Ruang D-201` dan `Kuis besok jam 8`, lalu tampilkan total biaya. Program utama **tidak boleh** memeriksa jenis notifikasi.
+Simpan tiga notifikasi dalam satu *list*: *email* `ayu@kampus.ac.id`, SMS `081234567890`, dan WA `082198765432`. Kirim dua pesan, `Kuliah PBO pindah ke Ruang D-201` dan `Kuis besok jam 8`, lalu tampilkan total biaya. Program utama **tidak boleh** memeriksa jenis notifikasi.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === KIRIM: Kuliah PBO pindah ke Ruang D-201 ===
@@ -54,21 +75,27 @@ Total biaya pengiriman: Rp300
 
 ---
 
-## Latihan 2 — Rumah Pintar: Mode Tidur (⭐ Dasar)
+## Latihan 2: Mode Tidur Rumah Pintar (⭐ Dasar)
 
-**Tujuan:** memeriksa jenis objek sebelum memanggil method khusus (`isinstance`, atau `instanceof` + *downcasting*).
+**Tujuan:** memeriksa jenis objek sebelum memanggil *method* khusus (`isinstance`, atau `instanceof` + *downcasting*).
 
-**Soal:** Buat kelas induk `Perangkat(nama)`. Setiap perangkat awalnya menyala. Method `matikan()` mencetak `<nama> dimatikan`, dan `status()` mengembalikan `<nama>: menyala` atau `<nama>: mati`. Kelas anaknya:
+**Soal:** Buat kelas induk `Perangkat(nama)`. Setiap perangkat awalnya menyala. *Method* `matikan()` mencetak `<nama> dimatikan`, dan `status()` mengembalikan `<nama>: menyala` atau `<nama>: mati`. Kelas anaknya:
 
-- `Lampu(nama, kecerahan)` dengan kecerahan bawaan 100. Method khusus `redupkan(persen)` mencetak `<nama> diredupkan ke <persen>%`. Saat menyala, `status()` mengembalikan `<nama>: menyala <kecerahan>%`.
-- `AC(nama, suhu)`. Method khusus `atur_suhu(derajat)` / `aturSuhu(derajat)` mencetak `<nama> diatur ke <derajat> derajat`. Saat menyala, `status()` mengembalikan `<nama>: menyala <suhu> derajat`.
+- `Lampu(nama, kecerahan)` dengan kecerahan bawaan 100. *Method* khusus `redupkan(persen)` mencetak `<nama> diredupkan ke <persen>%`. Saat menyala, `status()` mengembalikan `<nama>: menyala <kecerahan>%`.
+- `AC(nama, suhu)`. *Method* khusus `atur_suhu(derajat)` / `aturSuhu(derajat)` mencetak `<nama> diatur ke <derajat> derajat`. Saat menyala, `status()` mengembalikan `<nama>: menyala <suhu> derajat`.
 - `Televisi(nama)` tanpa tambahan apa pun.
 
 Buat fungsi `mode_tidur(daftar)` / `modeTidur(daftar)`: lampu diredupkan ke 10%, AC diatur ke 26 derajat, dan perangkat lain dimatikan. Uji dengan Lampu Kamar, AC Kamar (20 derajat), Televisi, dan Lampu Teras.
 
-**Contoh output yang diharapkan** (sebelumnya, bagian `=== SEBELUM MODE TIDUR ===` menampilkan status awal: kedua lampu `menyala 100%`, AC `menyala 20 derajat`, dan televisi `menyala`):
+**Contoh *output* yang diharapkan:**
 
 ```text
+=== SEBELUM MODE TIDUR ===
+Lampu Kamar: menyala 100%
+AC Kamar: menyala 20 derajat
+Televisi: menyala
+Lampu Teras: menyala 100%
+
 === MODE TIDUR DIAKTIFKAN ===
 Lampu Kamar diredupkan ke 10%
 AC Kamar diatur ke 26 derajat
@@ -94,19 +121,19 @@ Lampu Teras: menyala 10%
 
 ---
 
-## Latihan 3 — Tarif Ojek Online (⭐⭐ Menengah)
+## Latihan 3: Tarif Ojek *Online* (⭐⭐ Menengah)
 
 **Tujuan:** menyediakan banyak cara memanggil satu kemampuan: *overloading* (Java) atau nilai bawaan dan argumen kata kunci (Python).
 
-**Soal:** Buat kelas `Ojek` dengan `nama_driver` dan `tarif_per_km` (bawaan Rp2.500). Method `info()` mengembalikan `Pak Darto (Rp2500/km)`. Method `hitung_tarif` / `hitungTarif` harus bisa dipanggil dengan tiga cara: (jarak), (jarak, jam sibuk), dan (jarak, jam sibuk, kode promo). Aturannya, berurutan:
+**Soal:** Buat kelas `Ojek` dengan `nama_driver` dan `tarif_per_km` (bawaan Rp2.500). *Method* `info()` mengembalikan `Pak Darto (Rp2500/km)`. *Method* `hitung_tarif` / `hitungTarif` harus bisa dipanggil dengan tiga cara: (jarak), (jarak, jam sibuk), dan (jarak, jam sibuk, kode promo). Aturannya, berurutan:
 
 1. Tarif = jarak (km) × tarif per km, **minimal** Rp10.000.
 2. Jika jam sibuk, tarif naik 20%.
 3. Jika kode promo `HEMAT10`, tarif dipotong 10%. Kode lain diabaikan.
 
-Gunakan bilangan bulat (`nilai * persen // 100` atau `/ 100`). Di Java, buat dua konstruktor dan tiga versi `hitungTarif`. Di Python, cukup satu konstruktor dan satu method dengan nilai bawaan.
+Gunakan bilangan bulat (`nilai * persen // 100` atau `/ 100`). Di Java, buat dua konstruktor dan tiga versi `hitungTarif`. Di Python, cukup satu konstruktor dan satu *method* dengan nilai bawaan.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === DRIVER ===
@@ -135,14 +162,14 @@ Mbak Yuni, 5 km, kode SALAH         : Rp15000
 
 ---
 
-## Latihan 4 — Resi Ekspedisi (⭐⭐ Menengah)
+## Latihan 4: Resi Ekspedisi (⭐⭐ Menengah)
 
 **Tujuan:** polimorfisme dari dalam kelas dan menambah jenis baru tanpa mengubah kode lama.
 
-**Soal:** Buat kelas induk `Pengiriman(kode, kota_tujuan, berat_kg)` dengan tiga method kecil: `nama_layanan()`, `tarif_per_kg()`, dan `berat_ditagih()` (bawaannya berat asli). Dua method berikut ditulis **hanya di induk**:
+**Soal:** Buat kelas induk `Pengiriman(kode, kota_tujuan, berat_kg)` dengan tiga *method* kecil: `nama_layanan()`, `tarif_per_kg()`, dan `berat_ditagih()` (bawaannya berat asli). Dua *method* berikut ditulis **hanya di induk**:
 
 - `ongkir()` = `berat_ditagih()` × `tarif_per_kg()`.
-- `cetak_resi()` mencetak satu baris: kode dalam kurung siku, nama layanan rata kiri 8 karakter, kota rata kiri 11 karakter, berat rata kanan 3 karakter, lalu ongkir.
+- `cetak_resi()` mencetak satu baris: kode dalam kurung siku, nama layanan rata kiri 8 karakter, kota rata kiri 11 karakter, berat asli (bukan berat yang ditagih) rata kanan 3 karakter, lalu ongkir.
 
 Kelas anak: `Reguler` (Rp9.000/kg), `Kilat` (Rp15.000/kg), dan `Kargo` (Rp6.000/kg, berat yang ditagih **minimal 10 kg**). Fungsi `cetak_manifest(daftar)` mencetak semua resi dan total ongkir.
 
@@ -150,7 +177,7 @@ Kelas anak: `Reguler` (Rp9.000/kg), `Kilat` (Rp15.000/kg), dan `Kargo` (Rp6.000/
 
 Manifest pagi: KK001 Reguler Balikpapan 2 kg, KK002 Kilat Bontang 3 kg, KK003 Kargo Tenggarong 4 kg, KK004 Kargo Sangatta 25 kg. Manifest sore: KK005 SameDay Samarinda 1 kg, KK006 Reguler Balikpapan 5 kg, KK007 SameDay Samarinda 3 kg.
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === MANIFEST PAGI ===
@@ -179,18 +206,18 @@ Total ongkir: Rp145000
 
 ---
 
-## Latihan 5 — KedaiKita: Bayar dengan Voucher (⭐⭐ Menengah)
+## Latihan 5 (KedaiKita): Bayar dengan Voucher (⭐⭐ Menengah)
 
 **Tujuan:** mengembangkan studi kasus KedaiKita dengan jenis pembayaran baru **tanpa mengubah** `Pesanan.bayar()`.
 
 **Soal:** Tambahkan kelas `PembayaranVoucher(kode, nilai)` sebagai anak `Pembayaran`:
 
 - `nama_metode()` mengembalikan `Voucher <kode>`. Voucher tidak dikenai biaya layanan.
-- `proses(total)`: jika voucher **sudah pernah dipakai**, cetak `  Voucher <kode> sudah pernah dipakai` lalu gagal. Jika nilainya kurang dari total, cetak `  Nilai voucher <nilai> tidak cukup` lalu gagal. Selain itu, tandai voucher sudah terpakai, cetak `  Voucher <kode> dipakai, sisa <sisa> hangus`, lalu berhasil.
+- `proses(total)`: jika voucher **sudah pernah dipakai**, cetak `  Voucher <kode> sudah pernah dipakai` lalu gagal. Jika nilainya kurang dari total, cetak `  Nilai voucher <nilai> tidak cukup` lalu gagal. Selain itu, tandai voucher sudah terpakai, cetak `  Voucher <kode> dipakai, sisa <sisa> hangus`, lalu berhasil. Nilai dan sisa ditulis dalam format Rupiah, misalnya `Rp50.000`.
 
 Skenario dengan **satu** voucher `KEDAI50` senilai Rp50.000: pesanan P001 Budi (Rp61.000) gagal dibayar voucher lalu dibayar tunai Rp100.000, pesanan P002 Siti (Rp31.000) dibayar voucher, dan pesanan P003 Budi (Rp15.000) mencoba voucher yang sama.
 
-**Contoh output yang diharapkan** (potongan awal):
+**Contoh *output* yang diharapkan:**
 
 ```text
 === VOUCHER TIDAK CUKUP, GANTI TUNAI ===
@@ -204,16 +231,40 @@ Pembayaran pesanan P001 (Budi Santoso)
   Total bayar  : Rp61.000
   Uang diterima Rp100.000, kembalian Rp39.000
   Status       : LUNAS (+6 poin)
+
+=== VOUCHER CUKUP ===
+Pembayaran pesanan P002 (Siti Aminah)
+  Metode       : Voucher KEDAI50
+  Total bayar  : Rp31.000
+  Voucher KEDAI50 dipakai, sisa Rp19.000 hangus
+  Status       : LUNAS (+3 poin)
+
+=== VOUCHER YANG SAMA DIPAKAI LAGI ===
+Pembayaran pesanan P003 (Budi Santoso)
+  Metode       : Voucher KEDAI50
+  Total bayar  : Rp15.000
+  Voucher KEDAI50 sudah pernah dipakai
+  Status       : GAGAL, silakan pilih metode lain
+
+=== STATUS AKHIR ===
+P001: LUNAS
+P002: LUNAS
+P003: BARU
+Poin Budi Santoso: 6
+Poin Siti Aminah: 3
 ```
 
-Pada akhirnya, P001 dan P002 berstatus `LUNAS`, P003 tetap `BARU`, poin Budi 6, dan poin Siti 3.
+Perhatikan: P003 tetap `BARU` karena pembayarannya gagal, dan Budi tidak mendapat poin tambahan.
 
 <details>
 <summary>💡 Petunjuk</summary>
 
 - Simpan status pemakaian di atribut, misalnya `_terpakai = False`. Periksa "sudah dipakai" **sebelum** memeriksa nilai.
-- `hitung_biaya_layanan` tidak perlu ditulis. Versi induk (0) sudah tepat. Solusi dibuat satu file agar bisa langsung dijalankan, sehingga berisi salinan ringkas `Pembayaran`, `PembayaranTunai`, dan `Pesanan` (total pesanan langsung diisi). Logika `bayar()` di dalamnya sama persis dengan studi kasus. Di proyekmu, cukup tambahkan kelas baru ke `pembayaran.py` / `PembayaranVoucher.java`.
-- Pengguna Java: salinan ringkas di solusi diberi nama `PembayaranKedai`, `PesananKedai`, dan seterusnya, agar tidak bentrok dengan kelas studi kasus di folder `java/` yang sama.
+- `hitung_biaya_layanan` tidak perlu ditulis. Versi induk (0) sudah tepat.
+- Ada dua cara mengerjakannya, dua-duanya di folder `pertemuan-09` milikmu:
+  1. **Satu *file*, seperti solusinya.** *File* solusi berisi salinan ringkas `Pembayaran`, `PembayaranTunai`, dan `Pesanan` (total pesanan langsung diisi) agar bisa langsung dijalankan. Logika `bayar()` di dalamnya sama persis dengan studi kasus. Cara ini menghasilkan *output* yang sama persis dengan contoh di atas.
+  2. **Di salinan studi kasus (lebih realistis).** Salin seluruh folder `python/studi-kasus` atau `java/studi-kasus` pertemuan ini ke folder `pertemuan-09` milikmu. Tambahkan kelas `PembayaranVoucher` ke salinan `pembayaran.py` (Python) atau buat *file* baru `PembayaranVoucher.java` berisi `public class PembayaranVoucher extends Pembayaran` (Java). Lalu ubah salinan `main.py`/`Main.java` agar menjalankan skenario di atas. *Output*-nya ikut memuat daftar menu dan struk, tetapi baris-baris pembayarannya harus sama dengan contoh.
+- Pengguna Java yang memakai cara 1: beri nama lain pada salinan kelasnya, misalnya `PembayaranKedai` dan `PesananKedai` seperti di solusi. Jika di folder `pertemuan-09` juga ada salinan studi kasus, nama `Pembayaran` akan bentrok dan VS Code memberi pesan *The type Pembayaran is already defined*. Karena alasan yang sama, solusi di folder `java/` materi memakai nama-nama itu.
 
 </details>
 
@@ -221,21 +272,21 @@ Pada akhirnya, P001 dan P002 berstatus `LUNAS`, P003 tetap `BARU`, poin Budi 6, 
 
 ---
 
-## Latihan 6 — Turnamen Mini RPG (⭐⭐⭐ Tantangan)
+## Latihan 6: Turnamen Mini RPG (⭐⭐⭐ Tantangan)
 
-**Tujuan:** merancang method induk yang berisi **dua** panggilan polimorfik sekaligus.
+**Tujuan:** merancang *method* induk yang berisi **dua** panggilan polimorfik sekaligus.
 
-**Soal:** Buat kelas induk `Karakter(nama, hp, kekuatan)` dengan method:
+**Soal:** Buat kelas induk `Karakter(nama, hp, kekuatan)` dengan *method*:
 
 - `hitung_serangan()` mengembalikan `kekuatan`.
-- `terima_serangan(damage)` mengurangi HP (tidak kurang dari 0) dan mengembalikan damage yang benar-benar diterima.
+- `terima_serangan(damage)` mengurangi HP (tidak kurang dari 0) dan mengembalikan *damage* (besar serangan) yang benar-benar diterima.
 - `serang(lawan)` memanggil `hitung_serangan()` milik dirinya dan `terima_serangan()` milik lawan, lalu mencetak `  <nama> menyerang <lawan>: <diterima> damage, HP <lawan> tinggal <hp>`.
 
-Kelas anak: `Prajurit` (punya `perisai`; damage yang diterima dikurangi perisai, minimal 1), `Penyihir` (setiap serangan ke-3, ke-6, dan seterusnya bernilai 3 kali kekuatan), dan `Pemanah` (setiap serangan ke-2, ke-4, dan seterusnya yang mengarah kepadanya berhasil dihindari, damage 0).
+Kelas anak: `Prajurit` (punya `perisai`; *damage* yang diterima dikurangi perisai, minimal 1), `Penyihir` (setiap serangan ke-3, ke-6, dan seterusnya bernilai 3 kali kekuatan), dan `Pemanah` (setiap serangan ke-2, ke-4, dan seterusnya yang mengarah kepadanya berhasil dihindari, *damage* 0).
 
-Fungsi `duel(a, b)` berjalan paling banyak 10 ronde. Setiap ronde, `a` menyerang `b`, lalu `b` menyerang `a` jika masih hidup. Duel berhenti saat HP salah satu habis. Duel 1: Prajurit Bima (HP 60, kekuatan 10, perisai 4) melawan Penyihir Sari (HP 45, kekuatan 9). Duel 2: Penyihir Sari yang baru (HP 45, kekuatan 9) melawan Pemanah Raka (HP 50, kekuatan 8).
+Fungsi `duel(a, b)` berjalan paling banyak 10 ronde. Setiap ronde, `a` menyerang `b`, lalu `b` menyerang `a` jika masih hidup. Duel berhenti saat HP salah satu habis, lalu mencetak `Pemenang: <nama>`. Jika setelah 10 ronde keduanya masih hidup, cetak `Hasil: seri`. Duel 1: Prajurit Bima (HP 60, kekuatan 10, perisai 4) melawan Penyihir Sari (HP 45, kekuatan 9). Duel 2: Penyihir Sari yang baru (HP 45, kekuatan 9) melawan Pemanah Raka (HP 50, kekuatan 8).
 
-**Contoh output yang diharapkan:**
+**Contoh *output* yang diharapkan:**
 
 ```text
 === DUEL: Bima (Prajurit) vs Sari (Penyihir) ===
@@ -254,9 +305,30 @@ Ronde 4
 Ronde 5
   Bima menyerang Sari: 10 damage, HP Sari tinggal 0
 Pemenang: Bima
+
+=== DUEL: Sari (Penyihir) vs Raka (Pemanah) ===
+Ronde 1
+  Sari menyerang Raka: 9 damage, HP Raka tinggal 41
+  Raka menyerang Sari: 8 damage, HP Sari tinggal 37
+Ronde 2
+  Sari menyerang Raka: 0 damage, HP Raka tinggal 41
+  Raka menyerang Sari: 8 damage, HP Sari tinggal 29
+Ronde 3
+  Sari menyerang Raka: 27 damage, HP Raka tinggal 14
+  Raka menyerang Sari: 8 damage, HP Sari tinggal 21
+Ronde 4
+  Sari menyerang Raka: 0 damage, HP Raka tinggal 14
+  Raka menyerang Sari: 8 damage, HP Sari tinggal 13
+Ronde 5
+  Sari menyerang Raka: 9 damage, HP Raka tinggal 5
+  Raka menyerang Sari: 8 damage, HP Sari tinggal 5
+Ronde 6
+  Sari menyerang Raka: 0 damage, HP Raka tinggal 5
+  Raka menyerang Sari: 8 damage, HP Sari tinggal 0
+Pemenang: Raka
 ```
 
-Duel kedua dimenangkan Raka di ronde 6. Di ronde 2, 4, dan 6, serangan Sari tercetak `0 damage` karena Raka menghindar. Di ronde 3, bola api Sari memberi `27 damage`.
+Perhatikan duel kedua. Di ronde 2, 4, dan 6, serangan Sari tercetak `0 damage` karena Raka menghindar. Di ronde 3, bola api Sari memberi `27 damage`.
 
 <details>
 <summary>💡 Petunjuk</summary>
@@ -270,20 +342,20 @@ Duel kedua dimenangkan Raka di ronde 6. Di ronde 2, 4, dan 6, serangan Sari terc
 
 ---
 
-## Tugas Mandiri (dikumpulkan, tanpa kunci jawaban)
+## Tugas Mandiri (Dikumpulkan, tanpa Kunci Jawaban)
 
 ### Loket Tiket Taman Rekreasi
 
 Sebuah taman rekreasi di Samarinda ingin aplikasi loket tiket sederhana dengan kebutuhan berikut:
 
-1. Kelas induk `Tiket` dengan nama pengunjung, method `harga()`, dan method `keterangan()`.
+1. Kelas induk `Tiket` dengan nama pengunjung, *method* `harga()`, dan *method* `keterangan()`.
 2. Minimal **tiga** kelas anak yang meng-*override* `harga()` dan `keterangan()`, misalnya `TiketDewasa`, `TiketAnak`, dan `TiketPelajar` (wajib menyimpan nomor kartu pelajar). Tentukan sendiri harganya (bilangan bulat).
 3. Kelas `Loket` dengan kemampuan menjual tiket **dengan atau tanpa** jumlah: Java memakai *overloading* (`jual(Tiket)` dan `jual(Tiket, int)`), Python memakai nilai bawaan.
-4. Method `rekap()` mencetak semua penjualan dan total pendapatan, **tanpa** memeriksa jenis tiket.
+4. *Method* `rekap()` mencetak semua penjualan dan total pendapatan, **tanpa** memeriksa jenis tiket.
 5. Laporan khusus jumlah tiket pelajar, satu-satunya tempat yang boleh memakai `isinstance`/`instanceof`.
 6. Setelah semuanya berjalan, tambahkan satu jenis tiket baru (misalnya `TiketRombongan`), lalu tunjukkan bahwa `rekap()` tidak perlu diubah.
 
-**Ketentuan pengumpulan:** program Python atau Java (boleh beberapa file) beserta tangkapan layar output-nya. Output harus selalu sama setiap kali dijalankan.
+**Ketentuan pengumpulan:** program Python atau Java (boleh beberapa *file*) beserta tangkapan layar *output*-nya. *Output* harus selalu sama setiap kali dijalankan.
 
 **Rubrik penilaian:**
 
@@ -293,7 +365,7 @@ Sebuah taman rekreasi di Samarinda ingin aplikasi loket tiket sederhana dengan k
 | `rekap()` polimorfik, tanpa percabangan berdasarkan jenis | 25% |
 | Penjualan dengan/tanpa jumlah (*overloading* atau nilai bawaan) | 20% |
 | Pemeriksaan jenis hanya untuk laporan khusus, dan jenis tiket baru tanpa mengubah `rekap()` | 20% |
-| Kerapian kode: nama jelas, komentar secukupnya, output rapi | 10% |
+| Kerapian kode: nama jelas, komentar secukupnya, *output* rapi | 10% |
 
 ---
 

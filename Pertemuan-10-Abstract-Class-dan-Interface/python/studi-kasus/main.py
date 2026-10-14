@@ -4,7 +4,7 @@ KedaiKita - Pertemuan 10: Abstract Class dan Interface
 Yang baru dibanding Pertemuan 09:
 - Pembayaran menjadi kelas abstrak: objeknya tidak bisa dibuat langsung.
 - dapat_dicetak.py: "interface" DapatDicetak dengan satu method, cetak().
-- Kedai dan Pesanan sama-sama DapatDicetak, walaupun keduanya tidak
+- Kedai dan Pesanan sama-sama DapatDicetak walaupun keduanya tidak
   punya hubungan pewarisan lain. Fungsi cetak_semua() bisa mencetak
   keduanya tanpa peduli jenis aslinya.
 

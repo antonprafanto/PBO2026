@@ -6,7 +6,8 @@
  * - Produk adalah kelas induk untuk semua barang yang dijual. Buku dan
  *   AlatTulis mewarisinya (extends), menambah field sendiri, dan
  *   meng-override toString().
- * - Harga dijaga oleh setter (harus > 0). Stok hanya berubah lewat method
+ * - Harga dijaga oleh setter (harus > 0) yang dibuat final karena
+ *   dipanggil dari konstruktor. Stok hanya berubah lewat method
  *   kurangiStok() yang menolak permintaan melebihi stok.
  * - Pesanan MEMBUAT objek ItemPesanan di dalam tambahItem() (komposisi).
  *   TokoBuku menyimpan produk yang dibuat di luar (agregasi). Pesanan
@@ -18,7 +19,7 @@
  * Rupiah, karena folder java/ ini juga berisi solusi Soal C1 (RupiahLab).
  * Nama kelas di dalam satu folder proyek harus unik.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/solusi (Java 11 ke atas):
  *     java SoalC2TokoBuku.java
  */
 import java.util.ArrayList;
@@ -171,7 +172,9 @@ class Produk {
         return harga;
     }
 
-    public void setHarga(int nilai) {
+    // final: setter ini tidak bisa di-override oleh kelas anak (Pertemuan 07),
+    // sehingga aman dipanggil dari konstruktor.
+    public final void setHarga(int nilai) {
         if (nilai <= 0) {
             // [2] ditolak SEBELUM field diubah, jadi harga lama tetap aman
             throw new IllegalArgumentException("Harga harus lebih dari 0");

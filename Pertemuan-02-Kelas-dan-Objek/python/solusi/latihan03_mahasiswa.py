@@ -11,7 +11,7 @@ Ide penyelesaian:
     IPK >= 2.76 -> Memuaskan
     lainnya     -> Cukup
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/solusi; macOS/Linux: python3):
     python latihan03_mahasiswa.py
 """
 

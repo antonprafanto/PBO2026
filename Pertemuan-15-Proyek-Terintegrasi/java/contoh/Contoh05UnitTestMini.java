@@ -3,7 +3,7 @@
  * Pertemuan 15 - Proyek Terintegrasi
  *
  * Unit test adalah kode kecil yang memeriksa kode lain secara OTOMATIS.
- * Di industri, programmer Java memakai JUnit. JUnit tidak ikut di dalam JDK
+ * Di industri, pemrogram Java memakai JUnit. JUnit tidak ikut di dalam JDK
  * (harus diunduh terpisah), jadi di sini kita membuat runner mini sendiri:
  * - setiap pengujian adalah satu method uji...()
  * - samakan(hasil, harapan)     : seperti assertEquals / assertEqual

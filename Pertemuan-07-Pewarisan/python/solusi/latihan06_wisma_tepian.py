@@ -16,7 +16,7 @@ Cara menjalankan:
 """
 
 SARAPAN_PER_TAMU = 50000  # per tamu per malam
-ANTAR_JEMPUT = 150000  # sekali jalan, khusus suite
+ANTAR_JEMPUT = 150000  # dibayar sekali (bukan per malam), khusus suite
 DISKON_PERSEN = 10  # diskon suite untuk menginap minimal 3 malam
 MALAM_MINIMAL_DISKON = 3
 

@@ -5,7 +5,7 @@ Pertemuan 02 - Kelas dan Objek
 Method adalah fungsi yang "menempel" pada objek. Method bisa membaca dan
 mengubah atribut milik objeknya sendiri lewat self.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/contoh; macOS/Linux: python3):
     python contoh03_method.py
 """
 

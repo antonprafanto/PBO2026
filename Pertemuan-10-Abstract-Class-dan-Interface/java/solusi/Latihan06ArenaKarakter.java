@@ -9,7 +9,7 @@
  *   menyerang" ditulis sekali, lalu besar serangan ditanyakan ke method
  *   abstrak kekuatanSerangan() milik kelas anak.
  * - BisaMenyembuhkan adalah interface (can-do). Penyihir (sebuah Karakter)
- *   dan RamuanObat (BUKAN Karakter) sama-sama meng-implements-nya, sehingga
+ *   dan RamuanObat (BUKAN Karakter) sama-sama mengimplementasikannya sehingga
  *   fasePenyembuhan() bisa memakai keduanya.
  *
  * Cara menjalankan (Java 11 ke atas):

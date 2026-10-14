@@ -5,7 +5,7 @@ Pertemuan 02 - Kelas dan Objek
 Objek bisa disimpan di list seperti data biasa. Dengan perulangan for,
 kita bisa memanggil method yang sama untuk setiap objek.
 
-Cara menjalankan:
+Cara menjalankan (dari folder python/contoh; macOS/Linux: python3):
     python contoh07_daftar_objek.py
 """
 

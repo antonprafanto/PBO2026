@@ -9,7 +9,7 @@ Ide penyelesaian:
       +-- BatasPinjamError              (data: nama, batas)
 - Anggota.pinjam() memeriksa dua aturan, lalu melempar exception yang
   sesuai. Data tambahan di exception dipakai penangkap untuk memberi saran.
-- Anggota.kembalikan() melempar PerpustakaanError (induknya langsung),
+- Anggota.kembalikan() melempar PerpustakaanError (induknya langsung)
   karena kesalahan ini tidak butuh jenis khusus.
 - Urutan except: yang spesifik di atas. coba_kembalikan() cukup menangkap
   induknya, PerpustakaanError.

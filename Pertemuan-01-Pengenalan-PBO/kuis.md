@@ -1,4 +1,4 @@
-# Kuis — Pertemuan 01: Pengenalan PBO & Persiapan Alat
+# Kuis Pertemuan 01: Pengenalan PBO dan Persiapan Alat
 
 [⬅️ Latihan](latihan.md) · [🏠 Beranda](../README.md) · [Pertemuan 02 ➡️](../Pertemuan-02-Kelas-dan-Objek/README.md)
 
@@ -38,7 +38,7 @@ Manakah yang merupakan **ciri khas** program bergaya prosedural?
 
 **Jawaban: A**
 
-Pembahasan: pada gaya prosedural, data (variabel, list, array) disimpan di satu tempat, sedangkan fungsi-fungsi yang mengolahnya berada di tempat lain. Pilihan B adalah ciri **PBO**, bukan prosedural. Pilihan C keliru, karena program prosedural justru banyak memakai perulangan. Pilihan D keliru, karena gaya prosedural bisa ditulis di Python, Java, C, dan banyak bahasa lain.
+Pembahasan: pada gaya prosedural, data (variabel, *list*, *array*) disimpan di satu tempat, sedangkan fungsi-fungsi yang mengolahnya berada di tempat lain. Pilihan B adalah ciri **PBO**, bukan prosedural. Pilihan C keliru karena program prosedural justru banyak memakai perulangan. Pilihan D keliru karena gaya prosedural bisa ditulis di Python, Java, C, dan banyak bahasa lain.
 
 </details>
 
@@ -47,8 +47,8 @@ Pembahasan: pada gaya prosedural, data (variabel, list, array) disimpan di satu 
 Pada KedaiKita versi prosedural, mengapa harga menu **tertukar** setelah daftar menu diurutkan?
 
 - A. Python dan Java keliru saat menghitung harga setelah daftar diurutkan
-- B. Harga disimpan sebagai bilangan pecahan, sehingga nilainya menjadi tidak tepat
-- C. Program menampilkan pesan error, lalu berhenti sebelum sempat menampilkan menu
+- B. Harga disimpan sebagai bilangan pecahan sehingga nilainya menjadi tidak tepat
+- C. Program menampilkan pesan *error*, lalu berhenti sebelum sempat menampilkan menu
 - D. Hanya daftar nama yang diurutkan, sedangkan daftar harga dan stok tetap di tempatnya
 
 <details>
@@ -56,7 +56,7 @@ Pada KedaiKita versi prosedural, mengapa harga menu **tertukar** setelah daftar 
 
 **Jawaban: D**
 
-Pembahasan: data satu menu tersebar di tiga daftar yang hanya direkatkan oleh indeks yang sama. Perintah pengurutan hanya memindahkan isi daftar nama, sehingga nama di indeks 0 kini berpasangan dengan harga milik menu lain. Bahasa pemrogramannya tidak salah hitung (A), harganya bilangan bulat (B), dan justru tidak ada pesan error sama sekali (C). Itulah yang membuat kesalahan ini berbahaya.
+Pembahasan: data satu menu tersebar di tiga daftar yang hanya direkatkan oleh indeks yang sama. Perintah pengurutan hanya memindahkan isi daftar nama sehingga nama di indeks 0 kini berpasangan dengan harga milik menu lain. Bahasa pemrogramannya tidak salah hitung (A), harganya bilangan bulat (B), dan justru tidak ada pesan *error* sama sekali (C). Itulah yang membuat kesalahan ini berbahaya.
 
 </details>
 
@@ -65,8 +65,8 @@ Pembahasan: data satu menu tersebar di tiga daftar yang hanya direkatkan oleh in
 Dalam PBO, sebuah **objek** menyatukan dua hal, yaitu ...
 
 - A. kelas dan fungsi global
-- B. data (atribut) dan perilaku (method)
-- C. variabel global dan indeks list
+- B. data (atribut) dan perilaku (*method*)
+- C. variabel global dan indeks *list*
 - D. *compiler* dan *interpreter*
 
 <details>
@@ -74,13 +74,13 @@ Dalam PBO, sebuah **objek** menyatukan dua hal, yaitu ...
 
 **Jawaban: B**
 
-Pembahasan: objek membawa **atribut** (data atau ciri, misalnya nama dan harga sebuah menu) dan **method** (perilaku, misalnya mengurangi stok). Kelas adalah rancangan objek, bukan isi objek (A). Variabel global dan indeks justru ciri gaya prosedural (C). *Compiler* dan *interpreter* adalah alat untuk menjalankan program (D).
+Pembahasan: objek membawa **atribut** (data atau ciri, misalnya nama dan harga sebuah menu) dan ***method*** (perilaku, misalnya mengurangi stok). Kelas adalah rancangan objek, bukan isi objek (A). Variabel global dan indeks justru ciri gaya prosedural (C). *Compiler* dan *interpreter* adalah alat untuk menerjemahkan dan menjalankan program, bukan isi sebuah objek (D).
 
 </details>
 
 ### Soal 5
 
-Perhatikan deskripsi berikut: *"Seorang mahasiswa punya nama, NIM, dan IPK. Mahasiswa bisa mengisi KRS dan membayar UKT."* Manakah yang paling tepat dijadikan **method**?
+Perhatikan deskripsi berikut: *"Seorang mahasiswa punya nama, NIM, dan IPK. Mahasiswa bisa mengisi KRS dan membayar UKT."* Manakah yang paling tepat dijadikan ***method***?
 
 - A. NIM
 - B. IPK
@@ -92,17 +92,17 @@ Perhatikan deskripsi berikut: *"Seorang mahasiswa punya nama, NIM, dan IPK. Maha
 
 **Jawaban: C**
 
-Pembahasan: method adalah perilaku atau aksi, biasanya berupa kata kerja, seperti "mengisi KRS" dan "membayar UKT". NIM (A) dan IPK (B) adalah atribut, karena merupakan data milik mahasiswa. "Mahasiswa" (D) adalah calon nama kelas.
+Pembahasan: *method* adalah perilaku atau aksi, biasanya berupa kata kerja, seperti "mengisi KRS" dan "membayar UKT". NIM (A) dan IPK (B) adalah atribut karena merupakan data milik mahasiswa. "Mahasiswa" (D) adalah calon nama kelas.
 
 </details>
 
 ### Soal 6
 
-Di aplikasi ojek online, penumpang meminta aplikasi mencarikan pengemudi tanpa perlu tahu bagaimana aplikasi mencarinya. Dalam istilah PBO, tindakan penumpang ini paling tepat disebut ...
+Di aplikasi ojek *online*, penumpang meminta aplikasi mencarikan pengemudi tanpa perlu tahu bagaimana aplikasi mencarinya. Dalam istilah PBO, tindakan penumpang ini paling tepat disebut ...
 
-- A. mengirim pesan ke objek lain, yaitu memanggil method-nya
+- A. mengirim pesan ke objek lain, yaitu memanggil *method*-nya
 - B. mengubah data global milik aplikasi secara langsung tanpa perantara
-- C. mewarisi semua atribut dan method milik objek aplikasi
+- C. mewarisi semua atribut dan *method* milik objek aplikasi
 - D. mengurutkan daftar pengemudi berdasarkan nomor indeks
 
 <details>
@@ -128,7 +128,7 @@ Di mesin kasir, tombol "Bayar" bisa memproses pembayaran tunai, QRIS, atau kartu
 
 **Jawaban: D**
 
-Pembahasan: polimorfisme berarti "banyak bentuk": perintah yang sama ("bayar") ditanggapi dengan cara berbeda oleh objek yang berbeda (tunai, QRIS, kartu). Enkapsulasi (A) tentang membungkus dan melindungi data. Pewarisan (B) tentang kelas baru yang mewarisi ciri kelas lama. Abstraksi (C) memang ikut berperan, karena kasir tidak perlu tahu detail cara kerja QRIS. Namun, inti situasi ini adalah **satu perintah dengan banyak cara**, dan itulah polimorfisme. Pilar ini dibahas tuntas di Pertemuan 09.
+Pembahasan: polimorfisme berarti "banyak bentuk": perintah yang sama ("bayar") ditanggapi dengan cara berbeda oleh objek yang berbeda (tunai, QRIS, kartu). Enkapsulasi (A) tentang membungkus dan melindungi data. Pewarisan (B) tentang kelas baru yang mewarisi ciri kelas lama. Abstraksi (C) memang ikut berperan karena kasir tidak perlu tahu detail cara kerja QRIS. Namun, inti situasi ini adalah **satu perintah dengan banyak cara**, dan itulah polimorfisme. Pilar ini dibahas tuntas di Pertemuan 09.
 
 </details>
 
@@ -136,17 +136,17 @@ Pembahasan: polimorfisme berarti "banyak bentuk": perintah yang sama ("bayar") d
 
 Dalam situasi manakah PBO paling mungkin terasa **berlebihan**?
 
-- A. Sistem informasi akademik yang dikembangkan banyak programmer selama bertahun-tahun
-- B. Skrip sekali pakai untuk mengganti nama 200 file foto
-- C. Aplikasi ojek online dengan penumpang, pengemudi, pesanan, dan pembayaran
-- D. Game dengan banyak karakter yang masing-masing punya nyawa dan posisi
+- A. Sistem informasi akademik yang dikembangkan banyak pemrogram selama bertahun-tahun
+- B. Skrip sekali pakai untuk mengganti nama 200 *file* foto
+- C. Aplikasi ojek *online* dengan penumpang, pengemudi, pesanan, dan pembayaran
+- D. *Game* dengan banyak karakter yang masing-masing punya nyawa dan posisi
 
 <details>
 <summary>Lihat jawaban</summary>
 
 **Jawaban: B**
 
-Pembahasan: skrip kecil sekali pakai berupa satu aliran langkah sederhana. Membuat kelas di sini hanya menambah baris tanpa manfaat berarti, sehingga gaya prosedural lebih cocok. Pilihan A, C, dan D adalah program besar atau berisi banyak "benda" dengan data dan perilakunya sendiri, yaitu situasi tempat PBO paling bermanfaat.
+Pembahasan: skrip kecil sekali pakai berupa satu aliran langkah sederhana. Membuat kelas di sini hanya menambah baris tanpa manfaat berarti sehingga gaya prosedural lebih cocok. Pilihan A, C, dan D adalah program besar atau berisi banyak "benda" dengan data dan perilakunya sendiri, yaitu situasi tempat PBO paling bermanfaat.
 
 </details>
 
@@ -184,7 +184,7 @@ Apa yang tercetak?
 
 **Jawaban: B**
 
-Pembahasan: setelah diurutkan, isi `nama` menjadi `Ayu, Bima, Citra`, tetapi `nilai` **tidak berubah**: `70, 90, 80`. Jadi `nama[0]` adalah `Ayu` dan `nilai[0]` adalah `70`, padahal 70 adalah nilai milik Citra. Pilihan A adalah jawaban "yang seharusnya" jika datanya tidak tertukar, dan justru itulah jebakannya. Pilihan C adalah isi sebelum diurutkan. Ini masalah data paralel yang sama dengan KedaiKita.
+Pembahasan: setelah diurutkan, isi `nama` menjadi `Ayu, Bima, Citra`, tetapi `nilai` **tidak berubah**: `70, 90, 80`. Jadi `nama[0]` adalah `Ayu` dan `nilai[0]` adalah `70`, padahal 70 adalah nilai milik Citra. Pilihan A adalah jawaban "yang seharusnya" jika datanya tidak tertukar, dan justru itulah jebakannya. Pilihan C adalah isi sebelum diurutkan. Pilihan D tidak mungkin karena setelah diurutkan `nama[0]` adalah `Ayu`, bukan `Bima`. Ini masalah data paralel yang sama dengan KedaiKita.
 
 </details>
 
@@ -242,9 +242,9 @@ Pembahasan: perulangan berjalan untuk `jumlah` = 1, 2, 3 (`range(1, 4)` tidak me
 
 | Jumlah benar | Artinya | Saran |
 |---|---|---|
-| 8 – 10 | Mantap! Fondasimu sudah kuat | Lanjut ke [Pertemuan 02](../Pertemuan-02-Kelas-dan-Objek/README.md) |
-| 5 – 7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 7 |
-| 0 – 4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, lalu jalankan studi kasus KedaiKita di halaman praktik sambil mencoba setiap "Coba sendiri" |
+| 8—10 | Mantap! Fondasimu sudah kuat | Lanjut ke [Pertemuan 02](../Pertemuan-02-Kelas-dan-Objek/README.md) |
+| 5—7 | Sudah paham sebagian | Baca ulang bagian konsep yang soalnya kamu jawab salah, lalu kerjakan Latihan 3 dan 7 |
+| 0—4 | Perlu mengulang | Baca ulang [konsep](README.md) pelan-pelan, lalu jalankan studi kasus KedaiKita di halaman praktik sambil mencoba setiap "Coba sendiri" |
 
 ---
 

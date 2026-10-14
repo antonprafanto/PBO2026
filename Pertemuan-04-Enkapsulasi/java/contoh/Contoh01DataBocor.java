@@ -3,7 +3,8 @@
  * Pertemuan 04 - Enkapsulasi
  *
  * - TabunganBocor: field saldo tanpa access modifier. Kode di kelas lain
- *   bebas mengubahnya, termasuk membuatnya negatif atau "menyulap" saldo.
+ *   dalam paket yang sama bebas mengubahnya, termasuk membuatnya negatif
+ *   atau "menyulap" saldo.
  * - TabunganAman: field saldo diberi private, sehingga hanya kode di DALAM
  *   kelas TabunganAman yang boleh menyentuhnya. Saldo hanya berubah lewat
  *   method setor() dan tarik() yang memeriksa aturan lebih dulu.

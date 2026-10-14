@@ -1,4 +1,4 @@
-# ☕ Praktik Java — Pertemuan 10: Abstract Class dan Interface
+# ☕ Praktik Java Pertemuan 10: *Abstract Class* dan *Interface*
 
 [⬅️ Konsep](../README.md) · [🐍 Praktik Python](../python/README.md) · [Jembatan Python ↔ Java ➡️](../jembatan-python-java.md)
 
@@ -7,17 +7,24 @@
 ## Daftar Isi
 
 - [Persiapan](#persiapan)
+  - [Cara Menjalankan Contoh](#cara-menjalankan-contoh)
+  - [Cara Menjalankan Studi Kasus](#cara-menjalankan-studi-kasus)
+  - [Tempat Menyimpan Kodemu Sendiri](#tempat-menyimpan-kodemu-sendiri)
+  - [Cara Membaca Kode di Halaman Ini](#cara-membaca-kode-di-halaman-ini)
+
 1. [Masalah: Kelas Induk yang Terlalu Umum](#1-masalah-kelas-induk-yang-terlalu-umum)
-2. [`abstract class` dan Method `abstract`](#2-abstract-class-dan-method-abstract)
-3. [Konstruktor, Field, dan Method Konkret di Kelas Abstrak](#3-konstruktor-field-dan-method-konkret-di-kelas-abstrak)
-4. [Template Method dan `final`](#4-template-method-dan-final)
+2. [`abstract class` dan *Method* `abstract`](#2-abstract-class-dan-method-abstract)
+3. [Konstruktor, *Field*, dan *Method* Konkret di Kelas Abstrak](#3-konstruktor-field-dan-method-konkret-di-kelas-abstrak)
+4. [*Template Method* dan `final`](#4-template-method-dan-final)
 5. [`interface` dan `implements`](#5-interface-dan-implements)
-6. [Satu Kelas, Banyak Interface](#6-satu-kelas-banyak-interface)
-7. [`default` Method dan Konstanta di Interface](#7-default-method-dan-konstanta-di-interface)
+6. [Satu Kelas, Banyak *Interface*](#6-satu-kelas-banyak-interface)
+7. [`default` *Method* dan Konstanta di *Interface*](#7-default-method-dan-konstanta-di-interface)
 8. [Studi Kasus KedaiKita](#8-studi-kasus-kedaikita)
-9. [Kesalahan Umum dan Cara Membaca Pesan Error](#9-kesalahan-umum-dan-cara-membaca-pesan-error)
+9. [Kesalahan Umum dan Cara Membaca Pesan *Error*](#9-kesalahan-umum-dan-cara-membaca-pesan-error)
 
 ## Persiapan
+
+**Yang perlu sudah siap:** JDK 17 atau lebih baru (17, 21, atau 25), VS Code dengan **Extension Pack for Java**, dan materi ini sudah ada di laptopmu. Belum? Ikuti dulu [00-Persiapan](../../00-Persiapan/README.md).
 
 Struktur folder Java pertemuan ini:
 
@@ -28,23 +35,87 @@ java/
 └── solusi/          <- solusi latihan (buka setelah mencoba sendiri!)
 ```
 
-Setiap contoh adalah program satu file, jadi bisa langsung dijalankan (Java 11 ke atas):
+Contoh di folder ini bernomor 01 sampai 06, lalu 08. Contoh 08 (*default method*) khusus Java. Contoh 07 hanya ada di folder Python karena membahas `typing.Protocol`, fitur khusus Python; penjelasannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
+
+Setiap contoh adalah **program satu *file***: kelas yang memiliki `main` serta kelas abstrak, *interface*, dan kelas pembantunya ditulis di dalam satu *file* `.java`.
+
+> [!IMPORTANT]
+> Di setiap *file* contoh dan solusi, kelas yang memiliki *method* `main` ditulis **paling atas**, lalu kelas-kelas lain di bawahnya. Pada Java 11 sampai 21, urutan ini wajib agar perintah `java NamaFile.java` bisa berjalan. Pakai urutan yang sama di *file*-mu sendiri agar programmu berjalan di semua versi.
+
+### Cara Menjalankan Contoh
+
+Pilih salah satu cara. Hasilnya sama.
+
+**Cara 1: tombol Run di VS Code (paling mudah).** Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-10-Abstract-Class-dan-Interface/java`. Buka folder ini saja, bukan seluruh materi. VS Code menganggap semua *file* `.java` di folder yang dibuka sebagai satu proyek, padahal pertemuan lain punya kelas bernama sama, misalnya `Menu` atau `Pembayaran`. Di panel **Explorer**, buka folder `contoh`, lalu klik *file* yang ingin dicoba. Setelah *file* terbuka, klik tulisan **Run** di atas baris `public static void main` (bagian dari **Run | Debug**), atau tombol ▷ di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** (kadang **DEBUG CONSOLE**) di bagian bawah. Jika tulisan **Run** belum muncul, tunggu beberapa detik sampai ekstensi Java selesai memuat folder itu.
+
+**Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi (`PBO2026` atau `PBO2026-master`) | `cd Pertemuan-10-Abstract-Class-dan-Interface/java/contoh` |
+| folder `java` pertemuan ini (terminal VS Code setelah langkah Cara 1) | `cd contoh` |
+
+Setelah itu jalankan:
 
 ```bash
-cd Pertemuan-10-Abstract-Class-dan-Interface/java/contoh
 java Contoh01MasalahIndukUmum.java
 ```
 
-> [!TIP]
-> Jika memakai VS Code, buka folder `java/` **milik pertemuan ini** (File → Open Folder), bukan seluruh repositori, agar kelas bernama sama dari pertemuan lain tidak bentrok. Panduan lengkap ada di [00-Persiapan](../../00-Persiapan/README.md).
+Perintah ini (Java 11 ke atas) mengompilasi *file* di memori, lalu langsung menjalankannya, jadi tidak ada *file* `.class` yang tertinggal. Yang tercetak sama persis dengan blok ***Output:*** di bagian 1. Untuk contoh lain, ganti nama *file*-nya, misalnya `java Contoh02KelasAbstrak.java`. *File* di folder `solusi` dijalankan dengan cara yang sama; ganti saja `contoh` dengan `solusi`.
 
-Contoh 08 (*default method*) khusus Java. Tidak ada contoh 07 di folder ini, karena contoh 07 khusus Python (`typing.Protocol`). Penjelasannya ada di [Jembatan Python ↔ Java](../jembatan-python-java.md).
+> [!TIP]
+> Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer** VS Code, klik kanan folder `contoh`, lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+### Cara Menjalankan Studi Kasus
+
+Studi kasus terdiri atas 14 *file*, satu kelas atau *interface* per *file*. Program utamanya ada di `Main.java`.
+
+- **Cara 1:** di VS Code, buka `studi-kasus/Main.java`, lalu klik **Run**. VS Code mengompilasi *file* lain yang dibutuhkan secara otomatis.
+- **Cara 2:** masuk dulu ke folder `studi-kasus`, kompilasi semua *file*, lalu jalankan kelas `Main`.
+
+| Terminalmu sedang berada di ... | Ketik dulu |
+|---|---|
+| folder utama materi | `cd Pertemuan-10-Abstract-Class-dan-Interface/java/studi-kasus` |
+| folder `java` pertemuan ini | `cd studi-kasus` |
+
+Setelah itu jalankan dua perintah ini:
+
+```bash
+javac *.java
+java Main
+```
+
+`javac *.java` mengompilasi **semua** *file* `.java` di folder itu sekaligus. Jika berhasil, perintah ini tidak menampilkan apa-apa. `java Main` ditulis **tanpa** akhiran `.java`, dan baris pertama yang muncul adalah `=== MENGENAL METODE PEMBAYARAN ===`. *Output* lengkapnya ada di [bagian 8](#8-studi-kasus-kedaikita). Setiap kali kode studi kasus diubah, jalankan `javac *.java` lagi sebelum `java Main`.
+
+> [!NOTE]
+> Semua perintah `cd` di halaman ini ditulis dari **folder utama materi**. Jika terminalmu sudah berada di folder tujuan, lewati baris `cd`-nya. Perintah `java` dan `javac` sama di Windows, macOS, dan Linux.
+
+### Tempat Menyimpan Kodemu Sendiri
+
+Anggap folder materi sebagai buku pegangan: dibaca dan dijalankan, tetapi tidak dicoret-coret. Semua percobaan di halaman ini (bagian **Coba sendiri** dan percobaan pesan *error*) dikerjakan pada **salinan** di folder milikmu sendiri, di luar folder materi, satu folder untuk setiap pertemuan:
+
+```text
+Documents/
+├── PBO2026/                  <- materi kuliah (jangan diubah)
+└── PBO-latihan-saya/         <- milikmu sendiri
+    └── pertemuan-10/         <- salinan contoh, percobaan, dan jawaban latihan
+```
+
+Polanya selalu sama: salin *file* contoh ke folder `pertemuan-10` (lewat File Explorer di Windows atau Finder di macOS), buka salinannya, ubah, simpan, jalankan, lalu bandingkan hasilnya dengan yang tertulis di halaman ini. Jangan ganti nama *file*-nya: nama *file* Java harus sama dengan nama kelas `public` di dalamnya. Untuk menjalankan salinan, buka folder `pertemuan-10` di jendela VS Code baru (**File → New Window**, lalu **File → Open Folder**), lalu klik **Run**. Lewat terminal, masuk dulu ke folder itu dengan `cd Documents\PBO-latihan-saya\pertemuan-10` (Windows) atau `cd ~/Documents/PBO-latihan-saya/pertemuan-10` (macOS/Linux). Alasannya dijelaskan di [aturan emas menyimpan latihan](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri).
+
+### Cara Membaca Kode di Halaman Ini
+
+- Baris ***File*:** di awal setiap bagian menunjuk *file* contohnya. Klik untuk melihat isi lengkapnya.
+- Kode yang ditampilkan adalah **potongan** *file* itu, disalin persis. Potongan dari dalam sebuah kelas tampil menjorok 4 spasi, dan potongan dari dalam *method* `main` menjorok 8 spasi karena aslinya berada di dalam kelas dan di dalam `main`. Untuk mencoba, jalankan *file* lengkapnya, jangan hanya menyalin potongannya.
+- Tanda `// [1]`, `// [2]`, dan seterusnya di dalam kode dijelaskan satu per satu tepat di bawah blok kode.
+- Blok berlabel ***Output:*** adalah hasil asli saat *file* itu dijalankan. Pesan *error* hasil percobaan diberi pengantar lain, misalnya "Pesan *error*-nya:".
+- Pesan *error* di halaman ini berasal dari JDK 21 yang dijalankan di terminal. JDK lain bisa sedikit berbeda, dan VS Code menampilkan kalimatnya sendiri di panel **PROBLEMS** (lihat bagian 9).
 
 ## 1. Masalah: Kelas Induk yang Terlalu Umum
 
-File: [`contoh/Contoh01MasalahIndukUmum.java`](contoh/Contoh01MasalahIndukUmum.java)
+*File*: [`contoh/Contoh01MasalahIndukUmum.java`](contoh/Contoh01MasalahIndukUmum.java)
 
-Sebelum belajar cara baru, kita rasakan dulu masalahnya. Kelas induk `BangunDatar` di bawah ini masih kelas biasa, sama seperti `Pembayaran` di Pertemuan 09.
+Sebelum belajar cara baru, kita rasakan dulu masalahnya. Kelas induk `BangunDatar` di *file* ini masih kelas biasa, sama seperti `Pembayaran` di Pertemuan 09. Berikut potongan *file*-nya:
 
 ```java
 /** Kelas induk biasa (BELUM abstrak) untuk semua bangun datar. */
@@ -79,11 +150,11 @@ class Segitiga extends BangunDatar {
         this.tinggi = tinggi;
     }
 
-    // [2] Programmer LUPA menulis method luas() di sini!
+    // [2] Pemrogram LUPA menulis method luas() di sini!
 }
 ```
 
-Program utamanya:
+Isi *method* `main`-nya:
 
 ```java
         System.out.println("=== MASALAH 1: OBJEK 'UMUM' BISA DIBUAT ===");
@@ -99,7 +170,7 @@ Program utamanya:
         System.out.println("Padahal luas segitiga seharusnya 6 x 4 / 2 = 12 cm2!");
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === MASALAH 1: OBJEK 'UMUM' BISA DIBUAT ===
@@ -113,19 +184,19 @@ Padahal luas segitiga seharusnya 6 x 4 / 2 = 12 cm2!
 
 Penjelasan:
 
-- **[1]** Kelas induk terpaksa memberi isi "pura-pura" untuk `luas()`. Angka 0 dipilih asal-asalan, karena luas "bangun datar umum" memang tidak ada.
-- **[2]** Kelas `Segitiga` tidak menulis `luas()`. Mungkin programmernya lupa, mungkin terburu-buru.
-- **[3]** Java mengizinkan `new BangunDatar(...)`. Hasilnya objek yang tidak bermakna.
-- **[4]** `Segitiga` diam-diam mewarisi `luas()` milik induk, sehingga luasnya tercetak 0. Kompilasi tetap berhasil.
+- **[1]** Kelas induk terpaksa memberi isi "pura-pura" untuk `luas()`. Angka 0 dipilih asal-asalan karena luas "bangun datar umum" memang tidak ada.
+- **[2]** Kelas `Segitiga` tidak menulis `luas()`. Mungkin pemrogramnya lupa, mungkin terburu-buru.
+- **[3]** Java mengizinkan `new BangunDatar(...)`. Hasilnya adalah objek yang tidak bermakna.
+- **[4]** `Segitiga` diam-diam mewarisi `luas()` milik induk sehingga luasnya tercetak 0. Kompilasi tetap berhasil.
 
 > [!WARNING]
-> `@Override` tidak bisa menolong di sini. Anotasi itu hanya memeriksa method yang **ditulis** (misalnya salah ketik nama, Pertemuan 07). Method yang **tidak ditulis sama sekali** tidak diperiksa siapa pun. Di KedaiKita Pertemuan 09, kesalahan serupa pada `proses()` bisa membuat pesanan tercatat LUNAS tanpa uang masuk.
+> `@Override` tidak bisa menolong di sini. Anotasi itu hanya memeriksa *method* yang **ditulis** (misalnya salah ketik nama, Pertemuan 07). *Method* yang **tidak ditulis sama sekali** tidak diperiksa siapa pun. Di KedaiKita Pertemuan 09, kesalahan serupa pada `proses()` bisa membuat pesanan tercatat LUNAS tanpa uang masuk.
 
-## 2. `abstract class` dan Method `abstract`
+## 2. `abstract class` dan *Method* `abstract`
 
-File: [`contoh/Contoh02KelasAbstrak.java`](contoh/Contoh02KelasAbstrak.java)
+*File*: [`contoh/Contoh02KelasAbstrak.java`](contoh/Contoh02KelasAbstrak.java)
 
-Java punya kata kunci khusus: `abstract`. Kata ini dipakai di dua tempat: di depan `class` dan di depan method.
+Java punya kata kunci khusus: `abstract`. Kata ini dipakai di dua tempat: di depan `class` dan di depan *method*. Berikut potongan *file*-nya, dimulai dari kelas abstrak `Bentuk`:
 
 ```java
 /** Kelas abstrak: konsep umum semua bangun datar. */
@@ -139,7 +210,7 @@ abstract class Bentuk { // [1] kata kunci abstract -> kelas abstrak
 }
 ```
 
-Kelas konkret pertama, `PersegiPanjang`, menyimpan `panjang` dan `lebar`, lalu mengisi kedua method abstrak. Salah satunya:
+Kelas konkret pertama, `PersegiPanjang`, menyimpan `panjang` dan `lebar`, lalu mengisi kedua *method* abstrak. Salah satunya:
 
 ```java
     @Override
@@ -148,7 +219,7 @@ Kelas konkret pertama, `PersegiPanjang`, menyimpan `panjang` dan `lebar`, lalu m
     }
 ```
 
-Method `keliling()`-nya mengembalikan `2 * (panjang + lebar)`. Kelas `SegitigaSiku` ditulis dengan pola yang sama: luasnya `alas * tinggi / 2`, kelilingnya `alas + tinggi + miring`. Program utamanya:
+*Method* `keliling()`-nya mengembalikan `2 * (panjang + lebar)`. Kelas `SegitigaSiku` ditulis dengan pola yang sama: luasnya `alas * tinggi / 2`, kelilingnya `alas + tinggi + miring`. Isi *method* `main`-nya:
 
 ```java
         // Bentuk bentukUmum = new Bentuk(); // [4] hapus // di awal baris ini -> error kompilasi
@@ -171,7 +242,7 @@ Method `keliling()`-nya mengembalikan `2 * (panjang + lebar)`. Kelas `SegitigaSi
         System.out.println("Apakah kartu termasuk Bentuk? " + yaTidak(termasukBentuk));
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === DAFTAR BENTUK ===
@@ -186,15 +257,21 @@ Apakah kartu termasuk Bentuk? ya
 Penjelasan:
 
 - **[1]** `abstract class Bentuk` menandai `Bentuk` sebagai kelas abstrak.
-- **[2]** Method abstrak ditulis dengan kata `abstract`, **tanpa** kurung kurawal, dan diakhiri titik koma. Ia hanya "kepala" method.
-- **[3]** `PersegiPanjang` meng-*override* **kedua** method abstrak, sehingga ia menjadi kelas konkret. Tetap tulis `@Override`.
-- **[4]** Baris ini sengaja dijadikan komentar. Kalau `//`-nya dihapus, program gagal dikompilasi (lihat di bawah).
-- **[5]** `List<Bentuk>` adalah list bertipe kelas abstrak. Isinya objek-objek kelas konkret. Inilah polimorfisme dari Pertemuan 09.
-- **[6]** `kartu instanceof Bentuk` bernilai benar: objek kelas anak tetap "adalah" kelas induknya, walaupun induknya abstrak.
+- **[2]** *Method* abstrak ditulis dengan kata `abstract`, **tanpa** kurung kurawal, dan diakhiri titik koma. Ia hanya "kepala" *method*.
+- **[3]** `PersegiPanjang` meng-*override* **kedua** *method* abstrak sehingga ia menjadi kelas konkret. Tetap tulis `@Override`.
+- **[4]** Baris ini sengaja dijadikan komentar. Kalau `//`-nya dihapus, program gagal dikompilasi. Kita coba di salinan sebentar lagi.
+- **[5]** `List<Bentuk>` adalah *list* bertipe kelas abstrak. Isinya objek-objek kelas konkret. Inilah polimorfisme dari Pertemuan 09.
+- **[6]** `kartu instanceof Bentuk` bernilai benar: objek kelas anak tetap "adalah" kelas induknya walaupun induknya abstrak.
 
 ### Mencoba membuat objek kelas abstrak
 
-Hapus `//` di awal baris **[4]**, lalu jalankan lagi:
+Kita buktikan bahwa objek `Bentuk` memang tidak bisa dibuat. Kerjakan di salinan, bukan di *file* materi:
+
+1. Salin `contoh/Contoh02KelasAbstrak.java` ke folder `PBO-latihan-saya/pertemuan-10` (nama *file*-nya jangan diubah), lalu buka salinannya di VS Code.
+2. Cari baris **[4]**, yaitu baris pertama di dalam `main`. Letakkan kursor di baris itu, lalu tekan Ctrl+/ (macOS: Cmd+/) untuk membuang tanda `//` di awalnya.
+3. Simpan (Ctrl+S). VS Code langsung memberi garis merah pada `new Bentuk()`. Jalankan salinannya dari terminal dengan `java Contoh02KelasAbstrak.java` agar pesan lengkapnya terlihat.
+
+Pesan *error*-nya:
 
 ```text
 Contoh02KelasAbstrak.java:22: error: Bentuk is abstract; cannot be instantiated
@@ -204,13 +281,15 @@ Contoh02KelasAbstrak.java:22: error: Bentuk is abstract; cannot be instantiated
 error: compilation failed
 ```
 
-**Artinya:** "`Bentuk` adalah kelas abstrak, jadi tidak bisa dibuat objeknya (*instantiated*)." Tanda `^` menunjuk ke `new Bentuk()`. Perhatikan bahwa **tidak ada satu baris output pun** yang tercetak, karena Java menolak program ini sebelum dijalankan. Bandingkan dengan Python, yang baru protes ketika baris itu dijalankan.
+**Artinya:** "`Bentuk` adalah kelas abstrak, jadi tidak bisa dibuat objeknya (*instantiated*)." Angka `22` adalah nomor baris, dan tanda `^` menunjuk ke `new Bentuk()`. Perhatikan bahwa **tidak ada satu baris *output* pun** yang tercetak karena Java menolak program ini sebelum dijalankan. Bandingkan dengan Python, yang baru protes ketika baris itu dijalankan.
+
+**Perbaikan:** jangan memakai `new` pada kelas abstrak. Buat objek dari kelas konkret, misalnya `new PersegiPanjang(8, 5)`. Setelah selesai mencoba, kembalikan baris **[4]** menjadi komentar (tekan Ctrl+/ lagi).
 
 > [!NOTE]
-> Baris terakhir `error: compilation failed` muncul karena kita memakai cara satu file (`java NamaFile.java`). Jika memakai `javac`, yang muncul hanya pesan error dan `1 error`.
+> Baris terakhir `error: compilation failed` muncul karena kita memakai cara satu *file* (`java NamaFile.java`). Jika memakai `javac`, yang muncul hanya pesan *error* dan `1 error`.
 
 > [!TIP]
-> **Coba sendiri:** kembalikan `//` pada baris **[4]**. Lalu hapus method `keliling()` beserta `@Override`-nya dari kelas `SegitigaSiku`. Apa kata *compiler*?
+> **Coba sendiri:** masih di salinan yang sama, pastikan baris **[4]** sudah menjadi komentar lagi. Lalu hapus seluruh *method* `keliling()` dari kelas `SegitigaSiku`, yaitu empat baris mulai dari `@Override` di atasnya sampai kurung kurawal penutupnya. Simpan, lalu jalankan lagi dengan `java Contoh02KelasAbstrak.java`. Apa kata *compiler*?
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -223,15 +302,15 @@ class SegitigaSiku extends Bentuk {
 error: compilation failed
 ```
 
-Artinya: "`SegitigaSiku` bukan kelas abstrak, tetapi belum meng-*override* method abstrak `keliling()` milik `Bentuk`." Bandingkan dengan contoh 01: dulu lupa menulis method tidak diprotes, sekarang program bahkan tidak bisa dikompilasi. (Nomor baris di pesanmu bisa berbeda.)
+Artinya: "`SegitigaSiku` bukan kelas abstrak, tetapi belum meng-*override* *method* abstrak `keliling()` milik `Bentuk`." Perbaikannya: tulis lagi *method* `keliling()` di `SegitigaSiku`. Bandingkan dengan contoh 01: dulu lupa menulis *method* tidak diprotes, sekarang program bahkan tidak bisa dikompilasi.
 
 </details>
 
-## 3. Konstruktor, Field, dan Method Konkret di Kelas Abstrak
+## 3. Konstruktor, *Field*, dan *Method* Konkret di Kelas Abstrak
 
-File: [`contoh/Contoh03IsiKelasAbstrak.java`](contoh/Contoh03IsiKelasAbstrak.java)
+*File*: [`contoh/Contoh03IsiKelasAbstrak.java`](contoh/Contoh03IsiKelasAbstrak.java)
 
-Kelas abstrak bukan kelas kosong. Ia boleh punya konstruktor, *field*, dan method yang sudah berisi.
+Kelas abstrak bukan kelas kosong. Ia boleh punya konstruktor, *field*, dan *method* yang sudah berisi. Berikut potongan *file*-nya, mulai dari kelas abstrak `Kendaraan`:
 
 ```java
 /** Kelas abstrak: data dan perilaku bersama semua kendaraan. */
@@ -292,7 +371,7 @@ Kelas `Mobil` punya *field* tambahan `jumlahKursi`. Konstruktornya:
 
 `Mobil` juga meng-*override* `info()` untuk menambahkan jumlah kursi. Program utamanya membuat `new Motor("KT 1234 AB", 3)` dan `new Mobil("KT 5678 CD", 20, 7)`, menampilkan info keduanya, mengisi bensin, lalu menampilkan info lagi.
 
-**Output:**
+***Output:***
 
 ```text
 === MEMBUAT KENDARAAN ===
@@ -312,21 +391,21 @@ Mobil KT 5678 CD: bensin 30 liter, bisa menempuh 360 km, 7 kursi
 
 Penjelasan:
 
-- **[1]** Kelas abstrak boleh punya konstruktor. Baris `println` di dalamnya membuktikan bahwa konstruktor ini **benar-benar berjalan** dua kali, yaitu saat objek `Motor` dan objek `Mobil` dibuat. Konstruktornya diberi akses `protected`, karena yang memanggilnya hanya kelas anak (lewat `super(...)`). Akses `public` pun tetap sah.
-- **[2]** *Field* `plat` dan `bensin` dimiliki semua kendaraan, jadi cukup ditulis sekali. Keduanya `private`, sehingga kelas anak memakainya lewat method warisan.
-- **[3]** `isiBensin()` adalah method konkret. `Motor` dan `Mobil` langsung memakainya tanpa menulis ulang.
-- **[4]** Method konkret boleh memanggil method abstrak. Saat `jarakTempuh()` dijalankan oleh objek `Motor`, `kmPerLiter()` yang terpanggil adalah versi milik `Motor` (40).
+- **[1]** Kelas abstrak boleh punya konstruktor. Baris `println` di dalamnya membuktikan bahwa konstruktor ini **benar-benar berjalan** dua kali, yaitu saat objek `Motor` dan objek `Mobil` dibuat. Konstruktornya diberi akses `protected` karena yang memanggilnya hanya kelas anak (lewat `super(...)`). Akses `public` pun tetap sah.
+- **[2]** *Field* `plat` dan `bensin` dimiliki semua kendaraan, jadi cukup ditulis sekali. Keduanya `private` sehingga kelas anak memakainya lewat *method* warisan.
+- **[3]** `isiBensin()` adalah *method* konkret. `Motor` dan `Mobil` langsung memakainya tanpa menulis ulang.
+- **[4]** *Method* konkret boleh memanggil *method* abstrak. Saat `jarakTempuh()` dijalankan oleh objek `Motor`, `kmPerLiter()` yang terpanggil adalah versi milik `Motor` (40).
 - **[5]** Hanya bagian yang benar-benar berbeda yang dijadikan abstrak.
-- **[6]** `super(plat, bensinLiter)` memanggil konstruktor kelas abstrak dan wajib ditulis di baris pertama konstruktor, sama seperti di Pertemuan 07.
+- **[6]** `super(plat, bensinLiter)` memanggil konstruktor kelas abstrak. Di Java 17 dan 21, pemanggilan ini wajib menjadi pernyataan pertama di konstruktor, sama seperti di Pertemuan 07 (Java 25 sedikit melonggarkan aturan itu, tetapi menulisnya di baris pertama tetap aman di semua versi).
 
 > [!IMPORTANT]
 > Perhatikan kelas `Motor`: walaupun tidak punya *field* tambahan, ia **tetap wajib** menulis konstruktor yang meneruskan data ke `super(...)`. Konstruktor tidak diwariskan di Java, dan `Kendaraan` tidak punya konstruktor tanpa parameter. Di Python, kelas `Motor` yang sama tidak perlu menulis `__init__` sama sekali.
 
-## 4. Template Method dan `final`
+## 4. *Template Method* dan `final`
 
-File: [`contoh/Contoh04TemplateMethod.java`](contoh/Contoh04TemplateMethod.java)
+*File*: [`contoh/Contoh04TemplateMethod.java`](contoh/Contoh04TemplateMethod.java)
 
-Sekarang kita pakai method konkret yang memanggil method abstrak untuk membuat **kerangka tetap**.
+Sekarang kita pakai *method* konkret yang memanggil *method* abstrak untuk membuat **kerangka tetap**. Potongan pertama *file*-nya:
 
 ```java
 /** Kelas abstrak untuk semua jenis laporan. */
@@ -376,7 +455,7 @@ Program utamanya menyimpan kedua laporan dalam `List<Laporan>`, lalu:
         }
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === MENCETAK 2 LAPORAN ===
@@ -404,20 +483,20 @@ Disahkan oleh Kepala Perpustakaan
 
 Penjelasan:
 
-- **[1]** `tampilkan()` adalah **template method**: method konkret yang menetapkan urutan langkah. Kata `final` di depannya berarti method ini **tidak boleh** di-*override* kelas anak. Kerangka laporan pun terjamin seragam.
-- **[2]** Dua langkah yang berbeda untuk setiap laporan diserahkan ke method abstrak `judul()` dan `isi()`. Tipe `List<String>` dipakai agar isi laporan bisa berapa baris pun.
+- **[1]** `tampilkan()` adalah ***template method***: *method* konkret yang menetapkan urutan langkah. Kata `final` di depannya berarti *method* ini **tidak boleh** di-*override* kelas anak. Kerangka laporan pun terjamin seragam.
+- **[2]** Dua langkah yang berbeda untuk setiap laporan diserahkan ke *method* abstrak `judul()` dan `isi()`. Tipe `List<String>` dipakai agar isi laporan bisa berapa baris pun.
 - **[3]** `penutup()` adalah *hook*: sudah punya isi bawaan, tetapi boleh diganti.
-- **[4]** `LaporanPerpustakaan` meng-*override* *hook* itu, sedangkan `LaporanKehadiran` memakai versi bawaan. Bandingkan baris penutup kedua laporan di output.
+- **[4]** `LaporanPerpustakaan` meng-*override* *hook* itu, sedangkan `LaporanKehadiran` memakai versi bawaan. Bandingkan baris penutup kedua laporan di *output*.
 - **[5]** Program utama cukup memanggil `tampilkan()`.
 
 > [!NOTE]
-> Method abstrak tidak boleh `final`, karena method abstrak justru **harus** di-*override*. Sebaliknya, template method sering dibuat `final` agar urutannya tidak diubah. Python tidak punya cara langsung untuk melarang *override*, jadi versi Python contoh ini hanya mengandalkan kesepakatan.
+> *Method* abstrak tidak boleh `final` karena *method* abstrak justru **harus** di-*override*. Sebaliknya, *template method* sering dibuat `final` agar urutannya tidak diubah. Python tidak punya cara langsung untuk melarang *override*, jadi versi Python contoh ini hanya mengandalkan kesepakatan.
 
 ## 5. `interface` dan `implements`
 
-File: [`contoh/Contoh05Interface.java`](contoh/Contoh05Interface.java)
+*File*: [`contoh/Contoh05Interface.java`](contoh/Contoh05Interface.java)
 
-Java punya kata kunci khusus untuk kontrak kemampuan: `interface`. Kelas yang memenuhinya menulis `implements`.
+Java punya kata kunci khusus untuk kontrak kemampuan: `interface`. Kelas yang memenuhinya menulis `implements`. Potongan pertama *file*-nya:
 
 ```java
 /** Kontrak: benda ini bisa dinyalakan dan dimatikan. */
@@ -433,7 +512,7 @@ interface BisaDinyalakan { // [1] interface: daftar kemampuan tanpa isi
 class Lampu implements BisaDinyalakan { // [2] memenuhi kontrak dengan implements
 ```
 
-`Lampu` lalu mengisi ketiga method itu satu per satu. Misalnya `nyalakan()`:
+`Lampu` lalu mengisi ketiga *method* itu satu per satu. Misalnya, `nyalakan()`:
 
 ```java
     @Override
@@ -443,7 +522,7 @@ class Lampu implements BisaDinyalakan { // [2] memenuhi kontrak dengan implement
     }
 ```
 
-`KomporGas` dan `Televisi` meng-*implements* interface yang sama dengan isi masing-masing. Ketiga kelas itu tidak punya kelas induk bersama selain kontrak `BisaDinyalakan`. Method yang memakai kontraknya:
+`KomporGas` dan `Televisi` mengimplementasikan *interface* yang sama dengan isi masing-masing. Ketiga kelas itu tidak punya kelas induk bersama selain kontrak `BisaDinyalakan`. *Method* yang memakai kontraknya:
 
 ```java
     /** Mematikan semua benda yang masih menyala, apa pun jenisnya. */
@@ -460,7 +539,7 @@ class Lampu implements BisaDinyalakan { // [2] memenuhi kontrak dengan implement
 
 Program utamanya menyalakan lampu, kompor, dan TV, mematikan TV, lalu memanggil `matikanSemua(List.of(lampu, kompor, tv))`.
 
-**Output:**
+***Output:***
 
 ```text
 === PAGI HARI ===
@@ -478,24 +557,57 @@ Semua sudah padam. Aman!
 
 Penjelasan:
 
-- **[1]** Interface berisi daftar method **tanpa isi**. Kita tidak perlu menulis `public abstract`, karena method di dalam interface otomatis `public` dan `abstract`.
-- **[2]** `implements BisaDinyalakan` adalah janji: "kelas `Lampu` menyediakan semua method di kontrak itu". Setiap method yang mengisinya wajib `public` (lihat [Kesalahan 4](#kesalahan-4-lupa-public-saat-mengisi-method-interface)) dan sebaiknya diberi `@Override`.
-- **[3]** Parameter bertipe interface: `List<BisaDinyalakan>` berarti "daftar apa saja yang bisa dinyalakan".
-- **[4]** Di dalam method, kita hanya memanggil method yang dijanjikan kontrak. TV yang sudah dimatikan dilewati.
+- **[1]** *Interface* berisi daftar *method* **tanpa isi**. Kita tidak perlu menulis `public abstract` karena *method* di dalam *interface* otomatis `public` dan `abstract`.
+- **[2]** `implements BisaDinyalakan` adalah janji: "kelas `Lampu` menyediakan semua *method* di kontrak itu". Setiap *method* yang mengisinya wajib `public` (lihat [Kesalahan 4](#kesalahan-4-lupa-public-saat-mengisi-method-interface)) dan sebaiknya diberi `@Override`.
+- **[3]** Parameter bertipe *interface*: `List<BisaDinyalakan>` berarti "daftar apa saja yang bisa dinyalakan".
+- **[4]** Di dalam *method*, kita hanya memanggil *method* yang dijanjikan kontrak. TV yang sudah dimatikan dilewati.
 
 > [!IMPORTANT]
-> Interface tidak bisa dibuat objeknya (`new BisaDinyalakan()` ditolak), tetapi **boleh** dipakai sebagai tipe variabel, parameter, dan isi list: `BisaDinyalakan benda = new Lampu("teras");`.
+> *Interface* tidak bisa dibuat objeknya (`new BisaDinyalakan()` ditolak), tetapi **boleh** dipakai sebagai tipe variabel, parameter, dan isi *list*: `BisaDinyalakan benda = new Lampu("teras");`.
 
 > [!TIP]
-> **Coba sendiri:** tambahkan kelas `KipasAngin implements BisaDinyalakan` yang hanya menulis `nyalakan()` dan `matikan()`. *Compiler* akan menolak dengan pesan `KipasAngin is not abstract and does not override abstract method sedangMenyala() in BisaDinyalakan`.
+> **Coba sendiri:** apa yang terjadi jika sebuah kelas berjanji `implements BisaDinyalakan`, tetapi lupa menulis satu *method*? Salin `contoh/Contoh05Interface.java` ke folder `pertemuan-10`-mu. Di salinan itu, tambahkan kelas di bawah ini di bagian paling bawah *file*, setelah kelas `Televisi`. Simpan, lalu jalankan dengan `java Contoh05Interface.java`.
 
-## 6. Satu Kelas, Banyak Interface
+Kelas yang ditambahkan ke salinanmu:
 
-File: [`contoh/Contoh06BanyakInterface.java`](contoh/Contoh06BanyakInterface.java)
+```java
+/** Kipas angin yang lupa menulis sedangMenyala(). */
+class KipasAngin implements BisaDinyalakan {
 
-Di Pertemuan 07 kamu belajar bahwa sebuah kelas Java hanya boleh `extends` **satu** kelas. Interface adalah jalan keluarnya: sebuah kelas boleh `implements` **banyak** interface sekaligus.
+    @Override
+    public void nyalakan() {
+        System.out.println("Kipas angin berputar");
+    }
 
-Kelas abstrak `Hewan` menyimpan `nama` dan punya method abstrak `bersuara()`. Dua interface kemampuannya, lalu kelas `Bebek`:
+    @Override
+    public void matikan() {
+        System.out.println("Kipas angin berhenti");
+    }
+}
+```
+
+<details>
+<summary>Lihat hasilnya</summary>
+
+```text
+Contoh05Interface.java:140: error: KipasAngin is not abstract and does not override abstract method sedangMenyala() in BisaDinyalakan
+class KipasAngin implements BisaDinyalakan {
+^
+1 error
+error: compilation failed
+```
+
+Nomor barisnya bisa sedikit berbeda, tergantung letak dan jumlah baris kosong di salinanmu. Artinya: `KipasAngin` baru mengisi dua dari tiga *method* kontrak. Perbaikannya: tambahkan `public boolean sedangMenyala()` di kelas `KipasAngin`. Perhatikan bedanya dengan Python: Java sudah menolak walaupun objek `KipasAngin` **belum pernah dibuat** di `main`. Python baru protes saat objeknya dibuat.
+
+</details>
+
+## 6. Satu Kelas, Banyak *Interface*
+
+*File*: [`contoh/Contoh06BanyakInterface.java`](contoh/Contoh06BanyakInterface.java)
+
+Di Pertemuan 07 kamu belajar bahwa sebuah kelas Java hanya boleh `extends` **satu** kelas. *Interface* adalah jalan keluarnya: sebuah kelas boleh `implements` **banyak** *interface* sekaligus.
+
+Kelas abstrak `Hewan` di *file* ini menyimpan `nama` dan punya *method* abstrak `bersuara()`. Berikut potongan *file*-nya: dua *interface* kemampuan, lalu baris pertama kelas `Bebek`.
 
 ```java
 /** Kontrak kemampuan terbang. */
@@ -512,7 +624,7 @@ interface BisaBerenang {
 class Bebek extends Hewan implements BisaTerbang, BisaBerenang { // [1] satu induk + dua interface
 ```
 
-Di dalam badannya, `Bebek` meng-*override* `bersuara()` dari `Hewan`, serta `terbang()` dan `berenang()` dari kedua interface.
+Di dalam badannya, `Bebek` meng-*override* `bersuara()` dari `Hewan`, serta `terbang()` dan `berenang()` dari kedua *interface*.
 
 Kelas `Ikan extends Hewan implements BisaBerenang` hanya bisa berenang. Lalu ada kelas yang sama sekali bukan hewan:
 
@@ -544,7 +656,7 @@ dan bagian pemeriksaan kemampuan:
         }
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === SEMUA HEWAN BERSUARA ===
@@ -568,16 +680,16 @@ Pesawat  | tidak | ya      | tidak
 
 Penjelasan:
 
-- **[1]** Urutannya selalu: `extends` (paling banyak satu kelas) lebih dulu, lalu `implements` (boleh banyak interface, dipisah koma).
-- **[2]** `Pesawat` tidak punya hubungan dengan `Hewan`. Ia hanya meng-*implements* `BisaTerbang`.
-- **[3]** `bebek` dan `pesawat` bisa berada di `List<BisaTerbang>` yang sama, karena keduanya `BisaTerbang`.
-- **[4]** `instanceof` juga bisa memeriksa interface. Pertanyaannya bukan lagi "kamu kelas apa?", tetapi "kamu **bisa** apa?". Daftarnya bertipe `List<Object>` karena isinya campuran yang tidak punya tipe bersama selain `Object`.
+- **[1]** Urutannya selalu: `extends` (paling banyak satu kelas) lebih dulu, lalu `implements` (boleh banyak *interface*, dipisah koma).
+- **[2]** `Pesawat` tidak punya hubungan dengan `Hewan`. Ia hanya mengimplementasikan `BisaTerbang`.
+- **[3]** `bebek` dan `pesawat` bisa berada di `List<BisaTerbang>` yang sama karena keduanya `BisaTerbang`.
+- **[4]** `instanceof` juga bisa memeriksa *interface*. Pertanyaannya bukan lagi "kamu kelas apa?", tetapi "kamu **bisa** apa?". Daftarnya bertipe `List<Object>` karena isinya campuran yang tidak punya tipe bersama selain `Object`.
 
-## 7. `default` Method dan Konstanta di Interface
+## 7. `default` *Method* dan Konstanta di *Interface*
 
-File: [`contoh/Contoh08DefaultMethod.java`](contoh/Contoh08DefaultMethod.java) (contoh ini khusus Java, lihat [Jembatan](../jembatan-python-java.md))
+*File*: [`contoh/Contoh08DefaultMethod.java`](contoh/Contoh08DefaultMethod.java) (contoh ini khusus Java, lihat [Jembatan](../jembatan-python-java.md))
 
-Sejak Java 8, interface boleh punya method **berisi** yang diberi kata kunci `default`. Interface juga boleh menyimpan konstanta.
+Sejak Java 8, *interface* boleh punya *method* **berisi** yang diberi kata kunci `default`. *Interface* juga boleh menyimpan konstanta. Potongan pertama *file*-nya:
 
 ```java
 /** Kontrak: sesuatu yang bisa diberi bintang oleh pengguna aplikasi. */
@@ -604,7 +716,7 @@ interface BisaDinilai {
 }
 ```
 
-Kelas `WarungMakan` hanya mengisi tiga method abstrak. Kelas `DriverOjek` juga mengisi ketiganya, lalu mengganti `ringkasan()` dengan versinya sendiri:
+Kelas `WarungMakan` hanya mengisi tiga *method* abstrak. Kelas `DriverOjek` (pengemudi ojek) juga mengisi ketiganya, lalu mengganti `ringkasan()` dengan versinya sendiri:
 
 ```java
     @Override
@@ -631,7 +743,7 @@ Di bagian akhir, konstantanya dibaca dengan:
         System.out.println("Bintang maksimal: " + BisaDinilai.BINTANG_MAKS); // [6]
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === RINGKASAN PENILAIAN ===
@@ -645,34 +757,36 @@ Bintang maksimal: 5
 
 Penjelasan:
 
-- **[1]** *Field* di dalam interface otomatis `public static final`, yaitu **konstanta** milik interface. Interface tidak bisa menyimpan data objek biasa.
-- **[2]** Method tanpa isi tetap otomatis `public abstract`.
-- **[3]** `default` method punya isi dan boleh memanggil method abstrak (`totalBintang()`, `jumlahUlasan()`). Ini mirip template method, tetapi berada di interface.
+- **[1]** *Field* di dalam *interface* otomatis `public static final`, yaitu **konstanta** milik *interface*. *Interface* tidak bisa menyimpan data objek biasa.
+- **[2]** *Method* tanpa isi tetap otomatis `public abstract`.
+- **[3]** `default` *method* punya isi dan boleh memanggil *method* abstrak (`totalBintang()`, `jumlahUlasan()`). Ini mirip *template method*, tetapi berada di *interface*.
 - **[4]** `WarungMakan` tidak menulis `rataRata()` maupun `ringkasan()`, tetapi tetap memilikinya. `DriverOjek` memilih meng-*override* `ringkasan()`.
-- **[5]** Setiap objek menjawab `ringkasan()` dengan versinya: dua warung memakai versi `default`, sang driver memakai versinya sendiri. Perhatikan juga penjaga `jumlahUlasan() == 0` untuk warung baru, agar tidak terjadi pembagian dengan nol.
-- **[6]** Konstanta dibaca lewat nama interface: `BisaDinilai.BINTANG_MAKS`.
+- **[5]** Setiap objek menjawab `ringkasan()` dengan versinya: dua warung memakai versi `default`, sedangkan sang pengemudi ojek memakai versinya sendiri. Perhatikan juga penjaga `jumlahUlasan() == 0` untuk warung baru agar tidak terjadi pembagian dengan nol.
+- **[6]** Konstanta dibaca lewat nama *interface*: `BisaDinilai.BINTANG_MAKS`.
 
-Mengapa Java menambahkan *default method*? Bayangkan sebuah interface sudah dipakai oleh ratusan kelas. Jika kita menambah satu method **abstrak** baru, ratusan kelas itu langsung gagal dikompilasi. Dengan method `default`, method baru bisa ditambahkan **tanpa** merusak kelas-kelas lama.
+Mengapa Java menambahkan *default method*? Bayangkan sebuah *interface* sudah dipakai oleh ratusan kelas. Jika kita menambah satu *method* **abstrak** baru, ratusan kelas itu langsung gagal dikompilasi. Dengan *method* `default`, *method* baru bisa ditambahkan **tanpa** merusak kelas-kelas lama.
 
 > [!NOTE]
-> Sejak Java 8, interface juga boleh punya method `static`, misalnya `static int hitung(...)`. Kita akan memakainya di Pertemuan 13. Padanan *default method* di Python adalah method biasa (berisi) di dalam kelas `ABC`.
+> Sejak Java 8, *interface* juga boleh punya *method* `static`, misalnya `static int hitung(...)`, yang dipanggil lewat nama *interface*-nya. Kita akan memakainya di Pertemuan 13. Sejak Java 9, *interface* bahkan boleh punya *method* `private` sebagai pembantu bagi *default method* di dalamnya. Padanan *default method* di Python adalah *method* biasa (berisi) di dalam kelas `ABC`.
 
 ## 8. Studi Kasus KedaiKita
 
-File: [`studi-kasus/Pembayaran.java`](studi-kasus/Pembayaran.java), [`studi-kasus/DapatDicetak.java`](studi-kasus/DapatDicetak.java), [`studi-kasus/Pesanan.java`](studi-kasus/Pesanan.java), [`studi-kasus/Kedai.java`](studi-kasus/Kedai.java), dan [`studi-kasus/Main.java`](studi-kasus/Main.java)
+*File*: [`studi-kasus/Pembayaran.java`](studi-kasus/Pembayaran.java), [`studi-kasus/DapatDicetak.java`](studi-kasus/DapatDicetak.java), [`studi-kasus/Pesanan.java`](studi-kasus/Pesanan.java), [`studi-kasus/Kedai.java`](studi-kasus/Kedai.java), dan [`studi-kasus/Main.java`](studi-kasus/Main.java)
 
 Rancangan dan diagramnya sudah dibahas di [halaman konsep](../README.md#11-studi-kasus-kedaikita-pembayaran-abstrak-dan-kontrak-dapatdicetak).
 
 **Apa yang berubah dibanding Pertemuan 09?**
 
-- `Pembayaran.java`: `public abstract class Pembayaran`. `namaMetode()` dan `proses()` menjadi method abstrak, sehingga isi lamanya (`"Pembayaran umum"` dan `"Memproses pembayaran ..."`) dihapus. Ada method konkret baru, `deskripsi(int total)`. `PembayaranTunai`, `PembayaranQRIS`, dan `PembayaranKartu` **tidak berubah**.
-- `DapatDicetak.java` (**file baru**): `public interface DapatDicetak` dengan satu method, `void cetak()`.
-- `Pesanan.java`: `public class Pesanan implements DapatDicetak`. Method `cetakStruk()` **berganti nama** menjadi `cetak()`. Isinya tidak berubah.
-- `Kedai.java`: `public class Kedai implements DapatDicetak`. Method `tampilkanMenu()` **berganti nama** menjadi `cetak()`. Isinya tidak berubah.
-- `Main.java`: ada method baru `cetakSemua()` dan bagian baru "MENGENAL METODE PEMBAYARAN". Struk kini dicetak di akhir lewat `cetakSemua()`, setelah pembayaran, sehingga statusnya sudah LUNAS.
+- `Pembayaran.java`: `public abstract class Pembayaran`. `namaMetode()` dan `proses()` menjadi *method* abstrak sehingga isi lamanya (`"Pembayaran umum"` dan `"Memproses pembayaran ..."`) dihapus. Ada *method* konkret baru, `deskripsi(int total)`. `PembayaranTunai`, `PembayaranQRIS`, dan `PembayaranKartu` **tidak berubah**.
+- `DapatDicetak.java` (***file* baru**): `public interface DapatDicetak` dengan satu *method*, `void cetak()`.
+- `Pesanan.java`: `public class Pesanan implements DapatDicetak`. *Method* `cetakStruk()` **berganti nama** menjadi `cetak()`. Isinya tidak berubah.
+- `Kedai.java`: `public class Kedai implements DapatDicetak`. *Method* `tampilkanMenu()` **berganti nama** menjadi `cetak()`. Isinya tidak berubah.
+- `Main.java`: ada *method* baru `cetakSemua()`. Bagian "SATU PANGGILAN, BANYAK BENTUK" diganti bagian baru "MENGENAL METODE PEMBAYARAN", dan bagian "MEMERIKSA JENIS PEMBAYARAN" tidak dipakai lagi. Daftar menu dan struk kini dicetak bersama di akhir lewat `cetakSemua()`, setelah pembayaran, sehingga status struknya sudah LUNAS.
 - `Menu`, `Makanan`, `Minuman`, `Pelanggan`, `ItemPesanan`, dan `Rupiah` **tidak berubah sama sekali**.
 
 ### Kelas abstrak `Pembayaran`
+
+Isi lengkap `Pembayaran.java`, tanpa komentar pembuka:
 
 ```java
 /** Kelas abstrak: kerangka untuk semua metode pembayaran. */
@@ -697,11 +811,13 @@ public abstract class Pembayaran {
 }
 ```
 
-- `namaMetode()` dan `proses()` kini **wajib** di-*override* setiap jenis pembayaran. Masalah "lupa menulis `proses()` lalu pesanan tercatat LUNAS" tidak mungkin terjadi lagi, karena kelas seperti itu tidak bisa dikompilasi.
+- `namaMetode()` dan `proses()` kini **wajib** di-*override* setiap jenis pembayaran. Masalah "lupa menulis `proses()` lalu pesanan tercatat LUNAS" tidak mungkin terjadi lagi karena kelas seperti itu tidak bisa dikompilasi.
 - `hitungBiayaLayanan()` adalah *hook*: bawaannya 0, dan hanya `PembayaranKartu` yang meng-*override*-nya (2%).
-- `deskripsi()` adalah template method kecil. Ia ditulis sekali, tetapi hasilnya berbeda untuk setiap jenis pembayaran.
+- `deskripsi()` adalah *template method* kecil. Ia ditulis sekali, tetapi hasilnya berbeda untuk setiap jenis pembayaran.
 
-### Interface `DapatDicetak`
+### *Interface* `DapatDicetak`
+
+Isi lengkap `DapatDicetak.java`, tanpa komentar pembuka:
 
 ```java
 /** Kontrak: objek ini bisa dicetak ke layar. */
@@ -714,7 +830,7 @@ public interface DapatDicetak {
 
 ### `Kedai` dan `Pesanan` memenuhi kontrak
 
-Perubahan di dua kelas ini sangat kecil:
+Perubahan di dua kelas ini sangat kecil. Ringkasannya (bukan kode lengkap):
 
 ```text
 Pertemuan 09                               Pertemuan 10
@@ -727,7 +843,7 @@ public class Kedai {                  ->   public class Kedai implements DapatDi
                                                public void cetak() {
 ```
 
-**Mengapa namanya harus diganti?** Interface `DapatDicetak` menuntut method bernama persis `cetak()`. Seandainya `Pesanan` sudah menulis `implements DapatDicetak` tetapi method-nya masih bernama `cetakStruk()`, *compiler* menolak:
+**Mengapa namanya harus diganti?** *Interface* `DapatDicetak` menuntut *method* bernama persis `cetak()`. Seandainya `Pesanan` sudah menulis `implements DapatDicetak` tetapi *method*-nya masih bernama `cetakStruk()`, *compiler* menolak saat `javac *.java`:
 
 ```text
 Pesanan.java:20: error: Pesanan is not abstract and does not override abstract method cetak() in DapatDicetak
@@ -739,6 +855,8 @@ public class Pesanan implements DapatDicetak {
 Nama yang seragam inilah kuncinya. Karena kedai dan pesanan sama-sama punya `cetak()`, keduanya bisa dicetak oleh satu perulangan.
 
 ### `Main.java`: mencetak apa saja yang `DapatDicetak`
+
+Potongan dari `Main.java`, dimulai dari *method* barunya:
 
 ```java
     /** Mencetak objek apa pun, asalkan ia memenuhi kontrak DapatDicetak. */
@@ -772,7 +890,7 @@ Bagian transaksi Budi dan Siti sama seperti Pertemuan 09, hanya saja pemanggilan
         cetakSemua(List.of(kedai, pesananBudi, pesananSiti));
 ```
 
-Cara menjalankan (kompilasi semua file, lalu jalankan kelas `Main`):
+Cara menjalankannya sudah dibahas di [Persiapan](#cara-menjalankan-studi-kasus): di VS Code, buka `studi-kasus/Main.java` lalu klik **Run**, atau lewat terminal. Dari folder utama materi:
 
 ```bash
 cd Pertemuan-10-Abstract-Class-dan-Interface/java/studi-kasus
@@ -780,7 +898,7 @@ javac *.java
 java Main
 ```
 
-**Output:**
+***Output:***
 
 ```text
 === MENGENAL METODE PEMBAYARAN ===
@@ -852,12 +970,24 @@ Siti Aminah (082198765432) - 3 poin
 
 Hal-hal yang perlu diperhatikan:
 
-- Bagian "MENGENAL METODE PEMBAYARAN" dihasilkan oleh **satu** method `deskripsi()` milik kelas abstrak. Teksnya berbeda karena `namaMetode()` dan `hitungBiayaLayanan()` dijawab oleh kelas anak masing-masing.
-- `List<Pembayaran> daftarMetode` adalah list bertipe kelas abstrak, dan `List<DapatDicetak>` di `cetakSemua()` adalah list bertipe interface. Keduanya sah, walaupun `Pembayaran` maupun `DapatDicetak` tidak bisa dibuat objeknya.
-- `List.of(kedai, pesananBudi, pesananSiti)` berisi satu objek `Kedai` dan dua objek `Pesanan`. Java menerimanya sebagai `List<DapatDicetak>` karena ketiganya meng-*implements* `DapatDicetak`.
+- Bagian "MENGENAL METODE PEMBAYARAN" dihasilkan oleh **satu** *method* `deskripsi()` milik kelas abstrak. Teksnya berbeda karena `namaMetode()` dan `hitungBiayaLayanan()` dijawab oleh kelas anak masing-masing.
+- `List<Pembayaran> daftarMetode` adalah *list* bertipe kelas abstrak, dan `List<DapatDicetak>` di `cetakSemua()` adalah *list* bertipe *interface*. Keduanya sah walaupun `Pembayaran` maupun `DapatDicetak` tidak bisa dibuat objeknya.
+- `List.of(kedai, pesananBudi, pesananSiti)` berisi satu objek `Kedai` dan dua objek `Pesanan`. Java menerimanya sebagai `List<DapatDicetak>` karena ketiganya mengimplementasikan `DapatDicetak`.
 
 > [!TIP]
-> **Coba sendiri:** di folder `studi-kasus`, buat file `PembayaranEWallet.java` berisi `public class PembayaranEWallet extends Pembayaran` yang **hanya** meng-*override* `namaMetode()`. Lalu jalankan `javac *.java`. Apa yang terjadi? Bandingkan dengan Pertemuan 09.
+> **Coba sendiri:** buktikan bahwa lupa menulis `proses()` kini langsung ketahuan. Salin **seluruh folder** `studi-kasus` ke folder `pertemuan-10`-mu sehingga terbentuk `PBO-latihan-saya/pertemuan-10/studi-kasus`. Di dalam salinan itu, buat *file* baru bernama `PembayaranEWallet.java` berisi kode di bawah. Lalu, dari terminal yang berada di folder salinan `studi-kasus`, jalankan `javac *.java`. Apa yang terjadi? Bandingkan dengan Pertemuan 09.
+
+Isi `PembayaranEWallet.java` (kelas baru buatanmu sendiri):
+
+```java
+public class PembayaranEWallet extends Pembayaran {
+
+    @Override
+    public String namaMetode() {
+        return "E-Wallet";
+    }
+}
+```
 
 <details>
 <summary>Lihat jawaban</summary>
@@ -869,120 +999,141 @@ public class PembayaranEWallet extends Pembayaran {
 1 error
 ```
 
-Di Pertemuan 09, kelas yang sama akan diterima begitu saja dan memakai `proses()` milik induk yang selalu berhasil. Kini kesalahan itu tertangkap saat kompilasi, sebelum program sempat berjalan. Hapus file itu lagi setelah mencoba.
+Di Pertemuan 09, kelas yang sama akan diterima begitu saja dan memakai `proses()` milik induk yang selalu berhasil. Kini kesalahan itu tertangkap saat kompilasi, sebelum program sempat berjalan. Untuk memperbaikinya, tambahkan *method* `public boolean proses(int total)` di `PembayaranEWallet`. Jika kamu memakai VS Code, *file* itu langsung diberi garis merah, dan menekan **Run** pada `Main.java` memunculkan pertanyaan **Build failed, do you want to continue?**. Pilih batal, lalu baca pesannya di panel **PROBLEMS**.
 
 </details>
 
-## 9. Kesalahan Umum dan Cara Membaca Pesan Error
+## 9. Kesalahan Umum dan Cara Membaca Pesan *Error*
 
-Semua kesalahan berikut adalah **error kompilasi**: Java menolaknya sebelum program berjalan. Pesannya diawali nama file dan nomor baris, dan tanda `^` menunjuk posisi kesalahan. Kesalahan paling umum, yaitu kelas anak yang belum mengisi semua method abstrak (*is not abstract and does not override abstract method ...*), sudah kita temui di bagian 2 dan bagian 8. Perbaikannya: tulis method yang disebut dalam pesan, atau tandai kelas itu `abstract` jika memang sengaja dibiarkan setengah jadi.
+Semua kesalahan berikut adalah ***error* kompilasi**: Java menolaknya sebelum program berjalan. Pesannya diawali nama *file* dan nomor baris, dan tanda `^` menunjuk posisi kesalahan. Kesalahan paling umum, yaitu kelas anak yang belum mengisi semua *method* abstrak (*is not abstract and does not override abstract method ...*), sudah kita temui di bagian 2, 5, dan 8. Perbaikannya: tulis *method* yang disebut dalam pesan, atau tandai kelas itu `abstract` jika memang sengaja dibiarkan setengah jadi.
 
-### Kesalahan 1: Memakai `new` pada kelas abstrak atau interface
+Jika ingin meniru kesalahan-kesalahan berikut, kerjakan di salinan di folder `pertemuan-10`-mu, bukan di *file* materi. Pesan di bawah adalah yang muncul di terminal.
+
+> [!NOTE]
+> Di VS Code, kesalahan yang sama langsung ditandai garis merah bergelombang, dan penjelasannya bisa dibaca di panel **PROBLEMS**. Kalimatnya bisa berbeda dari pesan terminal karena VS Code memakai pemeriksa kodenya sendiri, misalnya *The type PembayaranEWallet must implement the inherited abstract method Pembayaran.proses(int)*. Maknanya tetap sama.
+
+### Kesalahan 1: Memakai `new` pada kelas abstrak atau *interface*
+
+Misalnya, di salinan `Main.java` milik studi kasus, baris kedua berikut ditambahkan di awal `main`:
 
 ```java
+        Kedai kedai = siapkanKedai();
         DapatDicetak dokumen = new DapatDicetak();
 ```
 
+Pesan *error* saat `javac *.java`:
+
 ```text
-E9.java:3: error: DapatDicetak is abstract; cannot be instantiated
+Main.java:44: error: DapatDicetak is abstract; cannot be instantiated
         DapatDicetak dokumen = new DapatDicetak();
                                ^
 1 error
 ```
 
-**Artinya:** interface dan kelas abstrak tidak bisa dibuat objeknya. **Perbaikan:** buat objek dari kelas konkret yang meng-*implements* atau meng-*extends*-nya, misalnya `DapatDicetak dokumen = new Kedai("KedaiKita");`.
+**Artinya:** *interface* dan kelas abstrak tidak bisa dibuat objeknya. Untuk *interface* pun, Java memakai kata *is abstract*. **Perbaikan:** buat objek dari kelas konkret yang mengimplementasikan atau mewarisinya, misalnya `DapatDicetak dokumen = new Kedai("KedaiKita");`.
 
-### Kesalahan 2: Memberi isi pada method abstrak
+### Kesalahan 2: Memberi isi pada *method* abstrak
+
+Misalnya, di salinan `Contoh02KelasAbstrak.java`, *method* `luas()` milik `Bentuk` diberi badan seperti ini:
 
 ```java
-abstract class Bentuk {
-    public abstract int luas() {
+    public abstract int luas() { // [2] method abstrak: tanpa isi, diakhiri titik koma
         return 0;
     }
-}
 ```
 
+Pesan *error*-nya:
+
 ```text
-E3.java:2: error: abstract methods cannot have a body
-    public abstract int luas() {
+Contoh02KelasAbstrak.java:47: error: abstract methods cannot have a body
+    public abstract int luas() { // [2] method abstrak: tanpa isi, diakhiri titik koma
                         ^
 1 error
+error: compilation failed
 ```
 
-**Artinya:** method `abstract` tidak boleh punya badan `{ ... }`. **Perbaikan:** pilih salah satu. Jika ingin abstrak, tulis `public abstract int luas();` (diakhiri titik koma). Jika ingin punya isi bawaan, hapus kata `abstract`.
+**Artinya:** *method* `abstract` tidak boleh punya badan `{ ... }`. **Perbaikan:** pilih salah satu. Jika ingin abstrak, tulis `public abstract int luas();` (diakhiri titik koma). Jika ingin punya isi bawaan, hapus kata `abstract`.
 
-### Kesalahan 3: Method abstrak di kelas yang tidak `abstract`
+### Kesalahan 3: *Method* abstrak di kelas yang tidak `abstract`
+
+Misalnya, di salinan `Contoh02KelasAbstrak.java`, kata `abstract` di depan `class Bentuk` terhapus:
 
 ```java
-class Bentuk {
-    public abstract int luas();
-}
+class Bentuk { // [1] kata kunci abstract -> kelas abstrak
 ```
 
+Pesan *error*-nya:
+
 ```text
-E4.java:1: error: Bentuk is not abstract and does not override abstract method luas() in Bentuk
-class Bentuk {
+Contoh02KelasAbstrak.java:44: error: Bentuk is not abstract and does not override abstract method keliling() in Bentuk
+class Bentuk { // [1] kata kunci abstract -> kelas abstrak
 ^
 1 error
+error: compilation failed
 ```
 
-**Artinya:** kelas yang punya method abstrak wajib ditandai `abstract`. Pesannya terdengar aneh (`Bentuk` "tidak meng-*override*" method miliknya sendiri), tetapi maksudnya: kelas konkret tidak boleh menyimpan method tanpa isi. **Perbaikan:** `abstract class Bentuk`.
+**Artinya:** kelas yang punya *method* abstrak wajib ditandai `abstract`. Pesannya terdengar aneh (`Bentuk` "tidak meng-*override*" *method* miliknya sendiri), tetapi maksudnya: kelas konkret tidak boleh menyimpan *method* tanpa isi. Pesan ini hanya menyebut satu *method* (`keliling()`), padahal `luas()` juga abstrak. **Perbaikan:** kembalikan kata `abstract` sehingga barisnya menjadi `abstract class Bentuk {`.
 
-### Kesalahan 4: Lupa `public` saat mengisi method interface
+### Kesalahan 4: Lupa `public` saat mengisi *method interface*
+
+Misalnya, di salinan `Kedai.java` milik studi kasus, kata `public` di depan `void cetak()` terhapus:
 
 ```java
-class Kedai implements DapatDicetak {
     @Override
     void cetak() {
-        System.out.println("=== MENU ===");
-    }
-}
 ```
 
+Pesan *error* saat `javac *.java`:
+
 ```text
-E5.java:7: error: cetak() in Kedai cannot implement cetak() in DapatDicetak
+Kedai.java:62: error: cetak() in Kedai cannot implement cetak() in DapatDicetak
     void cetak() {
          ^
   attempting to assign weaker access privileges; was public
 1 error
 ```
 
-**Artinya:** method di interface otomatis `public`. Tanpa kata `public`, method `cetak()` di `Kedai` hanya punya akses *package*, yang lebih sempit (*weaker access privileges*). Aturan "tidak boleh memperkecil akses saat *override*" dari Pertemuan 07 berlaku juga di sini. **Perbaikan:** `public void cetak()`.
+**Artinya:** *method* di *interface* otomatis `public`. Tanpa kata `public`, *method* `cetak()` di `Kedai` hanya punya akses *package*, yang lebih sempit (*weaker access privileges*). Aturan "tidak boleh memperkecil akses saat *override*" dari Pertemuan 07 berlaku juga di sini. **Perbaikan:** `public void cetak()`.
 
 ### Kesalahan 5: Tertukar `extends` dan `implements`
 
+Misalnya, di salinan `Contoh06BanyakInterface.java`, kelas `Pesawat` ditulis dengan `extends`:
+
 ```java
-class Bebek extends BisaTerbang {   // BisaTerbang adalah interface
+class Pesawat extends BisaTerbang { // [2] bukan Hewan, tetapi BisaTerbang
 ```
+
+Tiga baris pertama pesan *error*-nya:
 
 ```text
-E6.java:5: error: no interface expected here
-class Bebek extends BisaTerbang {
-                    ^
-1 error
+Contoh06BanyakInterface.java:131: error: no interface expected here
+class Pesawat extends BisaTerbang { // [2] bukan Hewan, tetapi BisaTerbang
+                      ^
 ```
 
-Kebalikannya, `class Bebek implements Hewan` (padahal `Hewan` adalah kelas abstrak), ditolak dengan pesan `error: interface expected here`.
+Di bawahnya masih ada dua *error* lain, dan pesannya diakhiri `3 errors`. Dua *error* tambahan itu hanyalah akibat dari *error* pertama, dan ikut hilang setelah *error* pertama diperbaiki. Jadi, biasakan memperbaiki *error* paling atas lebih dulu.
 
-**Artinya:** `extends` untuk kelas, `implements` untuk interface. **Perbaikan:** `class Bebek extends Hewan implements BisaTerbang`.
+Kebalikannya, `class Ikan implements Hewan, BisaBerenang` (padahal `Hewan` adalah kelas abstrak) ditolak dengan pesan `error: interface expected here`.
+
+**Artinya:** `extends` untuk kelas, `implements` untuk *interface*. **Perbaikan:** `class Pesawat implements BisaTerbang`, atau untuk kelas yang punya keduanya, `class Ikan extends Hewan implements BisaBerenang`.
 
 > [!NOTE]
-> Bunyi pesan error bisa sedikit berbeda antarversi JDK. Fokuslah pada kata-kata kuncinya, misalnya *is abstract; cannot be instantiated* atau *does not override abstract method*.
+> Bunyi pesan *error* bisa sedikit berbeda antarversi JDK. Fokuslah pada kata-kata kuncinya, misalnya *is abstract; cannot be instantiated* atau *does not override abstract method*.
 
 ## 📝 Ringkasan Sintaks
 
 | Konsep | Sintaks Java | Contoh |
 |---|---|---|
 | Kelas abstrak | `abstract class Nama { ... }` | `public abstract class Pembayaran` |
-| Method abstrak | `public abstract Tipe nama(...);` | `public abstract boolean proses(int total);` |
-| Kelas anak konkret | `extends` + `@Override` semua method abstrak | `class PersegiPanjang extends Bentuk` |
+| *Method* abstrak | `public abstract Tipe nama(...);` | `public abstract boolean proses(int total);` |
+| Kelas anak konkret | `extends` + `@Override` semua *method* abstrak | `class PersegiPanjang extends Bentuk` |
 | Konstruktor kelas abstrak | `protected Nama(...) { ... }` | `protected Kendaraan(String plat, int bensinLiter)` |
-| Template method tak bisa diubah | `public final void nama()` | `public final void tampilkan()` |
-| Interface | `interface Nama { Tipe method(); }` | `public interface DapatDicetak { void cetak(); }` |
-| Memenuhi interface | `class X implements A, B` | `class Kedai implements DapatDicetak` |
-| Satu induk + banyak interface | `class X extends Induk implements A, B` | `class Bebek extends Hewan implements BisaTerbang, BisaBerenang` |
+| *Template method* tak bisa diubah | `public final void nama()` | `public final void tampilkan()` |
+| *Interface* | `interface Nama { Tipe method(); }` | `public interface DapatDicetak { void cetak(); }` |
+| Memenuhi *interface* | `class X implements A, B` | `class Kedai implements DapatDicetak` |
+| Satu induk + banyak *interface* | `class X extends Induk implements A, B` | `class Bebek extends Hewan implements BisaTerbang, BisaBerenang` |
 | *Default method* | `default Tipe nama() { ... }` | `default int rataRata() { ... }` |
-| Konstanta interface | `Tipe NAMA = nilai;` | `int BINTANG_MAKS = 5;` |
+| Konstanta *interface* | `Tipe NAMA = nilai;` | `int BINTANG_MAKS = 5;` |
 | Memeriksa kemampuan | `objek instanceof Interface` | `benda instanceof BisaTerbang` |
 
 ## ➡️ Langkah Berikutnya

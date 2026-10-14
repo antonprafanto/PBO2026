@@ -9,7 +9,7 @@
  * - ItemPesanan --> Menu    : ASOSIASI (item menunjuk ke menu yang dipesan)
  *
  * Yang baru di Pertemuan 10:
- * - Pesanan kini meng-implements interface DapatDicetak, jadi WAJIB punya cetak().
+ * - Pesanan kini mengimplementasikan interface DapatDicetak, jadi WAJIB punya cetak().
  * - Method cetakStruk() diganti nama menjadi cetak() agar sesuai kontrak.
  */
 

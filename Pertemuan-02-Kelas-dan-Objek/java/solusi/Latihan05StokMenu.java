@@ -13,7 +13,7 @@
  * protes "The type Menu is already defined" jika ada dua kelas bernama sama.
  * Di proyekmu sendiri, cukup ubah kelas Menu secara langsung.
  *
- * Cara menjalankan (Java 11 ke atas):
+ * Cara menjalankan dari folder java/solusi (Java 11 ke atas):
  *     java Latihan05StokMenu.java
  */
 public class Latihan05StokMenu {
