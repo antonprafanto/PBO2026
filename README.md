@@ -277,6 +277,7 @@ Pertemuan materi (01—07 dan 09—15) memakai susunan berikut:
 ```text
 Pertemuan-NN-Judul/
 ├── README.md                  <- 1. Konsep (tidak terikat bahasa)
+├── gambar/                    <- ilustrasi untuk halaman konsep (hanya di sebagian pertemuan)
 ├── python/
 │   ├── README.md              <- 2. Praktik Python
 │   ├── contoh/                <- contoh01_....py, contoh02_....py, dan seterusnya
@@ -297,6 +298,7 @@ Pertemuan-NN-Judul/
 | `contoh/` | Program kecil yang masing-masing mengajarkan satu ide. Contoh bernomor sama di Python dan Java membahas ide yang sama. |
 | `studi-kasus/` | Aplikasi KedaiKita versi pertemuan itu. *Output* versi Python dan Java selalu identik. |
 | `solusi/` | Satu *file* solusi untuk setiap latihan, di kedua bahasa. Coba kerjakan sendiri dulu, ya. |
+| `gambar/` | Gambar penjelas yang ditampilkan di halaman konsep. Kamu tidak perlu membuka folder ini secara langsung. |
 
 Beberapa pertemuan punya susunan khusus:
 
@@ -347,7 +349,7 @@ Setiap halaman praktik selalu menuliskan perintah lengkapnya. Tabel ini hanya ga
 | [Lampiran](Lampiran/README.md) | pintu masuk ke semua lampiran |
 | [Glosarium](Lampiran/glosarium.md) | daftar istilah PBO dari A sampai Z beserta pertemuan yang membahasnya |
 | [*Cheat Sheet* Python ↔ Java](Lampiran/cheatsheet-python-java.md) | sintaks penting kedua bahasa berdampingan, dari Pertemuan 01 sampai 15 |
-| [Referensi](Lampiran/referensi.md) | buku, dokumentasi resmi, dan situs belajar lanjutan |
+| [Referensi](Lampiran/referensi.md) | buku, dokumentasi resmi, situs belajar lanjutan, dan sumber gambar |
 | [FAQ](Lampiran/faq.md) | jawaban atas pertanyaan yang sering diajukan mahasiswa |
 
 ## 12. Menemukan Kesalahan?

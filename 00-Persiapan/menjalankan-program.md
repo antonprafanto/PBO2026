@@ -25,6 +25,10 @@ Di terminal, kamu selalu "berdiri" di sebuah folder yang disebut **folder aktif*
 
 Aplikasi terminal yang dipakai di materi ini: **PowerShell** atau **Command Prompt** di Windows, aplikasi **Terminal** di macOS dan Linux, atau **terminal di dalam VS Code**. Semua perintah di halaman praktik bisa diketik di salah satunya, **bukan** di dalam *file* kode.
 
+Pemula sering tertukar antara tiga tempat mengetik berikut. Kenali bedanya sejak awal:
+
+![Ilustrasi tiga tempat mengetik. Satu, editor VS Code: untuk menulis program yang disimpan sebagai file, misalnya halo.py. Dua, terminal dengan tanda PS C:\pbo>: untuk memberi perintah seperti cd, python halo.py, dan java Halo.java. Tiga, mode interaktif dengan tanda >>> (Python) atau jshell> (Java): untuk mencoba satu baris kode. Catatan di bawahnya: perintah terminal tidak bisa diketik setelah tanda >>> atau jshell>; keluar dulu dari mode interaktif.](gambar/tiga-tempat-mengetik.svg)
+
 ## 2. Membuka Terminal
 
 | Sistem | Cara membuka terminal |
@@ -36,7 +40,7 @@ Aplikasi terminal yang dipakai di materi ini: **PowerShell** atau **Command Prom
 
 Terminal yang dibuka dengan cara di atas dimulai di folder tertentu (lihat [bagian 4.2](#42-di-mana-terminal-mulai-berada)). Agar tidak perlu berpindah folder jauh-jauh, kamu bisa langsung membuka terminal **di folder yang dituju**:
 
-- **VS Code:** di panel **Explorer**, klik kanan folder tujuan, lalu pilih **Open in Integrated Terminal**.
+- **VS Code:** di panel **Explorer**, klik kanan folder tujuan, lalu pilih **Open in Integrated Terminal**. Gambarnya ada di [Editor VS Code bagian 5](editor-vscode.md#5-terminal-terintegrasi).
 - **Windows 11:** buka folder itu di File Explorer, klik kanan di area kosong, lalu pilih **Open in Terminal**.
 - **Windows 10:** buka folder itu di File Explorer, tahan Shift sambil klik kanan di area kosong, lalu pilih **Open PowerShell window here**. Cara lain (juga berlaku di Windows 11): klik bilah alamat File Explorer, ketik `powershell`, lalu tekan Enter.
 - **macOS:** di Terminal, ketik `cd` diikuti satu spasi, **seret folder** dari Finder ke jendela Terminal, lalu tekan Enter. Alamat lengkap folder itu terisi otomatis.

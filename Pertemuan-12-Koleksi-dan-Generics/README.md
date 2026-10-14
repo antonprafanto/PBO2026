@@ -340,6 +340,8 @@ flowchart TD
 
 Sekarang bayangkan dua objek Budi yang **dianggap sama**, tetapi kode *hash*-nya **berbeda**. Keduanya diantar ke rak yang berbeda. Pemeriksaan kesamaan tidak pernah terjadi sehingga set berisi dua Budi. Data ganda lolos!
 
+![Ilustrasi set sebagai deretan rak bernomor 0 sampai 5. Kiri, versi benar: kesamaan dan kode hash sama-sama dihitung dari NIK, jadi Budi Santoso dan Budi Santosa dengan NIK 6472010000000001 masuk ke rak 3, dibandingkan di sana, dan dianggap sama; hasilnya set berisi 1 Budi. Kanan, versi salah di Java karena hanya equals() yang ditulis: kode hash bawaannya berbeda, jadi keduanya masuk ke rak 1 dan rak 4, tidak pernah dibandingkan; hasilnya set berisi 2 Budi atau data ganda. Aturan wajib: objek yang dianggap sama harus punya kode hash yang sama.](gambar/rak-hash.svg)
+
 > [!IMPORTANT]
 > **Aturan wajib:** dua objek yang dianggap sama **harus** punya kode *hash* yang sama. Karena itu, `__eq__` selalu ditulis bersama `__hash__`, dan `equals()` selalu di-*override* bersama `hashCode()`. Keduanya dihitung dari data yang sama, misalnya NIK atau kode menu. Sebaliknya, dua objek berbeda **boleh** kebetulan punya kode *hash* sama karena isi satu rak tetap diperiksa satu per satu.
 

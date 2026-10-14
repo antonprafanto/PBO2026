@@ -2,7 +2,7 @@
 
 [🏠 Beranda](../README.md) · [Lampiran](README.md) · [Glosarium](glosarium.md) · [*Cheat Sheet* Python ↔ Java](cheatsheet-python-java.md) · **Referensi** · [FAQ](faq.md)
 
-> Daftar bacaan dan sumber belajar untuk memperdalam materi. Kamu **tidak** perlu membaca semuanya. Pilih satu atau dua sumber yang sesuai dengan jalurmu dan topik yang sedang kamu pelajari.
+> Daftar bacaan dan sumber belajar untuk memperdalam materi. Kamu **tidak** perlu membaca semuanya. Pilih satu atau dua sumber yang sesuai dengan jalurmu dan topik yang sedang kamu pelajari. Di bagian akhir ada daftar sumber semua gambar yang dipakai di materi ini.
 
 ## Daftar Isi
 
@@ -13,6 +13,7 @@
 5. [Situs Belajar Daring](#5-situs-belajar-daring)
 6. [Alat Bantu Diagram dan Visualisasi](#6-alat-bantu-diagram-dan-visualisasi)
 7. [Gaya Penulisan Kode dan Pengujian](#7-gaya-penulisan-kode-dan-pengujian)
+8. [Sumber Gambar](#8-sumber-gambar)
 
 ---
 
@@ -125,6 +126,44 @@ Cek ketersediaan buku-buku ini di perpustakaan atau toko buku. Untuk buku yang p
 | [*Google Java Style Guide*](https://google.github.io/styleguide/javaguide.html) | panduan gaya penulisan kode Java yang banyak dirujuk | semua |
 | [pytest](https://docs.pytest.org/) | kerangka pengujian Python yang populer di industri (lanjutan dari `unittest`) | P15 |
 | [JUnit](https://junit.org/) | kerangka pengujian standar di dunia Java; versi terbarunya, JUnit 6, membutuhkan Java 17 ke atas | P15 |
+
+## 8. Sumber Gambar
+
+### Tangkapan layar dari dokumentasi resmi
+
+Tangkapan layar berikut diambil dari dokumentasi resmi yang boleh dipakai ulang asalkan sumber dan lisensinya dicantumkan. Keterangan sumber juga tertulis tepat di bawah setiap gambar.
+
+| Gambar | Dipakai di | Sumber | Hak cipta dan lisensi | Perubahan |
+|---|---|---|---|---|
+| Tampilan utama VS Code | [Editor VS Code](../00-Persiapan/editor-vscode.md#mengenal-tampilan-vs-code) | [*User interface*](https://code.visualstudio.com/docs/editing/getting-started/userinterface) | © Microsoft Corporation, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/) | tidak ada |
+| Hasil pencarian ekstensi Python | [Editor VS Code](../00-Persiapan/editor-vscode.md#2-memasang-ekstensi) | [*Extension Marketplace*](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace) | © Microsoft Corporation, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/) | dipotong dan diperkecil |
+| Kotak dialog *Workspace Trust* | [Editor VS Code](../00-Persiapan/editor-vscode.md#kotak-dialog-do-you-trust-the-authors) | [*Workspace Trust*](https://code.visualstudio.com/docs/editing/workspaces/workspace-trust) | © Microsoft Corporation, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/) | tidak ada |
+| Tombol **Run Python File** | [Editor VS Code](../00-Persiapan/editor-vscode.md#4-menjalankan-program-dari-vs-code), [Praktik Python P01](../Pertemuan-01-Pengenalan-PBO/python/README.md#cara-menjalankan-contoh) | [*Getting Started with Python in VS Code*](https://code.visualstudio.com/docs/python/python-tutorial) | © Microsoft Corporation, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/) | tidak ada |
+| *Output* program di panel **TERMINAL** | [Editor VS Code](../00-Persiapan/editor-vscode.md#4-menjalankan-program-dari-vs-code) | [*Getting Started with Python in VS Code*](https://code.visualstudio.com/docs/python/python-tutorial) | © Microsoft Corporation, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/) | tidak ada |
+| Tulisan **Run \| Debug** di atas `main` | [Editor VS Code](../00-Persiapan/editor-vscode.md#4-menjalankan-program-dari-vs-code), [Praktik Java P01](../Pertemuan-01-Pengenalan-PBO/java/README.md#cara-menjalankan-contoh) | [*Running and debugging Java*](https://code.visualstudio.com/docs/java/java-debugging) | © Microsoft Corporation, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/) | tidak ada |
+| Menu **Open in Integrated Terminal** | [Editor VS Code](../00-Persiapan/editor-vscode.md#5-terminal-terintegrasi) | [*Terminal Basics*](https://code.visualstudio.com/docs/terminal/basics) | © Microsoft Corporation, [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/) | tidak ada |
+| Menu **Download ZIP** di GitHub | [Git dan GitHub](../00-Persiapan/git-dan-github.md#2-cara-1-unduh-zip-tanpa-git) | GitHub Docs: [*Cloning a repository*](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) | © GitHub, Inc., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | penanda kotak dipindahkan ke **Download ZIP**, diperkecil |
+| *Installer* klasik Python di Windows | [Instalasi Python](../00-Persiapan/instalasi-python.md#32-cara-b-installer-klasik) | [*Using Python on Windows*](https://docs.python.org/3/using/windows.html) | Copyright © 2001 Python Software Foundation; All Rights Reserved, [PSF License Version 2](https://docs.python.org/3/license.html) | kotak merah ditambahkan |
+
+> [!NOTE]
+> Lisensi di atas mengizinkan gambar dipakai ulang, tetapi tidak memberikan hak atas merek dagang. Logo VS Code, GitHub, dan Python yang terlihat di gambar tetap milik pemiliknya masing-masing dan hanya muncul sebagai bagian dari tangkapan layar.
+
+### Ilustrasi buatan sendiri
+
+Ilustrasi berikut dibuat khusus untuk materi ini oleh penyusun materi.
+
+| Ilustrasi | Dipakai di |
+|---|---|
+| Folder materi dan folder latihan (versi Python dan versi Java) | [Git dan GitHub](../00-Persiapan/git-dan-github.md#pilihan-a-folder-terpisah-paling-sederhana), [Praktik Python P01](../Pertemuan-01-Pengenalan-PBO/python/README.md#tempat-menyimpan-kodemu-sendiri), [Praktik Java P01](../Pertemuan-01-Pengenalan-PBO/java/README.md#tempat-menyimpan-kodemu-sendiri) |
+| Tiga tempat mengetik: editor, terminal, dan mode interaktif | [Menjalankan Program](../00-Persiapan/menjalankan-program.md#1-apa-itu-terminal), [Praktik Python P01](../Pertemuan-01-Pengenalan-PBO/python/README.md#cek-instalasi-python), [Praktik Java P01](../Pertemuan-01-Pengenalan-PBO/java/README.md#cek-instalasi-java) |
+| Satu cetakan (kelas), banyak kue (objek) | [Pertemuan 02](../Pertemuan-02-Kelas-dan-Objek/README.md#1-cerita-pembuka-satu-cetakan-banyak-kue) |
+| Dua nama, satu yang ditunjuk (referensi) | [Pertemuan 03](../Pertemuan-03-Atribut-dan-Method/README.md#7-variabel-menyimpan-referensi-bukan-objek) |
+| Enam garis relasi UML | [Pertemuan 06](../Pertemuan-06-UML-Class-Diagram/README.md#5-relasi-arti-setiap-garis) |
+| "Adalah" berarti berada di dalam himpunan yang lebih umum | [Pertemuan 07](../Pertemuan-07-Pewarisan/README.md#3-relasi-adalah-is-a) |
+| Label kardus: tipe variabel dan tipe objek | [Pertemuan 09](../Pertemuan-09-Polimorfisme/README.md#tipe-variabel-dan-tipe-objek) |
+| Stopkontak dan alat-alatnya (abstraksi) | [Pertemuan 10](../Pertemuan-10-Abstract-Class-dan-Interface/README.md#2-abstraksi-menonjolkan-yang-penting) |
+| Arah membaca *traceback* dan *stack trace* | [Pertemuan 11](../Pertemuan-11-Exception-Handling/README.md#4-jika-tidak-ada-yang-menangkap-traceback-dan-stack-trace) |
+| Rak bernomor dan kode *hash* | [Pertemuan 12](../Pertemuan-12-Koleksi-dan-Generics/README.md#mengapa-harus-berpasangan-dengan-hash) |
 
 ---
 

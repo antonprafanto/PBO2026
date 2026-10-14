@@ -40,6 +40,10 @@ Cara paling mudah, cocok jika kamu belum memasang Git. Yang kamu butuhkan hanya 
 
 1. Buka [github.com/antonprafanto/PBO2026](https://github.com/antonprafanto/PBO2026) di peramban.
 2. Klik tombol hijau **Code** di atas daftar *file*, lalu pilih **Download ZIP**. *File* ZIP-nya (biasanya `PBO2026-master.zip`) tersimpan di folder **Downloads**.
+
+   ![Menu tombol hijau Code di GitHub yang sedang terbuka pada tab Local. Menu itu berisi bagian Clone dengan alamat HTTPS, pilihan Open with GitHub Desktop, dan pilihan Download ZIP di baris paling bawah yang ditandai kotak oranye.](gambar/github-download-zip.png)
+
+   <sub>Setelah tombol hijau **Code** diklik, pilih **Download ZIP** di baris paling bawah (kotak oranye). Gambar ini memakai repositori contoh dari dokumentasi GitHub, jadi alamatnya berbeda dengan alamat materi kita. Sumber gambar: GitHub Docs, halaman [*Cloning a repository*](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository), © GitHub, Inc., lisensi [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Penanda kotak dipindahkan ke **Download ZIP** dan gambar diperkecil oleh penyusun materi.</sub>
 3. Ekstrak *file* ZIP itu ke folder yang mudah ditemukan, misalnya **Documents**:
    - **Windows:** buka folder **Downloads** di File Explorer, klik kanan *file* ZIP-nya, lalu pilih **Extract All...**. Klik **Browse...**, pilih folder **Documents**, lalu klik **Extract**.
    - **macOS:** klik dua kali *file* ZIP-nya di Finder (Safari sering sudah mengekstraknya otomatis), lalu pindahkan folder hasilnya ke **Documents**.
@@ -133,6 +137,8 @@ Documents/
 ```
 
 Saat ingin bereksperimen dengan sebuah contoh, salin *file*-nya ke `PBO-latihan-saya` lewat File Explorer atau Finder: pilih *file*-nya, tekan Ctrl+C (macOS: Cmd+C), buka folder tujuan, lalu tekan Ctrl+V (macOS: Cmd+V). Setelah itu, buka folder latihan tersebut di VS Code (**File → Open Folder**) dan ubah *file*-nya sesukamu di sana. Materi asli tetap bersih, dan `git pull` tidak akan pernah bentrok dengan pekerjaanmu.
+
+![Ilustrasi dua folder di dalam Documents. Kiri: folder materi PBO2026 yang hanya dibaca, berisi Pertemuan-01-Pengenalan-PBO, python, contoh, dan file contoh01_halo.py. Kanan: folder milikmu, PBO-latihan-saya, berisi pertemuan-01 dengan salinan contoh01_halo.py dan coba.py, lalu pertemuan-02 dan proyek-akhir. Panah bertuliskan salin menunjukkan file disalin dari kiri ke kanan.](gambar/folder-materi-dan-latihan.svg)
 
 > [!TIP]
 > Untuk jalur Java, pertahankan susunan **satu folder per pertemuan** di folder latihanmu juga. Alasannya sama seperti di [Editor VS Code](editor-vscode.md): kelas bernama sama dari pertemuan berbeda tidak boleh berada dalam satu proyek.

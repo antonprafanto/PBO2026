@@ -133,6 +133,8 @@ Polimorfisme yang paling sering dipakai di PBO berdiri di atas dua bahan:
 
 Bayangkan sebuah kardus berlabel **"Hewan"**. Isinya ternyata seekor kucing. Ketika kardus itu "disuruh bersuara", yang terdengar tentu "Meong!", bukan suara hewan umum. Label kardus tidak mengubah isinya.
 
+![Ilustrasi seekor kucing mengintip dari kardus berlabel Hewan sambil berkata "Meong!" Di sebelah kanan: label kardus adalah tipe variabel, misalnya Hewan hewan = new Kucing("Oyen"); di Java atau hewan = Kucing("Oyen") di Python. Isi kardus adalah tipe objek, yaitu Kucing, yang ditentukan saat objek dibuat dan tidak pernah berubah. Saat disuruh bersuara(), yang menjawab adalah isinya, jadi hasilnya "Meong!" Catatan di bawahnya: untuk method yang di-override, yang menentukan versi yang berjalan adalah tipe objek.](gambar/kardus-tipe-variabel.svg)
+
 Di kode, label kardus adalah **tipe variabel**, sedangkan isinya adalah **tipe objek**.
 
 ```text

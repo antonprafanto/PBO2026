@@ -102,6 +102,10 @@ py help
 2. Di bagian **Stable Releases**, pilih Python 3.15 atau 3.14, lalu klik **Download Windows installer (64-bit)**. Jika laptopmu memakai prosesor ARM (misalnya Snapdragon), pilih **Download Windows installer (ARM64)**.
 3. Jalankan *file* `.exe` yang sudah diunduh.
 4. Di halaman pertama *installer*, lihat bagian bawah jendela. Centang kotak **Add python.exe to PATH**.
+
+   ![Halaman pertama installer klasik Python untuk Windows, contoh versi 3.8.0, dengan pilihan Install Now dan Customize installation. Di bagian bawah ada dua kotak centang; kotak Add Python 3.8 to PATH yang belum tercentang ditandai kotak merah.](gambar/python-installer-klasik.png)
+
+   <sub>Gambar dari dokumentasi resmi ini memakai Python 3.8, jadi kotaknya bertuliskan **Add Python 3.8 to PATH**. Di versi baru, tulisannya **Add python.exe to PATH**, dan letaknya sama: di bagian bawah jendela (kotak merah). Sumber gambar: dokumentasi Python, halaman [*Using Python on Windows*](https://docs.python.org/3/using/windows.html). Copyright © 2001 Python Software Foundation; All Rights Reserved. Lisensi: [PSF License Version 2](https://docs.python.org/3/license.html). Perubahan: kotak merah ditambahkan oleh penyusun materi.</sub>
 5. Klik **Install Now**, lalu tunggu sampai selesai. Jika Windows meminta izin, pilih **Yes**.
 6. Di halaman terakhir (**Setup was successful**), mungkin muncul tombol **Disable path length limit**. Kamu boleh mengkliknya agar Windows mengizinkan alamat folder yang panjang. Langkah ini butuh izin administrator dan tidak wajib.
 7. Klik **Close**. **Tutup semua terminal yang terbuka**, lalu buka terminal baru dan periksa hasilnya (lihat [bagian 6](#6-memeriksa-hasil-instalasi)).

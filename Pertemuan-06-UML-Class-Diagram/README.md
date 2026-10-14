@@ -232,16 +232,9 @@ Cara membacanya: `saldo` tersembunyi rapat, `biayaAdmin` boleh dipakai kelas ana
 
 Kotak menjelaskan **isi** kelas. Garis menjelaskan **hubungan** antarkelas. Ada enam jenis garis yang paling sering dipakai. Untuk membedakannya, perhatikan tiga hal: garisnya **penuh** atau **putus-putus**, ujungnya berbentuk **panah**, **belah ketupat**, atau **segitiga**, dan di **sisi mana** ujung itu menempel.
 
-```text
-Asosiasi      A ──────────> B    garis penuh, panah biasa: A mengenal B
-Agregasi      A ◇────────── B    belah ketupat KOSONG di sisi keseluruhan (A)
-Komposisi     A ◆────────── B    belah ketupat PENUH di sisi keseluruhan (A)
-Dependensi    A - - - - - > B    garis putus-putus, panah biasa: A memakai B sebentar
-Generalisasi  A ◁────────── B    segitiga kosong di sisi induk (A): B adalah A
-Realisasi     A ◁ - - - - - B    putus-putus + segitiga kosong: B memenuhi kontrak A
-```
+![Tabel bergambar enam garis relasi UML. Asosiasi: Mahasiswa ke DosenWali, garis penuh dengan panah terbuka. Agregasi: Tim dan Pemain, garis penuh dengan belah ketupat kosong di sisi Tim. Komposisi: Gedung dan Lantai, garis penuh dengan belah ketupat penuh di sisi Gedung. Dependensi: Motor ke SPBU, garis putus-putus dengan panah terbuka. Generalisasi: Hewan dan Kucing, garis penuh dengan segitiga kosong di sisi Hewan. Realisasi: interface DapatDicetak dan Laporan, garis putus-putus dengan segitiga kosong di sisi DapatDicetak. Setiap baris juga mencantumkan sintaks Mermaid-nya.](gambar/notasi-relasi-uml.svg)
 
-Begini wujudnya saat digambar:
+Begini wujudnya saat digambar dengan Mermaid:
 
 ```mermaid
 classDiagram
@@ -254,7 +247,7 @@ classDiagram
     DapatDicetak <|.. Laporan : realisasi
 ```
 
-Perhatikan satu perbedaan kecil. Mermaid menggambar ujung panah asosiasi dan dependensi sebagai kepala panah kecil yang **terisi** warna. Di UML resmi, ujung itu berupa panah **terbuka** seperti huruf V, seperti sketsa teks di atas. Artinya tetap sama. Yang membedakan asosiasi dan dependensi adalah garisnya: penuh atau putus-putus.
+Perhatikan satu perbedaan kecil. Mermaid menggambar ujung panah asosiasi dan dependensi sebagai kepala panah kecil yang **terisi** warna. Di UML resmi, ujung itu berupa panah **terbuka** seperti huruf V, seperti pada gambar di atas. Artinya tetap sama. Yang membedakan asosiasi dan dependensi adalah garisnya: penuh atau putus-putus.
 
 ### Asosiasi: "mengenal"
 

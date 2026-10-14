@@ -71,6 +71,8 @@ Pemrograman Berorientasi Objek bekerja dengan cara yang sangat mirip:
 | Bentuk yang sama untuk semua kue | Semua objek dari satu kelas punya **atribut dan *method* yang sama jenisnya** |
 | Parutan kelapa dan warna tiap kue berbeda | Setiap objek punya **nilai atribut sendiri** |
 
+![Ilustrasi satu cetakan, banyak kue. Kiri: cetakan putu ayu sebagai kelas PutuAyu dengan atribut warna dan parutan kelapa. Dari cetakan itu dicetak tiga kue sebagai tiga objek: objek 1 berwarna hijau muda dengan parutan kelapa banyak, objek 2 hijau tua dengan parutan kelapa sedikit, dan objek 3 hijau pandan dengan parutan kelapa sedang. Catatan di bawahnya: cetakan tidak bisa dimakan, kelas hanya rancangan; satu kue dimakan, kue lain tetap ada, setiap objek berdiri sendiri.](gambar/kelas-cetakan-objek.svg)
+
 Pegang analogi ini baik-baik. Hampir semua yang kita pelajari hari ini bisa dijelaskan dengan "cetakan dan kue".
 
 ## 2. Kelas: Cetak Biru Sebuah Objek

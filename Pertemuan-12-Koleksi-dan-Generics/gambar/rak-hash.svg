@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Rak bernomor: mengapa kesamaan harus berpasangan dengan hash</title>
+  <desc>Kiri: hash dihitung dari NIK sehingga dua Budi masuk rak yang sama, dibandingkan, dan yang kedua diabaikan. Kanan: hash tidak ditulis sehingga dua Budi masuk rak berbeda dan data ganda lolos.</desc>
+  <defs>
+    <marker id="pb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1a7f37"/></marker>
+    <marker id="pm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#cf222e"/></marker>
+  </defs>
+  <rect x="1" y="1" width="898" height="468" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Set menyimpan objek di rak bernomor (kode <tspan font-style="italic">hash</tspan>)</text>
+  <rect x="24" y="62" width="414" height="320" rx="12" fill="#dafbe1" stroke="#1a7f37" stroke-width="2"/>
+  <text x="231" y="90" text-anchor="middle" font-size="17" font-weight="700" fill="#1a7f37">Benar: kesamaan dan <tspan font-style="italic">hash</tspan> dari NIK</text>
+  <text x="231" y="112" text-anchor="middle" font-size="14" fill="#1f2328">kode <tspan font-style="italic">hash</tspan> sama, jadi keduanya masuk rak 3</text>
+  <rect x="44" y="128" width="180" height="50" rx="8" fill="#ffffff" stroke="#8c959f"/>
+  <text x="134" y="149" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Budi Santoso</text>
+  <text x="134" y="169" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#57606a">NIK 6472010000000001</text>
+  <rect x="238" y="128" width="180" height="50" rx="8" fill="#ffffff" stroke="#8c959f"/>
+  <text x="328" y="149" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Budi Santosa</text>
+  <text x="328" y="169" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#57606a">NIK 6472010000000001</text>
+  <rect x="46" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="73" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 0</text>
+  <rect x="109" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="136" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 1</text>
+  <rect x="172" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="199" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 2</text>
+  <rect x="235" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="262" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 3</text>
+  <rect x="298" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="325" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 4</text>
+  <rect x="361" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="388" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 5</text>
+  <path d="M134,178 C134,215 262,215 256,248" fill="none" stroke="#1a7f37" stroke-width="2.5" marker-end="url(#pb)"/>
+  <path d="M328,178 C328,215 262,215 268,248" fill="none" stroke="#1a7f37" stroke-width="2.5" marker-end="url(#pb)"/>
+  <rect x="238" y="266" width="48" height="22" rx="11" fill="#1a7f37"/>
+  <text x="262" y="282" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Budi</text>
+  <text x="231" y="350" text-anchor="middle" font-size="15" fill="#1f2328">Di rak 3 keduanya dibandingkan: sama.</text>
+  <text x="231" y="372" text-anchor="middle" font-size="15" font-weight="700" fill="#1a7f37">Hasil: set berisi 1 Budi</text>
+  <rect x="462" y="62" width="414" height="320" rx="12" fill="#ffebe9" stroke="#cf222e" stroke-width="2"/>
+  <text x="669" y="90" text-anchor="middle" font-size="17" font-weight="700" fill="#cf222e">Salah (Java): hanya <tspan font-family="Consolas, 'DejaVu Sans Mono', monospace">equals()</tspan> ditulis</text>
+  <text x="669" y="112" text-anchor="middle" font-size="14" fill="#1f2328">kode <tspan font-style="italic">hash</tspan> bawaan berbeda, jadi raknya berbeda</text>
+  <rect x="482" y="128" width="180" height="50" rx="8" fill="#ffffff" stroke="#8c959f"/>
+  <text x="572" y="149" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Budi Santoso</text>
+  <text x="572" y="169" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#57606a">NIK 6472010000000001</text>
+  <rect x="676" y="128" width="180" height="50" rx="8" fill="#ffffff" stroke="#8c959f"/>
+  <text x="766" y="149" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Budi Santosa</text>
+  <text x="766" y="169" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="12" fill="#57606a">NIK 6472010000000001</text>
+  <rect x="484" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="511" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 0</text>
+  <rect x="547" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="574" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 1</text>
+  <rect x="610" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="637" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 2</text>
+  <rect x="673" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="700" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 3</text>
+  <rect x="736" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="763" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 4</text>
+  <rect x="799" y="250" width="54" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="1.5"/>
+  <text x="826" y="322" text-anchor="middle" font-size="13" fill="#57606a">rak 5</text>
+  <path d="M572,178 C572,215 574,215 568,248" fill="none" stroke="#cf222e" stroke-width="2.5" marker-end="url(#pm)"/>
+  <path d="M766,178 C766,215 763,215 769,248" fill="none" stroke="#cf222e" stroke-width="2.5" marker-end="url(#pm)"/>
+  <rect x="550" y="266" width="48" height="22" rx="11" fill="#cf222e"/>
+  <text x="574" y="282" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Budi</text>
+  <rect x="739" y="266" width="48" height="22" rx="11" fill="#cf222e"/>
+  <text x="763" y="282" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Budi</text>
+  <text x="669" y="350" text-anchor="middle" font-size="15" fill="#1f2328">Keduanya tidak pernah dibandingkan.</text>
+  <text x="669" y="372" text-anchor="middle" font-size="15" font-weight="700" fill="#cf222e">Hasil: set berisi 2 Budi (data ganda)</text>
+  <rect x="24" y="396" width="852" height="58" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="44" y="421" font-size="15" fill="#1f2328"><tspan font-weight="700">Aturan wajib:</tspan> objek yang dianggap sama harus punya kode <tspan font-style="italic">hash</tspan> yang sama. Tulis</text>
+  <text x="44" y="443" font-size="15" fill="#1f2328"><tspan font-family="Consolas, 'DejaVu Sans Mono', monospace">__eq__</tspan> bersama <tspan font-family="Consolas, 'DejaVu Sans Mono', monospace">__hash__</tspan> (Python), atau <tspan font-family="Consolas, 'DejaVu Sans Mono', monospace">equals()</tspan> bersama <tspan font-family="Consolas, 'DejaVu Sans Mono', monospace">hashCode()</tspan> (Java).</text>
+</svg>

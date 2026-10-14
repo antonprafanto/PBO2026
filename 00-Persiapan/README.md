@@ -52,6 +52,14 @@ Ikuti panduan berikut secara berurutan. Lewati yang tidak kamu perlukan, misalny
 | 5 | [Menjalankan Program](menjalankan-program.md) | dasar terminal, folder aktif, menjalankan Python dan Java satu *file* maupun banyak *file* | semua |
 | 6 | [Mengatasi Masalah](mengatasi-masalah.md) | kumpulan masalah instalasi yang sering terjadi beserta solusinya | buka saat perlu |
 
+> [!TIP]
+> Cara membaca petunjuk di panduan-panduan ini:
+>
+> - Nama tombol, menu, dan pilihan yang perlu kamu klik ditulis **tebal**, persis seperti tulisan di layar, misalnya **Install** atau **Open Folder**.
+> - Tanda → berarti "lalu pilih". Misalnya, **File → Open Folder** artinya klik menu **File**, lalu pilih **Open Folder**.
+> - Kombinasi tombol seperti Ctrl+S berarti: tekan dan tahan Ctrl, lalu tekan S.
+> - Teks `seperti ini` adalah perintah, kode, atau nama *file*, misalnya `python --version` atau `halo.py`. Jika perlu diketik, ketik persis apa adanya, termasuk huruf besar-kecil dan spasinya.
+
 ## 3. Alur Persiapan
 
 ```mermaid

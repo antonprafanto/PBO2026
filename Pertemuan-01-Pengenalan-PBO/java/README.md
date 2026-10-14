@@ -65,6 +65,10 @@ Yang penting, angka versi pertamanya **17 atau lebih besar**, misalnya 17, 21, a
 > [!WARNING]
 > Jika `java -version` berhasil tetapi `javac -version` menampilkan pesan bahwa perintah tidak dikenali, kemungkinan yang terpasang bukan JDK, atau pengaturan `PATH`-nya belum benar. Lihat [Instalasi Java](../../00-Persiapan/instalasi-java.md) dan [Mengatasi Masalah](../../00-Persiapan/mengatasi-masalah.md).
 
+Perintah seperti `java -version` diketik di **terminal**. Gambar berikut membantu membedakan terminal dengan dua tempat mengetik lain yang sering tertukar dengannya:
+
+![Ilustrasi tiga tempat mengetik. Satu, editor VS Code: untuk menulis program yang disimpan sebagai file, misalnya halo.py. Dua, terminal dengan tanda PS C:\pbo>: untuk memberi perintah seperti cd, python halo.py, dan java Halo.java. Tiga, mode interaktif dengan tanda >>> (Python) atau jshell> (Java): untuk mencoba satu baris kode. Catatan di bawahnya: perintah terminal tidak bisa diketik setelah tanda >>> atau jshell>; keluar dulu dari mode interaktif.](../../00-Persiapan/gambar/tiga-tempat-mengetik.svg)
+
 ### Cara Menjalankan Contoh
 
 Pilih salah satu cara. Hasilnya sama.
@@ -73,6 +77,10 @@ Pilih salah satu cara. Hasilnya sama.
 
 1. Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-01-Pengenalan-PBO/java` di dalam folder materi. Jika VS Code bertanya **Do you trust the authors of the files in this folder?**, pilih **Yes, I trust the authors**.
 2. Di panel **Explorer** (sebelah kiri), buka folder `contoh`, lalu klik *file* `Contoh01Halo.java`. Saat pertama kali, ekstensi Java butuh beberapa saat untuk bersiap. Tunggu sampai tulisan kecil **Run | Debug** muncul tepat di atas baris `public static void main`.
+
+   ![Potongan kode Java di VS Code. Tepat di atas baris public static void main muncul tulisan kecil Run | Debug, dan kata Run ditunjuk panah kuning.](../../00-Persiapan/gambar/vscode-run-debug-java.png)
+
+   <sub>Letak tulisan **Run | Debug** (ditunjuk panah kuning). Kode pada gambar adalah contoh dari dokumentasi VS Code, bukan kode materi ini. Sumber gambar: dokumentasi Visual Studio Code, halaman [*Running and debugging Java*](https://code.visualstudio.com/docs/java/java-debugging), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
 3. Klik **Run** pada tulisan **Run | Debug** itu, atau klik tombol ▷ di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** (kadang **DEBUG CONSOLE**) di bagian bawah. Baris pertama di panel itu berisi perintah panjang yang diketik VS Code secara otomatis; *output* programmu muncul di bawahnya.
 
 > [!IMPORTANT]
@@ -129,6 +137,8 @@ flowchart LR
 ### Tempat Menyimpan Kodemu Sendiri
 
 Anggap folder materi sebagai buku pegangan: dibaca dan dijalankan, tetapi tidak diubah. Semua kodemu sendiri, yaitu hasil ketik ulang, percobaan **Coba sendiri**, *file* coretan seperti `Coba.java`, dan jawaban latihan, disimpan di folder `PBO-latihan-saya/pertemuan-01/` di **luar** folder materi. Alasannya ada di [aturan emas menyimpan latihan](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri). Polanya untuk setiap **Coba sendiri**: salin *file* contohnya ke folder itu, buka salinannya, ubah, simpan, jalankan, lalu bandingkan hasilnya dengan jawaban.
+
+![Ilustrasi dua folder di dalam Documents. Kiri: folder materi PBO2026 yang hanya dibaca, berisi Pertemuan-01-Pengenalan-PBO, java, contoh, dan file Contoh01Halo.java. Kanan: folder milikmu, PBO-latihan-saya, berisi pertemuan-01 dengan salinan Contoh01Halo.java dan Coba.java, lalu pertemuan-02 dan proyek-akhir. Panah bertuliskan salin menunjukkan file disalin dari kiri ke kanan.](../../00-Persiapan/gambar/folder-materi-dan-latihan-java.svg)
 
 Cara menyiapkannya (cukup sekali untuk pertemuan ini):
 

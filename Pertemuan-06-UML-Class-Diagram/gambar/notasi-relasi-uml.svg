@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="580" viewBox="0 0 900 580" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Enam jenis garis relasi dalam diagram kelas UML</title>
+  <desc>Asosiasi, agregasi, komposisi, dependensi, generalisasi, dan realisasi digambar dengan notasi UML resmi, beserta sintaks Mermaid-nya.</desc>
+  <rect x="1" y="1" width="898" height="578" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Enam garis relasi UML dan artinya</text>
+  <text x="30" y="84" font-size="14" font-weight="700" fill="#57606a">RELASI</text>
+  <text x="230" y="84" font-size="14" font-weight="700" fill="#57606a">NOTASI UML (A di kiri, B di kanan)</text>
+  <text x="652" y="84" font-size="14" font-weight="700" fill="#57606a">SINTAKS MERMAID</text>
+  <line x1="24" y1="94" x2="876" y2="94" stroke="#d0d7de"/>
+  <rect x="16" y="104" width="868" height="64" fill="#f6f8fa"/>
+  <text x="30" y="133" font-size="16" font-weight="700" fill="#1f2328">Asosiasi</text>
+  <text x="30" y="153" font-size="14" fill="#57606a">"mengenal"</text>
+  <rect x="230" y="117" width="140" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="300" y="141" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Mahasiswa</text>
+  <rect x="510" y="117" width="130" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="575" y="141" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">DosenWali</text>
+  <line x1="370" y1="136" x2="509" y2="136" stroke="#1f2328" stroke-width="2"/>
+  <polyline points="497,128 509,136 497,144" fill="none" stroke="#1f2328" stroke-width="2"/>
+  <text x="652" y="141" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#0a3069">Mahasiswa --&gt; DosenWali</text>
+  <text x="30" y="197" font-size="16" font-weight="700" fill="#1f2328">Agregasi</text>
+  <text x="30" y="217" font-size="14" fill="#57606a">"punya, longgar"</text>
+  <rect x="230" y="181" width="140" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="300" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Tim</text>
+  <rect x="510" y="181" width="130" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="575" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Pemain</text>
+  <line x1="396" y1="200" x2="510" y2="200" stroke="#1f2328" stroke-width="2"/>
+  <polygon points="370,200 383,192 396,200 383,208" fill="#ffffff" stroke="#1f2328" stroke-width="2"/>
+  <text x="652" y="205" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#0a3069">Tim o-- Pemain</text>
+  <rect x="16" y="232" width="868" height="64" fill="#f6f8fa"/>
+  <text x="30" y="261" font-size="16" font-weight="700" fill="#1f2328">Komposisi</text>
+  <text x="30" y="281" font-size="14" fill="#57606a">"punya, erat"</text>
+  <rect x="230" y="245" width="140" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="300" y="269" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Gedung</text>
+  <rect x="510" y="245" width="130" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="575" y="269" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Lantai</text>
+  <line x1="396" y1="264" x2="510" y2="264" stroke="#1f2328" stroke-width="2"/>
+  <polygon points="370,264 383,256 396,264 383,272" fill="#1f2328" stroke="#1f2328" stroke-width="2"/>
+  <text x="652" y="269" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#0a3069">Gedung *-- Lantai</text>
+  <text x="30" y="325" font-size="16" font-weight="700" fill="#1f2328">Dependensi</text>
+  <text x="30" y="345" font-size="14" fill="#57606a">"memakai sebentar"</text>
+  <rect x="230" y="309" width="140" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="300" y="333" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Motor</text>
+  <rect x="510" y="309" width="130" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="575" y="333" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">SPBU</text>
+  <line x1="370" y1="328" x2="509" y2="328" stroke="#1f2328" stroke-width="2" stroke-dasharray="7 5"/>
+  <polyline points="497,320 509,328 497,336" fill="none" stroke="#1f2328" stroke-width="2"/>
+  <text x="652" y="333" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#0a3069">Motor ..&gt; SPBU</text>
+  <rect x="16" y="360" width="868" height="64" fill="#f6f8fa"/>
+  <text x="30" y="389" font-size="16" font-weight="700" fill="#1f2328">Generalisasi</text>
+  <text x="30" y="409" font-size="14" fill="#57606a">"B adalah A"</text>
+  <rect x="230" y="373" width="140" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="300" y="397" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Hewan</text>
+  <rect x="510" y="373" width="130" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="575" y="397" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Kucing</text>
+  <line x1="386" y1="392" x2="510" y2="392" stroke="#1f2328" stroke-width="2"/>
+  <polygon points="370,392 386,382 386,402" fill="#ffffff" stroke="#1f2328" stroke-width="2"/>
+  <text x="652" y="397" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#0a3069">Hewan &lt;|-- Kucing</text>
+  <text x="30" y="453" font-size="16" font-weight="700" fill="#1f2328">Realisasi</text>
+  <text x="30" y="473" font-size="14" fill="#57606a">"B memenuhi kontrak A"</text>
+  <rect x="230" y="437" width="140" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="300" y="452" text-anchor="middle" font-size="11" fill="#57606a">«interface»</text>
+  <text x="300" y="468" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">DapatDicetak</text>
+  <rect x="510" y="437" width="130" height="38" rx="4" fill="#ffffff" stroke="#1f2328" stroke-width="1.5"/>
+  <text x="575" y="461" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">Laporan</text>
+  <line x1="386" y1="456" x2="510" y2="456" stroke="#1f2328" stroke-width="2" stroke-dasharray="7 5"/>
+  <polygon points="370,456 386,446 386,466" fill="#ffffff" stroke="#1f2328" stroke-width="2"/>
+  <text x="652" y="461" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#0a3069">DapatDicetak &lt;|.. Laporan</text>
+  <rect x="24" y="500" width="852" height="66" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="44" y="527" font-size="15" fill="#1f2328"><tspan font-weight="700">Cara membaca:</tspan> belah ketupat menempel di sisi <tspan font-weight="700">keseluruhan</tspan>, segitiga menempel di sisi</text>
+  <text x="44" y="550" font-size="15" fill="#1f2328"><tspan font-weight="700">induk/kontrak</tspan>. Garis putus-putus: hanya memakai sebentar, atau hanya berjanji memenuhi kontrak.</text>
+</svg>

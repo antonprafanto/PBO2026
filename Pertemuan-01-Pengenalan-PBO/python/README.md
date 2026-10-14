@@ -51,6 +51,10 @@ python/
 > - Di macOS/Linux, ketik `python3 --version`.
 > - Di Windows jika perintah `python` malah membuka Microsoft Store atau muncul pesan bahwa perintah tidak dikenali, berarti Python belum terpasang dengan benar. Lihat [Instalasi Python](../../00-Persiapan/instalasi-python.md) dan [Mengatasi Masalah](../../00-Persiapan/mengatasi-masalah.md).
 
+Perintah seperti `python --version` diketik di **terminal**. Gambar berikut membantu membedakan terminal dengan dua tempat mengetik lain yang sering tertukar dengannya:
+
+![Ilustrasi tiga tempat mengetik. Satu, editor VS Code: untuk menulis program yang disimpan sebagai file, misalnya halo.py. Dua, terminal dengan tanda PS C:\pbo>: untuk memberi perintah seperti cd, python halo.py, dan java Halo.java. Tiga, mode interaktif dengan tanda >>> (Python) atau jshell> (Java): untuk mencoba satu baris kode. Catatan di bawahnya: perintah terminal tidak bisa diketik setelah tanda >>> atau jshell>; keluar dulu dari mode interaktif.](../../00-Persiapan/gambar/tiga-tempat-mengetik.svg)
+
 ### Cara Menjalankan Contoh
 
 Pilih salah satu cara. Hasilnya sama.
@@ -60,6 +64,10 @@ Pilih salah satu cara. Hasilnya sama.
 1. Di VS Code, pilih **File → Open Folder**, lalu buka folder `Pertemuan-01-Pengenalan-PBO/python` di dalam folder materi. Jika VS Code bertanya **Do you trust the authors of the files in this folder?**, pilih **Yes, I trust the authors**.
 2. Di panel **Explorer** (sebelah kiri), buka folder `contoh`, lalu klik *file* `contoh01_halo.py`. Jika VS Code memintamu memilih *interpreter* (program Python yang menjalankan kodemu), pilih Python yang sudah kamu pasang.
 3. Klik tombol ▷ (**Run Python File**) di pojok kanan atas. Hasilnya muncul di panel **TERMINAL** di bagian bawah. Baris pertama di panel itu berisi perintah panjang yang diketik VS Code secara otomatis; *output* programmu muncul di bawahnya.
+
+   ![Editor VS Code membuka file hello.py berisi dua baris kode. Tombol segitiga Run Python File di pojok kanan atas editor ditandai kotak merah.](../../00-Persiapan/gambar/vscode-tombol-run-python.png)
+
+   <sub>Letak tombol ▷ **Run Python File** (dalam kotak merah). Gambar ini memakai *file* contoh `hello.py` dari dokumentasi VS Code. Sumber gambar: dokumentasi Visual Studio Code, halaman [*Getting Started with Python in VS Code*](https://code.visualstudio.com/docs/python/python-tutorial), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
 
 **Cara 2: lewat terminal.** Buka terminal, pastikan kamu berada di folder yang tepat, lalu ketik perintahnya.
 
@@ -85,6 +93,8 @@ Jika berhasil, terminal menampilkan tulisan `=== PROGRAM PERTAMAKU ===`, diikuti
 ### Tempat Menyimpan Kodemu Sendiri
 
 Anggap folder materi sebagai buku pegangan: dibaca dan dijalankan, tetapi tidak diubah. Semua kodemu sendiri, yaitu hasil ketik ulang, percobaan **Coba sendiri**, *file* coretan seperti `coba.py`, dan jawaban latihan, disimpan di folder `PBO-latihan-saya/pertemuan-01/` di **luar** folder materi. Alasannya ada di [aturan emas menyimpan latihan](../../00-Persiapan/git-dan-github.md#5-menyimpan-latihanmu-sendiri). Polanya untuk setiap **Coba sendiri**: salin *file* contohnya ke folder itu, buka salinannya, ubah, simpan, jalankan, lalu bandingkan hasilnya dengan jawaban.
+
+![Ilustrasi dua folder di dalam Documents. Kiri: folder materi PBO2026 yang hanya dibaca, berisi Pertemuan-01-Pengenalan-PBO, python, contoh, dan file contoh01_halo.py. Kanan: folder milikmu, PBO-latihan-saya, berisi pertemuan-01 dengan salinan contoh01_halo.py dan coba.py, lalu pertemuan-02 dan proyek-akhir. Panah bertuliskan salin menunjukkan file disalin dari kiri ke kanan.](../../00-Persiapan/gambar/folder-materi-dan-latihan.svg)
 
 Cara menyiapkannya (cukup sekali untuk pertemuan ini):
 

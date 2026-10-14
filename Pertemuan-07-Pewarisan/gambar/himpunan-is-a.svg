@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Relasi adalah (is-a) sebagai himpunan bersarang</title>
+  <desc>Himpunan Menu memuat himpunan Makanan dan Minuman. Objek kopi berada di dalam Minuman, sehingga kopi adalah Minuman dan juga Menu, tetapi bukan Makanan.</desc>
+  <rect x="1" y="1" width="898" height="428" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">"Adalah" berarti berada di dalam himpunan yang lebih umum</text>
+
+  <!-- Himpunan Menu -->
+  <ellipse cx="265" cy="225" rx="235" ry="165" fill="#ddf4ff" stroke="#0969da" stroke-width="2.5"/>
+  <text x="265" y="88" text-anchor="middle" font-size="19" font-weight="700" fill="#0a3069">Menu</text>
+  <!-- Makanan -->
+  <ellipse cx="160" cy="245" rx="95" ry="100" fill="#fff1e5" stroke="#bc4c00" stroke-width="2.5"/>
+  <text x="160" y="178" text-anchor="middle" font-size="17" font-weight="700" fill="#953800">Makanan</text>
+  <circle cx="160" cy="232" r="7" fill="#bc4c00"/>
+  <text x="160" y="258" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#1f2328">nasi_goreng</text>
+  <circle cx="150" cy="290" r="7" fill="#bc4c00"/>
+  <text x="150" y="316" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#1f2328">mie_goreng</text>
+  <!-- Minuman -->
+  <ellipse cx="372" cy="245" rx="95" ry="100" fill="#dafbe1" stroke="#1a7f37" stroke-width="2.5"/>
+  <text x="372" y="178" text-anchor="middle" font-size="17" font-weight="700" fill="#044f1e">Minuman</text>
+  <circle cx="372" cy="232" r="7" fill="#1a7f37"/>
+  <text x="372" y="258" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#1f2328" font-weight="700">kopi</text>
+  <circle cx="382" cy="290" r="7" fill="#1a7f37"/>
+  <text x="382" y="316" text-anchor="middle" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#1f2328">es_teh</text>
+
+  <!-- Pertanyaan -->
+  <rect x="530" y="80" width="346" height="228" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+  <text x="550" y="110" font-size="16" font-weight="700" fill="#1f2328">Tanya tentang objek kopi:</text>
+  <text x="550" y="146" font-size="15" fill="#1f2328">kopi adalah Minuman?</text>
+  <text x="856" y="146" text-anchor="end" font-size="15" font-weight="700" fill="#1a7f37">ya</text>
+  <text x="550" y="178" font-size="15" fill="#1f2328">kopi adalah Menu?</text>
+  <text x="856" y="178" text-anchor="end" font-size="15" font-weight="700" fill="#1a7f37">ya</text>
+  <text x="566" y="200" font-size="13" fill="#57606a">(Minuman ada di dalam Menu)</text>
+  <text x="550" y="232" font-size="15" fill="#1f2328">kopi adalah Makanan?</text>
+  <text x="856" y="232" text-anchor="end" font-size="15" font-weight="700" fill="#cf222e">tidak</text>
+  <line x1="550" y1="250" x2="856" y2="250" stroke="#d0d7de"/>
+  <text x="550" y="274" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0a3069">Python: isinstance(kopi, Menu)</text>
+  <text x="550" y="296" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0a3069">Java  : kopi instanceof Menu</text>
+
+  <rect x="530" y="322" width="346" height="86" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="548" y="348" font-size="14" fill="#1f2328">Arahnya hanya ke atas: setiap Minuman</text>
+  <text x="548" y="370" font-size="14" fill="#1f2328">adalah Menu, tetapi tidak setiap Menu</text>
+  <text x="548" y="392" font-size="14" fill="#1f2328">adalah Minuman.</text>
+</svg>

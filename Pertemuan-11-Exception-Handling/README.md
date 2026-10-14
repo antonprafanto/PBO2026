@@ -145,6 +145,8 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 
 Isinya sama: **jenis** *exception*, **pesan**, dan **jejak panggilan** (urutan *method* yang sedang berjalan saat *exception* terjadi). Yang berbeda adalah arah membacanya.
 
+![Ilustrasi arah membaca laporan error. Atas: traceback Python dari patungan.py dibaca dari bawah ke atas, dengan penanda 1 pada baris ZeroDivisionError (jenis dan pesan), 2 pada blok File patungan.py line 2 di hitung_patungan (tempat exception lahir), dan 3 pada blok File patungan.py line 11 (titik awal program). Bawah: stack trace Java dibaca dari atas ke bawah, dengan penanda 1 pada baris Exception in thread main java.lang.ArithmeticException, 2 pada baris at Patungan.hitungPatungan(Patungan.java:3), dan 3 pada baris at Patungan.main(Patungan.java:8). Kiat: mulai dari nomor 1, lalu cari baris pertama yang menyebut file milikmu (nomor 2), dan buka file itu pada nomor baris yang disebutkan.](gambar/arah-baca-traceback.svg)
+
 | Yang dicari | Python (*traceback*) | Java (*stack trace*) |
 |---|---|---|
 | Jenis dan pesan | baris **paling bawah** | baris **paling atas** |

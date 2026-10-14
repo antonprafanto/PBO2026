@@ -91,6 +91,8 @@ Saat menyetir mobil, kamu memakai setir, pedal gas, pedal rem, dan tuas persneli
 
 Contoh lain adalah **colokan listrik standar**. *Rice cooker*, *charger* ponsel, dan kipas angin bisa dicolokkan ke stopkontak yang sama. Stopkontak tidak peduli alat apa yang dicolokkan. Yang penting, colokannya sesuai **standar**.
 
+![Ilustrasi sebuah stopkontak berlubang standar yang tersambung ke tiga alat: rice cooker untuk memasak nasi, charger ponsel untuk mengisi baterai, dan kipas angin untuk memutar baling-baling. Catatan di bawahnya: dalam PBO, stopkontak adalah kontrak (kelas abstrak atau interface), yaitu apa yang bisa dilakukan; setiap alat adalah kelas konkret yang memenuhi kontrak itu dengan caranya sendiri; pemakai cukup mengenal kontraknya, tanpa perlu tahu detail di dalam setiap alat.](gambar/stopkontak-abstraksi.svg)
+
 > **Abstraksi** (*abstraction*) adalah cara berpikir yang **menonjolkan hal yang penting** (apa yang bisa dilakukan) dan **menyembunyikan detail** yang tidak perlu diketahui pemakai (bagaimana cara melakukannya).
 
 | Dunia nyata | Yang ditonjolkan | Yang disembunyikan |

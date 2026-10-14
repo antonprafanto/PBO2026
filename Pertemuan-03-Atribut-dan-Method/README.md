@@ -312,6 +312,8 @@ Inilah janji kita dari Pertemuan 02. Perhatikan kontak di ponselmu. Kamu mungkin
 
 Variabel bekerja persis seperti kontak itu. Variabel **tidak berisi objek**. Variabel hanya menyimpan **petunjuk** ke tempat objek berada.
 
+![Ilustrasi dua nama, satu yang ditunjuk. Kiri, di ponselmu: dua kontak, Budi dan Ketua Tingkat, sama-sama menunjuk satu orang bernama Budi. Kanan, di program: dua variabel, ponsel_budi dan ponsel_dipinjam, sama-sama menunjuk satu objek Ponsel dengan pemilik Budi dan baterai 80 persen. Catatan di bawahnya: ponsel_dipinjam = ponsel_budi hanya menyalin penunjuknya, bukan objeknya; jika baterai diubah lewat satu nama, perubahannya terlihat juga lewat nama yang lain.](gambar/referensi-dua-variabel.svg)
+
 > **Referensi** adalah penunjuk ke sebuah objek di memori. Variabel bertipe objek menyimpan referensi, bukan objeknya.
 >
 > ***Aliasing*** terjadi saat dua variabel atau lebih menyimpan referensi ke **objek yang sama**. Perubahan lewat satu variabel akan terlihat lewat variabel lainnya.

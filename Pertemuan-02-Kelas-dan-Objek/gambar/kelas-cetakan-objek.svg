@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Satu cetakan (kelas), banyak kue (objek)</title>
+  <desc>Cetakan putu ayu mewakili kelas. Tiga kue hasil cetakan mewakili tiga objek dengan nilai atribut berbeda.</desc>
+  <defs>
+    <marker id="panah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="898" height="468" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Satu cetakan (kelas), banyak kue (objek)</text>
+
+  <!-- Cetakan = kelas -->
+  <rect x="30" y="70" width="270" height="300" rx="12" fill="#ddf4ff" stroke="#54aeff" stroke-width="2"/>
+  <text x="165" y="100" text-anchor="middle" font-size="18" font-weight="700" fill="#0a3069">KELAS</text>
+  <text x="165" y="122" text-anchor="middle" font-size="15" fill="#0a3069">cetakan putu ayu</text>
+  <g>
+    <circle cx="193.0" cy="192.0" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="184.8" cy="211.8" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="165.0" cy="220.0" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="145.2" cy="211.8" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="137.0" cy="192.0" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="145.2" cy="172.2" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="165.0" cy="164.0" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="184.8" cy="172.2" r="18" fill="#d0d7de" stroke="#6e7781" stroke-width="2"/>
+    <circle cx="165" cy="192" r="30" fill="#d0d7de"/>
+    <circle cx="165" cy="192" r="18" fill="#afb8c1" stroke="#6e7781" stroke-width="1.5"/>
+  </g>
+  <rect x="62" y="262" width="206" height="88" rx="8" fill="#ffffff" stroke="#54aeff"/>
+  <text x="165" y="284" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2328">PutuAyu</text>
+  <line x1="62" y1="294" x2="268" y2="294" stroke="#54aeff"/>
+  <text x="76" y="316" font-size="14" fill="#1f2328">warna</text>
+  <text x="76" y="338" font-size="14" fill="#1f2328">parutan kelapa</text>
+
+  <!-- Panah dicetak -->
+  <path d="M300,190 C350,190 350,120 395,118" fill="none" stroke="#57606a" stroke-width="2.5" marker-end="url(#panah)"/>
+  <path d="M300,215 C350,215 350,220 395,220" fill="none" stroke="#57606a" stroke-width="2.5" marker-end="url(#panah)"/>
+  <path d="M300,240 C350,240 350,318 395,320" fill="none" stroke="#57606a" stroke-width="2.5" marker-end="url(#panah)"/>
+  <rect x="312" y="188" width="66" height="22" rx="11" fill="#ffffff" stroke="#8c959f"/>
+  <text x="345" y="204" text-anchor="middle" font-size="14" font-style="italic" fill="#57606a">dicetak</text>
+
+  <!-- Kue = objek -->
+  <g>
+  <circle cx="476.0" cy="118.0" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="468.4" cy="136.4" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450.0" cy="144.0" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="431.6" cy="136.4" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="424.0" cy="118.0" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="431.6" cy="99.6" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450.0" cy="92.0" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="468.4" cy="99.6" r="16" fill="#7dce82" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450" cy="118" r="28" fill="#7dce82"/>
+  <circle cx="450" cy="118" r="15" fill="#ffffff" stroke="#d0d7de"/>
+  <circle cx="444.6" cy="114.8" r="1.6" fill="#e6edf3"/>
+  <circle cx="454.3" cy="111.6" r="1.6" fill="#e6edf3"/>
+  <circle cx="456.4" cy="122.3" r="1.6" fill="#e6edf3"/>
+  <circle cx="446.8" cy="124.4" r="1.6" fill="#e6edf3"/>
+  <circle cx="450.0" cy="118.0" r="1.6" fill="#e6edf3"/>
+  </g>
+  <text x="520" y="110" font-size="16" font-weight="700" fill="#1f2328">Objek 1</text>
+  <text x="520" y="132" font-size="14" fill="#1f2328">warna: hijau muda</text>
+  <text x="520" y="152" font-size="14" fill="#1f2328">parutan kelapa: banyak</text>
+  <g>
+  <circle cx="476.0" cy="220.0" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="468.4" cy="238.4" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450.0" cy="246.0" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="431.6" cy="238.4" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="424.0" cy="220.0" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="431.6" cy="201.6" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450.0" cy="194.0" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="468.4" cy="201.6" r="16" fill="#2da44e" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450" cy="220" r="28" fill="#2da44e"/>
+  <circle cx="450" cy="220" r="9" fill="#ffffff" stroke="#d0d7de"/>
+  <circle cx="446.8" cy="218.1" r="1.6" fill="#e6edf3"/>
+  <circle cx="452.6" cy="216.1" r="1.6" fill="#e6edf3"/>
+  <circle cx="453.9" cy="222.6" r="1.6" fill="#e6edf3"/>
+  <circle cx="448.1" cy="223.9" r="1.6" fill="#e6edf3"/>
+  <circle cx="450.0" cy="220.0" r="1.6" fill="#e6edf3"/>
+  </g>
+  <text x="520" y="212" font-size="16" font-weight="700" fill="#1f2328">Objek 2</text>
+  <text x="520" y="234" font-size="14" fill="#1f2328">warna: hijau tua</text>
+  <text x="520" y="254" font-size="14" fill="#1f2328">parutan kelapa: sedikit</text>
+  <g>
+  <circle cx="476.0" cy="322.0" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="468.4" cy="340.4" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450.0" cy="348.0" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="431.6" cy="340.4" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="424.0" cy="322.0" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="431.6" cy="303.6" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450.0" cy="296.0" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="468.4" cy="303.6" r="16" fill="#4ac26b" stroke="#2f6f3e" stroke-width="1.5"/>
+    <circle cx="450" cy="322" r="28" fill="#4ac26b"/>
+  <circle cx="450" cy="322" r="12" fill="#ffffff" stroke="#d0d7de"/>
+  <circle cx="445.7" cy="319.4" r="1.6" fill="#e6edf3"/>
+  <circle cx="453.4" cy="316.9" r="1.6" fill="#e6edf3"/>
+  <circle cx="455.1" cy="325.4" r="1.6" fill="#e6edf3"/>
+  <circle cx="447.4" cy="327.1" r="1.6" fill="#e6edf3"/>
+  <circle cx="450.0" cy="322.0" r="1.6" fill="#e6edf3"/>
+  </g>
+  <text x="520" y="314" font-size="16" font-weight="700" fill="#1f2328">Objek 3</text>
+  <text x="520" y="336" font-size="14" fill="#1f2328">warna: hijau pandan</text>
+  <text x="520" y="356" font-size="14" fill="#1f2328">parutan kelapa: sedang</text>
+  <rect x="700" y="70" width="170" height="300" rx="12" fill="#dafbe1" stroke="#4ac26b" stroke-width="2"/>
+  <text x="785" y="100" text-anchor="middle" font-size="18" font-weight="700" fill="#044f1e">OBJEK</text>
+  <text x="785" y="128" text-anchor="middle" font-size="14" fill="#044f1e">Setiap kue adalah</text>
+  <text x="785" y="148" text-anchor="middle" font-size="14" fill="#044f1e">benda tersendiri</text>
+  <text x="785" y="168" text-anchor="middle" font-size="14" fill="#044f1e">dengan nilainya</text>
+  <text x="785" y="188" text-anchor="middle" font-size="14" fill="#044f1e">sendiri.</text>
+  <text x="785" y="236" text-anchor="middle" font-size="14" fill="#044f1e">Jenis atributnya</text>
+  <text x="785" y="256" text-anchor="middle" font-size="14" fill="#044f1e">sama, tetapi</text>
+  <text x="785" y="276" text-anchor="middle" font-size="14" fill="#044f1e">nilainya berbeda</text>
+  <text x="785" y="296" text-anchor="middle" font-size="14" fill="#044f1e">untuk setiap kue.</text>
+
+  <!-- Catatan bawah -->
+  <rect x="30" y="388" width="840" height="62" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="50" y="414" font-size="15" fill="#1f2328"><tspan font-weight="700">Cetakan tidak bisa dimakan:</tspan> kelas hanya rancangan, bukan datanya.</text>
+  <text x="50" y="437" font-size="15" fill="#1f2328"><tspan font-weight="700">Satu kue dimakan, kue lain tetap ada:</tspan> setiap objek berdiri sendiri.</text>
+</svg>

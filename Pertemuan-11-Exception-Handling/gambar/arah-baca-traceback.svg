@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="546" viewBox="0 0 900 546" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Arah membaca traceback Python dan stack trace Java</title>
+  <desc>Traceback Python dibaca dari bawah ke atas, stack trace Java dibaca dari atas ke bawah. Keduanya memuat jenis dan pesan exception, tempat exception lahir, dan titik awal program.</desc>
+  <defs>
+    <marker id="panah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0969da"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="898" height="544" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Membaca laporan <tspan font-style="italic">error</tspan>: Python dari bawah, Java dari atas</text>
+  <text x="30" y="84" font-size="16" font-weight="700" fill="#1f2328">Python: <tspan font-style="italic">traceback</tspan>, baca dari <tspan fill="#0969da">bawah ke atas</tspan></text>
+  <rect x="24" y="96" width="852" height="212" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="42" y="122" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">Traceback (most recent call last):</text>
+  <rect x="34" y="130" width="500" height="22" rx="4" fill="#eaeef2"/>
+  <text x="42" y="146" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;File "patungan.py", line 11, in &lt;module&gt;</text>
+  <rect x="34" y="154" width="500" height="22" rx="4" fill="#eaeef2"/>
+  <text x="42" y="170" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;&#160;&#160;main()</text>
+  <text x="42" y="194" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;File "patungan.py", line 7, in main</text>
+  <text x="42" y="218" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;&#160;&#160;hasil = hitung_patungan(120000, 0)</text>
+  <rect x="34" y="226" width="500" height="22" rx="4" fill="#fff1e5"/>
+  <text x="42" y="242" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;File "patungan.py", line 2, in hitung_patungan</text>
+  <rect x="34" y="250" width="500" height="22" rx="4" fill="#fff1e5"/>
+  <text x="42" y="266" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;&#160;&#160;return total // jumlah_orang</text>
+  <rect x="34" y="274" width="500" height="22" rx="4" fill="#ffebe9"/>
+  <text x="42" y="290" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">ZeroDivisionError: integer division or modulo by zero</text>
+  <rect x="560" y="140.0" width="210" height="24" rx="12" fill="#eaeef2" stroke="#57606a"/>
+  <text x="665" y="157.0" text-anchor="middle" font-size="14" font-weight="700" fill="#57606a">3  titik awal program</text>
+  <rect x="560" y="236.0" width="210" height="24" rx="12" fill="#fff1e5" stroke="#bc4c00"/>
+  <text x="665" y="253.0" text-anchor="middle" font-size="14" font-weight="700" fill="#bc4c00">2  tempat <tspan font-style="italic">exception</tspan> lahir</text>
+  <rect x="560" y="272.0" width="210" height="24" rx="12" fill="#ffebe9" stroke="#cf222e"/>
+  <text x="665" y="289.0" text-anchor="middle" font-size="14" font-weight="700" fill="#cf222e">1  jenis dan pesan</text>
+  <line x1="815" y1="294" x2="815" y2="112" stroke="#0969da" stroke-width="3" marker-end="url(#panah)"/>
+  <text x="30" y="350" font-size="16" font-weight="700" fill="#1f2328">Java: <tspan font-style="italic">stack trace</tspan>, baca dari <tspan fill="#0969da">atas ke bawah</tspan></text>
+  <rect x="24" y="362" width="852" height="92" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+  <rect x="34" y="372" width="534" height="22" rx="4" fill="#ffebe9"/>
+  <text x="42" y="388" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">Exception in thread &quot;main&quot; java.lang.ArithmeticException: / by zero</text>
+  <rect x="582" y="370" width="210" height="24" rx="12" fill="#ffebe9" stroke="#cf222e"/>
+  <text x="687" y="387" text-anchor="middle" font-size="14" font-weight="700" fill="#cf222e">1  jenis dan pesan</text>
+  <rect x="34" y="396" width="534" height="22" rx="4" fill="#fff1e5"/>
+  <text x="42" y="412" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;&#160;&#160;at Patungan.hitungPatungan(Patungan.java:3)</text>
+  <rect x="582" y="394" width="210" height="24" rx="12" fill="#fff1e5" stroke="#bc4c00"/>
+  <text x="687" y="411" text-anchor="middle" font-size="14" font-weight="700" fill="#bc4c00">2  tempat <tspan font-style="italic">exception</tspan> lahir</text>
+  <rect x="34" y="420" width="534" height="22" rx="4" fill="#eaeef2"/>
+  <text x="42" y="436" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#1f2328">&#160;&#160;&#160;&#160;at Patungan.main(Patungan.java:8)</text>
+  <rect x="582" y="418" width="210" height="24" rx="12" fill="#eaeef2" stroke="#57606a"/>
+  <text x="687" y="435" text-anchor="middle" font-size="14" font-weight="700" fill="#57606a">3  titik awal program</text>
+  <line x1="815" y1="374" x2="815" y2="438" stroke="#0969da" stroke-width="3" marker-end="url(#panah)"/>
+  <rect x="24" y="470" width="852" height="58" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="44" y="495" font-size="15" fill="#1f2328"><tspan font-weight="700">Kiat:</tspan> mulai dari nomor 1, lalu cari baris pertama yang menyebut <tspan font-style="italic">file</tspan> milikmu</text>
+  <text x="44" y="517" font-size="15" fill="#1f2328">(nomor 2). Buka <tspan font-style="italic">file</tspan> itu pada nomor baris yang disebutkan.</text>
+</svg>

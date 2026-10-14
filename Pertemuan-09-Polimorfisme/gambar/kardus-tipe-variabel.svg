@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Kardus berlabel Hewan berisi kucing: tipe variabel dan tipe objek</title>
+  <desc>Label kardus adalah tipe variabel (Hewan), isinya adalah tipe objek (Kucing). Saat disuruh bersuara, yang menjawab adalah isinya: Meong!</desc>
+  <rect x="1" y="1" width="898" height="418" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Label kardus tidak mengubah isinya</text>
+
+  <!-- Kucing mengintip -->
+  <g transform="translate(190,124)">
+    <path d="M-40,-18 L-30,-58 L-8,-34 Z" fill="#f0883e" stroke="#953800" stroke-width="2"/>
+    <path d="M40,-18 L30,-58 L8,-34 Z" fill="#f0883e" stroke="#953800" stroke-width="2"/>
+    <circle cx="0" cy="0" r="44" fill="#f0883e" stroke="#953800" stroke-width="2"/>
+    <ellipse cx="-15" cy="-6" rx="5" ry="7" fill="#1f2328"/>
+    <ellipse cx="15" cy="-6" rx="5" ry="7" fill="#1f2328"/>
+    <path d="M-5,8 L5,8 L0,14 Z" fill="#953800"/>
+    <path d="M0,14 q-8,10 -16,4 M0,14 q8,10 16,4" fill="none" stroke="#953800" stroke-width="2"/>
+    <g stroke="#953800" stroke-width="1.5">
+      <line x1="-20" y1="12" x2="-50" y2="6"/><line x1="-20" y1="16" x2="-50" y2="18"/>
+      <line x1="20" y1="12" x2="50" y2="6"/><line x1="20" y1="16" x2="50" y2="18"/>
+    </g>
+  </g>
+  <!-- Kardus -->
+  <path d="M70,175 L310,175 L330,150 L50,150 Z" fill="#d4a373" stroke="#7f5539" stroke-width="2"/>
+  <rect x="70" y="175" width="240" height="160" fill="#e6b980" stroke="#7f5539" stroke-width="2"/>
+  <rect x="120" y="225" width="140" height="60" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="2"/>
+  <text x="190" y="263" text-anchor="middle" font-size="24" font-weight="700" fill="#1f2328">Hewan</text>
+  <!-- Balon kata -->
+  <path d="M274,70 h106 a12,12 0 0 1 12,12 v30 a12,12 0 0 1 -12,12 h-76 l-56,16 l30,-16 h-4 a12,12 0 0 1 -12,-12 v-30 a12,12 0 0 1 12,-12 z" fill="#ffffff" stroke="#bc4c00" stroke-width="2"/>
+  <text x="327" y="104" text-anchor="middle" font-size="20" font-weight="700" fill="#bc4c00">Meong!</text>
+
+  <!-- Pemetaan -->
+  <rect x="420" y="70" width="456" height="250" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+  <text x="440" y="104" font-size="16" font-weight="700" fill="#1f2328">Label kardus = tipe variabel</text>
+  <text x="440" y="128" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#0a3069">Hewan hewan = new Kucing("Oyen");</text>
+  <text x="440" y="150" font-size="14" fill="#57606a">(di Python: hewan = Kucing("Oyen"))</text>
+  <text x="440" y="190" font-size="16" font-weight="700" fill="#1f2328">Isi kardus = tipe objek: Kucing</text>
+  <text x="440" y="214" font-size="14" fill="#57606a">ditentukan saat objek dibuat, tidak pernah berubah</text>
+  <text x="440" y="254" font-size="16" font-weight="700" fill="#1f2328">Disuruh <tspan font-family="Consolas, 'DejaVu Sans Mono', monospace">bersuara()</tspan>?</text>
+  <text x="440" y="278" font-size="14" fill="#57606a">Yang menjawab adalah isinya, jadi hasilnya</text>
+  <text x="440" y="300" font-size="14" fill="#57606a">"Meong!", bukan suara hewan umum.</text>
+
+  <rect x="24" y="348" width="852" height="54" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="450" y="381" text-anchor="middle" font-size="15" fill="#1f2328">Untuk <tspan font-style="italic">method</tspan> yang di-<tspan font-style="italic">override</tspan>, yang menentukan versi yang berjalan adalah <tspan font-weight="700">tipe objek</tspan>.</text>
+</svg>

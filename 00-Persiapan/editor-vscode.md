@@ -43,6 +43,27 @@ Dua pilihan **Open with Code** membuatmu bisa klik kanan sebuah folder di File E
 
 Unduh paket `.deb` (Ubuntu/Debian) atau `.rpm` (Fedora) dari situs VS Code, lalu pasang seperti aplikasi biasa. Sebagian distribusi juga menyediakan VS Code lewat Snap.
 
+### Mengenal tampilan VS Code
+
+Setelah VS Code terbuka, kenali dulu bagian-bagian utamanya. Nama-nama bagian ini akan sering disebut di seluruh materi.
+
+![Tampilan antarmuka Visual Studio Code dengan lima area berlabel: A Activity Bar (deretan ikon di sisi kiri), B Primary Side Bar berisi Explorer, C Editor Groups (area penyunting kode, berisi dua editor berdampingan), D Panel berisi Terminal, dan E Status Bar (bilah biru di bagian bawah).](gambar/vscode-tampilan-utama.png)
+
+<sub>Sumber gambar: dokumentasi Visual Studio Code, halaman [*User interface*](https://code.visualstudio.com/docs/editing/getting-started/userinterface), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
+
+| Huruf | Nama di VS Code | Gunanya |
+|---|---|---|
+| A | **Activity Bar** | deretan ikon di sisi paling kiri untuk berpindah tampilan, misalnya **Explorer** (ikon dua lembar kertas) dan **Extensions** (ikon empat kotak) |
+| B | **Primary Side Bar** | panel di sebelah kiri editor. Isinya mengikuti ikon yang dipilih di A. Yang paling sering dipakai adalah panel **Explorer**, berisi daftar folder dan *file* |
+| C | **Editor Groups** | area editor, tempat membuka dan mengetik isi *file*. Setiap *file* yang dibuka muncul sebagai tab. Pada gambar, ada dua editor yang dibuka berdampingan |
+| D | **Panel** | area di bagian bawah. Tab **TERMINAL** dipakai untuk mengetik perintah dan melihat hasil program. Tab lainnya, misalnya **PROBLEMS** dan **OUTPUT**, jarang kita pakai |
+| E | **Status Bar** | bilah paling bawah yang berisi keterangan singkat, misalnya posisi kursor (**Ln 1, Col 1**) dan bahasa *file* yang sedang dibuka |
+
+Di bagian paling atas jendela ada **bilah menu**: **File**, **Edit**, **Selection**, **View**, **Go**, **Run**, **Terminal**, dan **Help**. Di macOS, bilah menu ini berada di bagian atas layar. Petunjuk seperti **File → Open Folder** berarti: klik menu **File**, lalu pilih **Open Folder**.
+
+> [!NOTE]
+> Gambar-gambar VS Code di halaman ini diambil dari dokumentasi resminya dan memakai tema gelap. Tampilan di laptopmu bisa sedikit berbeda, misalnya warnanya terang atau letak ikonnya bergeser karena versinya lebih baru. Nama menu dan tombolnya tetap sama.
+
 ## 2. Memasang Ekstensi
 
 Ekstensi menambah kemampuan VS Code. Caranya:
@@ -55,6 +76,10 @@ Ekstensi menambah kemampuan VS Code. Caranya:
 |---|---|---|---|
 | 🐍 Python | **Python** | Microsoft | menjalankan dan men-*debug* Python, pewarnaan kode, saran otomatis |
 | ☕ Java | **Extension Pack for Java** | Microsoft | paket berisi beberapa ekstensi Java sekaligus: dukungan bahasa, *debugger*, pengelola proyek, dan lainnya |
+
+![Tampilan Extensions di VS Code dengan kata kunci python di kotak pencarian. Ekstensi Python dari Microsoft, bertanda centang biru, berada di urutan teratas. Di bawahnya ada beberapa ekstensi lain dengan nama mirip dari penerbit berbeda, masing-masing dengan tombol Install.](gambar/vscode-cari-ekstensi-python.png)
+
+<sub>Hasil pencarian `python` di tampilan **Extensions** (ikon empat kotak yang sedang aktif di sisi kiri). Pilih yang paling atas: penerbitnya **Microsoft** dan bertanda centang biru. Di gambar ini ekstensinya sudah terpasang, jadi tombol **Install**-nya sudah tidak tampak. Sumber gambar: dokumentasi Visual Studio Code, halaman [*Extension Marketplace*](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/). Gambar dipotong dan diperkecil oleh penyusun materi.</sub>
 
 > [!WARNING]
 > Ada banyak ekstensi dengan nama mirip. Pastikan penerbitnya **Microsoft** dan jumlah unduhannya besar. Ekstensi Python resmi otomatis memasang ekstensi pendamping, seperti Pylance dan Python Debugger. Extension Pack for Java juga memasang ekstensi dari penerbit lain, misalnya Language Support for Java dari Red Hat. Semua itu normal.
@@ -106,6 +131,10 @@ Padahal kodenya tidak salah. Di dalam satu folder `java/` pertemuan, setiap nama
 
 Saat membuka folder baru, VS Code mungkin bertanya **Do you trust the authors of the files in this folder?** Untuk folder materi ini dan folder latihanmu sendiri, pilih **Yes, I trust the authors**.
 
+![Kotak dialog Workspace Trust di VS Code bertuliskan Do you trust the authors of the files in this folder?, dengan kotak centang untuk memercayai folder induk, tombol biru Yes, I trust the authors, dan tombol No, I don't trust the authors.](gambar/vscode-dialog-trust.png)
+
+<sub>Kotak dialog yang muncul saat membuka folder baru. Klik tombol biru **Yes, I trust the authors**. Kotak centang di atas tombol itu adalah pilihan untuk memercayai folder induknya sekaligus (dijelaskan di bawah). Sumber gambar: dokumentasi Visual Studio Code, halaman [*Workspace Trust*](https://code.visualstudio.com/docs/editing/workspaces/workspace-trust), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
+
 Jika kamu memilih **No, I don't trust the authors**, VS Code masuk ke **Restricted Mode**. Di mode ini, sebagian fitur dimatikan atau dibatasi, termasuk tombol ▷/**Run**, *debugging*, dan terminal. Untuk keluar dari mode itu, klik **Manage** pada spanduk **Restricted Mode** di bagian atas jendela, lalu klik **Trust**.
 
 Kepercayaan yang diberikan pada sebuah folder juga berlaku untuk semua subfoldernya. Jadi jika kotak dialog itu menawarkan pilihan untuk memercayai folder induknya (misalnya `PBO2026`), kamu boleh mencentangnya agar tidak ditanya lagi setiap membuka pertemuan baru.
@@ -116,12 +145,26 @@ Kepercayaan yang diberikan pada sebuah folder juga berlaku untuk semua subfolder
 
 1. Di panel **Explorer** (sisi kiri), buka *file* `.py` yang ingin dijalankan, misalnya `contoh/contoh01_kelas_dan_objek.py`.
 2. Klik tombol ▷ (**Run Python File**) di pojok kanan atas editor.
+
+   ![Editor VS Code membuka file hello.py berisi dua baris kode. Tombol segitiga Run Python File di pojok kanan atas editor ditandai kotak merah.](gambar/vscode-tombol-run-python.png)
+
+   <sub>Tombol ▷ **Run Python File** (dalam kotak merah) ada di pojok kanan atas editor. Sumber gambar: dokumentasi Visual Studio Code, halaman [*Getting Started with Python in VS Code*](https://code.visualstudio.com/docs/python/python-tutorial), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
+
 3. Hasilnya muncul di panel **TERMINAL** di bagian bawah. Baris pertamanya berisi perintah panjang yang diketik VS Code secara otomatis (alamat Python dan alamat *file*-mu). Itu normal; *output* programmu muncul di bawahnya.
+
+   ![Panel TERMINAL di VS Code setelah tombol Run Python File diklik. Baris pertama berisi perintah panjang yang menjalankan python.exe untuk file hello.py, lalu baris berikutnya berisi output program: Roll a dice!](gambar/vscode-output-terminal-python.png)
+
+   <sub>Baris pertama adalah perintah yang diketik VS Code secara otomatis, dan *output* program (`Roll a dice!`) muncul di bawahnya. Di laptopmu alamat Python dan alamat *file*-nya akan berbeda. Sumber gambar: dokumentasi Visual Studio Code, halaman [*Getting Started with Python in VS Code*](https://code.visualstudio.com/docs/python/python-tutorial), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
 
 **Java** (contoh: folder `Pertemuan-02-Kelas-dan-Objek/java` sudah dibuka)
 
 1. Di panel **Explorer**, buka *file* `.java` yang berisi *method* `main`, misalnya `contoh/Contoh01KelasDanObjek.java`.
 2. Klik tulisan **Run** yang muncul tepat di atas baris `public static void main` (bagian dari **Run | Debug**), atau klik tombol ▷ di pojok kanan atas editor.
+
+   ![Potongan kode Java di VS Code. Tepat di atas baris public static void main muncul tulisan kecil Run | Debug, dan kata Run ditunjuk panah kuning.](gambar/vscode-run-debug-java.png)
+
+   <sub>Tulisan kecil **Run | Debug** muncul tepat di atas baris `main` (ditunjuk panah kuning). Kode pada gambar adalah contoh dari dokumentasi VS Code, bukan kode materi ini. Sumber gambar: dokumentasi Visual Studio Code, halaman [*Running and debugging Java*](https://code.visualstudio.com/docs/java/java-debugging), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
+
 3. Hasilnya muncul di panel **TERMINAL** (kadang di **DEBUG CONSOLE**) di bagian bawah.
 
 Kedua contoh di atas mencetak baris pertama yang sama: `=== DUA OBJEK DARI SATU KELAS ===`. Tombol ▷ selalu menjalankan *file* yang sedang aktif, yaitu tab yang sedang kamu lihat. Jadi, pastikan tab yang benar sedang terbuka sebelum mengkliknya.
@@ -155,6 +198,10 @@ Semua perintah `cd` di halaman praktik ditulis dari **folder utama materi** (`PB
 
 > [!TIP]
 > Cara paling cepat membuka terminal tepat di folder yang benar: di panel **Explorer**, klik kanan folder tujuan (misalnya `contoh`), lalu pilih **Open in Integrated Terminal**. Kamu tidak perlu mengetik `cd` lagi.
+
+![Panel Explorer di VS Code. Sebuah folder diklik kanan sehingga muncul menu dengan pilihan New File, New Folder, Reveal in File Explorer, Open in Integrated Terminal yang sedang disorot, Share, dan Find in Folder.](gambar/vscode-open-in-integrated-terminal.png)
+
+<sub>Klik kanan folder di panel **Explorer**, lalu pilih **Open in Integrated Terminal**. Pada gambar, folder yang diklik kanan bernama `getstarted`; di materi ini biasanya folder `contoh` atau `studi-kasus`. Sumber gambar: dokumentasi Visual Studio Code, halaman [*Terminal Basics*](https://code.visualstudio.com/docs/terminal/basics), © Microsoft Corporation, lisensi [CC BY 3.0 US](https://creativecommons.org/licenses/by/3.0/us/).</sub>
 
 Tidak yakin sedang berada di folder mana? Lihat teks di depan kursor terminal. Di PowerShell, teks itu berisi alamat lengkap folder aktif, misalnya `PS C:\Users\Budi\Documents\PBO2026\Pertemuan-02-Kelas-dan-Objek\java>`. Di macOS/Linux, ketik `pwd` lalu tekan Enter. Penjelasan lengkapnya ada di [Menjalankan Program bagian 4](menjalankan-program.md#4-berpindah-ke-folder-materi).
 

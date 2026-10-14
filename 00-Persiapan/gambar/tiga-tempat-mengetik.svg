@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="456" viewBox="0 0 900 456" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Tiga tempat mengetik: editor, terminal, dan mode interaktif</title>
+  <desc>Editor untuk menulis file program, terminal untuk memberi perintah ke komputer, dan mode interaktif (Python atau JShell) untuk mencoba satu baris kode.</desc>
+  <rect x="1" y="1" width="898" height="454" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Tiga tempat mengetik yang sering tertukar</text>
+
+  <!-- Kartu 1: Editor -->
+  <rect x="24" y="62" width="272" height="284" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+  <circle cx="48" cy="88" r="13" fill="#0969da"/><text x="48" y="93" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">1</text>
+  <text x="70" y="94" font-size="18" font-weight="700" fill="#1f2328">Editor (VS Code)</text>
+  <rect x="40" y="110" width="240" height="96" rx="6" fill="#ffffff" stroke="#8c959f"/>
+  <rect x="40" y="110" width="80" height="22" rx="6" fill="#ddf4ff" stroke="#8c959f"/>
+  <text x="50" y="126" font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#0a3069">halo.py</text>
+  <g font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13">
+    <text x="50" y="156" fill="#8c959f">1</text><text x="68" y="156" fill="#1f2328">print(<tspan fill="#0a3069">"Halo!"</tspan>)</text>
+    <text x="50" y="178" fill="#8c959f">2</text>
+  </g>
+  <text x="40" y="236" font-size="15" font-weight="700" fill="#1f2328">Untuk: menulis program.</text>
+  <text x="40" y="260" font-size="14" fill="#1f2328">Isinya disimpan sebagai <tspan font-style="italic">file</tspan>,</text>
+  <text x="40" y="282" font-size="14" fill="#1f2328">misalnya halo.py atau Halo.java.</text>
+  <text x="40" y="304" font-size="14" fill="#1f2328">Simpan dengan Ctrl+S.</text>
+
+  <!-- Kartu 2: Terminal -->
+  <rect x="314" y="62" width="272" height="284" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+  <circle cx="338" cy="88" r="13" fill="#1a7f37"/><text x="338" y="93" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2</text>
+  <text x="360" y="94" font-size="18" font-weight="700" fill="#1f2328">Terminal</text>
+  <rect x="330" y="110" width="240" height="96" rx="6" fill="#0d1117"/>
+  <g font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#e6edf3">
+    <text x="340" y="132"><tspan fill="#7ee787">PS C:\pbo&gt;</tspan> python halo.py</text>
+    <text x="340" y="152" fill="#c9d1d9">Halo!</text>
+    <text x="340" y="176"><tspan fill="#7ee787">PS C:\pbo&gt;</tspan> java Halo.java</text>
+    <text x="340" y="196" fill="#c9d1d9">Halo!</text>
+  </g>
+  <text x="330" y="236" font-size="15" font-weight="700" fill="#1f2328">Untuk: memberi perintah.</text>
+  <text x="330" y="260" font-size="14" fill="#1f2328">Pindah folder (cd), menjalankan</text>
+  <text x="330" y="282" font-size="14" fill="#1f2328">program (python, javac, java).</text>
+  <text x="330" y="304" font-size="14" fill="#1f2328">Tandanya: PS C:\...&gt; atau $</text>
+
+  <!-- Kartu 3: Mode interaktif -->
+  <rect x="604" y="62" width="272" height="284" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+  <circle cx="628" cy="88" r="13" fill="#8250df"/><text x="628" y="93" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3</text>
+  <text x="650" y="94" font-size="18" font-weight="700" fill="#1f2328">Mode interaktif</text>
+  <rect x="620" y="110" width="240" height="96" rx="6" fill="#0d1117"/>
+  <g font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="13" fill="#e6edf3">
+    <text x="630" y="132"><tspan fill="#d2a8ff">&gt;&gt;&gt;</tspan> 18000 * 2</text>
+    <text x="630" y="152" fill="#c9d1d9">36000</text>
+    <text x="630" y="176"><tspan fill="#d2a8ff">jshell&gt;</tspan> 18000 * 2</text>
+    <text x="630" y="196" fill="#c9d1d9">$1 ==&gt; 36000</text>
+  </g>
+  <text x="620" y="236" font-size="15" font-weight="700" fill="#1f2328">Untuk: mencoba satu baris.</text>
+  <text x="620" y="260" font-size="14" fill="#1f2328">Python: ketik python saja.</text>
+  <text x="620" y="282" font-size="14" fill="#1f2328">Tandanya &gt;&gt;&gt;, keluar: exit().</text>
+  <text x="620" y="304" font-size="14" fill="#1f2328">Java: ketik jshell.</text>
+  <text x="620" y="326" font-size="14" fill="#1f2328">Tandanya jshell&gt;, keluar: /exit.</text>
+
+  <!-- Peringatan -->
+  <rect x="24" y="364" width="852" height="70" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="44" y="393" font-size="15" fill="#1f2328"><tspan font-weight="700">Jangan tertukar:</tspan> perintah terminal (cd, python halo.py, java Halo.java) tidak bisa diketik</text>
+  <text x="44" y="417" font-size="15" fill="#1f2328">setelah tanda &gt;&gt;&gt; atau jshell&gt;. Keluar dulu dari mode interaktif, baru ketik perintahnya.</text>
+</svg>

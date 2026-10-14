@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Dua nama, satu yang ditunjuk: referensi dan aliasing</title>
+  <desc>Kiri: dua kontak ponsel menunjuk satu orang. Kanan: dua variabel menunjuk satu objek Ponsel di memori.</desc>
+  <defs>
+    <marker id="panah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0969da"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="898" height="428" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Dua nama, satu yang ditunjuk</text>
+
+  <!-- Kiri: kontak ponsel -->
+  <rect x="24" y="62" width="408" height="270" rx="12" fill="#f6f8fa" stroke="#d0d7de" stroke-width="2"/>
+  <text x="228" y="90" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2328">Di ponselmu</text>
+  <g font-size="15" fill="#1f2328">
+    <rect x="44" y="112" width="160" height="44" rx="8" fill="#ffffff" stroke="#8c959f"/>
+    <circle cx="66" cy="134" r="11" fill="#afb8c1"/>
+    <text x="86" y="139">Budi</text>
+    <rect x="44" y="214" width="160" height="44" rx="8" fill="#ffffff" stroke="#8c959f"/>
+    <circle cx="66" cy="236" r="11" fill="#afb8c1"/>
+    <text x="86" y="241">Ketua Tingkat</text>
+  </g>
+  <text x="124" y="290" text-anchor="middle" font-size="14" fill="#57606a">dua kontak</text>
+  <path d="M204,134 C250,134 270,170 300,180" fill="none" stroke="#0969da" stroke-width="2.5" marker-end="url(#panah)"/>
+  <path d="M204,236 C250,236 270,205 300,197" fill="none" stroke="#0969da" stroke-width="2.5" marker-end="url(#panah)"/>
+  <!-- orang -->
+  <circle cx="350" cy="160" r="20" fill="#bc4c00"/>
+  <path d="M318,222 a32,30 0 0 1 64,0 v8 h-64 z" fill="#bc4c00"/>
+  <text x="350" y="258" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2328">Budi</text>
+  <text x="350" y="290" text-anchor="middle" font-size="14" fill="#57606a">orangnya satu</text>
+
+  <!-- Kanan: program -->
+  <rect x="468" y="62" width="408" height="270" rx="12" fill="#ddf4ff" stroke="#54aeff" stroke-width="2"/>
+  <text x="672" y="90" text-anchor="middle" font-size="17" font-weight="700" fill="#0a3069">Di program</text>
+  <g font-family="Consolas, 'DejaVu Sans Mono', monospace" font-size="14" fill="#1f2328">
+    <rect x="486" y="112" width="160" height="44" rx="8" fill="#ffffff" stroke="#54aeff"/>
+    <text x="566" y="139" text-anchor="middle">ponsel_budi</text>
+    <rect x="486" y="214" width="160" height="44" rx="8" fill="#ffffff" stroke="#54aeff"/>
+    <text x="566" y="241" text-anchor="middle">ponsel_dipinjam</text>
+  </g>
+  <text x="566" y="290" text-anchor="middle" font-size="14" fill="#0a3069">dua variabel</text>
+  <path d="M646,134 C690,134 700,165 724,172" fill="none" stroke="#0969da" stroke-width="2.5" marker-end="url(#panah)"/>
+  <path d="M646,236 C690,236 700,207 724,200" fill="none" stroke="#0969da" stroke-width="2.5" marker-end="url(#panah)"/>
+  <!-- objek -->
+  <rect x="726" y="140" width="132" height="92" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="2"/>
+  <text x="792" y="162" text-anchor="middle" font-size="14" font-weight="700" fill="#0a3069">objek Ponsel</text>
+  <line x1="726" y1="170" x2="858" y2="170" stroke="#54aeff"/>
+  <text x="738" y="192" font-size="14" fill="#1f2328">pemilik: Budi</text>
+  <text x="738" y="214" font-size="14" fill="#1f2328">baterai: 80%</text>
+  <text x="792" y="258" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2328">objeknya satu</text>
+  <text x="792" y="290" text-anchor="middle" font-size="14" fill="#0a3069">(di memori)</text>
+
+  <!-- Catatan -->
+  <rect x="24" y="348" width="852" height="66" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="44" y="376" font-size="15" fill="#1f2328"><tspan font-family="Consolas, 'DejaVu Sans Mono', monospace" font-weight="700">ponsel_dipinjam = ponsel_budi</tspan> hanya menyalin <tspan font-weight="700">penunjuknya</tspan>, bukan objeknya.</text>
+  <text x="44" y="400" font-size="15" fill="#1f2328">Baterai diubah lewat satu nama, perubahannya terlihat juga lewat nama yang lain.</text>
+</svg>

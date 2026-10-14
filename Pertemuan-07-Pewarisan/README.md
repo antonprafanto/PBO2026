@@ -169,13 +169,9 @@ Karena itulah pewarisan disebut relasi ***is-a*** ("adalah sebuah"). Hubungan in
 
 Program bisa menanyakannya secara langsung. Python memakai `isinstance(kopi, Menu)`, sedangkan Java memakai `kopi instanceof Menu`. Keduanya menjawab "ya" untuk objek kopi karena kopi adalah `Minuman`, dan `Minuman` adalah `Menu`.
 
-```text
-            Menu                     kopi adalah Minuman?  ya
-           /    \                    kopi adalah Menu?     ya   (lewat induknya)
-     Makanan    Minuman              kopi adalah Makanan?  tidak
-                   |
-                 kopi  (objek)
-```
+Cara paling mudah membayangkannya: setiap kelas adalah sebuah **himpunan** objek. Himpunan kelas anak berada **di dalam** himpunan kelas induknya.
+
+![Ilustrasi himpunan. Lingkaran besar Menu memuat dua lingkaran: Makanan, berisi objek nasi_goreng dan mie_goreng, serta Minuman, berisi objek kopi dan es_teh. Di sebelah kanan ada tanya jawab tentang objek kopi: kopi adalah Minuman? ya. Kopi adalah Menu? ya, karena Minuman ada di dalam Menu. Kopi adalah Makanan? tidak. Cara menanyakannya di kode: isinstance(kopi, Menu) di Python dan kopi instanceof Menu di Java. Catatan: arahnya hanya ke atas; setiap Minuman adalah Menu, tetapi tidak setiap Menu adalah Minuman.](gambar/himpunan-is-a.svg)
 
 > [!WARNING]
 > Di diagram kelas, segitiga kosong selalu menempel di sisi **kelas induk**. Panah pewarisan yang terbalik adalah kesalahan menggambar yang paling sering terjadi.

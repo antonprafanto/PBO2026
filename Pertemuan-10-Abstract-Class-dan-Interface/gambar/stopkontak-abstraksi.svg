@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="'Segoe UI', Arial, 'DejaVu Sans', sans-serif">
+  <title>Analogi stopkontak untuk abstraksi</title>
+  <desc>Satu stopkontak standar menerima colokan rice cooker, charger ponsel, dan kipas angin. Stopkontak hanya peduli bentuk colokan, bukan alatnya.</desc>
+  <defs>
+    <g id="colokan">
+      <rect x="0" y="-13" width="26" height="26" rx="6" fill="#57606a"/>
+      <rect x="-12" y="-8" width="13" height="4" rx="2" fill="#8c959f"/>
+      <rect x="-12" y="4" width="13" height="4" rx="2" fill="#8c959f"/>
+    </g>
+  </defs>
+  <rect x="1" y="1" width="898" height="468" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">Stopkontak hanya peduli bentuk colokan, bukan alatnya</text>
+
+  <!-- Stopkontak -->
+  <rect x="60" y="120" width="170" height="170" rx="22" fill="#f6f8fa" stroke="#8c959f" stroke-width="3"/>
+  <circle cx="145" cy="205" r="58" fill="#eaeef2" stroke="#8c959f" stroke-width="3"/>
+  <circle cx="125" cy="205" r="8" fill="#1f2328"/>
+  <circle cx="165" cy="205" r="8" fill="#1f2328"/>
+  <text x="145" y="318" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2328">Stopkontak</text>
+  <text x="145" y="340" text-anchor="middle" font-size="14" fill="#57606a">bentuk lubang standar</text>
+
+  <!-- Garis colok -->
+  <g fill="none" stroke="#0969da" stroke-width="2.5" stroke-dasharray="8 6">
+    <path d="M232,190 C330,150 380,110 452,108"/>
+    <path d="M232,205 L452,206"/>
+    <path d="M232,220 C330,260 380,302 452,304"/>
+  </g>
+  <rect x="268" y="96" width="100" height="24" rx="12" fill="#ddf4ff" stroke="#0969da"/>
+  <text x="318" y="113" text-anchor="middle" font-size="14" font-weight="700" fill="#0a3069">dicolokkan</text>
+
+  <!-- Alat 1: rice cooker -->
+  <use href="#colokan" x="466" y="108"/>
+  <line x1="492" y1="108" x2="540" y2="108" stroke="#57606a" stroke-width="3"/>
+  <g transform="translate(540,74)">
+    <path d="M6,26 q34,-26 68,0 z" fill="#afb8c1" stroke="#57606a" stroke-width="2"/>
+    <rect x="0" y="26" width="80" height="44" rx="10" fill="#ffffff" stroke="#57606a" stroke-width="2"/>
+    <rect x="30" y="40" width="20" height="10" rx="3" fill="#cf222e"/>
+  </g>
+  <text x="640" y="104" font-size="16" font-weight="700" fill="#1f2328"><tspan font-style="italic">Rice cooker</tspan></text>
+  <text x="640" y="126" font-size="14" fill="#57606a">memasak nasi</text>
+
+  <!-- Alat 2: charger ponsel -->
+  <use href="#colokan" x="466" y="206"/>
+  <line x1="492" y1="206" x2="540" y2="206" stroke="#57606a" stroke-width="3"/>
+  <g transform="translate(540,176)">
+    <rect x="0" y="16" width="34" height="28" rx="5" fill="#ffffff" stroke="#57606a" stroke-width="2"/>
+    <path d="M34,30 C50,30 50,10 62,10" fill="none" stroke="#57606a" stroke-width="2"/>
+    <rect x="62" y="-8" width="30" height="54" rx="6" fill="#ffffff" stroke="#57606a" stroke-width="2"/>
+    <rect x="67" y="-2" width="20" height="36" rx="2" fill="#ddf4ff"/>
+  </g>
+  <text x="640" y="202" font-size="16" font-weight="700" fill="#1f2328"><tspan font-style="italic">Charger</tspan> ponsel</text>
+  <text x="640" y="224" font-size="14" fill="#57606a">mengisi baterai</text>
+
+  <!-- Alat 3: kipas angin -->
+  <use href="#colokan" x="466" y="304"/>
+  <line x1="492" y1="304" x2="540" y2="304" stroke="#57606a" stroke-width="3"/>
+  <g transform="translate(580,290)">
+    <circle cx="0" cy="0" r="30" fill="#ffffff" stroke="#57606a" stroke-width="2"/>
+    <path d="M0,0 C-6,-24 14,-26 10,-6 Z" fill="#54aeff"/>
+    <path d="M0,0 C24,-4 22,18 4,12 Z" fill="#54aeff"/>
+    <path d="M0,0 C-18,16 -30,-2 -12,-8 Z" fill="#54aeff"/>
+    <circle cx="0" cy="0" r="4" fill="#57606a"/>
+    <line x1="0" y1="30" x2="0" y2="52" stroke="#57606a" stroke-width="3"/>
+    <line x1="-18" y1="54" x2="18" y2="54" stroke="#57606a" stroke-width="4"/>
+  </g>
+  <text x="640" y="300" font-size="16" font-weight="700" fill="#1f2328">Kipas angin</text>
+  <text x="640" y="322" font-size="14" fill="#57606a">memutar baling-baling</text>
+
+  <!-- Pemetaan ke PBO -->
+  <rect x="24" y="368" width="852" height="82" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
+  <text x="44" y="396" font-size="15" fill="#1f2328"><tspan font-weight="700">Dalam PBO:</tspan> stopkontak = kontrak (kelas abstrak atau <tspan font-style="italic">interface</tspan>), yaitu "apa yang bisa</text>
+  <text x="44" y="420" font-size="15" fill="#1f2328">dilakukan". Setiap alat = kelas konkret yang memenuhi kontrak itu dengan caranya sendiri.</text>
+  <text x="44" y="442" font-size="15" fill="#1f2328">Pemakai cukup mengenal kontraknya, tanpa perlu tahu detail di dalam setiap alat.</text>
+</svg>
