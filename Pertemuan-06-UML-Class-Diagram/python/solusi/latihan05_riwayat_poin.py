@@ -75,6 +75,8 @@ class Pelanggan:
 
     def tukar_poin(self, jumlah: int) -> int:
         """Menukar poin menjadi potongan harga. 1 poin = Rp1.000."""
+        if jumlah <= 0:
+            raise ValueError("Poin yang ditukar harus lebih dari 0")
         if jumlah > self._poin:
             raise ValueError(f"Poin tidak cukup (sisa {self._poin})")
         self._poin -= jumlah

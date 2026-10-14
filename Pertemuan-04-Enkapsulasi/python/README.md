@@ -989,6 +989,8 @@ Keempat, kelas `Pelanggan`. Data `nama`, `no_hp`, dan `poin` kini disimpan di at
 
     def tukar_poin(self, jumlah):
         """Menukar poin menjadi potongan harga. 1 poin = Rp1.000."""
+        if jumlah <= 0:
+            raise ValueError("Poin yang ditukar harus lebih dari 0")
         if jumlah > self._poin:
             raise ValueError(f"Poin tidak cukup (sisa {self._poin})")
         self._poin -= jumlah
@@ -996,7 +998,7 @@ Keempat, kelas `Pelanggan`. Data `nama`, `no_hp`, dan `poin` kini disimpan di at
 ```
 
 - `tambah_poin()` menolak jumlah nol atau negatif sehingga poin tidak bisa "dikurangi diam-diam" lewat pintu tambah.
-- `tukar_poin()` adalah *method* penjaga aturan yang juga **mengembalikan nilai**, yaitu besar potongan harga dalam rupiah.
+- `tukar_poin()` adalah *method* penjaga aturan yang juga **mengembalikan nilai**, yaitu besar potongan harga dalam rupiah. Ia menolak dua hal: jumlah nol atau negatif (tanpa pemeriksaan ini, `tukar_poin(-5)` justru **menambah** 5 poin), dan jumlah yang melebihi poin yang dimiliki.
 
 Terakhir, cara program utama menangani data yang ditolak (potongan dari `main()`):
 

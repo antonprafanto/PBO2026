@@ -38,6 +38,9 @@ public class Pelanggan {
 
     /** Menukar poin menjadi potongan harga. 1 poin = Rp1.000. */
     public int tukarPoin(int jumlah) {
+        if (jumlah <= 0) {
+            throw new IllegalArgumentException("Poin yang ditukar harus lebih dari 0");
+        }
         if (jumlah > poin) {
             throw new IllegalArgumentException("Poin tidak cukup (sisa " + poin + ")");
         }

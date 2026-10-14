@@ -1045,6 +1045,9 @@ Keempat, kelas `Pelanggan`. *Field* `nama`, `noHp`, dan `poin` kini `private` da
 
     /** Menukar poin menjadi potongan harga. 1 poin = Rp1.000. */
     public int tukarPoin(int jumlah) {
+        if (jumlah <= 0) {
+            throw new IllegalArgumentException("Poin yang ditukar harus lebih dari 0");
+        }
         if (jumlah > poin) {
             throw new IllegalArgumentException("Poin tidak cukup (sisa " + poin + ")");
         }
@@ -1054,7 +1057,7 @@ Keempat, kelas `Pelanggan`. *Field* `nama`, `noHp`, dan `poin` kini `private` da
 ```
 
 - `tambahPoin()` menolak jumlah nol atau negatif sehingga poin tidak bisa "dikurangi diam-diam" lewat pintu tambah.
-- `tukarPoin()` adalah *method* penjaga aturan yang juga **mengembalikan nilai** `int`, yaitu besar potongan harga dalam rupiah.
+- `tukarPoin()` adalah *method* penjaga aturan yang juga **mengembalikan nilai** `int`, yaitu besar potongan harga dalam rupiah. Ia menolak dua hal: jumlah nol atau negatif (tanpa pemeriksaan ini, `tukarPoin(-5)` justru **menambah** 5 poin), dan jumlah yang melebihi poin yang dimiliki.
 
 Terakhir, cara `main` menangani data yang ditolak (potongan dari *method* `main`):
 
