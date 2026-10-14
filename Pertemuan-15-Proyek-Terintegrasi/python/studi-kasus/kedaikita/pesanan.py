@@ -63,14 +63,14 @@ class Pesanan:
         return list(self._daftar_item)
 
     def tambah_item(self, menu: Menu, jumlah: int = 1):
-        if self._status == "LUNAS":
+        if self._status != "BARU":  # sudah dibayar (LUNAS atau sesudahnya)
             raise KedaiError(f"Pesanan {self._nomor} sudah lunas, tidak bisa diubah")
         item = ItemPesanan(menu, jumlah)  # objek item dibuat OLEH pesanan
         menu.kurangi_stok(jumlah)  # bisa melempar StokTidakCukupError
         self._daftar_item.append(item)
 
     def atur_diskon(self, diskon: Diskon):
-        if self._status == "LUNAS":
+        if self._status != "BARU":  # sudah dibayar (LUNAS atau sesudahnya)
             raise KedaiError(f"Pesanan {self._nomor} sudah lunas, tidak bisa diubah")
         self._diskon = diskon
 
@@ -106,7 +106,7 @@ class Pesanan:
 
     def bayar(self, pembayaran: Pembayaran):
         """Membayar pesanan. Melempar KedaiError jika gagal."""
-        if self._status == "LUNAS":
+        if self._status != "BARU":  # sudah dibayar (LUNAS atau sesudahnya)
             raise KedaiError(f"Pesanan {self._nomor} sudah lunas")
         total = self.hitung_total()
         biaya = pembayaran.hitung_biaya_layanan(total)

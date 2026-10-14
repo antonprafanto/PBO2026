@@ -65,7 +65,7 @@ public class Pesanan {
     }
 
     public void tambahItem(Menu menu, int jumlah) throws KedaiException {
-        if (status.equals("LUNAS")) {
+        if (!status.equals("BARU")) { // sudah dibayar (LUNAS atau sesudahnya)
             throw new KedaiException("Pesanan " + nomor + " sudah lunas, tidak bisa diubah");
         }
         ItemPesanan item = new ItemPesanan(menu, jumlah); // objek item dibuat OLEH pesanan
@@ -79,7 +79,7 @@ public class Pesanan {
     }
 
     public void aturDiskon(Diskon diskon) throws KedaiException {
-        if (status.equals("LUNAS")) {
+        if (!status.equals("BARU")) { // sudah dibayar (LUNAS atau sesudahnya)
             throw new KedaiException("Pesanan " + nomor + " sudah lunas, tidak bisa diubah");
         }
         this.diskon = diskon;
@@ -125,7 +125,7 @@ public class Pesanan {
 
     /** Membayar pesanan. Melempar KedaiException jika gagal. */
     public void bayar(Pembayaran pembayaran) throws KedaiException {
-        if (status.equals("LUNAS")) {
+        if (!status.equals("BARU")) { // sudah dibayar (LUNAS atau sesudahnya)
             throw new KedaiException("Pesanan " + nomor + " sudah lunas");
         }
         int total = hitungTotal();

@@ -23,7 +23,7 @@ public class LaporanPenjualan implements DapatDicetak {
     public LaporanPenjualan(List<Pesanan> daftarPesanan) {
         this.pesananLunas = new ArrayList<>();
         for (Pesanan p : daftarPesanan) {
-            if (p.getStatus().equals("LUNAS")) {
+            if (!p.getStatus().equals("BARU")) { // sudah dibayar
                 pesananLunas.add(p);
             }
         }

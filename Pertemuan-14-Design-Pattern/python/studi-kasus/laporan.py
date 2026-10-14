@@ -17,10 +17,10 @@ LEBAR = 40
 
 
 class LaporanPenjualan(DapatDicetak):
-    """Ringkasan penjualan dari pesanan-pesanan yang sudah LUNAS."""
+    """Ringkasan penjualan dari pesanan yang sudah dibayar (LUNAS dst.)."""
 
     def __init__(self, daftar_pesanan: list[Pesanan]):
-        self._pesanan_lunas = [p for p in daftar_pesanan if p.status == "LUNAS"]
+        self._pesanan_lunas = [p for p in daftar_pesanan if p.status != "BARU"]
 
     def jumlah_pesanan(self) -> int:
         return len(self._pesanan_lunas)
