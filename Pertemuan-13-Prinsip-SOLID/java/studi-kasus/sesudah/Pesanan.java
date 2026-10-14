@@ -1,0 +1,121 @@
+/*
+ * File Pesanan.java: kelas Pesanan (dibantu kelas ItemPesanan).
+ *
+ * Relasi yang terlihat di sini:
+ * - Pesanan --> Pelanggan   : ASOSIASI (pesanan "milik" seorang pelanggan,
+ *                             tetapi pelanggan tetap ada walau pesanan selesai)
+ * - Pesanan *-- ItemPesanan : KOMPOSISI (item dibuat di dalam pesanan dan
+ *                             tidak punya arti tanpa pesanannya)
+ * - ItemPesanan --> Menu    : ASOSIASI (item menunjuk ke menu yang dipesan)
+ *
+ * Yang berubah di Pertemuan 13 (refactor SOLID):
+ * - SRP: Pesanan hanya mengurus item dan perhitungan. Menyusun/mencetak struk
+ *   kini tugas kelas StrukPesanan (StrukPesanan.java). Karena itu Pesanan
+ *   tidak lagi punya method cetak() dan tidak lagi meng-implements DapatDicetak.
+ * - OCP: diskon tidak lagi ditulis dengan if/else if, tetapi diserahkan ke
+ *   objek Diskon (aturDiskon). Promo baru tidak mengubah kelas ini.
+ */
+
+import java.util.ArrayList;
+import java.util.List;
+
+/** Satu pesanan milik seorang pelanggan, berisi beberapa ItemPesanan. */
+public class Pesanan {
+    private static int nomorTerakhir = 0; // atribut static untuk membuat nomor otomatis
+
+    private String nomor;
+    private Pelanggan pelanggan;
+    private List<ItemPesanan> daftarItem;
+    private String status;
+    private Diskon diskon;
+
+    public Pesanan(Pelanggan pelanggan) {
+        nomorTerakhir++;
+        this.nomor = String.format("P%03d", nomorTerakhir); // P001, P002, ...
+        this.pelanggan = pelanggan;
+        this.daftarItem = new ArrayList<>();
+        this.status = "BARU";
+        this.diskon = new TanpaDiskon();
+    }
+
+    public String getNomor() {
+        return nomor;
+    }
+
+    public Pelanggan getPelanggan() {
+        return pelanggan;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Diskon getDiskon() {
+        return diskon;
+    }
+
+    /** Mengembalikan SALINAN list, agar isi asli tidak diubah dari luar. */
+    public List<ItemPesanan> getDaftarItem() {
+        return new ArrayList<>(daftarItem);
+    }
+
+    public void tambahItem(Menu menu, int jumlah) throws KedaiException {
+        if (status.equals("LUNAS")) {
+            throw new KedaiException("Pesanan " + nomor + " sudah lunas, tidak bisa diubah");
+        }
+        ItemPesanan item = new ItemPesanan(menu, jumlah); // objek item dibuat OLEH pesanan
+        menu.kurangiStok(jumlah); // bisa melempar StokTidakCukupException
+        daftarItem.add(item);
+    }
+
+    /** Versi overload: tanpa parameter jumlah berarti memesan 1 porsi. */
+    public void tambahItem(Menu menu) throws KedaiException {
+        tambahItem(menu, 1);
+    }
+
+    public void aturDiskon(Diskon diskon) throws KedaiException {
+        if (status.equals("LUNAS")) {
+            throw new KedaiException("Pesanan " + nomor + " sudah lunas, tidak bisa diubah");
+        }
+        this.diskon = diskon;
+    }
+
+    public int hitungSubtotal() {
+        int total = 0;
+        for (ItemPesanan item : daftarItem) {
+            total += item.hitungSubtotal();
+        }
+        return total;
+    }
+
+    public int hitungPotongan() {
+        return diskon.hitungPotongan(new ArrayList<>(daftarItem), pelanggan);
+    }
+
+    public int hitungTotal() {
+        return hitungSubtotal() - hitungPotongan();
+    }
+
+    /** Membayar pesanan. Melempar KedaiException jika gagal. */
+    public void bayar(Pembayaran pembayaran) throws KedaiException {
+        if (status.equals("LUNAS")) {
+            throw new KedaiException("Pesanan " + nomor + " sudah lunas");
+        }
+        int total = hitungTotal();
+        int biaya = pembayaran.hitungBiayaLayanan(total);
+        int totalBayar = total + biaya;
+        System.out.println("Pembayaran pesanan " + nomor + " (" + pelanggan.getNama() + ")");
+        System.out.println("  Metode       : " + pembayaran.namaMetode());
+        if (biaya > 0) {
+            System.out.println("  Biaya layanan: " + Rupiah.format(biaya));
+        }
+        System.out.println("  Total bayar  : " + Rupiah.format(totalBayar));
+        pembayaran.proses(totalBayar); // jika gagal, baris di bawah tidak dijalankan
+        status = "LUNAS";
+        int poin = total / 10000;
+        if (poin > 0) {
+            pelanggan.tambahPoin(poin);
+        }
+        System.out.println("  Status       : LUNAS (+" + poin + " poin)");
+    }
+}

@@ -1,0 +1,9 @@
+# Normalisasi akhir baris: simpan LF di repositori.
+* text=auto eol=lf
+
+# Skrip Windows harus memakai CRLF agar berjalan baik di Command Prompt.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Skrip shell harus memakai LF.
+*.sh text eol=lf

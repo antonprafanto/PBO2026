@@ -1,0 +1,30 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# ===== Java =====
+*.class
+out/
+bin/
+target/
+*.jar
+
+# ===== Editor / IDE =====
+.vscode/
+.idea/
+*.iml
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Data yang dihasilkan aplikasi Pertemuan 15 saat dijalankan =====
+# (data/menu_awal.csv TIDAK diabaikan karena merupakan data awal)
+**/data/menu.csv
+**/data/transaksi.csv
+**/data/demo-*.csv

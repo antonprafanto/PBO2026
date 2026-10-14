@@ -1,0 +1,7 @@
+jenis;kode;nama;harga;stok;ekstra
+Minuman;M01;Kopi Susu Gula Aren;18000;20;dingin
+Minuman;M02;Es Teh Manis;8000;30;dingin
+Makanan;M03;Nasi Goreng Kampung;25000;15;2
+Makanan;M04;Mie Goreng Jawa;23000;10;1
+Makanan;M05;Pisang Goreng Keju;15000;12;0
+Minuman;M06;Kopi Tubruk;12000;25;panas
