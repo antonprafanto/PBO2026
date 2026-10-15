@@ -146,8 +146,8 @@ flowchart TB
 | Lapisan | Kelas di KedaiKita | Tugasnya | Yang **tidak** boleh ia lakukan |
 |---|---|---|---|
 | Tampilan (*presentation*) | `AplikasiKasir` | menampilkan menu pilihan, membaca ketikan kasir, mencetak hasil | menghitung pajak atau diskon sendiri |
-| Layanan (*service*) | `LayananKasir` | menjalankan alur kerja: daftar pelanggan, buat pesanan, tambah item, bayar, buat laporan | membaca keyboard atau mencetak menu pilihan |
-| Model (*domain*) | `Kedai`, `Menu`, `Pesanan`, `Pembayaran`, `Diskon`, dan lainnya | menyimpan data dan menjaga aturan bisnis: harga > 0, stok cukup, pajak 10% | tahu bahwa ada keyboard atau *file* CSV |
+| Layanan (*service*) | `LayananKasir` | menjalankan alur kerja: daftar pelanggan, buat pesanan, tambah item, bayar, buat laporan | membaca *keyboard* atau mencetak menu pilihan |
+| Model (*domain*) | `Kedai`, `Menu`, `Pesanan`, `Pembayaran`, `Diskon`, dan lainnya | menyimpan data dan menjaga aturan bisnis: harga > 0, stok cukup, pajak 10% | tahu bahwa ada *keyboard* atau *file* CSV |
 | Penyimpanan (*persistence*) | `RepositoriMenuCSV`, `PencatatTransaksiCSV` | membaca dan menulis *file* | memutuskan aturan bisnis |
 
 Aturan emasnya: **lapisan atas boleh memakai lapisan di bawahnya, tetapi tidak sebaliknya.** Kelas `Menu` tidak pernah memanggil `AplikasiKasir`. Ia bahkan tidak tahu kelas itu ada.
@@ -157,12 +157,12 @@ Lapisan penyimpanan sedikit istimewa. Walaupun digambar paling bawah, ia **menge
 Manfaatnya terasa nyata:
 
 - **Tampilan bisa diganti.** Jika kelak KedaiKita dibuat versi web atau Android, cukup lapisan tampilan yang ditulis ulang. `LayananKasir` dan semua kelas model tetap dipakai apa adanya.
-- **Mudah diuji.** *Unit test* bisa langsung memanggil `Pesanan` atau `LayananKasir` tanpa perlu ada orang yang mengetik di keyboard.
+- **Mudah diuji.** *Unit test* bisa langsung memanggil `Pesanan` atau `LayananKasir` tanpa perlu ada orang yang mengetik di *keyboard*.
 - **Mudah dicari.** Ada salah hitung pajak? Lihat lapisan model. Tampilan menu pilihan berantakan? Lihat lapisan tampilan.
 - **Mudah dibagi dalam tim.** Satu orang mengerjakan tampilan, yang lain mengerjakan penyimpanan.
 
 > [!NOTE]
-> Di KedaiKita, `AplikasiKasir` juga yang menyiapkan penyimpanan: memuat menu saat aplikasi dibuka dan menyimpannya saat ditutup. Untuk aplikasi sekecil ini, cara tersebut masih wajar. Pada aplikasi yang lebih besar, tugas itu biasanya dipindah ke lapisan layanan agar lapisan tampilan benar-benar hanya mengurus tanya-jawab.
+> Di KedaiKita, `AplikasiKasir` juga yang menyiapkan penyimpanan: memuat menu saat aplikasi dibuka dan menyimpannya saat ditutup. Untuk aplikasi sekecil ini, cara tersebut masih wajar. Pada aplikasi yang lebih besar, tugas itu biasanya dipindah ke lapisan layanan agar lapisan tampilan benar-benar hanya mengurus tanya jawab.
 
 > [!WARNING]
 > Jangan berlebihan. Program latihan 50 baris tidak perlu empat lapisan. Arsitektur berlapis mulai terasa manfaatnya ketika aplikasi punya banyak kelas, dipakai berulang kali, atau dikerjakan beberapa orang.
@@ -571,7 +571,7 @@ Enam anggapan keliru berikut sering muncul saat pertama kali membangun aplikasi 
 
 2. **Keliru:** "Arsitektur berlapis artinya *file*-nya dipisah-pisah saja."
 
-   **Yang benar:** bukan soal jumlah *file*. Intinya adalah **arah ketergantungan**: tampilan memakai layanan, layanan memakai model, dan model tidak tahu apa-apa soal keyboard atau *file*.
+   **Yang benar:** bukan soal jumlah *file*. Intinya adalah **arah ketergantungan**: tampilan memakai layanan, layanan memakai model, dan model tidak tahu apa-apa soal *keyboard* atau *file*.
 
 3. **Keliru:** "Data di *file* pasti benar karena kita sendiri yang menulisnya."
 

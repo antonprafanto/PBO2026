@@ -298,7 +298,7 @@ Himpunan mahasiswa mengadakan turnamen futsal antarprodi dan butuh program klase
 3. Kelas `Klasemen` yang menyimpan statistik setiap tim di dalam dict/Map (`Tim` → statistik): main, menang, seri, kalah, gol memasukkan, gol kemasukan, dan poin (menang 3, seri 1, kalah 0).
 4. Klasemen diurutkan dengan urutan khusus: poin terbanyak → selisih gol terbesar → gol memasukkan terbanyak → nama A-Z.
 5. Tampilkan klasemen dalam bentuk tabel rapi, lalu daftar tim yang **belum pernah menang** (pakai set, cetak urut abjad).
-6. Minimal 4 tim dan 6 pertandingan. Data ditulis langsung di program (tanpa *input* dari keyboard).
+6. Minimal 4 tim dan 6 pertandingan. Data ditulis langsung di program (tanpa *input* dari *keyboard*).
 
 **Ketentuan pengumpulan:** satu program (Python atau Java) beserta tangkapan layar *output*-nya.
 

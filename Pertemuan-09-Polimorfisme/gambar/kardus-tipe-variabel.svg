@@ -36,7 +36,7 @@
   <text x="440" y="214" font-size="14" fill="#57606a">ditentukan saat objek dibuat, tidak pernah berubah</text>
   <text x="440" y="254" font-size="16" font-weight="700" fill="#1f2328">Disuruh <tspan font-family="Consolas, 'DejaVu Sans Mono', monospace">bersuara()</tspan>?</text>
   <text x="440" y="278" font-size="14" fill="#57606a">Yang menjawab adalah isinya, jadi hasilnya</text>
-  <text x="440" y="300" font-size="14" fill="#57606a">"Meong!", bukan suara hewan umum.</text>
+  <text x="440" y="300" font-size="14" fill="#57606a">“Meong!”, bukan suara hewan umum.</text>
 
   <rect x="24" y="348" width="852" height="54" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
   <text x="450" y="381" text-anchor="middle" font-size="15" fill="#1f2328">Untuk <tspan font-style="italic">method</tspan> yang di-<tspan font-style="italic">override</tspan>, yang menentukan versi yang berjalan adalah <tspan font-weight="700">tipe objek</tspan>.</text>

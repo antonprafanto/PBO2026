@@ -38,7 +38,7 @@ Di KedaiKita, kode yang mencetak `Pilihan: ` lalu membaca ketikan kasir seharusn
 
 **Jawaban: D**
 
-Pembahasan: urusan tanya-jawab dengan pengguna (mencetak pertanyaan, membaca keyboard, memeriksa bentuk jawaban) adalah tugas lapisan tampilan. `LayananKasir` (C) memang mengatur alur kerja, tetapi ia menerima data yang sudah jadi dan tidak pernah membaca keyboard sehingga bisa dipakai oleh tampilan lain dan mudah diuji. Model (A) dan penyimpanan (B) sama sekali tidak boleh tahu ada keyboard.
+Pembahasan: urusan tanya jawab dengan pengguna (mencetak pertanyaan, membaca *keyboard*, memeriksa bentuk jawaban) adalah tugas lapisan tampilan. `LayananKasir` (C) memang mengatur alur kerja, tetapi ia menerima data yang sudah jadi dan tidak pernah membaca *keyboard* sehingga bisa dipakai oleh tampilan lain dan mudah diuji. Model (A) dan penyimpanan (B) sama sekali tidak boleh tahu ada *keyboard*.
 
 </details>
 

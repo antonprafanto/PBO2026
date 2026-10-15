@@ -68,7 +68,7 @@
 
   <!-- Pemetaan ke PBO -->
   <rect x="24" y="368" width="852" height="82" rx="10" fill="#fff8c5" stroke="#d4a72c" stroke-width="2"/>
-  <text x="44" y="396" font-size="15" fill="#1f2328"><tspan font-weight="700">Dalam PBO:</tspan> stopkontak = kontrak (kelas abstrak atau <tspan font-style="italic">interface</tspan>), yaitu "apa yang bisa</text>
-  <text x="44" y="420" font-size="15" fill="#1f2328">dilakukan". Setiap alat = kelas konkret yang memenuhi kontrak itu dengan caranya sendiri.</text>
+  <text x="44" y="396" font-size="15" fill="#1f2328"><tspan font-weight="700">Dalam PBO:</tspan> stopkontak = kontrak (kelas abstrak atau <tspan font-style="italic">interface</tspan>), yaitu “apa yang bisa</text>
+  <text x="44" y="420" font-size="15" fill="#1f2328">dilakukan”. Setiap alat = kelas konkret yang memenuhi kontrak itu dengan caranya sendiri.</text>
   <text x="44" y="442" font-size="15" fill="#1f2328">Pemakai cukup mengenal kontraknya, tanpa perlu tahu detail di dalam setiap alat.</text>
 </svg>

@@ -2,7 +2,7 @@
   <title>Relasi adalah (is-a) sebagai himpunan bersarang</title>
   <desc>Himpunan Menu memuat himpunan Makanan dan Minuman. Objek kopi berada di dalam Minuman, sehingga kopi adalah Minuman dan juga Menu, tetapi bukan Makanan.</desc>
   <rect x="1" y="1" width="898" height="428" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
-  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">"Adalah" berarti berada di dalam himpunan yang lebih umum</text>
+  <text x="450" y="40" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2328">“Adalah” berarti berada di dalam himpunan yang lebih umum</text>
 
   <!-- Himpunan Menu -->
   <ellipse cx="265" cy="225" rx="235" ry="165" fill="#ddf4ff" stroke="#0969da" stroke-width="2.5"/>
