@@ -27,7 +27,7 @@ Setelah pertemuan ini, kamu mampu:
 | 5 | [Kuis](kuis.md) | 15 menit |
 | 6 | [Spesifikasi Proyek Akhir](proyek-akhir.md) | 30 menit |
 
-🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P15-Proyek-Terintegrasi.pdf) · [unduh PowerPoint](../Slide/PBO2026-P15-Proyek-Terintegrasi.pptx)
+🖼️ ***Slide* pertemuan ini:** [lihat di PowerPoint Online](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fantonprafanto%2FPBO2026%2Fmaster%2FSlide%2FPBO2026-P15-Proyek-Terintegrasi.pptx) · [baca PDF](../Slide/PBO2026-P15-Proyek-Terintegrasi.pdf) · [unduh PowerPoint](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P15-Proyek-Terintegrasi.pptx) · [unduh PDF](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P15-Proyek-Terintegrasi.pdf)
 
 ## 🔁 Mengingat Kembali
 

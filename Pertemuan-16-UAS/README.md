@@ -29,7 +29,7 @@ Setelah mempelajari halaman ini dan mengerjakan latihannya, kamu mampu:
 | 5 | Solusi kode: [🐍 Python](python/README.md) **atau** [☕ Java](java/README.md) | 45 menit |
 | 6 | [Presentasi Proyek Akhir](#8-presentasi-proyek-akhir) dan [Refleksi](#9-refleksi-dan-langkah-selanjutnya) | sesuai kebutuhan |
 
-🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P16-UAS.pdf) · [unduh PowerPoint](../Slide/PBO2026-P16-UAS.pptx)
+🖼️ ***Slide* pertemuan ini:** [lihat di PowerPoint Online](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fantonprafanto%2FPBO2026%2Fmaster%2FSlide%2FPBO2026-P16-UAS.pptx) · [baca PDF](../Slide/PBO2026-P16-UAS.pdf) · [unduh PowerPoint](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P16-UAS.pptx) · [unduh PDF](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P16-UAS.pdf)
 
 ## 🔁 Mengingat Kembali
 

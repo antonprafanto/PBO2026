@@ -27,7 +27,7 @@ Setelah mempelajari halaman ini dan mengerjakan latihan soalnya, kamu mampu:
 | 4 | [Pembahasan](pembahasan.md) | 60 menit |
 | 5 | Solusi praktik: [🐍 Python](python/README.md) **atau** [☕ Java](java/README.md) | 30 menit |
 
-🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P08-UTS.pdf) · [unduh PowerPoint](../Slide/PBO2026-P08-UTS.pptx)
+🖼️ ***Slide* pertemuan ini:** [lihat di PowerPoint Online](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fantonprafanto%2FPBO2026%2Fmaster%2FSlide%2FPBO2026-P08-UTS.pptx) · [baca PDF](../Slide/PBO2026-P08-UTS.pdf) · [unduh PowerPoint](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P08-UTS.pptx) · [unduh PDF](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P08-UTS.pdf)
 
 ## 🔁 Mengingat Kembali
 

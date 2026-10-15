@@ -25,7 +25,7 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
-🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P01-Pengenalan-PBO.pdf) · [unduh PowerPoint](../Slide/PBO2026-P01-Pengenalan-PBO.pptx)
+🖼️ ***Slide* pertemuan ini:** [lihat di PowerPoint Online](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fantonprafanto%2FPBO2026%2Fmaster%2FSlide%2FPBO2026-P01-Pengenalan-PBO.pptx) · [baca PDF](../Slide/PBO2026-P01-Pengenalan-PBO.pdf) · [unduh PowerPoint](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P01-Pengenalan-PBO.pptx) · [unduh PDF](https://raw.githubusercontent.com/antonprafanto/PBO2026/master/Slide/PBO2026-P01-Pengenalan-PBO.pdf)
 
 ## 🔁 Mengingat Kembali
 

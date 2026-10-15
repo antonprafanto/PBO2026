@@ -349,7 +349,7 @@ Setiap halaman praktik selalu menuliskan perintah lengkapnya. Tabel ini hanya ga
 |---|---|
 | [Rencana Pembelajaran](RENCANA-PEMBELAJARAN.md) | capaian pembelajaran, rencana 16 pertemuan, metode, penilaian, dan proyek akhir |
 | [00-Persiapan](00-Persiapan/README.md) | instalasi alat dan cara menjalankan program |
-| [*Slide* Presentasi](Slide/README.md) | *slide* setiap pertemuan: PDF untuk dibaca di GitHub dan PowerPoint untuk diunduh |
+| [*Slide* Presentasi](Slide/README.md) | *slide* setiap pertemuan: lihat langsung di PowerPoint Online atau PDF, atau unduh dengan sekali klik |
 | [Lampiran](Lampiran/README.md) | pintu masuk ke semua lampiran |
 | [Glosarium](Lampiran/glosarium.md) | daftar istilah PBO dari A sampai Z beserta pertemuan yang membahasnya |
 | [*Cheat Sheet* Python ↔ Java](Lampiran/cheatsheet-python-java.md) | sintaks penting kedua bahasa berdampingan, dari Pertemuan 01 sampai 15 |
