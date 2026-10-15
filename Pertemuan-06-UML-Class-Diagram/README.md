@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 75 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P06-UML-Class-Diagram.pdf) · [unduh PowerPoint](../Slide/PBO2026-P06-UML-Class-Diagram.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Di [Pertemuan 05](../Pertemuan-05-Relasi-Antarkelas/README.md) kita belajar bahwa objek-objek saling terhubung:

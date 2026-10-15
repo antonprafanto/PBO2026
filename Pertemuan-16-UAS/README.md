@@ -29,6 +29,8 @@ Setelah mempelajari halaman ini dan mengerjakan latihannya, kamu mampu:
 | 5 | Solusi kode: [🐍 Python](python/README.md) **atau** [☕ Java](java/README.md) | 45 menit |
 | 6 | [Presentasi Proyek Akhir](#8-presentasi-proyek-akhir) dan [Refleksi](#9-refleksi-dan-langkah-selanjutnya) | sesuai kebutuhan |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P16-UAS.pdf) · [unduh PowerPoint](../Slide/PBO2026-P16-UAS.pptx)
+
 ## 🔁 Mengingat Kembali
 
 - Di [Pertemuan 08 (UTS)](../Pertemuan-08-UTS/README.md), fondasi PBO sudah diuji: kelas, objek, enkapsulasi, relasi, UML, dan pewarisan. Fondasi itu tetap dipakai di setiap soal UAS.

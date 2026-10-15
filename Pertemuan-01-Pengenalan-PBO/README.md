@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P01-Pengenalan-PBO.pdf) · [unduh PowerPoint](../Slide/PBO2026-P01-Pengenalan-PBO.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Pertemuan ini adalah titik awal semester. Jadi, kita menengok bekal dari mata kuliah pemrograman dasar yang sudah kamu tempuh. Kamu sudah mengenal:

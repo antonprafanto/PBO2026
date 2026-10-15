@@ -24,6 +24,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 75 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P12-Koleksi-dan-Generics.pdf) · [unduh PowerPoint](../Slide/PBO2026-P12-Koleksi-dan-Generics.pptx)
+
 ## 🔁 Mengingat Kembali
 
 - Di Pertemuan 05 kita sudah memakai ***list* berisi objek**: `list` di Python dan `ArrayList` di Java. Saat itu `List<Menu>` cukup dibaca "*list* berisi `Menu`". Hari ini kita membahas arti tanda `< >` itu.

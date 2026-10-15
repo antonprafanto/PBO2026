@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P10-Abstract-Class-dan-Interface.pdf) · [unduh PowerPoint](../Slide/PBO2026-P10-Abstract-Class-dan-Interface.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Di [Pertemuan 09](../Pertemuan-09-Polimorfisme/README.md) kita sudah belajar bahwa:

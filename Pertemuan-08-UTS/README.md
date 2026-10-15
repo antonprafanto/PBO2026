@@ -27,6 +27,8 @@ Setelah mempelajari halaman ini dan mengerjakan latihan soalnya, kamu mampu:
 | 4 | [Pembahasan](pembahasan.md) | 60 menit |
 | 5 | Solusi praktik: [🐍 Python](python/README.md) **atau** [☕ Java](java/README.md) | 30 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P08-UTS.pdf) · [unduh PowerPoint](../Slide/PBO2026-P08-UTS.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Tujuh pertemuan pertama sebenarnya membangun **satu cerita utuh**. Lihat bagaimana studi kasus KedaiKita tumbuh dari minggu ke minggu:

@@ -24,6 +24,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 75 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P14-Design-Pattern.pdf) · [unduh PowerPoint](../Slide/PBO2026-P14-Design-Pattern.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Di [Pertemuan 13](../Pertemuan-13-Prinsip-SOLID/README.md) kita membongkar kelas raksasa `KasirSerbaBisa` menjadi kelas-kelas kecil:

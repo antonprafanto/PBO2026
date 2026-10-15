@@ -1,6 +1,6 @@
 # Pemrograman Berorientasi Objek (PBO) 2026
 
-[Mulai dari Persiapan ➡️](00-Persiapan/README.md) · [Rencana Pembelajaran](RENCANA-PEMBELAJARAN.md) · [Lampiran](Lampiran/README.md)
+[Mulai dari Persiapan ➡️](00-Persiapan/README.md) · [Rencana Pembelajaran](RENCANA-PEMBELAJARAN.md) · [*Slide* Presentasi](Slide/README.md) · [Lampiran](Lampiran/README.md)
 
 > Materi kuliah **Pemrograman Berorientasi Objek** untuk mahasiswa S1 Informatika, Universitas Mulawarman, Samarinda. Setiap konsep dijelaskan dulu dengan bahasa sehari-hari, lalu dipraktikkan dalam dua jalur: 🐍 **Python** dan ☕ **Java**. Sepanjang semester, kita membangun satu aplikasi yang tumbuh sedikit demi sedikit: kasir kafe **KedaiKita**.
 
@@ -87,6 +87,8 @@ flowchart LR
 | 3 | **Jembatan Python ↔ Java** | tabel perbandingan sintaks dan jebakan saat pindah bahasa | 15 menit |
 | 4 | **Latihan** | 5—7 soal bertingkat (Dasar, Menengah, Tantangan) beserta solusi, ditambah tugas mandiri | 60 menit |
 | 5 | **Kuis** | 10 soal pilihan ganda beserta kunci dan pembahasan | 15 menit |
+
+Setiap pertemuan juga punya ***slide* presentasi** (PDF dan PowerPoint) di folder [Slide](Slide/README.md). Pakai untuk mengikuti presentasi di kelas atau mengulang materi dengan cepat; penjelasan lengkapnya tetap ada di halaman materi.
 
 > [!TIP]
 > Saran belajar yang terbukti ampuh: **ketik ulang** kodenya, jangan hanya menyalin. Jalankan, lalu ubah sedikit dan lihat apa yang terjadi. Bagian bertanda **Coba sendiri** di setiap halaman praktik dibuat khusus untuk itu.
@@ -267,6 +269,7 @@ PBO2026/
 ├── Pertemuan-14-Design-Pattern/
 ├── Pertemuan-15-Proyek-Terintegrasi/
 ├── Pertemuan-16-UAS/
+├── Slide/                                 <- slide presentasi setiap pertemuan (PDF dan PowerPoint)
 └── Lampiran/                              <- glosarium, cheat sheet, referensi, dan FAQ
 ```
 
@@ -346,6 +349,7 @@ Setiap halaman praktik selalu menuliskan perintah lengkapnya. Tabel ini hanya ga
 |---|---|
 | [Rencana Pembelajaran](RENCANA-PEMBELAJARAN.md) | capaian pembelajaran, rencana 16 pertemuan, metode, penilaian, dan proyek akhir |
 | [00-Persiapan](00-Persiapan/README.md) | instalasi alat dan cara menjalankan program |
+| [*Slide* Presentasi](Slide/README.md) | *slide* setiap pertemuan: PDF untuk dibaca di GitHub dan PowerPoint untuk diunduh |
 | [Lampiran](Lampiran/README.md) | pintu masuk ke semua lampiran |
 | [Glosarium](Lampiran/glosarium.md) | daftar istilah PBO dari A sampai Z beserta pertemuan yang membahasnya |
 | [*Cheat Sheet* Python ↔ Java](Lampiran/cheatsheet-python-java.md) | sintaks penting kedua bahasa berdampingan, dari Pertemuan 01 sampai 15 |
@@ -369,4 +373,4 @@ Tidak punya akun GitHub? Sampaikan langsung kepada dosen atau asisten praktikum.
 
 Belajar pemrograman itu seperti meracik kopi: takarannya dipelajari pelan-pelan, dan setiap percobaan membuatmu makin mahir. Selamat belajar, dan sampai jumpa di Persiapan!
 
-[Mulai dari Persiapan ➡️](00-Persiapan/README.md) · [Rencana Pembelajaran](RENCANA-PEMBELAJARAN.md) · [Lampiran](Lampiran/README.md)
+[Mulai dari Persiapan ➡️](00-Persiapan/README.md) · [Rencana Pembelajaran](RENCANA-PEMBELAJARAN.md) · [*Slide* Presentasi](Slide/README.md) · [Lampiran](Lampiran/README.md)

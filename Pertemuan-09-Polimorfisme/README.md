@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P09-Polimorfisme.pdf) · [unduh PowerPoint](../Slide/PBO2026-P09-Polimorfisme.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Pertemuan 08 adalah UTS. Materi terakhir sebelum UTS ada di [Pertemuan 07](../Pertemuan-07-Pewarisan/README.md):

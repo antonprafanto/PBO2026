@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P05-Relasi-Antarkelas.pdf) · [unduh PowerPoint](../Slide/PBO2026-P05-Relasi-Antarkelas.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Di [Pertemuan 04](../Pertemuan-04-Enkapsulasi/README.md) kita sudah belajar bahwa:

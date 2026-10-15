@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P07-Pewarisan.pdf) · [unduh PowerPoint](../Slide/PBO2026-P07-Pewarisan.pptx)
+
 ## 🔁 Mengingat Kembali
 
 - Di [Pertemuan 05](../Pertemuan-05-Relasi-Antarkelas/README.md), kita menghubungkan kelas lewat **asosiasi, agregasi, komposisi, dan dependensi**. Contohnya, `Kedai` menyimpan daftar `Menu` (agregasi) dan `Pesanan` menyusun `ItemPesanan` (komposisi). Semuanya adalah hubungan "**punya**" atau "**memakai**".

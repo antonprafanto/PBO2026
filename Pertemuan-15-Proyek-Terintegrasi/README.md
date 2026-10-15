@@ -27,6 +27,8 @@ Setelah pertemuan ini, kamu mampu:
 | 5 | [Kuis](kuis.md) | 15 menit |
 | 6 | [Spesifikasi Proyek Akhir](proyek-akhir.md) | 30 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P15-Proyek-Terintegrasi.pdf) · [unduh PowerPoint](../Slide/PBO2026-P15-Proyek-Terintegrasi.pptx)
+
 ## 🔁 Mengingat Kembali
 
 - Di [Pertemuan 14](../Pertemuan-14-Design-Pattern/README.md), KedaiKita mendapat empat pola desain: ***Singleton*** (`PengaturanKedai`), ***Factory*** (`PembayaranFactory`), ***Strategy*** (kelas-kelas `Diskon`), dan ***Observer*** (`LayarDapur` dan `NotifikasiPelanggan` diberi tahu saat status pesanan berubah).

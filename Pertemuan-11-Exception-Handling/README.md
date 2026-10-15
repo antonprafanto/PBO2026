@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P11-Exception-Handling.pdf) · [unduh PowerPoint](../Slide/PBO2026-P11-Exception-Handling.pptx)
+
 ## 🔁 Mengingat Kembali
 
 - Di [Pertemuan 04](../Pertemuan-04-Enkapsulasi/README.md), *setter* dan konstruktor **menolak** data yang tidak valid dengan `raise ValueError(...)` / `throw new IllegalArgumentException(...)`. Cara menangkapnya baru kita intip sekilas.

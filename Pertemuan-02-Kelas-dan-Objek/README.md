@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P02-Kelas-dan-Objek.pdf) · [unduh PowerPoint](../Slide/PBO2026-P02-Kelas-dan-Objek.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Di [Pertemuan 01](../Pertemuan-01-Pengenalan-PBO/README.md) kita sudah melihat bahwa:

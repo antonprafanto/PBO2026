@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 90 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P13-Prinsip-SOLID.pdf) · [unduh PowerPoint](../Slide/PBO2026-P13-Prinsip-SOLID.pptx)
+
 ## 🔁 Mengingat Kembali
 
 - Di [Pertemuan 09](../Pertemuan-09-Polimorfisme/README.md), polimorfisme membuat kita bisa menambah jenis bangun datar baru **tanpa mengubah** fungsi pencetak laporan. Saat itu kita menyebut nama *Open/Closed Principle* dan berjanji membahasnya lagi. Hari ini janji itu ditepati.

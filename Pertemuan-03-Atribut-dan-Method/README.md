@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P03-Atribut-dan-Method.pdf) · [unduh PowerPoint](../Slide/PBO2026-P03-Atribut-dan-Method.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Di [Pertemuan 02](../Pertemuan-02-Kelas-dan-Objek/README.md) kita sudah belajar bahwa:

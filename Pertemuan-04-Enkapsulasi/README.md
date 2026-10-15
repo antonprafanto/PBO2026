@@ -25,6 +25,8 @@ Setelah pertemuan ini, kamu mampu:
 | 4 | [Latihan](latihan.md) | 60 menit |
 | 5 | [Kuis](kuis.md) | 15 menit |
 
+🖼️ ***Slide* pertemuan ini:** [baca PDF](../Slide/PBO2026-P04-Enkapsulasi.pdf) · [unduh PowerPoint](../Slide/PBO2026-P04-Enkapsulasi.pptx)
+
 ## 🔁 Mengingat Kembali
 
 Di [Pertemuan 03](../Pertemuan-03-Atribut-dan-Method/README.md) kita sudah belajar bahwa:
